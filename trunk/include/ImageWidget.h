@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "afx.h"
+#include "artrix-includes.h"
 
 class ImageWidget: public Widget {
 protected:

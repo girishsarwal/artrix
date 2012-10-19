@@ -6,7 +6,7 @@
  */
 
 #pragma once
-#include "afx.h"
+#include "artrix-includes.h"
 
 
 class TxBatteryMeterWidget: public Widget {
@@ -26,7 +26,7 @@ public:
 	 * set range of battery, used to calculate percent option
 	 */
 	void setBatteryRange(long min, long max);
-
+	void onRender();
 
 	TxBatteryMeterWidget();
 	virtual ~TxBatteryMeterWidget();
