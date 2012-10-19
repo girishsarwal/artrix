@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "artrix-includes.h"
 SplashView::SplashView(){
 	m_pSplashImage = NULL;
 
@@ -15,9 +15,5 @@ void SplashView::onCreate(){
 	addWidget(new TxBatteryMeterWidget());
 }
 void SplashView::onRender(){
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glutWireSphere(10, 20, 20);
-	printf("Drawing");
 }
 

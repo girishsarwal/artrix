@@ -5,7 +5,7 @@
  *      Author: girish
  */
 
-#include "afx.h"
+#include "artrix-includes.h"
 
 ImageWidget::ImageWidget() {
 	// TODO Auto-generated constructor stub

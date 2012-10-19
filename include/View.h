@@ -1,5 +1,5 @@
 #pragma once
-#include "afx.h"
+#include "artrix-includes.h"
 class View
 {
 public:

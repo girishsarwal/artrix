@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "artrix-includes.h"
 void View::update(){
 	short index = -1;
 	onUpdate();
@@ -46,7 +46,8 @@ void View::onRender(){
 
 View::View(void)
 {
-
+	/** Zero out the memory on the arrays **/
+	memset(pWidgets, NULL, MAX_WIDGETS * 4);
 }
 
 View::~View(void)
