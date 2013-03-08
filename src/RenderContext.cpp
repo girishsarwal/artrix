@@ -4,6 +4,7 @@ void RenderContext::initialize(int argc, char** argv){
 	m_pTheContext = this;
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+	glutInitWindowSize(SCREEN_X_SIZE, SCREEN_Y_SIZE);
 	m_hWnd = glutCreateWindow("ARTRIX");
 	glutDisplayFunc(RenderContext::loop);
 	glutReshapeFunc(RenderContext::resize);
@@ -25,7 +26,7 @@ void RenderContext::loop(){
 	
 	/** update the display **/
 	glClear(GL_COLOR_BUFFER_BIT);
-	m_pTheContext->m_pCurrentView->render();
+	m_pTheContext->m_pCurrentView->render(0);
 	glutSwapBuffers();
 }
 
@@ -37,7 +38,7 @@ void RenderContext::setup(){
 }
 
 void RenderContext::update(){
-	m_pTheContext->m_pCurrentView->update();
+	m_pTheContext->m_pCurrentView->update(0);
 	glutPostRedisplay();
 }
 

@@ -1,20 +1,20 @@
 #include "afx.h"
-void View::update(){
+void View::update(double frameTime){
 	short index = -1;
-	onUpdate();
+	onUpdate(frameTime);
 	while(++index < MAX_WIDGETS)
 	{
 		if(pWidgets[index]){
-			pWidgets[index]->update();
+			pWidgets[index]->update(frameTime);
 		}
 	}
 }
-void View::render(){
+void View::render(double frameTime){
 	short index = -1;
-	onRender();
+	onRender(frameTime);
 	while(++index < MAX_WIDGETS){
 		if(pWidgets[index]){
-			pWidgets[index]->render();
+			pWidgets[index]->render(frameTime);
 		}
 	}
 }
@@ -37,10 +37,10 @@ void View::removeWidget(Widget* _pWidget){
 	m_nWidgetCount--;
 }
 
-void View::onUpdate(){
+void View::onUpdate(double frameTime){
 
 }
-void View::onRender(){
+void View::onRender(double frameTime){
 
 }
 

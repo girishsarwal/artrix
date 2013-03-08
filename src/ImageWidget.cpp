@@ -15,10 +15,11 @@ ImageWidget::ImageWidget() {
 ImageWidget::~ImageWidget() {
 	// TODO Auto-generated destructor stub
 }
-
-void ImageWidget::onUpdate(){
+void ImageWidget::onInitialize(){
+}
+void ImageWidget::onUpdate(double frameTime){
 
 }
-void ImageWidget::onRender(){
+void ImageWidget::onRender(double frameTime){
 
 }

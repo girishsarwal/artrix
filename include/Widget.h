@@ -9,9 +9,10 @@ public:
 	float width;
 	float height;
 
-	void update();
+	void initialize();
+	void update(double frameTime);
 	void getValuesFromSensors();
-	void render();
+	void render(double frameTime);
 
 
 	void setDrawRectangle(float _left, float _top, float _width, float _height);
@@ -19,8 +20,9 @@ public:
 	~Widget(void);
 
 protected:
-	virtual void onUpdate();
+	virtual void onInitialize();
+	virtual void onUpdate(double frameTime);
 	virtual void onGetValuesFromSensors();
-	virtual void onRender();
+	virtual void onRender(double frameTime);
 };
 

@@ -13,17 +13,18 @@ void Widget::setDrawRectangle(float _left, float _top, float _width, float _heig
 	width = _width;
 	height = _height;
 }
-void Widget::update(){
+void Widget::update(double frameTime){
 	getValuesFromSensors();
-	onUpdate();
+	onUpdate(frameTime);
 }
 void Widget::getValuesFromSensors(){
 	onGetValuesFromSensors();
 }
-void Widget::render(){
-	onRender();
+void Widget::render(double frameTime){
+	onRender(frameTime);
 }
 
-void Widget::onUpdate(){}
+void Widget::onUpdate(double frameTime){}
 void Widget::onGetValuesFromSensors(){}
-void Widget::onRender(){}
+void Widget::onRender(double frameTime){}
+void Widget::onInitialize(){}

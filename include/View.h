@@ -11,13 +11,13 @@ public:
 	View(void);
 	virtual ~View(void);
 
-	void update();
-	void render();
+	void update(double frameTime);
+	void render(double frameTime);
 	void create();
 protected:
 
-	virtual void onUpdate();
-	virtual void onRender();
+	virtual void onUpdate(double frameTime);
+	virtual void onRender(double frameTime);
 	virtual void onCreate() = 0;
 
 

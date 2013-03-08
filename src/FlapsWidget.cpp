@@ -2,8 +2,8 @@
 void FlapsWidget::onGetValuesFromSensors(){
 	/** m_iPosition = read form sensors **/
 }
-void FlapsWidget::onUpdate(){
+void FlapsWidget::onUpdate(double frameTime){
 	
 }
-void FlapsWidget::onRender(){
+void FlapsWidget::onRender(double frameTime){
 }

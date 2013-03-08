@@ -16,7 +16,7 @@ TxBatteryMeterWidget::~TxBatteryMeterWidget() {
 	// TODO Auto-generated destructor stub
 }
 
-void TxBatteryMeterWidget::onRender(){
+void TxBatteryMeterWidget::onRender(double frameTime){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glutWireSphere(20, 10, 10);
