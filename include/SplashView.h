@@ -1,5 +1,5 @@
 #pragma once
-#include "artrix-includes.h"
+#include "afx.h"
 class SplashView
 	: public View
 {

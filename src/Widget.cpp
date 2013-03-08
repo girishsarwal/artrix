@@ -1,4 +1,4 @@
-#include "artrix-includes.h"
+#include "afx.h"
 
 Widget::Widget(){
 	setDrawRectangle(0, 0, 100, 100);

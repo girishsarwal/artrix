@@ -1,50 +1,19 @@
-#include "artrix-includes.h"
+#include "afx.h"
 void loop();
 void setup();
 void update();
 void resize(GLint w, GLint h);
-View* pCurrentView = NULL;
+
+RenderContext* rc = NULL;
 
 int main(int argc, char* argv[]){
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-	int hWnd = glutCreateWindow("ARTIX");
-	glutDisplayFunc(loop);
-	glutReshapeFunc(resize);
-	glutIdleFunc(update);
-	setup();
-	glutMainLoop();
-	glutDestroyWindow(hWnd);
+	rc = new RenderContext();
+	rc->initialize(argc, argv);
+	rc->setup();
+	rc->begin();
+	rc->shutdown();
 	return 0;
 }
-void resize(GLint w, GLint h){
-	if(h ==0){
-		h = 1;
-	}
-	glViewport(0, 0, w, h);
 
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(-100, 100, -100, 100, -100, 100);
-}
-
-void setup(){
-	/** Set the startup view to the splash screen **/
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	pCurrentView = new SplashView();
-	pCurrentView->create();
-};
-void loop(){
-	/** update the control sticks and other pots**/
-	
-	/** update the display **/
-	glClear(GL_COLOR_BUFFER_BIT);
-	pCurrentView->render();
-	glutSwapBuffers();
-};
-void update(){
-	pCurrentView->update();
-	glutPostRedisplay();
-};
 
