@@ -5,6 +5,6 @@ private:
 	int m_iPosition;
 public:
 	void onGetValuesFromSensors();
-	void onUpdate();
-	void onRender();
+	void onUpdate(double frameTime);
+	void onRender(double frameTime);
 };

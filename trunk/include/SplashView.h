@@ -8,8 +8,8 @@ private:
 public:
 	SplashView();
 	virtual ~SplashView();
-	void onRender();
-	void onUpdate();
+	void onRender(double frameTime);
+	void onUpdate(double frameTime);
 	void onCreate();
 };
 

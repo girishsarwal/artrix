@@ -7,13 +7,13 @@ SplashView::SplashView(){
 SplashView::~SplashView(){
 }
 
-void SplashView::onUpdate(){
+void SplashView::onUpdate(double frameTime){
 	
 }
 void SplashView::onCreate(){
 	TxBatteryMeterWidget *pWidget = new TxBatteryMeterWidget();
 	addWidget(new TxBatteryMeterWidget());
 }
-void SplashView::onRender(){
+void SplashView::onRender(double frameTime){
 }
 

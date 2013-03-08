@@ -1,13 +1,13 @@
 CC = g++
-INC = -I/home/rpi/artrix/include -I/opt/vc/include
+INC = -I/home/rpi/artrix/include -I/opt/vc/include -I/usr/include/libxml2
 
 SRC_DIR = src
-SRC = afx.cpp FlapsWidget.cpp RenderContext.cpp artrix.cpp ImageWidget.cpp SplashView.cpp View.cpp Widget.cpp TxBatteryMeterWidget.cpp
+SRC = afx.cpp FlapsWidget.cpp RenderContext.cpp artrix.cpp ImageWidget.cpp SplashView.cpp View.cpp Widget.cpp TxBatteryMeterWidget.cpp ViewManager.cpp WidgetFactory.cpp
 OBJ = $(SRC:.cpp=.o)
 
 
 TARGET = artrix
-LIB = glut
+LIB = glut libxml
 
 all: compile link 
 
