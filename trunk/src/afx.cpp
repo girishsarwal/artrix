@@ -1,1 +1,1 @@
-#include "../include/afx.h"
+#include "afx.h"

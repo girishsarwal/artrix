@@ -1,4 +1,4 @@
-#include "artrix-includes.h"
+#include "afx.h"
 void View::update(){
 	short index = -1;
 	onUpdate();

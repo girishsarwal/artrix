@@ -1,4 +1,4 @@
-#include "artrix-includes.h"
+#include "afx.h"
 void FlapsWidget::onGetValuesFromSensors(){
 	/** m_iPosition = read form sensors **/
 }

@@ -1,4 +1,4 @@
-#include "artrix-includes.h"
+#include "afx.h"
 SplashView::SplashView(){
 	m_pSplashImage = NULL;
 
