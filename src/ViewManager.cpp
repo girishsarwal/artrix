@@ -20,12 +20,12 @@ View* ViewManager::getView(char* pName){
 void ViewManager::processNode(xmlTextReaderPtr reader){
 	int nodeType = xmlTextReaderNodeType(reader);
 	xmlChar* nodeName = xmlTextReaderName(reader);
-	printf("Found: NodeType:%d NodeName:%s\n", nodeType , nodeName);
+	//printf("Found: NodeType:%d NodeName:%s\n", nodeType , nodeName);
 	switch(xmlTextReaderNodeType(reader)){
 		case 1:		/** something has started **/
 			if(strcmp((char*)nodeName, "views") == 0) break;
 			if(strcmp((char*)nodeName, "view") == 0){
-				printf("Found view node. Creating new View\n");
+				printf("ViewManager::processNode - Found view node. Creating new View\n");
 				m_pCurrentView = new View();
 				break;
 			}
@@ -35,19 +35,19 @@ void ViewManager::processNode(xmlTextReaderPtr reader){
 			break;
 		case 15:
 			if(strcmp((char*)nodeName, "view") == 0){
-				printf("Finalizing view\n");
+				printf("ViewManager::processNode - Finalizing view\n");
 				m_Views.add(m_pCurrentView);
 			}
 			break;
 	}
 };
 void ViewManager::createStockViews(){
-	printf("Reading Stock Views\n");
+	printf("ViewManager::createStockViews - Reading Stock Views\n");
 	xmlTextReaderPtr reader = NULL;
 	reader = xmlNewTextReaderFilename("/usr/share/artrix/screens/screens.xml");
 	int ret = 0;
 	if(reader == NULL){
-		printf("Could not load default views. No views will be available \n");
+		printf("ViewManager::createStockViews - Could not load default views. No views will be available \n");
 		return;
 	}
 	ret = xmlTextReaderRead(reader);
