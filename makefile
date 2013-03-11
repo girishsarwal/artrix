@@ -15,7 +15,7 @@ compile:$(OBJ)
 	
 link:
 	echo Linking $<
-	$(CC) $(OBJ) -o $(TARGET).bin $(LIB)
+	$(CC) $(OBJ) -o $(TARGET) $(LIB)
 
 %.o:src/%.cpp
 	echo Compiling $<
