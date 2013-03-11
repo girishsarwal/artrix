@@ -16,6 +16,7 @@ class ImageWidget;
 class RenderContext;
 class WidgetFactory;
 
+#include "SharedAllocation.h"
 #include "View.h"
 #include "Widget.h"
 

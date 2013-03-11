@@ -6,7 +6,9 @@ Keeps  a list of views and return as necessary
 class ViewManager{
 private:
 	int m_iNumTextures;
-
+	SharedAllocation<View*> m_Views;
+	void processNode(xmlTextReaderPtr reader);
+	View* m_pCurrentView;
 public:
 	void loadViewFromXml(char* pPath);
 	int getNumWidgetsInView(View* pView);
