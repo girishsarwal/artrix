@@ -42,12 +42,12 @@ void ViewManager::processNode(xmlTextReaderPtr reader){
 	}
 };
 void ViewManager::createStockViews(){
-	printf("Reading Stock Views \n");
+	printf("Reading Stock Views\n");
 	xmlTextReaderPtr reader = NULL;
 	reader = xmlNewTextReaderFilename("/usr/share/artrix/screens/screens.xml");
 	int ret = 0;
 	if(reader == NULL){
-		printf("Problem \n");
+		printf("Could not load default views. No views will be available \n");
 		return;
 	}
 	ret = xmlTextReaderRead(reader);
