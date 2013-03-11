@@ -1,4 +1,4 @@
-<?xml version="1.0">
+<?xml version="1.0"?>
 <views>
 	<view name="pilot" id="1">
 		<ImageWidget position="0, 0" size="100, 100" src="artrix.png"></ImageWidget>

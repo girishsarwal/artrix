@@ -1,5 +1,5 @@
 CC = g++
-INC = -I/home/rpi/artrix/include -I/opt/vc/include -I/usr/include/libxml2
+INC = -Iinclude -I/opt/vc/include -I/usr/include/libxml2
 
 SRC_DIR = src
 SRC = afx.cpp FlapsWidget.cpp RenderContext.cpp artrix.cpp ImageWidget.cpp SplashView.cpp View.cpp Widget.cpp TxBatteryMeterWidget.cpp ViewManager.cpp WidgetFactory.cpp
@@ -7,7 +7,7 @@ OBJ = $(SRC:.cpp=.o)
 
 
 TARGET = artrix
-LIB = glut libxml
+LIB = -lglut -lxml2 -lm
 
 all: compile link 
 
@@ -15,7 +15,7 @@ compile:$(OBJ)
 	
 link:
 	echo Linking $<
-	$(CC) $(OBJ) -o $(TARGET).bin -l $(LIB)
+	$(CC) $(OBJ) -o $(TARGET).bin $(LIB)
 
 %.o:src/%.cpp
 	echo Compiling $<
@@ -23,8 +23,8 @@ link:
 	
 	
 clean:
-	rm *.o
-	rm *.bin
+	rm -f *.o
+	rm -f *.bin
 
 	
 

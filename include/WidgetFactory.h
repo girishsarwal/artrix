@@ -5,5 +5,5 @@
 #pragma once
 class WidgetFactory{
 public:
-	void createWidget(char* widgetType, Widget* pWidget);
+	static void createWidget(char* widgetType, Widget* pWidget);
 };

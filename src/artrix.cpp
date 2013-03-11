@@ -7,11 +7,13 @@ void resize(GLint w, GLint h);
 RenderContext* rc = NULL;
 
 int main(int argc, char* argv[]){
-	rc = new RenderContext();
+	ViewManager *vm = new ViewManager();
+	vm->createStockViews();
+	/*rc = new RenderContext();
 	rc->initialize(argc, argv);
 	rc->setup();
 	rc->begin();
-	rc->shutdown();
+	rc->shutdown();*/
 	return 0;
 }
 
