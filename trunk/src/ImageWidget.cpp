@@ -21,5 +21,5 @@ void ImageWidget::onUpdate(double frameTime){
 
 }
 void ImageWidget::onRender(double frameTime){
-
+	printf("Rendering ImageWidget\n");
 }

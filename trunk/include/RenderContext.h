@@ -5,18 +5,19 @@ private:
 	int m_hWnd;
 	View* m_pCurrentView;
 	static RenderContext* m_pTheContext;
+	RenderContext();
 public:
 	void initialize(int argc, char** argv);
 	void setup();
-	void shutdown();
 	void begin();
-
-	RenderContext();
+	void shutdown();
+	View* getCurrentView();
+	static RenderContext* getInstance();
 	~RenderContext();
 
-	static void loop();
-	
-	static void update();
-	static void resize(GLint w, GLint h);
 	
 };
+
+extern "C" void loop();
+extern "C" void update();
+extern "C" void resize(GLint w, GLint h);

@@ -34,3 +34,6 @@ class WidgetFactory;
 #include "ViewManager.h"
 
 #include "WidgetFactory.h"
+
+#define RC RenderContext::getInstance()
+#define VM ViewManager::getInstance()

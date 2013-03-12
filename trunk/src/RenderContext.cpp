@@ -1,58 +1,38 @@
 #include "afx.h"
 
 void RenderContext::initialize(int argc, char** argv){
-	m_pTheContext = this;
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowSize(SCREEN_X_SIZE, SCREEN_Y_SIZE);
 	m_hWnd = glutCreateWindow("ARTRIX");
-	glutDisplayFunc(RenderContext::loop);
-	glutReshapeFunc(RenderContext::resize);
-	glutIdleFunc(RenderContext::update);
-}
-
-void RenderContext::shutdown(){
-	glutDestroyWindow(m_hWnd);
+	glutDisplayFunc(&(loop));
+	glutReshapeFunc(&(resize));
+	glutIdleFunc(&(update));
 }
 
 /** enter the main loop **/
 void RenderContext::begin(){
 	glutMainLoop();
-	
-}
-
-void RenderContext::loop(){
-	/** update the control sticks and other pots**/
-	
-	/** update the display **/
-	glClear(GL_COLOR_BUFFER_BIT);
-	m_pTheContext->m_pCurrentView->render(0);
-	glutSwapBuffers();
 }
 
 void RenderContext::setup(){
 	/** Set the startup view to the splash screen **/
 	glClearColor(0.0f, 0.0f, 255.0f, 1.0f);
-	m_pCurrentView = new SplashView();
-	m_pCurrentView->create();
 }
 
-void RenderContext::update(){
-	m_pTheContext->m_pCurrentView->update(0);
-	glutPostRedisplay();
+
+void RenderContext::shutdown(){
+	glutDestroyWindow(m_hWnd);
 }
 
-void RenderContext::resize(GLint w, GLint h){
-	if(h ==0){
-		h = 1;
+RenderContext* RenderContext::getInstance(){
+	if(NULL == m_pTheContext){
+		m_pTheContext = new RenderContext();
 	}
-	glViewport(0, 0, w, h);
-
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(-100, 100, -100, 100, -100, 100);
+	return m_pTheContext;
 }
+
+RenderContext* RenderContext::m_pTheContext = NULL;
 
 RenderContext::RenderContext()
 	: m_hWnd(NULL)
@@ -61,6 +41,34 @@ RenderContext::RenderContext()
 }
 
 RenderContext::~RenderContext(){
+	
+}
+View* RenderContext::getCurrentView(){
+	return m_pCurrentView;
 }
 
-RenderContext* RenderContext::m_pTheContext = NULL;
+void resize(GLint w, GLint h){
+	if(h ==0){
+		h = 1;
+	}
+	glViewport(0, 0, w, h);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-100, 100, -100, 100, -100, 100);
+}
+
+void loop(){
+	glClear(GL_COLOR_BUFFER_BIT);
+	if(NULL != VM->getCurrentView()){
+		VM->getCurrentView()->render(0);		
+	}
+	glutSwapBuffers();
+}
+
+void update(){
+	if(NULL != VM->getCurrentView()){
+		VM->getCurrentView()->update(0);		
+	}
+	glutPostRedisplay();
+}

@@ -42,6 +42,12 @@ public:
 	};
 	
 	int getCount(){
-		return getNextAvailableSlot() + 1;
+		return getNextAvailableSlot();
 	};
+	int getCapacity(){
+		return MAX_ITEMS;
+	};
+	void clear(){
+		memset(m_arrObjects, 0, sizeof(T) * MAX_ITEMS);
+	}
 };

@@ -9,10 +9,20 @@ private:
 	SharedAllocation<View*> m_Views;
 	void processNode(xmlTextReaderPtr reader);
 	View* m_pCurrentView;
+	Widget* m_pCurrentWidget;
+	static ViewManager* m_pTheViewManager;
+
 public:
 	void loadViewFromXml(char* pPath);
 	int getNumWidgetsInView(View* pView);
 	int getNumTextures();
 	View* getView(char* pName);
+	View* getCurrentView();
 	void createStockViews();
+	static ViewManager* getInstance();
+	void initialize();
+	void shutdown();
+	ViewManager();
+	~ViewManager();
 };
+

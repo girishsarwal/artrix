@@ -24,7 +24,7 @@ link:
 	
 clean:
 	rm -f *.o
-	rm -f *.bin
+	rm -f $(TARGET)
 
 	
 
