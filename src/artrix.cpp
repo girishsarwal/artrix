@@ -1,21 +1,15 @@
 #include "afx.h"
-void loop();
-void setup();
-void update();
-void resize(GLint w, GLint h);
-
-RenderContext* rc = NULL;
 
 int main(int argc, char* argv[]){
-	ViewManager *vm = new ViewManager();
-	vm->createStockViews();
-	/*rc = new RenderContext();
-	rc->initialize(argc, argv);
-	rc->setup();
-	rc->begin();
-	rc->shutdown();*/
+	if(NULL == RC) { printf("Cannot create RenderContext\n"); return false; }
+	if(NULL == VM) { printf("Cannot create ViewManager\n"); return false; }
+	
+	VM->initialize();
+	RC->initialize(argc, argv);
+	
+	RC->setup();
+	RC->begin();
+	VM->shutdown();
+	RC->shutdown();
 	return 0;
-}
-
-
-
+};
