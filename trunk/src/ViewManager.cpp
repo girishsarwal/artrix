@@ -33,8 +33,7 @@ void ViewManager::processNode(xmlTextReaderPtr reader){
 				break;
 			}
 			/**widget coming in, create **/
-			
-			WidgetFactory::createWidget((char*)nodeName, m_pCurrentWidget);
+			WidgetFactory::createWidget((char*)nodeName, &m_pCurrentWidget);
 			m_pCurrentView->addWidget(m_pCurrentWidget);
 			break;
 		case 15:

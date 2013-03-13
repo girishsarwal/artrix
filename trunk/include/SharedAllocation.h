@@ -8,8 +8,9 @@ private:
 	int getNextAvailableSlot(){
 		int index = -1;
 		while(++index < MAX_ITEMS){
-			if(m_arrObjects[index] == NULL)
+			if(m_arrObjects[index] == NULL){
 				return index;
+			}
 		}
 		return -1;
 	}

@@ -13,7 +13,6 @@ void View::update(double frameTime){
 void View::render(double frameTime){
 	short index = -1;
 	int count = m_Widgets.getCount();
-	printf("widgest count is %d", count);
 	onRender(frameTime);
 	while(++index < count){
 		if(NULL != m_Widgets.getAtIndex(index)){
@@ -23,8 +22,9 @@ void View::render(double frameTime){
 }
 
 void View::addWidget(Widget* pWidget){
-	printf("adding widget");
+	printf("adding widget at adress %x\n", pWidget);
 	m_Widgets.add(pWidget);
+	printf("New Size is %d\n", m_Widgets.getCount());
 }
 
 void View::create(){
@@ -35,7 +35,7 @@ void View::onUpdate(double frameTime){
 
 }
 void View::onRender(double frameTime){
-	
+	printf("Rendering View\n");
 }
 void View::onCreate(){
 	
