@@ -26,5 +26,5 @@ void Widget::render(double frameTime){
 
 void Widget::onUpdate(double frameTime){}
 void Widget::onGetValuesFromSensors(){}
-void Widget::onRender(double frameTime){}
+void Widget::onRender(double frameTime){ printf("Rendering Widget\n");}
 void Widget::onInitialize(){}
