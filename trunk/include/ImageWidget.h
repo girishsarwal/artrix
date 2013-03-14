@@ -11,7 +11,10 @@
 
 class ImageWidget: public Widget {
 private:
+	Vector	m_Position;
+	Vector	m_Size;
 	char*	m_pPath;
+	
 	GLint 	m_iTextureId;
 protected:
 	void onInitialize();

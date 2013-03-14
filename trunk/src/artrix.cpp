@@ -11,5 +11,6 @@ int main(int argc, char* argv[]){
 	RC->begin();
 	VM->shutdown();
 	RC->shutdown();
+	
 	return 0;
 };

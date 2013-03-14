@@ -20,48 +20,45 @@ View* ViewManager::getView(char* pName){
 View* ViewManager::getCurrentView(){
 	return m_pCurrentView;
 }
-void ViewManager::processNode(xmlTextReaderPtr reader){
-	int nodeType = xmlTextReaderNodeType(reader);
-	xmlChar* nodeName = xmlTextReaderName(reader);
-	printf("Found: NodeType:%d NodeName:%s\n", nodeType , nodeName);
-	switch(xmlTextReaderNodeType(reader)){
-		case 1:		/** something has started **/
-			if(strcmp((char*)nodeName, "views") == 0) break;
-			if(strcmp((char*)nodeName, "view") == 0){
-				printf("Found view node. Creating new View\n");
-				m_pCurrentView = new View();
-				break;
-			}
-			/**widget coming in, create **/
-			WidgetFactory::createWidget((char*)nodeName, &m_pCurrentWidget);
-			m_pCurrentView->addWidget(m_pCurrentWidget);
-			break;
-		case 15:
-			if(strcmp((char*)nodeName, "view") == 0){
-				printf("Finalizing view\n");
-				m_Views.add(m_pCurrentView);
-			}
-			break;
-	}
-};
 void ViewManager::createStockViews(){
-	printf("Reading Stock Views \n");
-	xmlTextReaderPtr reader = NULL;
-	reader = xmlNewTextReaderFilename("/usr/share/artrix/screens/screens.xml");
-	int ret = 0;
-	if(reader == NULL){
-		printf("Problem \n");
-		return;
+#ifdef LIBXML_TREE_ENABLED
+	xmlDoc* doc = NULL;
+	
+	doc = xmlReadFile("/usr/share/artrix/screens/screens.xml", NULL, 0);
+	
+	for(xmlNode* nodeView = xmlDocGetRootElement(doc)->children; nodeView; nodeView = nodeView->next){
+		if(strcmp((char*)nodeView->name, "text") == 0) continue;
+		if(strcmp((char*)nodeView->name, "view") == 0){
+			printf("View Found\n");
+			View *v = new View();
+			for(xmlNode* nodeWidget = nodeView->children; nodeWidget; nodeWidget = nodeWidget->next){
+				if(strcmp((char*)nodeWidget->name, "text") == 0) continue;
+				printf("Widget found, Type: %s\n", nodeWidget->name);
+				AttributeSet as;
+				if(NULL != nodeWidget->properties){
+					xmlAttr* attrWidget = NULL;
+					for(attrWidget = nodeWidget->properties; attrWidget; attrWidget = attrWidget->next){
+						const xmlChar* name = attrWidget->name;
+						const xmlChar* value = xmlGetProp(nodeWidget, name);
+						printf("Attribute Found, %s=%s\n", name, value);
+						Attribute a;
+						a.set((const char*)name, (const char*)value);
+						as.add(a);
+					}
+				}
+				Widget *w = NULL;
+				WidgetFactory::createWidget((char*)nodeWidget->name, &w, as);
+				v->addWidget(w);
+			}
+			m_Views.add(v);
+		};
 	}
-	ret = xmlTextReaderRead(reader);
-	while(ret == 1)
-	{
-		processNode(reader);
-		ret = xmlTextReaderRead(reader);
-	}
-	xmlFreeTextReader(reader);
-	/** setup the first view as the default view **/
 	m_pCurrentView = m_Views.getAtIndex(0);
+	xmlFreeDoc(doc);
+#else
+	printf("Tree support not compiled");
+#endif
+	
 }
 void ViewManager::initialize(){
 	createStockViews();
