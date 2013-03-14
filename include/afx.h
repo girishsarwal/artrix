@@ -5,6 +5,10 @@
 #include <GL/glut.h>
 #include <libxml/xmlreader.h>
 #include "artrix-defines.h"
+#include <vector>
+#include <map>
+#include <string>
+struct Vector;
 
 class View;
 class SplashView;
@@ -16,7 +20,11 @@ class ImageWidget;
 class RenderContext;
 class WidgetFactory;
 
+/**Data types **/
+#include "Vector.h"
 #include "SharedAllocation.h"
+#include "Attribute.h"
+
 #include "View.h"
 #include "Widget.h"
 
