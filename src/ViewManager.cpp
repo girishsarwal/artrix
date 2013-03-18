@@ -42,7 +42,7 @@ void ViewManager::createStockViews(){
 						const xmlChar* value = xmlGetProp(nodeWidget, name);
 						printf("Attribute Found, %s=%s\n", name, value);
 						Attribute a;
-						a.set((const char*)name, (const char*)value);
+						a.set(std::string((const char*)name), std::string((const char*)value));
 						as.add(a);
 					}
 				}

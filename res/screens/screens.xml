@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<views>
+	<view name="pilot" id="1">
+		<ImageWidget x="-80" y="-80" width="160" height="160" src="bg.png" background="0xFFFFFFFF"></ImageWidget>
+	</view>
+</views>

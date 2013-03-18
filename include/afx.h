@@ -1,13 +1,21 @@
 #pragma once
 
 #include <stdio.h>
+#include <math.h>
 #include <string.h>
+
 #include <GL/glut.h>
 #include <libxml/xmlreader.h>
-#include "artrix-defines.h"
+
 #include <vector>
 #include <map>
 #include <string>
+
+#include <dirent.h>
+
+
+#include "artrix-defines.h"
+
 struct Vector;
 
 class View;
@@ -19,6 +27,7 @@ class TXBatteryMeterWidget;
 class ImageWidget;
 class RenderContext;
 class WidgetFactory;
+class TextureManager;
 
 /**Data types **/
 #include "Vector.h"
@@ -42,6 +51,8 @@ class WidgetFactory;
 #include "ViewManager.h"
 
 #include "WidgetFactory.h"
+#include "TextureManager.h"
 
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()
+#define TM TextureManager::getInstance()
