@@ -3,12 +3,10 @@
 class Widget
 {
 public:
-	/** widget rectangle **/
-	float left;
-	float top;
-	float width;
-	float height;
-
+	Vector m_vPosition;
+	Vector m_vSize;
+	bool m_bInitialized;
+	
 	void initialize();
 	void update(double frameTime);
 	void getValuesFromSensors();

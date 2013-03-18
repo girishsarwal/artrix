@@ -6,6 +6,7 @@ int main(int argc, char* argv[]){
 	
 	VM->initialize();
 	RC->initialize(argc, argv);
+	TM->initialize();
 	
 	RC->setup();
 	RC->begin();

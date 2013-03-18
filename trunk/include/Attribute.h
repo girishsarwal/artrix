@@ -6,16 +6,16 @@ private:
 public:
 	Attribute(){
 	};
-	void set(const char* _name, const char* _value){
+	void set(std::string _name, std::string _value){
 		name = std::string(_name);
 		value = std::string(_value);
 	}
 	
-	const char* getName(){
-		return name.c_str();
+	std::string getName(){
+		return name;
 	};
-	const char* getValue(){
-		return value.c_str();
+	std::string getValue(){
+		return value;
 	};
 };
 class AttributeSet{

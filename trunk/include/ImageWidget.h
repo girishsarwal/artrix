@@ -11,17 +11,19 @@
 
 class ImageWidget: public Widget {
 private:
-	Vector	m_Position;
-	Vector	m_Size;
-	char*	m_pPath;
+	std::string	m_pPath;
 	
-	GLint 	m_iTextureId;
+	unsigned long long m_fBackground;
+	
+	uint 	m_iTextureId;
+	
 protected:
 	void onInitialize();
 	void onUpdate(double frameTime);
 	void onRender(double frameTime);
 public:
 	ImageWidget();
+	ImageWidget(AttributeSet& attrs);
 	virtual ~ImageWidget();
 };
 

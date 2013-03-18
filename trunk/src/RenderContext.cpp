@@ -5,6 +5,7 @@ void RenderContext::initialize(int argc, char** argv){
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowSize(SCREEN_X_SIZE, SCREEN_Y_SIZE);
 	m_hWnd = glutCreateWindow("ARTRIX");
+	glEnable(GL_TEXTURE_2D);
 	glutDisplayFunc(&(loop));
 	glutReshapeFunc(&(resize));
 	glutIdleFunc(&(update));

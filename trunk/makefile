@@ -1,17 +1,20 @@
 CC = g++
-INC = -Iinclude -I/opt/vc/include -I/usr/include/libxml2
-
-SRC_DIR = src
-SRC = afx.cpp FlapsWidget.cpp RenderContext.cpp artrix.cpp ImageWidget.cpp SplashView.cpp View.cpp Widget.cpp TxBatteryMeterWidget.cpp ViewManager.cpp WidgetFactory.cpp
-OBJ = $(SRC:.cpp=.o)
-
-
 TARGET = artrix
+INC = -Iinclude -I/opt/vc/include -I/usr/include/libxml2
 LIB = -lglut -lxml2 -lm
 
-all: compile link 
+RES_DIR = /usr/share/$(TARGET)
+SRC_DIR = src
+SRC = afx.cpp FlapsWidget.cpp RenderContext.cpp artrix.cpp ImageWidget.cpp SplashView.cpp View.cpp Widget.cpp TxBatteryMeterWidget.cpp ViewManager.cpp WidgetFactory.cpp TextureManager.cpp
+OBJ = $(SRC:.cpp=.o)
 
-compile:$(OBJ)
+all: precompile compile link 
+
+precompile:
+	mkdir -p $(RES_DIR)
+	cp -r ./res/* $(RES_DIR)
+	
+compile: $(OBJ)
 	
 link:
 	echo Linking $<

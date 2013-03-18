@@ -5,7 +5,8 @@ void WidgetFactory::createWidget(char* pWidgetType, Widget** pWidget, AttributeS
 	}
 	printf("WidgetFactory: Request for widget creation '%s'\n", pWidgetType);
 	if(0 == strcmp(pWidgetType, "ImageWidget")){
+		*pWidget = new ImageWidget(as);
 		printf("ImageWidget created\n");	
-		*pWidget = new ImageWidget();
+
 	}
 }

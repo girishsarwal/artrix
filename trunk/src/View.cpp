@@ -22,9 +22,7 @@ void View::render(double frameTime){
 }
 
 void View::addWidget(Widget* pWidget){
-	printf("adding widget at adress %x\n", pWidget);
 	m_Widgets.add(pWidget);
-	printf("New Size is %d\n", m_Widgets.getCount());
 }
 
 void View::create(){
