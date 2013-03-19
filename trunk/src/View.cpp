@@ -33,7 +33,7 @@ void View::onUpdate(double frameTime){
 
 }
 void View::onRender(double frameTime){
-	printf("Rendering View\n");
+	
 }
 void View::onCreate(){
 	
