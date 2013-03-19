@@ -15,6 +15,7 @@
 
 
 #include "artrix-defines.h"
+#include "SOIL.h"
 
 struct Vector;
 

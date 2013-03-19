@@ -22,7 +22,7 @@ void Widget::getValuesFromSensors(){
 }
 void Widget::render(double frameTime){
 	if(!m_bInitialized) initialize();
-	printf("Rendering Widget\n");
+	
 	onRender(frameTime);
 }
 void Widget::initialize(){
