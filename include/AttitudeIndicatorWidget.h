@@ -4,7 +4,8 @@ class AttitudeIndicatorWidget :
 	public Widget{
 	private:
 		float m_fRotation;
-		uint m_iTextureId;
+		GLUquadricObj*	m_Gimbal;
+		
 	public:
 		AttitudeIndicatorWidget();
 		AttitudeIndicatorWidget(AttributeSet& as);

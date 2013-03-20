@@ -2,6 +2,7 @@
 
 Widget::Widget(){
 	setDrawRectangle(0, 0, 100, 100);
+	m_vPosition.z = 0;
 }
 
 Widget::~Widget(){
