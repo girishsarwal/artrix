@@ -37,7 +37,9 @@ void ImageWidget::onRender(double frameTime){
 				(m_fBackground & 0x0000FF00) >> 0x08,
 				m_fBackground & 0x000000FF,
 				(m_fBackground & 0xFF000000) >> 0x18);
+	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, m_iTextureId);
+	
 	glBegin(GL_QUADS);
 	{
 		glTexCoord2f(0.0, 0.0);
@@ -54,4 +56,5 @@ void ImageWidget::onRender(double frameTime){
 		
 	};
 	glEnd();
+	glDisable(GL_TEXTURE_2D);
 }
