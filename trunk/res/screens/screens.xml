@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <views>
-	<view name="pilot" id="1">
+	<view name="splash" id="1">
 		<ImageWidget x="-100" y="-100" width="200" height="200" src="artrix_bg.bmp" background="0xFFFFFFFF"></ImageWidget>
+		<AttitudeIndicatorWidget x="60" y="20"/>
 	</view>
 </views>

@@ -22,7 +22,6 @@ void Widget::getValuesFromSensors(){
 }
 void Widget::render(double frameTime){
 	if(!m_bInitialized) initialize();
-	
 	onRender(frameTime);
 }
 void Widget::initialize(){
@@ -34,6 +33,5 @@ void Widget::initialize(){
 void Widget::onUpdate(double frameTime){}
 void Widget::onGetValuesFromSensors(){}
 void Widget::onRender(double frameTime){
-	
 	}
 void Widget::onInitialize(){}

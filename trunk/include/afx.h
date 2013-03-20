@@ -25,6 +25,7 @@ class ViewManager;
 class Widget;
 class FlapsWidget;
 class TXBatteryMeterWidget;
+class AttitudeIndicatorWidget;
 class ImageWidget;
 class RenderContext;
 class WidgetFactory;
@@ -47,6 +48,7 @@ class TextureManager;
 #include "Widget.h"
 #include "FlapsWidget.h"
 #include "TxBatteryMeterWidget.h"
+#include "AttitudeIndicatorWidget.h"
 #include "ImageWidget.h"
 #include "RenderContext.h"
 #include "ViewManager.h"
