@@ -9,4 +9,9 @@ void WidgetFactory::createWidget(char* pWidgetType, Widget** pWidget, AttributeS
 		printf("ImageWidget created\n");	
 
 	}
+	if(0 == strcmp(pWidgetType, "AttitudeIndicatorWidget")){
+		*pWidget = new AttitudeIndicatorWidget(as);
+		printf("AttitudeIndicatorWidget created\n");	
+
+	}
 }

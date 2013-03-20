@@ -33,7 +33,6 @@ void View::onUpdate(double frameTime){
 
 }
 void View::onRender(double frameTime){
-	
 }
 void View::onCreate(){
 	

@@ -6,6 +6,7 @@ void RenderContext::initialize(int argc, char** argv){
 	glutInitWindowSize(SCREEN_X_SIZE, SCREEN_Y_SIZE);
 	m_hWnd = glutCreateWindow("ARTRIX");
 	glEnable(GL_TEXTURE_2D);
+	glDisable(GL_LIGHTING);
 	glutDisplayFunc(&(loop));
 	glutReshapeFunc(&(resize));
 	glutIdleFunc(&(update));
@@ -18,7 +19,7 @@ void RenderContext::begin(){
 
 void RenderContext::setup(){
 	/** Set the startup view to the splash screen **/
-	glClearColor(0.0f, 0.0f, 255.0f, 1.0f);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 
@@ -60,7 +61,8 @@ void resize(GLint w, GLint h){
 }
 
 void loop(){
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glDepthMask(GL_TRUE);
 	if(NULL != VM->getCurrentView()){
 		VM->getCurrentView()->render(0);		
 	}
