@@ -1,11 +1,16 @@
 #include "afx.h"
 AttitudeIndicatorWidget::AttitudeIndicatorWidget(){
-	m_fRotation = 0.0;
+	m_fPitch = 0.0;
+	m_fRoll = 0.0;
+	m_fYaw = 0.0;
 };
 
 AttitudeIndicatorWidget::AttitudeIndicatorWidget(AttributeSet& as){
 	AttitudeIndicatorWidget();
-	m_fRotation = 0.0f;
+	m_fPitch = 0.0;
+	m_fRoll = 0.0;
+	m_fYaw = 0.0;
+	
 	m_vPosition.x = atof(as.get("x").getValue().c_str());
 	m_vPosition.y = atof(as.get("y").getValue().c_str());
 	m_vPosition.z = atof(as.get("z").getValue().c_str());
@@ -22,7 +27,8 @@ void AttitudeIndicatorWidget::onInitialize(){
 void AttitudeIndicatorWidget::onCreate(){
 };
 void AttitudeIndicatorWidget::onUpdate(double frameTime){
-	m_fRotation += 0.0f;
+	m_fRoll += 0.5f;
+	m_fPitch += 0.1f;
 };
 void AttitudeIndicatorWidget::onRender(double frameTime){
 	glMatrixMode(GL_MODELVIEW);
@@ -32,7 +38,10 @@ void AttitudeIndicatorWidget::onRender(double frameTime){
 	{		
 		glBindTexture(GL_TEXTURE_2D, TM->getTexture("att-ind-bg.png"));
 		glTranslatef(m_vPosition.x, m_vPosition.y, 0);
-		glRotatef(m_fRotation - 90, 1, 0, 0);
+		
+		glRotatef(m_fPitch  - 90, 1, 0, 0);
+		glRotatef(m_fRoll, 0, 1, 0);
+		
 		gluSphere(m_Gimbal, 20, 20, 20);
 	};
 	glLoadIdentity();
