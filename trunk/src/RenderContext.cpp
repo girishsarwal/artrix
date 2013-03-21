@@ -2,7 +2,7 @@
 
 void RenderContext::initialize(int argc, char** argv){
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(SCREEN_X_SIZE, SCREEN_Y_SIZE);
 	m_hWnd = glutCreateWindow("ARTRIX");
 	glutDisplayFunc(&(loop));
