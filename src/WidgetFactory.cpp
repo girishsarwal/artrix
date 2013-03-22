@@ -14,4 +14,8 @@ void WidgetFactory::createWidget(char* pWidgetType, Widget** pWidget, AttributeS
 		printf("AttitudeIndicatorWidget created\n");	
 
 	}
+	if(0 == strcmp(pWidgetType, "TextWidget")){
+		*pWidget = new TextWidget(as);
+		printf("Textwidget created\n");
+	}
 }
