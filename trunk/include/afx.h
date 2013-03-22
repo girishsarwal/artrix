@@ -30,6 +30,7 @@ class ImageWidget;
 class RenderContext;
 class WidgetFactory;
 class TextureManager;
+class TextWidget;
 
 /**Data types **/
 #include "Vector.h"
@@ -55,6 +56,7 @@ class TextureManager;
 
 #include "WidgetFactory.h"
 #include "TextureManager.h"
+#include "TextWidget.h"
 
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()
