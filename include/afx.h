@@ -69,3 +69,4 @@ class SerialInterface;
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()
 #define TM TextureManager::getInstance()
+#define SI SerialInterface::getInstance()
