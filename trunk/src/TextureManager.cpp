@@ -23,7 +23,7 @@ void TextureManager::loadAllTextures(const char* textureRoot){
 		if(entry->d_type != DT_DIR){
      		uint tex_Id = SOIL_load_OGL_texture(entry->d_name, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
      		m_Textures[std::string(entry->d_name)] = tex_Id;
-     		printf("Texture ID for %s is %d", entry->d_name, tex_Id);
+     		printf("Texture ID for %s is %d\n", entry->d_name, tex_Id);
 		}
 	}
 }

@@ -6,9 +6,12 @@ private:
 	uint m_iBaudRate;
 	uint m_iDataBits;
     uint m_iParity;
-public:
-	void openPort();
-	void close();
+    static SerialInterface* m_pInstance;
 	SerialInterface();
+
+public:
+	void initialize();
+	void shutdown();
+	static SerialInterface* getInstance();
 	~SerialInterface();
 };

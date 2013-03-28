@@ -26,7 +26,6 @@ void Widget::render(double frameTime){
 	onRender(frameTime);
 }
 void Widget::initialize(){
-	printf("Initializing Widget");
 	onInitialize();
 	m_bInitialized = true;
 }
@@ -34,5 +33,5 @@ void Widget::initialize(){
 void Widget::onUpdate(double frameTime){}
 void Widget::onGetValuesFromSensors(){}
 void Widget::onRender(double frameTime){
-	}
+}
 void Widget::onInitialize(){}

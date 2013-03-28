@@ -43,7 +43,7 @@ void TextWidget::onRender(double frameTime){
 	int index = -1;
 	
 	while(++index < m_pText.length()){
-		printf("%c", m_pText.at(index));
+		//printf("%c", m_pText.at(index));
 		glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, m_pText.at(index));
 	}
 	glPopMatrix();
