@@ -4,6 +4,9 @@ int main(int argc, char* argv[]){
 	if(NULL == RC) { printf("Cannot create RenderContext\n"); return false; }
 	if(NULL == VM) { printf("Cannot create ViewManager\n"); return false; }
 	
+	SerialInterface *si = new SerialInterface();
+	si->openPort();
+	
 	VM->initialize();
 	RC->initialize(argc, argv);
 	TM->initialize();
