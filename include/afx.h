@@ -1,6 +1,12 @@
 #pragma once
 
 #include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h> 
+#include <time.h>
+#include <errno.h>
+#include <termios.h>
+#include <unistd.h>
 #include <math.h>
 #include <string.h>
 
@@ -31,6 +37,7 @@ class RenderContext;
 class WidgetFactory;
 class TextureManager;
 class TextWidget;
+class SerialInterface;
 
 /**Data types **/
 #include "Vector.h"
@@ -57,6 +64,7 @@ class TextWidget;
 #include "WidgetFactory.h"
 #include "TextureManager.h"
 #include "TextWidget.h"
+#include "SerialInterface.h"
 
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()
