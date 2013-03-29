@@ -38,6 +38,7 @@ class WidgetFactory;
 class TextureManager;
 class TextWidget;
 class SerialInterface;
+class FontManager;
 
 /**Data types **/
 #include "Vector.h"
@@ -65,8 +66,10 @@ class SerialInterface;
 #include "TextureManager.h"
 #include "TextWidget.h"
 #include "SerialInterface.h"
+#include "FontManager.h"
 
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()
 #define TM TextureManager::getInstance()
 #define SI SerialInterface::getInstance()
+#define FM FontManager::getInstance()
