@@ -7,7 +7,7 @@ class TextureManager{
 		uint *m_arrTextures;
 	public:
 		static TextureManager* getInstance();
-		uint getTexture(std::string);
-		void loadAllTextures(const char* textureRoot);
+		uint getTexture(std::string& texureName);
+		void loadAllTextures(std::string& textureRoot);
 		void initialize();
 };

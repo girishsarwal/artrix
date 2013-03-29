@@ -26,7 +26,7 @@ ImageWidget::~ImageWidget() {
 }
 
 void ImageWidget::onInitialize(){
-	m_iTextureId = TM->getTexture(std::string(m_pPath));
+	m_iTextureId = TM->getTexture(m_pPath);
 }
 
 void ImageWidget::onUpdate(double frameTime){

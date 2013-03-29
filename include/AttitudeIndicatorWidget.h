@@ -6,7 +6,8 @@ class AttitudeIndicatorWidget :
 		float m_fPitch;
 		float m_fRoll;
 		float m_fYaw;
-		
+		std::string m_pGimbalTexture;
+		std::string m_pPanelTexture;
 		GLUquadricObj*	m_Gimbal;
 		
 	public:

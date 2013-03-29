@@ -3,6 +3,8 @@ AttitudeIndicatorWidget::AttitudeIndicatorWidget(){
 	m_fPitch = 0.0;
 	m_fRoll = 0.0;
 	m_fYaw = 0.0;
+	m_pGimbalTexture = "att-ind-bg.png";
+	m_pPanelTexture = "att-ind-panel.png";
 };
 
 AttitudeIndicatorWidget::AttitudeIndicatorWidget(AttributeSet& as){
@@ -14,6 +16,9 @@ AttitudeIndicatorWidget::AttitudeIndicatorWidget(AttributeSet& as){
 	m_vPosition.x = atof(as.get("x").getValue().c_str());
 	m_vPosition.y = atof(as.get("y").getValue().c_str());
 	m_vPosition.z = atof(as.get("z").getValue().c_str());
+	
+	m_pGimbalTexture = "att-ind-bg.png";
+	m_pPanelTexture = "att-ind-panel.png";
 };
 
 AttitudeIndicatorWidget::~AttitudeIndicatorWidget(){
@@ -36,7 +41,7 @@ void AttitudeIndicatorWidget::onRender(double frameTime){
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 	{		
-		glBindTexture(GL_TEXTURE_2D, TM->getTexture("att-ind-bg.png"));
+		glBindTexture(GL_TEXTURE_2D, TM->getTexture(m_pGimbalTexture));
 		glTranslatef(m_vPosition.x, m_vPosition.y, 0);
 		
 		glRotatef(m_fPitch  - 90, 1, 0, 0);
@@ -47,7 +52,7 @@ void AttitudeIndicatorWidget::onRender(double frameTime){
 	glLoadIdentity();
 	glDisable(GL_DEPTH_TEST);
 	glTranslatef(m_vPosition.x, m_vPosition.y, m_vPosition.z);
-	glBindTexture(GL_TEXTURE_2D, TM->getTexture("att-ind-panel.png"));
+	glBindTexture(GL_TEXTURE_2D, TM->getTexture(m_pPanelTexture));
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glBegin(GL_QUADS);

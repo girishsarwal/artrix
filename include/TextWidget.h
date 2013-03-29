@@ -12,7 +12,8 @@
 class TextWidget: public Widget {
 private:
 	std::string	m_pText;
-	int m_iSize;
+	std::string m_pFont;
+	std::string m_pSize;
 	unsigned long long m_fBackground;
 	
 protected:
