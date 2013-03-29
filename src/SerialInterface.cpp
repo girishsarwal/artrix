@@ -1,7 +1,7 @@
 #include "afx.h"
 
 SerialInterface::SerialInterface(){
-	m_pPortName = "dev/ttyS0";			/** Read from settings **/
+	m_pPortName = "/dev/ttyS0";			/** Read from settings **/
 	m_iBaudRate = 9600;
 	m_iParity = 0;
 };
