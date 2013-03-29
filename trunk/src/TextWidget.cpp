@@ -16,10 +16,12 @@ TextWidget::TextWidget(AttributeSet& attrs){
 	m_fBackground = strtoll(attrs.get("background").getValue().c_str(), NULL, 16);
 	
 	m_pText = attrs.get("text").getValue().c_str();
-	m_iSize = atoi(attrs.get("size").getValue().c_str());
+	m_pFont = attrs.get("font").getValue().c_str();
+	m_pSize = attrs.get("size").getValue().c_str();
+	
 }
 TextWidget::TextWidget() {
-	m_iSize = 10;
+	m_pSize = std::string("medium");
 	m_pText= "No Text";
 }
 
@@ -36,16 +38,26 @@ void TextWidget::onUpdate(double frameTime){
 
 void TextWidget::onRender(double frameTime){
 	glPushMatrix();
-	glTranslatef(m_vPosition.x, m_vPosition.y, 50);
-	float scaleFactor = 0.001F * m_iSize;
-	glScalef(scaleFactor, scaleFactor, scaleFactor);
-	glColor3f(0, 0, 0);
-	int index = -1;
+	glTranslatef(m_vPosition.x, m_vPosition.y, 0);
+	glColor3f(1.0, 0.0, 0.0);
 	
-	while(++index < m_pText.length()){
-		//printf("%c", m_pText.at(index));
-		glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, m_pText.at(index));
-	}
+	glEnable(GL_TEXTURE_2D);
+	FM->setActiveFont(m_pFont, m_pSize);
+	glListBase(0);
+	glCallLists(5, GL_BYTE, "b");
+	/*glBegin(GL_QUADS);
+			{
+				glTexCoord2f(0, 0);
+				glVertex2f(-25,-25);
+				glTexCoord2f(0, 1);
+				glVertex2f(-25, 25);
+				glTexCoord2f(1, 1);
+				glVertex2f( 25, 25);
+				glTexCoord2f(1, 0);
+				glVertex2f( 25,-25);
+			};
+	glEnd();*/
+	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
