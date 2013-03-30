@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<views>
-	<view name="splash" id="1">
-		<TextWidget x="0" y="0" text="sampleLabel" color ="#FFFFFFFF" size="small" font="segoe"> </TextWidget>
-		<!--<ImageWidget x="-100" y="-100" width="200" height="200" src="air-view.jpg" background="0xFFFFFFFF"></ImageWidget>
-		<AttitudeIndicatorWidget x="60" y="20" z="1"/>-->
-		
-	</view>
-</views>
