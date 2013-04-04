@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 #include <fcntl.h> 
 #include <time.h>
@@ -19,6 +17,8 @@ typedef struct connection_t{
 	int fd;
 };
 
+char frame[11];		/**frsky proto has 11 bytes per frame **/
+
 typedef struct telemetry_t{
 };
 
@@ -28,6 +28,7 @@ telemetry_t *telemetry;
 bool openSerialInterface();
 void closeSerialInterface();
 bool readConfig(char * configFile);
+void createDummyFrame();
 
 int main(int argc, char* argv[]){
 	if(argv[1] == NULL){
@@ -48,8 +49,8 @@ int main(int argc, char* argv[]){
 
 	int x = 0;
 	while(true){
-		write(connection->fd, &(++x), 1);
-		write(connection->fd, "\n", 1);
+		createDummyFrame();
+		write(connection->fd, frame, 11);
 	};
 	closeSerialInterface();
 	return 0;
@@ -125,6 +126,9 @@ bool openSerialInterface(){
     return true;
 };
 
-
+void createDummyFrame(){
+	memset(frame, 0x5E, 1);
+	memset(frame + 10, 0x5E, 1);
+};
 void closeSerialInterface(){
 };
