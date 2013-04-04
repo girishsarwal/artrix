@@ -37,7 +37,7 @@ void FontManager::initialize(){
 	m_uiMediumFont = glGenLists(FONT_MAX_CHARS);
 	m_uiLargeFont = glGenLists(FONT_MAX_CHARS);
 	
-	createFontDisplayList(m_uiSmallFont, 10);
+	createFontDisplayList(m_uiSmallFont, 4);
 	createFontDisplayList(m_uiMediumFont, 12);
 	createFontDisplayList(m_uiLargeFont, 16);
 };
@@ -47,8 +47,8 @@ void FontManager::createFontDisplayList(uint base, int size){
 	while(++index < FONT_MAX_CHARS)
 	{
 		glNewList(base + index, GL_COMPILE);
-		float cy = (index % FONT_TEXTURE_COLS) / (FONT_TEXTURE_ROWS * 1.0);
-		float cx  = (index / FONT_TEXTURE_ROWS)/ (FONT_TEXTURE_ROWS * 1.0);
+		float cx = (index % FONT_TEXTURE_COLS) / (FONT_TEXTURE_ROWS * 1.0);
+		float cy  = (index / FONT_TEXTURE_ROWS)/ (FONT_TEXTURE_ROWS * 1.0);
 		printf("%f-%f\n", cx, cy);
 		glBegin(GL_QUADS);
 			{

@@ -43,8 +43,8 @@ void TextWidget::onRender(double frameTime){
 	
 	glEnable(GL_TEXTURE_2D);
 	FM->setActiveFont(m_pFont, m_pSize);
-	glListBase(0);
-	glCallLists(5, GL_BYTE, "b");
+	//glListBase(FM->getActiveFontBase() -54);
+	glCallLists(1, GL_BYTE, "a");
 	/*glBegin(GL_QUADS);
 			{
 				glTexCoord2f(0, 0);
