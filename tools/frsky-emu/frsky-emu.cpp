@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <math.h>
 #include <glib.h>
+#include <memory.h>
 
 
 typedef struct connection_t{
@@ -15,6 +16,7 @@ typedef struct connection_t{
 	int baudrate;
 	char* parity;
 	int stopbits;
+	int fd;
 };
 
 typedef struct telemetry_t{
@@ -23,13 +25,13 @@ typedef struct telemetry_t{
 connection_t *connection;
 telemetry_t *telemetry;
 
-void openSerialInterface();
+bool openSerialInterface();
 void closeSerialInterface();
-
 bool readConfig(char * configFile);
+
 int main(int argc, char* argv[]){
 	if(argv[1] == NULL){
-		printf("Usage: frsky-emu <config-file-absolute-path> \n");
+		printf("USAGE: frsky-emu <config-file-absolute-path> \n");
 		return -1;
 	};
 	printf("\n\nFRSKY EMULATOR\n");
@@ -39,14 +41,15 @@ int main(int argc, char* argv[]){
 		return -1;
 	};
 	
-	openSerialInterface();
-	closeSerialInterface();
-	
-	printf("OK Started. Attach client. Bit Banging now...\n");
-	
+	if(!openSerialInterface()){
+		return -1;
+	};
+	printf("OK Started. Attach client. Bit Banging now...Hit Ctrl + C to exit\n");
+
+	int x = 0;
 	while(true){
-
-
+		write(connection->fd, &(++x), 1);
+		write(connection->fd, "\n", 1);
 	};
 	closeSerialInterface();
 	return 0;
@@ -56,11 +59,11 @@ bool readConfig(char* configFile){
 	
 	printf("Attempting to read configuration from %s\n", configFile);
 	if(!g_key_file_load_from_file(pFile, configFile, (GKeyFileFlags)(G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS), 0)){
-		printf("Error: Cannot find config file\n");
+		printf("ERROR: Cannot find config file\n");
 		return false;
 	};
 	if(NULL == pFile){
-		printf("Error: Cannot load config file\n");
+		printf("ERROR: Cannot load config file\n");
 		return false;
 	};
 	connection = g_slice_new(connection_t);
@@ -77,14 +80,51 @@ bool readConfig(char* configFile){
 	
 	return true;
 };
-void openSerialInterface(){
-	int fd;
-	fd = open(connection->port, O_RDWR | O_NOCTTY | O_SYNC);
-	if (fd == -1){
-		printf("WARNING: port open for '%s' failed.  Cannot connect to gt-jtx.\n\n ***Realtime updates will be unavailable***\n\n", connection->port);
-		return;
+bool openSerialInterface(){
+	int baudrate;
+	int parity = 0;
+	
+	connection->fd = open(connection->port, O_RDWR | O_NOCTTY | O_SYNC);
+	if (connection->fd == -1){
+		printf("ERROR: port open for '%s' failed.\n", connection->port);
+		return false;
 	}
 	printf("Port '%s' opened successfully\n", connection->port);
+	termios tty;
+	memset(&tty, 0, sizeof(termios));
+	if(tcgetattr(connection->fd, &tty) != 0){
+		printf("ERROR: cannot get parameters for '%s'.\n", connection->port);
+		return false;
+	};
+	cfsetospeed(&tty, B9600);
+	cfsetispeed(&tty, B9600);
+	tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8;     // 8-bit chars
+    // disable IGNBRK for mismatched speed tests; otherwise receive break
+    // as \000 chars
+    tty.c_iflag &= ~IGNBRK;         // ignore break signal
+    tty.c_lflag = 0;                // no signaling chars, no echo,
+                                        // no canonical processing
+    tty.c_oflag = 0;                // no remapping, no delays
+    tty.c_cc[VMIN]  = 0;            // read doesn't block
+    tty.c_cc[VTIME] = 5;            // 0.5 seconds read timeout
+
+    tty.c_iflag &= ~(IXON | IXOFF | IXANY); // shut off xon/xoff ctrl
+
+    tty.c_cflag |= (CLOCAL | CREAD);// ignore modem controls,
+                                        // enable reading
+    tty.c_cflag &= ~(PARENB | PARODD);      // shut off parity
+    tty.c_cflag |= parity;
+    tty.c_cflag &= ~CSTOPB;
+    tty.c_cflag &= ~CRTSCTS;
+
+    if (tcsetattr (connection->fd, TCSANOW, &tty) != 0)
+    {
+		printf("error %d from tcsetattr", errno);
+		return false;
+    }
+    return true;
 };
+
+
 void closeSerialInterface(){
 };
