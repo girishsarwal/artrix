@@ -14,7 +14,16 @@ int ViewManager::getNumTextures(){
 	return m_iNumTextures;
 }
 
-View* ViewManager::getView(char* pName){
+View* ViewManager::getView(std::string& sName){
+	printf("getting view");
+	printf("%d", m_Views.getCount());
+	int index = -1;
+	while(++index < m_Views.getCount()){
+		View* v = m_Views[index];
+		printf("index is %d, view is %s", index, v->m_sName.c_str());
+		if(sName == v->m_sName)
+			return v;
+	};
 	return NULL;
 }
 View* ViewManager::getCurrentView(){
@@ -30,30 +39,43 @@ void ViewManager::createStockViews(){
 		if(strcmp((char*)nodeView->name, "text") == 0) continue;
 		if(strcmp((char*)nodeView->name, "view") == 0){
 			printf("View Found\n");
+			AttributeSet asView;
+			if(NULL != nodeView->properties){
+				xmlAttr* attrView = NULL;
+				for(attrView = nodeView->properties; attrView; attrView = attrView->next){
+					const xmlChar* attrViewName = attrView->name;
+					const xmlChar* attrViewValue = xmlGetProp(nodeView, attrViewName);
+					printf("Attribute Found, %s=%s\n", attrViewName, attrViewValue);
+					Attribute aView;
+					aView.set(std::string((const char*)attrViewName), std::string((const char*)attrViewValue));
+					asView.add(aView);
+				}
+			}
 			View *v = new View();
+			v->create(asView);
 			for(xmlNode* nodeWidget = nodeView->children; nodeWidget; nodeWidget = nodeWidget->next){
 				if(strcmp((char*)nodeWidget->name, "text") == 0) continue;
+				AttributeSet asWidget;
 				printf("Widget found, Type: %s\n", nodeWidget->name);
-				AttributeSet as;
 				if(NULL != nodeWidget->properties){
 					xmlAttr* attrWidget = NULL;
 					for(attrWidget = nodeWidget->properties; attrWidget; attrWidget = attrWidget->next){
-						const xmlChar* name = attrWidget->name;
-						const xmlChar* value = xmlGetProp(nodeWidget, name);
-						printf("Attribute Found, %s=%s\n", name, value);
-						Attribute a;
-						a.set(std::string((const char*)name), std::string((const char*)value));
-						as.add(a);
+						const xmlChar* attrWidgetName = attrWidget->name;
+						const xmlChar* attrWidgetValue = xmlGetProp(nodeWidget, attrWidgetName);
+						printf("Attribute Found, %s=%s\n", attrWidgetName, attrWidgetValue);
+						Attribute aWidget;
+						aWidget.set(std::string((const char*)attrWidgetName), std::string((const char*)attrWidgetValue));
+						asWidget.add(aWidget);
 					}
 				}
 				Widget *w = NULL;
-				WidgetFactory::createWidget((char*)nodeWidget->name, &w, as);
+				WidgetFactory::createWidget((char*)nodeWidget->name, &w, asWidget);
 				v->addWidget(w);
 			}
 			m_Views.add(v);
 		};
 	}
-	m_pCurrentView = m_Views.getAtIndex(0);
+	changeView(m_Views[0]);
 	xmlFreeDoc(doc);
 #else
 	printf("Tree support not compiled");
@@ -79,5 +101,10 @@ ViewManager* ViewManager::getInstance(){
 	}
 	return m_pTheViewManager;
 }
-
+void ViewManager::changeView(View* view){
+	if(NULL != m_pCurrentView)
+		m_pCurrentView->exit();
+	m_pCurrentView = view;
+	m_pCurrentView->enter();
+}
 ViewManager* ViewManager::m_pTheViewManager = NULL;

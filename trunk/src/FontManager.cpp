@@ -49,7 +49,7 @@ void FontManager::createFontDisplayList(uint base, int size){
 		glNewList(base + index, GL_COMPILE);
 		float cx = (index % FONT_TEXTURE_COLS) / (FONT_TEXTURE_ROWS * 1.0);
 		float cy  = (index / FONT_TEXTURE_ROWS)/ (FONT_TEXTURE_ROWS * 1.0);
-		printf("%f-%f\n", cx, cy);
+		//printf("%f-%f\n", cx, cy);
 		glBegin(GL_QUADS);
 			{
 				glTexCoord2f(cx, cy);
