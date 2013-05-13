@@ -16,12 +16,13 @@ public:
 	void loadViewFromXml(char* pPath);
 	int getNumWidgetsInView(View* pView);
 	int getNumTextures();
-	View* getView(char* pName);
+	View* getView(std::string& sName);
 	View* getCurrentView();
 	void createStockViews();
 	static ViewManager* getInstance();
 	void initialize();
 	void shutdown();
+	void changeView(View* view);
 	ViewManager();
 	~ViewManager();
 };

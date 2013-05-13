@@ -35,13 +35,6 @@ public:
 		}
 	};
 	
-	T getAtIndex(int index){
-		if(index > MAX_ITEMS){
-			printf("WARNING: Attempt to read beyond allocation boundaries\n");
-		}
-		return m_arrObjects[index];
-	};
-	
 	int getCount(){
 		return getNextAvailableSlot();
 	};
@@ -50,5 +43,11 @@ public:
 	};
 	void clear(){
 		memset(m_arrObjects, 0, sizeof(T) * MAX_ITEMS);
+	}
+	T operator[](int index){
+		if(index > MAX_ITEMS){
+			printf("WARNING: Attempt to read beyond allocation boundaries\n");
+		}
+		return m_arrObjects[index];
 	}
 };

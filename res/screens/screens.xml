@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 <views>
-	<view name="splash" id="1">
+	<view name="splash">
+		<TimerWidget timeout="2000" action="changeView" targetView="home"></TimerWidget>
+		<ImageWidget x="-100" y="-100" width="200" height="200" src="bg.png" background="0xFFFFFFFF"></ImageWidget>
+	</view>
+	<view name="home">
 		<TextWidget x="0" y="0" text="sample" color ="#FFFFFFFF" size="small" font="segoe"> </TextWidget>
-		<!--<ImageWidget x="-100" y="-100" width="200" height="200" src="air-view.jpg" background="0xFFFFFFFF"></ImageWidget>
-		<AttitudeIndicatorWidget x="60" y="20" z="1"/>-->
-		
+		<ImageWidget x="-100" y="-100" width="200" height="200" src="air-view.jpg" background="0xFFFFFFFF"></ImageWidget>
+		<AttitudeIndicatorWidget x="60" y="20" z="1"/>
 	</view>
 </views>
