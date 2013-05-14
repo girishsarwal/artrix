@@ -12,7 +12,11 @@ void RenderContext::initialize(int argc, char** argv){
 
 /** enter the main loop **/
 void RenderContext::begin(){
-	gettimeofday(&tvLastTime, 0);
+	clock_getres(CLOCK_PROCESS_CPUTIME_ID, &tvClockResolution);
+	printf("Clock Resolution is %ldns\n", tvClockResolution.tv_nsec);
+	clock_gettime(CLOCK_REALTIME, &tvLastTime);
+	
+	//gettimeofday(&tvLastTime, 0);
 	glutMainLoop();
 }
 
@@ -62,13 +66,14 @@ void resize(GLint w, GLint h){
 
 void loop(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	gettimeofday(&tvCurrentTime, 0);
-	dElapsedTime = (tvCurrentTime.tv_sec - tvLastTime.tv_sec); 
+	clock_gettime(CLOCK_MONOTONIC, &tvCurrentTime);
+	//gettimeofday(&tvCurrentTime, 0);
+	dElapsedTime = tvCurrentTime.tv_nsec - tvLastTime.tv_nsec;
+	tvLastTime = tvCurrentTime; 
 	if(NULL != VM->getCurrentView()){
 		VM->getCurrentView()->render(dElapsedTime);		
 	}
-	printf("time %f", dElapsedTime);
-	tvLastTime = tvCurrentTime;
+	printf("time %f", (double) dElapsedTime);
 	glutSwapBuffers();
 }
 
