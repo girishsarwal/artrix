@@ -29,4 +29,13 @@ public:
 		Attribute& get(std::string key){
 			return m_Attributes[key];
 		}
+		void display(){
+			printf("(");
+			std::map<std::string, Attribute>::iterator it = m_Attributes.begin();
+			while(it != m_Attributes.end()){
+				printf("%s = %s, ", (it)->second.getName().c_str(), (it)->second.getValue().c_str());
+				it++;
+			}
+			printf(")\n");
+		}
 };

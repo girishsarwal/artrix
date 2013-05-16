@@ -6,16 +6,17 @@
  */
 
 #include "afx.h"
-ImageWidget::ImageWidget(AttributeSet& attrs){
-	ImageWidget();
-	m_vPosition.x = atof(attrs.get("x").getValue().c_str());
-	m_vPosition.y = atof(attrs.get("y").getValue().c_str());
-	m_vSize.x = atof(attrs.get("width").getValue().c_str());
-	m_vSize.y = atof(attrs.get("height").getValue().c_str());
+void ImageWidget::onInitialize(){
+	m_vPosition.x = atof(m_asAttributes.get("x").getValue().c_str());
+	m_vPosition.y = atof(m_asAttributes.get("y").getValue().c_str());
+	m_vSize.x = atof(m_asAttributes.get("width").getValue().c_str());
+	m_vSize.y = atof(m_asAttributes.get("height").getValue().c_str());
 	
-	m_fBackground = strtoll(attrs.get("background").getValue().c_str(), NULL, 16);
+	m_fBackground = strtoll(m_asAttributes.get("background").getValue().c_str(), NULL, 16);
 	
-	m_pPath = attrs.get("src").getValue().c_str();
+	m_pPath = m_asAttributes.get("src").getValue().c_str();
+	m_iTextureId = TM->getTexture(m_pPath);
+	printf("Texture Pick %d", m_iTextureId);
 }
 ImageWidget::ImageWidget() {
 
@@ -25,9 +26,6 @@ ImageWidget::~ImageWidget() {
 	
 }
 
-void ImageWidget::onInitialize(){
-	m_iTextureId = TM->getTexture(m_pPath);
-}
 
 void ImageWidget::onUpdate(double frameTime){
 }

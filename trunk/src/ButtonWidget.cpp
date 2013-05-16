@@ -2,7 +2,7 @@
 ButtonWidget::ButtonWidget(){
 };
 
-ButtonWidget::ButtonWidget(AttributeSet& attrs){
+ButtonWidget::onInitialize(){
 };
 
 void ButtonWidget::onInitialize(){

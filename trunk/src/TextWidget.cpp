@@ -6,20 +6,6 @@
  */
 
 #include "afx.h"
-TextWidget::TextWidget(AttributeSet& attrs){
-	TextWidget();
-	m_vPosition.x = atof(attrs.get("x").getValue().c_str());
-	m_vPosition.y = atof(attrs.get("y").getValue().c_str());
-	m_vSize.x = atof(attrs.get("width").getValue().c_str());
-	m_vSize.y = atof(attrs.get("height").getValue().c_str());
-	
-	m_fBackground = strtoll(attrs.get("background").getValue().c_str(), NULL, 16);
-	
-	m_pText = attrs.get("text").getValue().c_str();
-	m_pFont = attrs.get("font").getValue().c_str();
-	m_pSize = attrs.get("size").getValue().c_str();
-	
-}
 TextWidget::TextWidget() {
 	m_pSize = std::string("medium");
 	m_pText= "No Text";
@@ -30,7 +16,16 @@ TextWidget::~TextWidget() {
 }
 
 void TextWidget::onInitialize(){
+	m_vPosition.x = atof(m_asAttributes.get("x").getValue().c_str());
+	m_vPosition.y = atof(m_asAttributes.get("y").getValue().c_str());
+	m_vSize.x = atof(m_asAttributes.get("width").getValue().c_str());
+	m_vSize.y = atof(m_asAttributes.get("height").getValue().c_str());
 	
+	m_fBackground = strtoll(m_asAttributes.get("background").getValue().c_str(), NULL, 16);
+	
+	m_pText = m_asAttributes.get("text").getValue().c_str();
+	m_pFont = m_asAttributes.get("font").getValue().c_str();
+	m_pSize = m_asAttributes.get("size").getValue().c_str();
 }
 
 void TextWidget::onUpdate(double frameTime){
