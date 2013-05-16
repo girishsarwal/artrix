@@ -34,12 +34,18 @@ class FlapsWidget;
 class TXBatteryMeterWidget;
 class AttitudeIndicatorWidget;
 class ImageWidget;
+class TimerWidget;
 class RenderContext;
 class WidgetFactory;
 class TextureManager;
 class TextWidget;
 class SerialInterface;
 class FontManager;
+class StateManager;
+class IState;
+class ISupportsStates;
+
+
 
 /**Data types **/
 #include "Vector.h"
@@ -60,6 +66,7 @@ class FontManager;
 #include "TxBatteryMeterWidget.h"
 #include "AttitudeIndicatorWidget.h"
 #include "ImageWidget.h"
+#include "TimerWidget.h"
 #include "RenderContext.h"
 #include "ViewManager.h"
 
@@ -68,12 +75,16 @@ class FontManager;
 #include "TextWidget.h"
 #include "SerialInterface.h"
 #include "FontManager.h"
+#include "StateManager.h"
+#include "SupportsStates.h"
+#include "State.h"
 
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()
 #define TM TextureManager::getInstance()
 #define SI SerialInterface::getInstance()
 #define FM FontManager::getInstance()
+#define SM StateManager::getInstance()
 
 
 

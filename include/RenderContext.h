@@ -20,7 +20,4 @@ public:
 extern "C" void loop();
 extern "C" void update();
 extern "C" void resize(GLint w, GLint h);
-static timespec tvLastTime;
-static timespec tvCurrentTime;
-static timespec tvClockResolution;
-static long int dElapsedTime;
+

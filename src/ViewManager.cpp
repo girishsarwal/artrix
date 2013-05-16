@@ -38,21 +38,21 @@ void ViewManager::createStockViews(){
 	for(xmlNode* nodeView = xmlDocGetRootElement(doc)->children; nodeView; nodeView = nodeView->next){
 		if(strcmp((char*)nodeView->name, "text") == 0) continue;
 		if(strcmp((char*)nodeView->name, "view") == 0){
-			printf("View Found\n");
+			printf("View Found ");
 			AttributeSet asView;
 			if(NULL != nodeView->properties){
 				xmlAttr* attrView = NULL;
 				for(attrView = nodeView->properties; attrView; attrView = attrView->next){
 					const xmlChar* attrViewName = attrView->name;
 					const xmlChar* attrViewValue = xmlGetProp(nodeView, attrViewName);
-					printf("Attribute Found, %s=%s\n", attrViewName, attrViewValue);
 					Attribute aView;
 					aView.set(std::string((const char*)attrViewName), std::string((const char*)attrViewValue));
 					asView.add(aView);
 				}
 			}
 			View *v = new View();
-			v->create(asView);
+			v->initialize(asView);
+			asView.display();
 			for(xmlNode* nodeWidget = nodeView->children; nodeWidget; nodeWidget = nodeWidget->next){
 				if(strcmp((char*)nodeWidget->name, "text") == 0) continue;
 				AttributeSet asWidget;
@@ -62,7 +62,6 @@ void ViewManager::createStockViews(){
 					for(attrWidget = nodeWidget->properties; attrWidget; attrWidget = attrWidget->next){
 						const xmlChar* attrWidgetName = attrWidget->name;
 						const xmlChar* attrWidgetValue = xmlGetProp(nodeWidget, attrWidgetName);
-						printf("Attribute Found, %s=%s\n", attrWidgetName, attrWidgetValue);
 						Attribute aWidget;
 						aWidget.set(std::string((const char*)attrWidgetName), std::string((const char*)attrWidgetValue));
 						asWidget.add(aWidget);
@@ -70,6 +69,11 @@ void ViewManager::createStockViews(){
 				}
 				Widget *w = NULL;
 				WidgetFactory::createWidget((char*)nodeWidget->name, &w, asWidget);
+				if(NULL == w){
+					printf("WARNING: Could not create widget\n");
+					continue;
+				}
+				w->initialize(asWidget);
 				v->addWidget(w);
 			}
 			m_Views.add(v);
@@ -81,30 +85,27 @@ void ViewManager::createStockViews(){
 	printf("Tree support not compiled");
 #endif
 	
-}
+};
 void ViewManager::initialize(){
 	createStockViews();
-}
+};
 void ViewManager::shutdown(){
 	
-}
+};
 ViewManager::ViewManager(){
 	m_Views.clear();
 };
 
 ViewManager::~ViewManager(){
-}
+};
 
 ViewManager* ViewManager::getInstance(){
 	if(NULL == m_pTheViewManager){
 		m_pTheViewManager = new ViewManager();
 	}
 	return m_pTheViewManager;
-}
+};
 void ViewManager::changeView(View* view){
-	if(NULL != m_pCurrentView)
-		m_pCurrentView->exit();
 	m_pCurrentView = view;
-	m_pCurrentView->enter();
-}
+};
 ViewManager* ViewManager::m_pTheViewManager = NULL;

@@ -15,23 +15,20 @@ void Widget::setDrawRectangle(float _left, float _top, float _width, float _heig
 	m_vSize.y = _height;
 }
 void Widget::update(double frameTime){
-	getValuesFromSensors();
 	onUpdate(frameTime);
 }
-void Widget::getValuesFromSensors(){
-	onGetValuesFromSensors();
-}
+
 void Widget::render(double frameTime){
-	if(!m_bInitialized) initialize();
 	onRender(frameTime);
 }
-void Widget::initialize(){
+void Widget::initialize(AttributeSet& as){
+	m_asAttributes = as;
+
 	onInitialize();
 	m_bInitialized = true;
 }
 
-void Widget::onUpdate(double frameTime){}
-void Widget::onGetValuesFromSensors(){}
-void Widget::onRender(double frameTime){
-}
 void Widget::onInitialize(){}
+void Widget::onUpdate(double frameTime){}
+void Widget::onRender(double frameTime){}
+

@@ -26,8 +26,9 @@ public:
 	 * set range of battery, used to calculate percent option
 	 */
 	void setBatteryRange(long min, long max);
+	void onInitialize();
 	void onRender(double frameTime);
-
+	
 	TxBatteryMeterWidget();
 	virtual ~TxBatteryMeterWidget();
 };

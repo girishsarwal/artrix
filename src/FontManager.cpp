@@ -13,8 +13,6 @@ FontManager* FontManager::getInstance(){
 };
 
 void FontManager::setActiveFont(std::string& font, std::string& size){
-	printf("Active Fonr %d", TM->getTexture(font));
-	
 	glBindTexture(GL_TEXTURE_2D, TM->getTexture(font));
 	
 	if(size == SMALL_TEXT){

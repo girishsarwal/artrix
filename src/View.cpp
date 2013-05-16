@@ -25,24 +25,19 @@ void View::addWidget(Widget* pWidget){
 	m_Widgets.add(pWidget);
 }
 
-void View::create(AttributeSet& as){
+void View::initialize(AttributeSet& as){
 	m_sName = std::string(as.get("name").getValue().c_str());
-	onCreate();
+	onInitialize(as);
 }
 
 void View::onUpdate(double frameTime){
 
 }
 void View::onRender(double frameTime){
-}
-void View::onCreate(){
 	
 }
-void View::enter(){
-	printf("Entering View\n");
-};
-void View::exit(){
-	printf("Exiting View\n");
+void View::onInitialize(AttributeSet& as){
+	
 }
 View::View()
 {
