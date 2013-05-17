@@ -9,7 +9,7 @@
 
 #include "afx.h"
 
-class ImageWidget: public Widget {
+class ImageWidget: public UIWidget {
 private:
 	std::string	m_pPath;
 	

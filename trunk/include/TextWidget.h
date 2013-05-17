@@ -9,7 +9,7 @@
 
 #include "afx.h"
 
-class TextWidget: public Widget {
+class TextWidget: public UIWidget {
 private:
 	std::string	m_pText;
 	std::string m_pFont;

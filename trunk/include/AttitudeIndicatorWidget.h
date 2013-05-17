@@ -1,7 +1,7 @@
 #pragma once
 #include "afx.h"
 class AttitudeIndicatorWidget :
-	public Widget{
+	public TelemetryWidget{
 	private:
 		float m_fPitch;
 		float m_fRoll;
