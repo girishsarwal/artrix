@@ -30,6 +30,8 @@ class View;
 class SplashView;
 class ViewManager;
 class Widget;
+class UIWidget;
+class TelemetryWidget;
 class FlapsWidget;
 class TXBatteryMeterWidget;
 class AttitudeIndicatorWidget;
@@ -62,6 +64,8 @@ class ISupportsStates;
 
 /** Widgets **/
 #include "Widget.h"
+#include "UIWidget.h"
+#include "TelemetryWidget.h"
 #include "FlapsWidget.h"
 #include "TxBatteryMeterWidget.h"
 #include "AttitudeIndicatorWidget.h"
