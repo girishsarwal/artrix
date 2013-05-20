@@ -30,8 +30,8 @@ float zPlane[] = {0.0f, 1.0f, 0.0f, 0.0f};
 void AttitudeIndicatorWidget::onCreate(){
 };
 void AttitudeIndicatorWidget::onUpdate(double frameTime){
-	m_fRoll += 0.5f;
-	m_fPitch += 0.1f;
+	m_fRoll += 1.0f;
+	m_fPitch += 2.0f;
 };
 void AttitudeIndicatorWidget::onRender(double frameTime){
 	glMatrixMode(GL_MODELVIEW);
