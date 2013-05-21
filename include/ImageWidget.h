@@ -11,19 +11,15 @@
 
 class ImageWidget: public UIWidget {
 private:
-	std::string	m_pPath;
-	
-	unsigned long long m_fBackground;
-	
 	uint 	m_iTextureId;
-	
 protected:
-	void onInitialize();
-	void onUpdate(double frameTime);
-	void onRender(double frameTime);
+	virtual void onInitialize();
+	virtual void onUpdate(double frameTime);
+	virtual void onRender(double frameTime);
 public:
+	std::string	m_pPath;
+		
 	ImageWidget();
-	ImageWidget(AttributeSet& attrs);
 	virtual ~ImageWidget();
 };
 

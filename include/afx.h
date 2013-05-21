@@ -44,6 +44,7 @@ class TextWidget;
 class SerialInterface;
 class FontManager;
 class StateManager;
+class LogManager;
 class IState;
 class ISupportsStates;
 
@@ -76,6 +77,7 @@ class ISupportsStates;
 
 #include "WidgetFactory.h"
 #include "TextureManager.h"
+#include "LogManager.h"
 #include "TextWidget.h"
 #include "SerialInterface.h"
 #include "FontManager.h"
@@ -89,6 +91,7 @@ class ISupportsStates;
 #define SI SerialInterface::getInstance()
 #define FM FontManager::getInstance()
 #define SM StateManager::getInstance()
+#define LM LogManager::getInstance()
 
 
 
