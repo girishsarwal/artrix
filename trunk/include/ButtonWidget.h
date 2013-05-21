@@ -1,7 +1,7 @@
 #pragma once
 #include "afx.h"
 class ButtonWidget
-	: public Widget{
+	: public UIWidget{
 private:
 public:
 	ButtonWidget();

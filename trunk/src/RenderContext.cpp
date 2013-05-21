@@ -61,6 +61,7 @@ void resize(GLint w, GLint h){
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(-100, 100, -100, 100, -100, 100);
+	glMatrixMode(GL_MODELVIEW);
 }
 
 void loop(){

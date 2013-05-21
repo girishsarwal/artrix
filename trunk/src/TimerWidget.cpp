@@ -23,6 +23,7 @@ void TimerWidget::onInitialize(){
 	m_fTime = atof(m_asAttributes.get("timeout").getValue().c_str());
 	m_sAction = m_asAttributes.get("action").getValue().c_str();
 	m_sTargetView = m_asAttributes.get("targetView").getValue().c_str();
+	Widget::onInitialize();
 };
 
 void TimerWidget::onUpdate(double frameTime){
@@ -31,4 +32,5 @@ void TimerWidget::onUpdate(double frameTime){
 		VM->changeView(VM->getView(m_sTargetView));
 		fElapsedTime = 0;
 	};
+	Widget::onUpdate(frameTime);
 };
