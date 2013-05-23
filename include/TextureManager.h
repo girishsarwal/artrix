@@ -9,5 +9,6 @@ class TextureManager{
 		static TextureManager* getInstance();
 		uint getTexture(std::string& texureName);
 		void loadAllTextures(std::string& textureRoot);
+		void loadTexture(std::string& texturePath);
 		void initialize();
 };

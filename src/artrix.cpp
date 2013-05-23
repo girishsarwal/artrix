@@ -11,6 +11,7 @@ int main(int argc, char* argv[]){
 	VM->initialize();
 	
 	FM->initialize();
+	BFM->initialize();
 	SI->initialize();
 	
 	RC->setup();

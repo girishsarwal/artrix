@@ -48,7 +48,7 @@ class StateManager;
 class LogManager;
 class IState;
 class ISupportsStates;
-class aa;
+class BMFontManager;
 
 
 
@@ -88,6 +88,7 @@ class aa;
 #include "SupportsStates.h"
 #include "State.h"
 #include "SupportsTelemetry.h"
+#include "BMFontManager.h"
 
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()
@@ -96,6 +97,7 @@ class aa;
 #define FM FontManager::getInstance()
 #define SM StateManager::getInstance()
 #define LM LogManager::getInstance()
+#define BFM BMFontManager::getInstance()
 
 
 
