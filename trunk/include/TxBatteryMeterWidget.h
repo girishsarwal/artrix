@@ -9,7 +9,7 @@
 #include "afx.h"
 
 
-class TxBatteryMeterWidget: public Widget {
+class TxBatteryMeterWidget: public UIWidget {
 private:
 	long m_lLowBatteryThreshold;
 	long m_lVeryLowBatteryThreshold;

@@ -6,13 +6,20 @@
  */
 
 #pragma once
-
 #include "afx.h"
+class UIWidget : public Widget, IRenderable {
 
-class UIWidget : public Widget {
-protected:
-	virtual void onInitialize();
-	virtual void setDrawRectangle(float _left, float _top, float _width, float _height);
+protected:	
+
+	virtual void beforeInitialize();
+	virtual void onInitialize() = 0;
+	virtual void afterInitialize();
+	virtual void beforeRender(double frameTime);
+	virtual void onRender(double frameTime) = 0;
+	virtual void afterRender(double frameTime);
+	virtual void beforeUpdate(double frameTime);
+	virtual void onUpdate(double frameTime) = 0;
+	virtual void afterUpdate(double frameTime);
 	
 public:
 	Vector m_vPosition;
@@ -20,6 +27,14 @@ public:
 	unsigned long long m_fBackground;
 	UIWidget();
 	virtual ~UIWidget();
+	
+	/**impl of Widget **/
+	virtual void initialize(AttributeSet& as);
+	virtual void update(double frameTime);
+	virtual void render(double frameTime);
+	
+	/**impl of Drawable**/
+	virtual void setDrawRectangle(float _left, float _top, float _width, float _height);
 };
 
 

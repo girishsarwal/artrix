@@ -16,12 +16,11 @@ private:
 	std::string m_sAction;
 	
 public:
-	void onUpdate(double frameTime);
 	TimerWidget();
 	TimerWidget(AttributeSet& as);
 	virtual ~TimerWidget();
 	void onInitialize();
-	void onCreate();
+	void onRender(double frameTime);
 	void onUpdate(double frameTime);
 };
 

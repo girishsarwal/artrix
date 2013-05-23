@@ -14,11 +14,15 @@ class TextWidget: public UIWidget {
 protected:
 	void onInitialize();
 	void onRender(double frameTime);
+	void onUpdate(double frameTime);
 public:
 	std::string	m_pText;
 	std::string m_pFont;
 	std::string m_pSize;
-	
+	unsigned long long m_fColor;			
+		
+
+	bool m_bIsBold;
 	TextWidget();
 	TextWidget(AttributeSet& attrs);
 	virtual ~TextWidget();

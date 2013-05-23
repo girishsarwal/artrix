@@ -13,8 +13,11 @@ FontManager* FontManager::getInstance(){
 };
 
 void FontManager::setActiveFont(std::string& font, std::string& size){
+	setActiveFont(font, size, false);
+};
+
+void FontManager::setActiveFont(std::string& font, std::string& size, bool bold){
 	glBindTexture(GL_TEXTURE_2D, TM->getTexture(font));
-	
 	if(size == SMALL_TEXT){
 		m_uiActiveListBase = m_uiSmallFont;
 	}
@@ -24,8 +27,14 @@ void FontManager::setActiveFont(std::string& font, std::string& size){
 	else if (size == LARGE_TEXT){
 		m_uiActiveListBase = m_uiLargeFont;
 	};
+	if(bold){
+		glListBase(m_uiActiveListBase - 32);
+	} else
+	glListBase(m_uiActiveListBase + 96);
+	
 };
 uint FontManager::getActiveFontBase(){
+	printf("ACTIVE LIST BASE IS ---------- %d", m_uiActiveListBase);
 	return m_uiActiveListBase;
 };
 
@@ -35,8 +44,8 @@ void FontManager::initialize(){
 	m_uiMediumFont = glGenLists(FONT_MAX_CHARS);
 	m_uiLargeFont = glGenLists(FONT_MAX_CHARS);
 	createFontDisplayList(m_uiSmallFont, 4);
-	createFontDisplayList(m_uiMediumFont, 8);
-	createFontDisplayList(m_uiLargeFont, 12);
+	createFontDisplayList(m_uiMediumFont, 6);
+	createFontDisplayList(m_uiLargeFont, 8);
 };
 void FontManager::createFontDisplayList(uint base, int size){
 	float m = 0;
@@ -50,8 +59,6 @@ void FontManager::createFontDisplayList(uint base, int size){
 	float cx = 1.0/FONT_TEXTURE_COLS;
 	float cy = 1.0/FONT_TEXTURE_ROWS;
 	float halfSize = size / 2.0;
-	
-	printf("Params %f, %f, %f, %f", m, n, cx, cy);
 	
 	int index = -1;
 	
@@ -67,7 +74,6 @@ void FontManager::createFontDisplayList(uint base, int size){
 		float nNext = 1 - ((n + 1) * cy);
 		float halfSize = size / 2.0;
 		
-		printf("coordinate %f, %f\n", m, n);
 		glBegin(GL_QUADS);
 			{
 				glTexCoord2f(mThis, nNext);
@@ -83,7 +89,7 @@ void FontManager::createFontDisplayList(uint base, int size){
 				glVertex2f( halfSize,-halfSize);
 			};
 		glEnd();
-		glTranslatef(size, 0, 0);
+		glTranslatef(size * 0.8, 0, 0);
 		glEndList();
 	};
 };

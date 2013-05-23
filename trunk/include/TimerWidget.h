@@ -9,7 +9,8 @@
 #include "afx.h"
 
 
-class TimerWidget: public Widget {
+class TimerWidget
+	: public Widget {
 private:
 	float m_fTime;
 	std::string m_sTargetView;
@@ -19,8 +20,9 @@ public:
 	TimerWidget();
 	TimerWidget(AttributeSet& as);
 	virtual ~TimerWidget();
-	void onInitialize();
-	void onUpdate(double frameTime);
+	void initialize(AttributeSet& as);
+	void update(double frameTime);
+	void render(double frameTime);
 };
 
 

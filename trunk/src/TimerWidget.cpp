@@ -19,18 +19,19 @@ TimerWidget::~TimerWidget() {
 
 static float fElapsedTime = 0.0f;
 
-void TimerWidget::onInitialize(){
+void TimerWidget::initialize(AttributeSet& as){
+	m_asAttributes = as;
 	m_fTime = atof(m_asAttributes.get("timeout").getValue().c_str());
 	m_sAction = m_asAttributes.get("action").getValue().c_str();
 	m_sTargetView = m_asAttributes.get("targetView").getValue().c_str();
-	Widget::onInitialize();
 };
 
-void TimerWidget::onUpdate(double frameTime){
+void TimerWidget::update(double frameTime){
 	fElapsedTime+=frameTime;
 	if(fElapsedTime >=m_fTime){
 		VM->changeView(VM->getView(m_sTargetView));
 		fElapsedTime = 0;
 	};
-	Widget::onUpdate(frameTime);
+};
+void TimerWidget::render(double frameTime){
 };

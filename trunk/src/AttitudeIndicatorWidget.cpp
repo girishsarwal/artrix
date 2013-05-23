@@ -8,7 +8,6 @@ AttitudeIndicatorWidget::AttitudeIndicatorWidget(){
 };
 
 void AttitudeIndicatorWidget::onInitialize(){
-	TelemetryWidget::onInitialize();
 	m_Gimbal = gluNewQuadric();
 	gluQuadricTexture(m_Gimbal, GL_TRUE);
 };
@@ -23,8 +22,8 @@ void AttitudeIndicatorWidget::onUpdate(double frameTime){
 	TelemetryWidget::onUpdate(frameTime);
 };
 void AttitudeIndicatorWidget::onRender(double frameTime){
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
+	TelemetryWidget::onRender(frameTime);
+	printf("Rendering AttitudeIndicatorWidget\n");
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 	{		
@@ -57,7 +56,6 @@ void AttitudeIndicatorWidget::onRender(double frameTime){
 		glVertex3f(-25, 25, 0);
 	};
 	glEnd();
-	glPopMatrix();
-	TelemetryWidget::onRender(frameTime);
+
 };
 

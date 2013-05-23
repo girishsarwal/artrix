@@ -7,7 +7,6 @@
 
 #include "afx.h"
 void ImageWidget::onInitialize(){
-	UIWidget::onInitialize();
 	m_pPath = m_asAttributes.get("src").getValue().c_str();
 	m_iTextureId = TM->getTexture(m_pPath);
 }
@@ -17,11 +16,12 @@ ImageWidget::ImageWidget() {
 
 ImageWidget::~ImageWidget() {
 	
-}
+};
 
 
 void ImageWidget::onUpdate(double frameTime){
-}
+	
+};
 
 void ImageWidget::onRender(double frameTime){
 	glColor4ub((m_fBackground & 0x00FF0000) >> 0x10,
@@ -44,7 +44,6 @@ void ImageWidget::onRender(double frameTime){
 		
 		glTexCoord2f(0.0, 1.0);
 		glVertex3f(m_vPosition.x, m_vPosition.y + m_vSize.y, 0);
-		
 	};
 	glEnd();
 	glDisable(GL_TEXTURE_2D);

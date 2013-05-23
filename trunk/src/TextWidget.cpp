@@ -17,25 +17,28 @@ TextWidget::~TextWidget() {
 }
 
 void TextWidget::onInitialize(){
-	UIWidget::onInitialize();
 	m_pText = m_asAttributes.get("text").getValue().c_str();
 	m_pFont = m_asAttributes.get("font").getValue().c_str();
 	m_pSize = m_asAttributes.get("size").getValue().c_str();
-	
-}
+	m_bIsBold = atoi(m_asAttributes.get("bold").getValue().c_str());
+	m_fColor = atoll(m_asAttributes.get("color").getValue().c_str());
+};
 
 void TextWidget::onRender(double frameTime){
-	glPushMatrix();
-	glTranslatef(m_vPosition.x, m_vPosition.y, 0);
-	glPushAttrib(GL_CURRENT_BIT);
-	glColor3f(1.0, 1.0, 0.0);
+	/*glColor4ub((m_fColor & 0x00FF0000) >> 0x10,
+				(m_fColor & 0x0000FF00) >> 0x08,
+				m_fColor & 0x000000FF,
+				(m_fColor & 0xFF000000) >> 0x18);*/
+	printf("Rendering TextWidget\n");
+	glTranslatef(m_vPosition.x, m_vPosition.y, 1);
 	glEnable(GL_TEXTURE_2D);
-	FM->setActiveFont(m_pFont, m_pSize);
-	glListBase(-31);
+	glPushMatrix();
+	FM->setActiveFont(m_pFont, m_pSize, m_bIsBold);
 	glCallLists(m_pText.length(), GL_BYTE, m_pText.c_str());
-	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
-	glPopAttrib();
-	UIWidget::onRender(frameTime);
-}
+	glDisable(GL_TEXTURE_2D);
+};
+
+void TextWidget::onUpdate(double frameTime){
+};
 
