@@ -8,8 +8,10 @@
 #pragma once
 
 #include "afx.h"
-
-class TelemetryWidget: public UIWidget {
+#include "SupportsTelemetry.h"
+class TelemetryWidget
+	: public UIWidget
+	, ISupportsTelemetry{
 private:
 	uint 	m_iTextureId;
 protected:

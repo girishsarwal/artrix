@@ -20,6 +20,7 @@ class FontManager{
 		~FontManager();
 		static FontManager* getInstance();
 		void setActiveFont(std::string& font, std::string& size);
+		void setActiveFont(std::string& font, std::string& size, bool bold);
 		uint getActiveFontBase();
 		void initialize();
 		void shutdown();

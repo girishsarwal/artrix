@@ -28,6 +28,7 @@ struct Vector;
 
 class View;
 class SplashView;
+class Renderable;
 class ViewManager;
 class Widget;
 class UIWidget;
@@ -47,6 +48,7 @@ class StateManager;
 class LogManager;
 class IState;
 class ISupportsStates;
+class aa;
 
 
 
@@ -65,6 +67,7 @@ class ISupportsStates;
 
 /** Widgets **/
 #include "Widget.h"
+#include "Renderable.h"
 #include "UIWidget.h"
 #include "TelemetryWidget.h"
 #include "FlapsWidget.h"
@@ -84,6 +87,7 @@ class ISupportsStates;
 #include "StateManager.h"
 #include "SupportsStates.h"
 #include "State.h"
+#include "SupportsTelemetry.h"
 
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()

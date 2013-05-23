@@ -7,16 +7,11 @@ public:
 	bool m_bInitialized;
 	AttributeSet m_asAttributes;
 	
-	void initialize(AttributeSet& as);
-	void update(double frameTime);
-	void render(double frameTime);
+	virtual void initialize(AttributeSet& as) = 0;
+	virtual void update(double frameTime) = 0;
+	virtual void render(double frameTime) = 0;
+	
 	Widget(void);
 	~Widget(void);
-
-protected:
-	virtual void onInitialize();
-	virtual void onUpdate(double frameTime);
-	virtual void onRender(double frameTime);
-
 };
 

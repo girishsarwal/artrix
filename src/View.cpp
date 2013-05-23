@@ -34,6 +34,8 @@ void View::onUpdate(double frameTime){
 
 }
 void View::onRender(double frameTime){
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 	
 }
 void View::onInitialize(AttributeSet& as){
