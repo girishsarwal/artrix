@@ -19,7 +19,7 @@ void UIWidget::initialize(AttributeSet& as){
 	beforeInitialize();
 	onInitialize();
 	afterInitialize();
-	printf("SETTING POS to %f, %f\n", m_vPosition.x, m_vPosition.y);
+	//printf("SETTING POS to %f, %f\n", m_vPosition.x, m_vPosition.y);
 };
 
 void UIWidget::afterInitialize(){
@@ -43,7 +43,7 @@ void UIWidget::render(double frameTime){
 }
 
 void UIWidget::beforeRender(double frameTime){
-	printf("UIWidget::Before Render\n");
+	//printf("UIWidget::Before Render\n");
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
@@ -53,7 +53,7 @@ void UIWidget::beforeRender(double frameTime){
 void UIWidget::afterRender(double frameTime){
 	glPopAttrib();
 	glPopMatrix();
-	printf("UIWidget::After Render\n");
+	//printf("UIWidget::After Render\n");
 };
 
 void UIWidget::update(double frameTime){

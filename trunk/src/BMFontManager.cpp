@@ -12,30 +12,8 @@ BMFontManager* BMFontManager::getInstance(){
 	return m_pInstance;
 };
 
-void BMFontManager::setActiveFont(std::string& font, std::string& size){
-	/*setActiveFont(font, size, false);*/
-};
+void BMFontManager::setActiveFont(std::string& font){
 
-void BMFontManager::setActiveFont(std::string& font, std::string& size, bool bold){
-	/*glBindTexture(GL_TEXTURE_2D, TM->getTexture(font));
-	if(size == SMALL_TEXT){
-		m_uiActiveListBase = m_uiSmallFont;
-	}
-	else if(size == MEDIUM_TEXT){
-		m_uiActiveListBase = m_uiMediumFont;
-	}
-	else if (size == LARGE_TEXT){
-		m_uiActiveListBase = m_uiLargeFont;
-	};
-	if(bold){
-		glListBase(m_uiActiveListBase - 32);
-	} else
-	glListBase(m_uiActiveListBase + 96);
-	*/
-};
-uint BMFontManager::getActiveFontBase(){
-	printf("ACTIVE LIST BASE IS ---------- %d", m_uiActiveListBase);
-	return m_uiActiveListBase;
 };
 
 void BMFontManager::initialize(){	
@@ -57,18 +35,6 @@ void BMFontManager::initialize(){
 			printf("Found font %s\n", fontName.c_str());
 		}
 	}
-	
-	/**create the display lists for ASCII 256 font **/
-	
-	
-	
-	/*m_uiSmallFont = glGenLists(FONT_MAX_CHARS);
-	m_uiMediumFont = glGenLists(FONT_MAX_CHARS);
-	m_uiLargeFont = glGenLists(FONT_MAX_CHARS);
-
-	createFontDisplayList(m_uiSmallFont, 4);
-	createFontDisplayList(m_uiMediumFont, 6);
-	createFontDisplayList(m_uiLargeFont, 8);*/
 };
 
 void BMFontManager::createFontDisplayListFromBMFont(std::string& fontFile){
@@ -87,18 +53,16 @@ void BMFontManager::createFontDisplayListFromBMFont(std::string& fontFile){
 		else if(strcmp((char*)nodeBMFont->name, "common") == 0){
 		}
 		else if(strcmp((char*)nodeBMFont->name, "chars") == 0){
-			int numberOfChars = atoi((char*)xmlGetProp(nodeBMFont, (const xmlChar*)"count"));
-			printf("No of characters %d\n", numberOfChars);
-			m_uiSmallFont = glGenLists(numberOfChars);
-			m_uiMediumFont = glGenLists(numberOfChars);
-			m_uiLargeFont = glGenLists(numberOfChars);
+			m_uiCharCount = atoi((char*)xmlGetProp(nodeBMFont, (const xmlChar*)"count"));
+			printf("No of characters %d\n", m_uiCharCount);
+			m_uiFontLists = glGenLists(m_uiCharCount);
 			for(xmlNode* nodeBMChar = nodeBMFont->children; nodeBMChar; nodeBMChar = nodeBMChar->next){
 				if(NULL != nodeBMChar->properties){
 					xmlAttr* attrChar = NULL;
+					uint id;
+					float x, y , width, height, xoffset, yoffset, xadvance;
 					for(attrChar = nodeBMChar->properties; attrChar; attrChar = attrChar->next){
-						uint id;
-						float x, y , width, height, xoffset, yoffset, xadvance;
-						if(strcmp((char*)attrChar->name, "x") == 0){
+						if(strcmp((char*)attrChar->name, "id") == 0){
 							id = atoi((const char*)xmlGetProp(nodeBMChar, attrChar->name));
 						}
 						else if(strcmp((char*)attrChar->name, "x") == 0){
@@ -122,15 +86,46 @@ void BMFontManager::createFontDisplayListFromBMFont(std::string& fontFile){
 						else if(strcmp((char*)attrChar->name, "xadvance") == 0){
 							xadvance = atof((const char*)xmlGetProp(nodeBMChar, attrChar->name));
 						}
-						/** calculate the vertex and texture coordinate **/
+					}
+					/** calculate the vertex and texture coordinate **/
 						glNewList(id, GL_COMPILE);
+						float mThis, mNext, nThis, nNext, halfHeight, halfWidth;
+						mThis = (x/512.0);
+						mNext = (x + width)/512.0;
+						nThis = 1 - (y/512.0);
+						nNext = 1 - ((y + height)/512.0);
+						/*
+						 * t--------r
+						 * |		|
+						 * |		|
+						 * |		|
+						 * l--------b
+						*/
+						halfHeight = height/10.0;
+						halfWidth = width/10.0;
+						printf("(%d is ", id);
 						glBegin(GL_QUADS);
 						{
+							glTexCoord2f(mThis, nNext);				//BL
+							glVertex2f(-halfWidth,-halfHeight);
+							printf("%f, %f~", mThis, nNext);
+				
+							glTexCoord2f(mThis, nThis);				//TL
+							glVertex2f(-halfWidth, halfHeight);
+							printf("%f, %f~", mThis, nThis);
+				
+							glTexCoord2f(mNext,  nThis);			//TR
+							glVertex2f( halfWidth, halfHeight);
+							printf("%f, %f~", mNext, nThis);
+				
+							glTexCoord2f(mNext, nNext);				//BR
+							glVertex2f( halfWidth,-halfHeight);
+							printf("%f, %f", mNext, nNext);
 						};
+						printf(")\n");
 						glEnd();
-						glTranslatef(xadvance, 0, 0);
+						glTranslatef(xadvance/5.0, 0, 0);
 						glEndList();
-					}
 				}
 			}
 		}
@@ -140,60 +135,10 @@ void BMFontManager::createFontDisplayListFromBMFont(std::string& fontFile){
 	printf("Tree support not compiled");
 #endif
 	
-}
-void BMFontManager::createFontDisplayList(uint base, int size){
-/*	float m = 0;
-	float n = 0;
-	
-	float mThis = 0.0;
-	float nThis = 0.0;
-	float mNext = 0.0;
-	float nNext = 0.0;
-	
-	float cx = 1.0/FONT_TEXTURE_COLS;
-	float cy = 1.0/FONT_TEXTURE_ROWS;
-	float halfSize = size / 2.0;
-	
-	int index = -1;
-	
-	while(++index < FONT_MAX_CHARS)
-	{
-		glNewList(base + index, GL_COMPILE);
-		m = (index % FONT_TEXTURE_COLS);
-		n  = (index / FONT_TEXTURE_ROWS);
-		
-		float mThis = m * cx;
-		float nThis = 1 - (n * cy);
-		float mNext = (m + 1) * cx;
-		float nNext = 1 - ((n + 1) * cy);
-		float halfSize = size / 2.0;
-		
-		glBegin(GL_QUADS);
-			{
-				glTexCoord2f(mThis, nNext);
-				glVertex2f(-halfSize,-halfSize);
-				
-				glTexCoord2f(mThis, nThis);
-				glVertex2f(-halfSize, halfSize);
-				
-				glTexCoord2f(mNext,  nThis);				
-				glVertex2f( halfSize, halfSize);
-				
-				glTexCoord2f(mNext, nNext);
-				glVertex2f( halfSize,-halfSize);
-			};
-		glEnd();
-		glTranslatef(size * 0.8, 0, 0);
-		glEndList();
-	};
-	* */
 };
 
 void BMFontManager::shutdown(){
-	/*glDeleteLists(m_uiSmallFont, FONT_MAX_CHARS);
-	glDeleteLists(m_uiMediumFont, FONT_MAX_CHARS);
-	glDeleteLists(m_uiLargeFont, FONT_MAX_CHARS);
-	* */
+	glDeleteLists(m_uiFontLists, m_uiCharCount);
 };
 
 BMFontManager* BMFontManager::m_pInstance = NULL;
