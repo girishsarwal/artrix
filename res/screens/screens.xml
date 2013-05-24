@@ -3,14 +3,15 @@
 	<view name="splash">
 		<TimerWidget timeout="2000" action="changeView" targetView="home"></TimerWidget>
 		<ImageWidget x="-100" y="-100" width="200" height="200" src="bg.png" background="0xFFFFFFFF"></ImageWidget>
+		<TextWidget x="20" y="-40" width="100" height="100" text="ARTRIX - gt-jtx UI" color ="0xFFFF0000" size="10" font="trebuchet" bold="1"> </TextWidget>
 	</view>
 	<view name="home">
 		<ImageWidget x="-100" y="-100" width="200" height="200" src="air-view.jpg" background="0xFFFFFFFF"></ImageWidget>
 		<ImageWidget x="-100" y="90" width="100" height="10" src="black-bar.png" background="0xFFFFFFFF"></ImageWidget>
 		<ImageWidget x="0" y="90" width="100" height="10" src="black-bar.png" background="0xFFFFFFFF"></ImageWidget>
 		<ImageWidget x="90" y="90" width="10" height="10" src="settings-bar.png" background="0xFFFFFFFF"></ImageWidget>
-		<TextWidget x="-70" y="95" width="100" height="100" text="Pilot" color ="0xFFFFFFFF" size="large" font="segoe" bold="1"> </TextWidget>
-		<TextWidget x="30" y="95" width="100" height="100" text="Model" color ="0xFFFFFFFF" size="large" font="segoe" bold="1"> </TextWidget>
+		<TextWidget x="-70" y="95" width="100" height="100" text="Pilot" color ="0xFFFFFFFF" size="8" font="trebuchet" bold="1"> </TextWidget>
+		<TextWidget x="30" y="95" width="100" height="100" text="Model" color ="0xFFFFFFFF" size="8" font="trebuchet" bold="1"> </TextWidget>
 		<AttitudeIndicatorWidget x="60" y="20" z="1"/>
 	</view>
 </views>

@@ -10,7 +10,7 @@ int main(int argc, char* argv[]){
 	TM->initialize();
 	VM->initialize();
 	
-	FM->initialize();
+	//FM->initialize();
 	BFM->initialize();
 	SI->initialize();
 	
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]){
 	
 	VM->shutdown();
 	RC->shutdown();
-	FM->shutdown();
+	//FM->shutdown();
 	SI->shutdown();
 	
 	return 0;

@@ -18,7 +18,7 @@ protected:
 public:
 	std::string	m_pText;
 	std::string m_pFont;
-	std::string m_pSize;
+	float m_pSize;
 	unsigned long long m_fColor;			
 		
 
