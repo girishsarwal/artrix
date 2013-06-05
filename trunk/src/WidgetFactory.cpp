@@ -23,4 +23,8 @@ void WidgetFactory::createWidget(char* pWidgetType, Widget** pWidget, AttributeS
 		*pWidget = new TimerWidget();
 		printf("Textwidget created\n");
 	}
+	if(0 == strcmp(pWidgetType, "CircularGaugeWidget")){
+		*pWidget = new CircularGaugeWidget();
+		printf("CircularGaugeWidget created\n");
+	}
 }

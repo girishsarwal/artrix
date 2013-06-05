@@ -5,12 +5,13 @@ LIB = -lm -lglut -lxml2 -lSOIL -lGLU -lrt
 
 RES_DIR = /usr/share/$(TARGET)
 SRC_DIR = src
-SRC = afx.cpp FlapsWidget.cpp RenderContext.cpp artrix.cpp ImageWidget.cpp SplashView.cpp View.cpp Widget.cpp TxBatteryMeterWidget.cpp ViewManager.cpp WidgetFactory.cpp TextureManager.cpp AttitudeIndicatorWidget.cpp TextWidget.cpp SerialInterface.cpp FontManager.cpp StateManager.cpp TimerWidget.cpp TelemetryWidget.cpp UIWidget.cpp LogManager.cpp BMFontManager.cpp
+SRC = afx.cpp FlapsWidget.cpp RenderContext.cpp artrix.cpp ImageWidget.cpp SplashView.cpp View.cpp Widget.cpp TxBatteryMeterWidget.cpp ViewManager.cpp WidgetFactory.cpp TextureManager.cpp AttitudeIndicatorWidget.cpp TextWidget.cpp SerialInterface.cpp FontManager.cpp StateManager.cpp TimerWidget.cpp TelemetryWidget.cpp UIWidget.cpp LogManager.cpp BMFontManager.cpp SPIInterface.cpp CircularGaugeWidget.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: precompile compile link 
 
 precompile:
+	rm -f -r $(RES_DIR)
 	mkdir -p $(RES_DIR)
 	cp -r ./res/* $(RES_DIR)
 	

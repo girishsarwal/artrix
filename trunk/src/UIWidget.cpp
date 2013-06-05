@@ -33,6 +33,8 @@ void UIWidget::beforeInitialize(){
 	
 	m_vSize.x = atof(m_asAttributes.get("width").getValue().c_str());
 	m_vSize.y = atof(m_asAttributes.get("height").getValue().c_str());
+	m_vHalfSize = m_vSize;
+	m_vHalfSize.scale(0.5);
 	m_fBackground = strtoll(m_asAttributes.get("background").getValue().c_str(), NULL, 16);
 };
 

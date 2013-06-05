@@ -30,20 +30,21 @@ void ImageWidget::onRender(double frameTime){
 				(m_fBackground & 0xFF000000) >> 0x18);
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, m_iTextureId);
-	//printf("Rendering ImageWidget(%s, %d, %2f, %2f) at (%2f, %2f)\n",m_pPath.c_str(), m_iTextureId, m_vSize.x, m_vSize.y, m_vPosition.x, m_vPosition.y);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glBegin(GL_QUADS);
 	{
 		glTexCoord2f(0.0, 0.0);
-		glVertex3f(m_vPosition.x, m_vPosition.y, 0);
+		glVertex3f(m_vPosition.x - m_vHalfSize.x, m_vPosition.y - m_vHalfSize.y, 0);
 		
 		glTexCoord2f(1.0, 0.0);
-		glVertex3f(m_vPosition.x + m_vSize.x, m_vPosition.y, 0);
+		glVertex3f(m_vPosition.x + m_vHalfSize.x, m_vPosition.y - m_vHalfSize.y, 0);
 		
 		glTexCoord2f(1.0, 1.0);
-		glVertex3f(m_vPosition.x + m_vSize.x, m_vPosition.y + m_vSize.y, 0);
+		glVertex3f(m_vPosition.x + m_vHalfSize.x, m_vPosition.y + m_vHalfSize.y, 0);
 		
 		glTexCoord2f(0.0, 1.0);
-		glVertex3f(m_vPosition.x, m_vPosition.y + m_vSize.y, 0);
+		glVertex3f(m_vPosition.x - m_vHalfSize.x, m_vPosition.y + m_vHalfSize.y, 0);
 	};
 	glEnd();
 	glDisable(GL_TEXTURE_2D);

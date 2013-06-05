@@ -24,6 +24,7 @@ protected:
 public:
 	Vector m_vPosition;
 	Vector m_vSize;
+	Vector m_vHalfSize;
 	unsigned long long m_fBackground;
 	UIWidget();
 	virtual ~UIWidget();
