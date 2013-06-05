@@ -6,6 +6,8 @@ int main(int argc, char* argv[]){
 	if(NULL == FM) { printf("ERROR: Cannot create FontManager"); return false; }
 	if(NULL == SI) { printf("ERROR: Cannot create SerialInterface"); return false; }
 	
+	//static EGL_DISPMANX_WINDOW_T nativeWindow;
+	
 	RC->initialize(argc, argv);
 	TM->initialize();
 	VM->initialize();
@@ -13,6 +15,7 @@ int main(int argc, char* argv[]){
 	//FM->initialize();
 	BFM->initialize();
 	SI->initialize();
+	SPI->initialize();
 	
 	RC->setup();
 	RC->begin();
@@ -20,6 +23,8 @@ int main(int argc, char* argv[]){
 	VM->shutdown();
 	RC->shutdown();
 	//FM->shutdown();
+	SPI->shutdown();
+	
 	SI->shutdown();
 	
 	return 0;

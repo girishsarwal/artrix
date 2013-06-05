@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <math.h>
 #include <string.h>
+//#include <bcm_host.h>
 
 #include <GL/glut.h>
 #include <libxml/xmlreader.h>
@@ -19,6 +20,14 @@
 #include <string>
 
 #include <dirent.h>
+#include <linux/types.h>
+#include <linux/spi/spidev.h>
+#include <stdint.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <getopt.h>
+#include <sys/ioctl.h>
 
 
 #include "artrix-defines.h"
@@ -49,6 +58,8 @@ class LogManager;
 class IState;
 class ISupportsStates;
 class BMFontManager;
+class SPIInterface;
+class CircularGaugeWidget;
 
 
 
@@ -82,22 +93,26 @@ class BMFontManager;
 #include "TextureManager.h"
 #include "LogManager.h"
 #include "TextWidget.h"
+#include "CircularGaugeWidget.h"
 #include "SerialInterface.h"
+#include "SPIInterface.h"
 #include "FontManager.h"
 #include "StateManager.h"
 #include "SupportsStates.h"
 #include "State.h"
 #include "SupportsTelemetry.h"
+
 #include "BMFontManager.h"
 
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()
 #define TM TextureManager::getInstance()
 #define SI SerialInterface::getInstance()
+#define SPI SPIInterface::getInstance()
 #define FM FontManager::getInstance()
 #define SM StateManager::getInstance()
 #define LM LogManager::getInstance()
 #define BFM BMFontManager::getInstance()
 
-
+#define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]
 

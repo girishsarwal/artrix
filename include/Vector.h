@@ -20,4 +20,15 @@ struct Vector{
 	float getMagnitude(){
 		return sqrt(x * x + y * y);
 	}
+	void scale(double scalar){
+		x = x * scalar;
+		y = y * scalar;
+		z = z * scalar;
+	};
+	
+	void operator=(Vector& rhs){
+		x = rhs.x;
+		y = rhs.y;
+		z = rhs.z;
+	};
 };
