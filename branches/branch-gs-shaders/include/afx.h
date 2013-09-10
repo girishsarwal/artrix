@@ -61,6 +61,8 @@ class BMFontManager;
 class SPIInterface;
 class CircularGaugeWidget;
 
+class ShaderManager;
+
 
 
 /**Data types **/
@@ -101,8 +103,8 @@ class CircularGaugeWidget;
 #include "SupportsStates.h"
 #include "State.h"
 #include "SupportsTelemetry.h"
-
 #include "BMFontManager.h"
+#include "ShaderManager.h"
 
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()
@@ -113,6 +115,7 @@ class CircularGaugeWidget;
 #define SM StateManager::getInstance()
 #define LM LogManager::getInstance()
 #define BFM BMFontManager::getInstance()
+#define SHM	ShaderManager::getInstance()
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]
 
