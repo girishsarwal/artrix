@@ -23,7 +23,7 @@ void AttitudeIndicatorWidget::onUpdate(double frameTime){
 };
 void AttitudeIndicatorWidget::onRender(double frameTime){
 	TelemetryWidget::onRender(frameTime);
-	printf("Rendering AttitudeIndicatorWidget\n");
+	//printf("Rendering AttitudeIndicatorWidget\n");
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 	{		

@@ -103,26 +103,26 @@ void BMFontManager::createFontDisplayListFromBMFont(std::string& fontFile){
 						*/
 						halfHeight = height/10.0;
 						halfWidth = width/10.0;
-						printf("(%d is ", id);
+						//printf("(%d is ", id);
 						glBegin(GL_QUADS);
 						{
 							glTexCoord2f(mThis, nNext);				//BL
 							glVertex2f(-halfWidth,-halfHeight);
-							printf("%f, %f~", mThis, nNext);
+							//printf("%f, %f~", mThis, nNext);
 				
 							glTexCoord2f(mThis, nThis);				//TL
 							glVertex2f(-halfWidth, halfHeight);
-							printf("%f, %f~", mThis, nThis);
+							//printf("%f, %f~", mThis, nThis);
 				
 							glTexCoord2f(mNext,  nThis);			//TR
 							glVertex2f( halfWidth, halfHeight);
-							printf("%f, %f~", mNext, nThis);
+							//printf("%f, %f~", mNext, nThis);
 				
 							glTexCoord2f(mNext, nNext);				//BR
 							glVertex2f( halfWidth,-halfHeight);
-							printf("%f, %f", mNext, nNext);
+							//printf("%f, %f", mNext, nNext);
 						};
-						printf(")\n");
+						//printf(")\n");
 						glEnd();
 						glTranslatef(xadvance/5.0, 0, 0);
 						glEndList();

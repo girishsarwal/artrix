@@ -11,8 +11,7 @@ int main(int argc, char* argv[]){
 	RC->initialize(argc, argv);
 	TM->initialize();
 	VM->initialize();
-	
-	//FM->initialize();
+	SHM->initialize();
 	BFM->initialize();
 	SI->initialize();
 	SPI->initialize();
@@ -22,9 +21,8 @@ int main(int argc, char* argv[]){
 	
 	VM->shutdown();
 	RC->shutdown();
-	//FM->shutdown();
 	SPI->shutdown();
-	
+	SHM->shutdown();
 	SI->shutdown();
 	
 	return 0;
