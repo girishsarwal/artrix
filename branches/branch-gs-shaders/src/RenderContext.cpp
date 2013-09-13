@@ -3,14 +3,18 @@ static timespec tvLastTime;
 static timespec tvCurrentTime;
 static long int dElapsedTime;
 
-void RenderContext::initialize(int argc, char** argv){
+bool RenderContext::initialize(int argc, char** argv){
+	printf("+--------------------RENDER CONTEXT----------------------+\n");
+	printf("Initializing...\n");
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(SCREEN_X_SIZE, SCREEN_Y_SIZE);
 	m_hWnd = glutCreateWindow("ARTRIX");
+	glewInit();
 	glutDisplayFunc(&(loop));
 	glutReshapeFunc(&(resize));
 	glutIdleFunc(&(update));
+	return true;
 }
 
 /** enter the main loop **/

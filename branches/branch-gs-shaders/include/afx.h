@@ -12,7 +12,9 @@
 #include <string.h>
 //#include <bcm_host.h>
 
+#include <GL/glew.h>
 #include <GL/glut.h>
+
 #include <libxml/xmlreader.h>
 
 #include <vector>

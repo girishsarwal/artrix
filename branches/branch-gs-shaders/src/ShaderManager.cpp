@@ -12,16 +12,17 @@ ShaderManager* ShaderManager::getInstance(){
 	return m_pInstance;
 };
 
-void useVertexShader(std::string& shader){
+void useVertexShader(const std::string& shader){
 };
 
-void useFragmentShader(std::string& shader){
+void useFragmentShader(const std::string& shader){
 };
 
 void ShaderManager::initialize(){	
+	printf("+--------------------SHADER MANAGER----------------------+\n");
+	printf("Initializing...\n");
 	/** read up all fonts in the font directory **/
 	std::string shaderRoot(SHADER_ROOT);
-	printf("\nInitializing Shader Manager\n");
 	DIR* dir;
 	dirent* entry;
 	dir = opendir(shaderRoot.c_str());
@@ -44,25 +45,68 @@ void ShaderManager::initialize(){
 	}
 };
 
-void ShaderManager::createVertexShader(std::string& shaderFile){
-	printf("Creating Vertex Shader\n");
-};
-
-void ShaderManager::createFragmentShader(std::string& shaderFile){
-	printf("Creating Fragment Shader\n");
-};
-
-void ShaderManager::createShader(std::string& shaderFile){
-	/** generate display lists **/
-#ifdef LIBXML_TREE_ENABLE
-#else
-	printf("Tree support not compiled");
-#endif
+void ShaderManager::createVertexShader(const std::string& shaderFile){
+	printf("Creating Vertex Shader from %s \n", shaderFile.c_str());
+	createShader(GL_VERTEX_SHADER, shaderFile);
 	
+};
+
+void ShaderManager::createFragmentShader(const std::string& shaderFile){
+	printf("Creating Fragment Shader\n");
+	createShader(GL_FRAGMENT_SHADER, shaderFile);
 };
 
 void ShaderManager::shutdown(){
 	printf("Shutting Down ShaderManager\n");
 };
+
+void ShaderManager::createShader(GLenum eShaderType, const std::string &shaderFile)
+{
+    /** read up the file **/
+    FILE* fp = fopen(shaderFile.c_str(), "r");
+    if(NULL == fp){
+		printf("Cannot read file %s\n", shaderFile.c_str());
+		return;
+	}
+	/** get hold of the file length**/
+	fseek(fp, 0, SEEK_END);
+	int length = ftell(fp);
+	
+    rewind(fp);
+    char* fileContents = (char*)malloc(sizeof(char) * (length + 1));
+    length = fread(fileContents, sizeof(char), length, fp);
+    printf("%d bytes read\n", length);
+    fileContents[length] = '\0';
+    fclose(fp);
+	printf("%s", fileContents);
+    GLuint shader = glCreateShader(eShaderType);
+    glShaderSource(shader, 1, (const GLchar**) &fileContents, NULL);
+    glCompileShader(shader);
+    
+    GLint status;
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
+    if (status == GL_FALSE)
+    {
+        GLint infoLogLength;
+        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLogLength);
+        
+        GLchar *infoLog = new GLchar[infoLogLength + 1];
+        glGetShaderInfoLog(shader, infoLogLength, NULL, infoLog);
+        
+        const char *shaderType = NULL;
+        switch(eShaderType)
+        {
+			case GL_VERTEX_SHADER: shaderType = "vertex"; break;
+			case GL_GEOMETRY_SHADER: shaderType = "geometry"; break;
+			case GL_FRAGMENT_SHADER: shaderType = "fragment"; break;
+        }
+        
+        printf("Compile failure in %s shader:\n%s\n", shaderType, infoLog);
+        delete[] infoLog;
+        return;
+    }
+	m_pShaders[shaderFile] == shader;
+	printf("Shader %s Created with internal id %d\n", shaderFile.c_str(), m_pShaders[shaderFile]);
+}
 
 ShaderManager* ShaderManager::m_pInstance = NULL;
