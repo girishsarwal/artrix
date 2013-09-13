@@ -17,9 +17,9 @@ void BMFontManager::setActiveFont(std::string& font){
 };
 
 void BMFontManager::initialize(){	
-	/** read up all fonts in the font directory **/
+	printf("+--------------------FONT MANAGER----------------------+\n");
+	printf("Initializing...\n");
 	std::string fontRoot(FONTROOT);
-	printf("Loading fonts\n");
 	DIR* dir;
 	dirent* entry;
 	dir = opendir(fontRoot.c_str());

@@ -6,6 +6,8 @@ TextureManager* TextureManager::getInstance(){
 	return m_pInstance;
 }
 void TextureManager::initialize(){
+	printf("+--------------------TEXTURE MANAGER----------------------+\n");
+	printf("Initializing...\n");
 	std::string textureRoot("/usr/share/artrix/images");
 	loadAllTextures(textureRoot);
 }

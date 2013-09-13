@@ -11,6 +11,8 @@ SPIInterface::~SPIInterface(){
 };
 
 void SPIInterface::initialize(){
+	printf("+--------------------SPI MANAGER----------------------+\n");
+	printf("Initializing...\n");
 	int fd;
 	fd = open(m_pPortName.c_str(), O_RDWR | O_NOCTTY | O_SYNC);
 	if (fd == -1){

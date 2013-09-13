@@ -87,6 +87,8 @@ void ViewManager::createStockViews(){
 	
 };
 void ViewManager::initialize(){
+	printf("+--------------------VIEW MANAGER----------------------+\n");
+	printf("Initializing...\n");
 	createStockViews();
 };
 void ViewManager::shutdown(){

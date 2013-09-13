@@ -1,7 +1,7 @@
 CC = g++
 TARGET = artrix
 INC = -Iinclude -I/opt/vc/include -I/usr/include/libxml2
-LIB = -lm -lglut -lxml2 -lSOIL -lGLU -lrt
+LIB = -lm -lglut -lxml2 -lSOIL -lGLU -lrt -lGLEW
 
 RES_DIR = /usr/share/$(TARGET)
 SRC_DIR = src

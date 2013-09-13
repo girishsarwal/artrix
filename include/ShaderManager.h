@@ -3,17 +3,17 @@
 #define SHADER_ROOT "/usr/share/artrix/shaders"
 class ShaderManager{
 	private:
-		
+		std::map<std::string, GLuint> m_pShaders;
 		static ShaderManager* m_pInstance;
 		ShaderManager();
-		void createShader(std::string&);
-		void createVertexShader(std::string&);
-		void createFragmentShader(std::string&);
+		void createVertexShader(const std::string&);
+		void createFragmentShader(const std::string&);
+		void createShader(GLenum eShaderType, const std::string&);
 	public:
 		~ShaderManager();
 		static ShaderManager* getInstance();
-		void useVertexShader(std::string& shader);
-		void useFragmentShader(std::string& shader);
+		void useVertexShader(const std::string&);
+		void useFragmentShader(const std::string&);
 		void initialize();
 		void shutdown();
 };

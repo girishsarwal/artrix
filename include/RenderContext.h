@@ -8,7 +8,7 @@ private:
 	RenderContext();
 
 public:
-	void initialize(int argc, char** argv);
+	bool initialize(int argc, char** argv);
 	void setup();
 	void begin();
 	void shutdown();
