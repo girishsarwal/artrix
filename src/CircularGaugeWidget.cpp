@@ -134,6 +134,5 @@ void CircularGaugeWidget::onRender(double frameTime){
 
 void CircularGaugeWidget::onUpdate(double frameTime){
 	m_dNeedleRotation = (1 - ((m_dValue - m_dMin)/m_dRange)) * m_dGaugeRange;
-	printf("rotation is %f", m_dNeedleRotation);
 };
 

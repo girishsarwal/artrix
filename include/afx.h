@@ -36,6 +36,7 @@
 #include "SOIL.h"
 
 struct Vector;
+struct ProgramShader;
 
 class View;
 class SplashView;
