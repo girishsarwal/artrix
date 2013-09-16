@@ -5,7 +5,7 @@ int main(int argc, char* argv[]){
 	if(NULL == VM) { printf("ERROR: Cannot create ViewManager\n"); return false; }
 	if(NULL == FM) { printf("ERROR: Cannot create FontManager"); return false; }
 	if(NULL == SI) { printf("ERROR: Cannot create SerialInterface"); return false; }
-	
+	if(NULL == SHM) { printf("ERROR: Cannot create ShaderManager"); return false; }
 	
 	if(!RC->initialize(argc, argv)){
 		throw std::exception();
@@ -13,6 +13,7 @@ int main(int argc, char* argv[]){
 	TM->initialize();
 	VM->initialize();
 	SHM->initialize();
+	SHM->useProgram(std::string("tvc"));
 	BFM->initialize();
 	SI->initialize();
 	SPI->initialize();
