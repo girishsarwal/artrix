@@ -34,7 +34,7 @@ void ShaderManager::initialize(){
 	while(NULL != (entry = readdir(dir))){
 		if(entry->d_type != DT_DIR){
 			std::string shaderName= std::string(entry->d_name);			
-			printf("Found shader %s\n", shaderName.c_str());
+			printf("Found shader %s...", shaderName.c_str());
 			std::string ext = shaderName.substr(shaderName.length() - 4, 4);
 			if(ext == "vert"){
 				createVertexShader(shaderName);
@@ -75,10 +75,9 @@ void ShaderManager::createShader(GLenum eShaderType, const std::string &shaderFi
     rewind(fp);
     char* fileContents = (char*)malloc(sizeof(char) * (length + 1));
     length = fread(fileContents, sizeof(char), length, fp);
-    printf("%d bytes read\n", length);
+    
     fileContents[length] = '\0';
     fclose(fp);
-	printf("%s", fileContents);
     GLuint shader = glCreateShader(eShaderType);
     glShaderSource(shader, 1, (const GLchar**) &fileContents, NULL);
     glCompileShader(shader);
@@ -100,12 +99,14 @@ void ShaderManager::createShader(GLenum eShaderType, const std::string &shaderFi
 			case GL_GEOMETRY_SHADER: shaderType = "geometry"; break;
 			case GL_FRAGMENT_SHADER: shaderType = "fragment"; break;
         }
-        
+		printf("%d bytes read\n", length);
+		printf("%s", fileContents);
         printf("Compile failure in %s shader:\n%s\n", shaderType, infoLog);
+
         delete[] infoLog;
         return;
     }
-	m_pShaders[shaderFile] == shader;
+	m_pShaders[shaderFile] = shader;
 	printf("Shader %s Created with internal id %d\n", shaderFile.c_str(), m_pShaders[shaderFile]);
 }
 
