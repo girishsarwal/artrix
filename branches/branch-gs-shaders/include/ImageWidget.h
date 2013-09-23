@@ -14,8 +14,10 @@ private:
 	uint 	m_iTextureId;
 protected:
 	virtual void onInitialize();
+	virtual void afterInitialize();
 	virtual void onUpdate(double frameTime);
 	virtual void onRender(double frameTime);
+	virtual void createGeometry();
 public:
 	std::string	m_pPath;
 		

@@ -38,6 +38,10 @@
 struct Vector;
 struct ProgramShader;
 
+class Vertex;
+class VertexColor;
+class VertexColorTexture;
+
 class View;
 class SplashView;
 class Renderable;
@@ -65,7 +69,9 @@ class SPIInterface;
 class CircularGaugeWidget;
 
 class ShaderManager;
-
+class ShadingProgramManager;
+class Shader;
+class Program;
 
 
 /**Data types **/
@@ -76,7 +82,7 @@ class ShaderManager;
 #include "View.h"
 #include "Widget.h"
 
-
+#include "VertexDeclarations.h"
 
 /** Some Views **/
 #include "SplashView.h"
@@ -108,6 +114,9 @@ class ShaderManager;
 #include "SupportsTelemetry.h"
 #include "BMFontManager.h"
 #include "ShaderManager.h"
+#include "ShadingProgramManager.h"
+#include "Shader.h"
+#include "Program.h"
 
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()
@@ -119,6 +128,7 @@ class ShaderManager;
 #define LM LogManager::getInstance()
 #define BFM BMFontManager::getInstance()
 #define SHM	ShaderManager::getInstance()
+#define SPM ShadingProgramManager::getInstance()
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]
 

@@ -1,6 +1,8 @@
 #include "afx.h"
 
 UIWidget::UIWidget(){
+	m_pVertices = NULL;
+	m_pIndices = NULL;
 };
 
 UIWidget::~UIWidget(){
@@ -19,11 +21,6 @@ void UIWidget::initialize(AttributeSet& as){
 	beforeInitialize();
 	onInitialize();
 	afterInitialize();
-	//printf("SETTING POS to %f, %f\n", m_vPosition.x, m_vPosition.y);
-};
-
-void UIWidget::afterInitialize(){
-	m_bInitialized = true;
 };
 
 void UIWidget::beforeInitialize(){
@@ -38,6 +35,12 @@ void UIWidget::beforeInitialize(){
 	m_fBackground = strtoll(m_asAttributes.get("background").getValue().c_str(), NULL, 16);
 };
 
+void UIWidget::afterInitialize(){
+	m_bInitialized = true;
+};
+
+
+
 void UIWidget::render(double frameTime){
 	beforeRender(frameTime);
 	onRender(frameTime);
@@ -45,7 +48,6 @@ void UIWidget::render(double frameTime){
 }
 
 void UIWidget::beforeRender(double frameTime){
-	//printf("UIWidget::Before Render\n");
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
@@ -55,7 +57,6 @@ void UIWidget::beforeRender(double frameTime){
 void UIWidget::afterRender(double frameTime){
 	glPopAttrib();
 	glPopMatrix();
-	//printf("UIWidget::After Render\n");
 };
 
 void UIWidget::update(double frameTime){

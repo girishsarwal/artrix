@@ -1,0 +1,10 @@
+<?xml version ="1.0"?>
+<programs>
+	<program name = "vc">
+		<shader source = "vc.vert" type="vertex"/>
+		<shader source = "vc.frag" type="fragment"/>
+		<attrib name="position" location="0"/>
+		<attrib name="color" location="1"/>
+		<uniform name="projMatrix"/>
+	</program>
+</programs>
