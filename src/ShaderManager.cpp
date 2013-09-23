@@ -12,15 +12,13 @@ ShaderManager* ShaderManager::getInstance(){
 	return m_pInstance;
 };
 
-void ShaderManager::useProgram(const std::string& program){
-	printf("Attempting to use program %s\n", program.c_str());
+GLuint ShaderManager::getProgramId(const std::string& program){
 	GLuint programId = m_pPrograms[program];
 	if(programId == 0){
 		printf("No shader found for %s\n", program.c_str());
-		return;
+		return 0;
 	}
-	glUseProgram(programId);
-	printf("Program %s in effect\n", program.c_str());
+	return programId;
 };
 
 

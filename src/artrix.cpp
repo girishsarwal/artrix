@@ -12,8 +12,8 @@ int main(int argc, char* argv[]){
 	}
 	TM->initialize();
 	VM->initialize();
-	SHM->initialize();
-	SHM->useProgram(std::string("tvc"));
+	//SHM->initialize();
+	SPM->initialize();
 	BFM->initialize();
 	SI->initialize();
 	SPI->initialize();

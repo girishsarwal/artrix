@@ -2,15 +2,14 @@
 #include "afx.h"
 #define SHADER_ROOT "/usr/share/artrix/shaders"
 struct ProgramShader{
-	/*std::string programName;
-	GLuint program;*/
 	GLuint vs;
 	GLuint fs;
+	
 	ProgramShader(){
-		//program = 0;
 		vs=0;
 		fs=0;
 	}
+	
 };
 class ShaderManager{
 	private:
@@ -23,7 +22,7 @@ class ShaderManager{
 	public:
 		~ShaderManager();
 		static ShaderManager* getInstance();
-		void useProgram(const std::string&);
+		GLuint getProgramId(const std::string&);
 		void initialize();
 		void shutdown();
 };
