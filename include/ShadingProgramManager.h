@@ -11,7 +11,7 @@ class ShadingProgramManager{
 		~ShadingProgramManager();
 		static ShadingProgramManager* getInstance();
 		GLuint getProgramId(const std::string&);
-		
+		void createStockShadingPrograms();
 		void initialize();
 		void shutdown();
 };
