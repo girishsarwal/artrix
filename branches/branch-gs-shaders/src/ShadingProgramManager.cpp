@@ -26,7 +26,12 @@ GLuint ShadingProgramManager::getProgramId(const std::string& program){
 void ShadingProgramManager::initialize(){	
 	printf("+--------------------SHADER MANAGER----------------------+\n");
 	printf("Initializing...\n");
+	createStockShadingPrograms();
+	printf("Initialization Complete \n");
 	
+}
+	
+void ShadingProgramManager::createStockShadingPrograms(){
 	/** read up the shader definition Xml **/
 	#ifdef LIBXML_TREE_ENABLED
 	xmlDoc* doc = NULL;
@@ -35,13 +40,19 @@ void ShadingProgramManager::initialize(){
 		if(strcmp((char*)nodeShadingProgram->name, "text") == 0) continue;
 		if(strcmp((char*)nodeShadingProgram->name, "program") == 0){
 			printf("Found Shading Program Definition (");
+			Program *program = NULL;
 			if(NULL != nodeShadingProgram->properties){
 				xmlAttr* attrShadingProgram = NULL;
+				AttributeSet asProgram;
 				for(attrShadingProgram = nodeShadingProgram->properties; attrShadingProgram; attrShadingProgram = attrShadingProgram->next){
-					const xmlChar* attrShadingProgramName = attrShadingProgram->name;
-					const xmlChar* attrShadingProgramValue = xmlGetProp(nodeShadingProgram, attrShadingProgramName);
-					printf("%s = %s,", (const char*)attrShadingProgramName, (const char*)attrShadingProgramValue);
+					Attribute aShadingProgram;
+					aShadingProgram.set((const char*)attrShadingProgram->name, (const char*)xmlGetProp(nodeShadingProgram, attrShadingProgram->name));
+					aShadingProgram.display();
+					asProgram.add(aShadingProgram);
 				}
+				/** attributes for shader program created
+				 * create a program object now*/
+				program = new Program(asProgram);
 			}
 			printf(")\n");
 			/** read up the shader program's sub children
@@ -52,44 +63,54 @@ void ShadingProgramManager::initialize(){
 					xmlAttr* attrShader = NULL;
 					AttributeSet asShader;
 					for(attrShader = nodeShadingProgramSubNode->properties; attrShader; attrShader = attrShader->next){
-						const xmlChar* attrShaderName = attrShader->name;
-						const xmlChar* attrShaderValue = xmlGetProp(nodeShadingProgramSubNode, attrShaderName);
 						Attribute aShader;
-						aShader.set((const char*)attrShaderName, (const char*)attrShaderValue);
-						printf("%s = %s,", (const char*)attrShaderName, (const char*)attrShaderValue);
+						aShader.set((const char*)attrShader->name, (const char*)xmlGetProp(nodeShadingProgramSubNode, attrShader->name));
+						aShader.display();
 						asShader.add(aShader);
 					}
 					printf(")\n");
 					/**attributes have been created
 					 * check to see if a shader already exists**/
-					std::string name = asShader.get(std::string("name")).getValue();
+					std::string source = asShader.get("source").getValue();
 					printf("\t\t");
-					printf("Looking for shader %s...", name.c_str());
+					printf("Looking for shader %s...", source.c_str());
 					Shader* shader = NULL;
-					std::map <std::string, Shader* >::const_iterator itShader =m_ShaderCache.find(name);
+					std::map <std::string, Shader* >::const_iterator itShader =m_ShaderCache.find(source);
 					if(itShader == m_ShaderCache.end()){
 						/** read the shader from the source and compile **/
-						shader = new Shader();
-						if(asShader.get("type").getValue() == "vertex"){ /** shader program attribute **/
-							shader->compile(VERTEX, name);
-						} else if(asShader.get("type").getValue() == "fragment"){ /** shader program attribute **/
-							shader->compile(FRAGMENT, name);
+						shader = new Shader(asShader);
+						if(shader->compile() > 0){
+							m_ShaderCache[source] = shader;
+							printf("\tShader is in cache now. Will not be recompiled");
 						}
-						m_ShaderCache[name] = shader;
-						printf("\tShader is in cache now. Will not be recompiled");
 					}
+					program->attachShader(shader);
 					printf("\n");
 				};
 				if(strcmp((char*)nodeShadingProgramSubNode->name, "attrib") == 0){ /** shader program attribute **/
+					/** set the attributes now**/
+					printf("\tFound Attribute (");
+					xmlAttr* attrProgramAttribute = NULL;
+					AttributeSet asProgramAttribute;
+					for(attrProgramAttribute = nodeShadingProgramSubNode->properties; attrProgramAttribute; attrProgramAttribute = attrProgramAttribute->next){
+						Attribute aProgramAttribute;
+						aProgramAttribute.set((const char*)attrProgramAttribute->name, (const char*)xmlGetProp(nodeShadingProgramSubNode, attrProgramAttribute->name));
+						aProgramAttribute.display();
+						asProgramAttribute.add(aProgramAttribute);
+					}
+					printf(")\n");
+					std::string name = asProgramAttribute.get("name").getValue();
+					int location =  atoi(asProgramAttribute.get("location").getValue().c_str());
+					
+					program->bindAttribute(name , (GLuint)location);
 				};
 				if(strcmp((char*)nodeShadingProgramSubNode->name, "uniform") == 0){ /** shader program uniform **/
 				}
 			}
-		};
+		}
 	}
 	#endif
 }
-
 void ShadingProgramManager::shutdown(){
 };
 	

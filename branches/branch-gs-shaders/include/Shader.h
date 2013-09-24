@@ -1,21 +1,20 @@
 #include "afx.h"
-#define VERTEX 1
-#define FRAGMENT 2
+
 
 class Shader{
 		std::string		m_sSource;
 		GLuint			m_iShaderType;
-			
+		std::string		m_sShaderType;
 		bool			m_bIsCompiled;
 		GLuint			m_iShaderHandle;
-		bool			m_bIsDebug;
 		GLint			m_iRefCount;
 		GLchar*			m_pInfoLog;
 		
 	public:
+		Shader(AttributeSet&);
 		Shader();
 		~Shader();
-		GLuint compile(GLuint type, std::string& source);
+		GLuint compile();
 		int incRefCount();
 		int decRefCount();
 };

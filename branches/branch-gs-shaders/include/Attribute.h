@@ -17,6 +17,9 @@ public:
 	std::string getValue(){
 		return value;
 	};
+	void display(){
+		printf("%s = %s,", name.c_str(), value.c_str());
+	}
 };
 class AttributeSet{
 
