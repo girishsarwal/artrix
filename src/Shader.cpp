@@ -69,3 +69,18 @@ int Shader::incRefCount(){
 int Shader::decRefCount(){
 	return --m_iRefCount;
 };
+std::string& Shader::getName(){
+	return m_sSource;
+};
+GLuint Shader::getType(){
+	return m_iShaderType;
+};
+bool Shader::getIsCompiled(){
+	return m_bIsCompiled;
+};
+GLuint Shader::getHandle(){
+	return m_iShaderHandle;
+};
+GLint Shader::getReferenceCount(){
+	return m_iRefCount;
+};

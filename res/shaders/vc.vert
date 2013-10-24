@@ -1,7 +1,7 @@
 #version 120
 in vec4 position;
-in vec4 multMatrix;
+in vec4 color;
 void main()
 {
-   gl_Position = position * multMatrix;
+   gl_Position = position;
 }
