@@ -14,7 +14,15 @@ class Shader{
 		Shader(AttributeSet&);
 		Shader();
 		~Shader();
+		
 		GLuint compile();
+		
 		int incRefCount();
 		int decRefCount();
+		
+		std::string& 	getName();
+		GLuint 			getType();
+		bool 			getIsCompiled();
+		GLuint 			getHandle();
+		GLint 			getReferenceCount();
 };

@@ -3,10 +3,11 @@
 const int Vertex::OFFSET_POSITION 				= 0;
 const int Vertex::SIZE_POSITION					= 3;
 
-const int VertexColor::OFFSET_POSITION			= 0;
-const int VertexColor::OFFSET_COLOR				= 12;
-const int VertexColor::SIZE_POSITION			= 3;
+const int VertexColor::OFFSET_POSITION			= 16;
+const int VertexColor::OFFSET_COLOR				= 16;
+const int VertexColor::SIZE_POSITION			= 4;
 const int VertexColor::SIZE_COLOR				= 4;
+const int VertexColor::STRIDE	 				= 32;
 
 const int VertexColorTexture::OFFSET_POSITION 	= 0;
 const int VertexColorTexture::OFFSET_COLOR		= 3;

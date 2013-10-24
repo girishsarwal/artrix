@@ -13,13 +13,18 @@ ShadingProgramManager* ShadingProgramManager::getInstance(){
 };
 
 GLuint ShadingProgramManager::getProgramId(const std::string& program){
-	/*GLuint programId = m_pPrograms[program];
-	if(programId == 0){
-		printf("No shader found for %s\n", program.c_str());
+	printf("Looking for program %s \n", program.c_str());
+	Program *pProgram = m_pProgramCache[program];
+	if(NULL == pProgram){ 
+		printf("No program found for %s\n", program.c_str());
 		return 0;
 	}
-	return programId;*/
-	return 0;
+	GLuint programId = pProgram->getHandle();
+	if(0 > programId){
+		printf("Hell shader found for %s\n", program.c_str());
+		return 0;
+	}
+	return programId;
 };
 
 
@@ -38,6 +43,7 @@ void ShadingProgramManager::createStockShadingPrograms(){
 	doc = xmlReadFile("/usr/share/artrix/shaders/shaderprograms.xml", NULL, 0);
 	for(xmlNode* nodeShadingProgram = xmlDocGetRootElement(doc)->children; nodeShadingProgram; nodeShadingProgram = nodeShadingProgram->next){
 		if(strcmp((char*)nodeShadingProgram->name, "text") == 0) continue;
+		if(strcmp((char*)nodeShadingProgram->name, "comment") == 0) continue;
 		if(strcmp((char*)nodeShadingProgram->name, "program") == 0){
 			printf("Found Shading Program Definition (");
 			Program *program = NULL;
@@ -71,6 +77,7 @@ void ShadingProgramManager::createStockShadingPrograms(){
 					printf(")\n");
 					/**attributes have been created
 					 * check to see if a shader already exists**/
+					
 					std::string source = asShader.get("source").getValue();
 					printf("\t\t");
 					printf("Looking for shader %s...", source.c_str());
@@ -80,8 +87,9 @@ void ShadingProgramManager::createStockShadingPrograms(){
 						/** read the shader from the source and compile **/
 						shader = new Shader(asShader);
 						if(shader->compile() > 0){
-							m_ShaderCache[source] = shader;
-							printf("\tShader is in cache now. Will not be recompiled");
+							/** add it to the cache **/
+							m_ShaderCache[shader->getName()] = shader;
+							printf("\tShader is in cache now with id %s and handle %d. Will not be recompiled", shader->getName().c_str(), shader->getHandle());
 						}
 					}
 					program->attachShader(shader);
@@ -107,7 +115,18 @@ void ShadingProgramManager::createStockShadingPrograms(){
 				if(strcmp((char*)nodeShadingProgramSubNode->name, "uniform") == 0){ /** shader program uniform **/
 				}
 			}
+			/** see if program is not in cache then compile and 
+			 *  link it now **/
+			std::map <std::string, Program* >::const_iterator itProgram = m_pProgramCache.find(program->getName());
+			if(itProgram == m_pProgramCache.end()){
+				if(program->link() > 0){
+					m_pProgramCache[program->getName()] = program;
+					printf("\tProgram is in cache now with id %s and handle %d. Will not be re-linked\n", program->getName().c_str(), program->getHandle());
+				}
+			}
 		}
+		
+				
 	}
 	#endif
 }

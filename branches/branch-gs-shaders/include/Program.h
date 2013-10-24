@@ -7,7 +7,6 @@ class Program{
 		std::map<std::string, GLuint> m_Uniforms;
 		bool					m_bIsLinked;
 		GLuint					m_iProgramHandle;
-		bool					m_bIsDebug;
 		GLchar*					m_pInfoLog;
 	public:
 		Program(std::string&);
@@ -23,4 +22,8 @@ class Program{
 		bool getAttribute();
 		bool getUniformLocation(const char* name) const;
 		bool getUniform();
+		
+		std::string& getName();
+		bool getIsLinked();
+		GLuint getHandle();
 };

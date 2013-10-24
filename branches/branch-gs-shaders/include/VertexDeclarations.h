@@ -6,6 +6,7 @@ public:
 	float z;
 	static const int OFFSET_POSITION;
 	static const int SIZE_POSITION;
+	
 };
 
 class VertexColor{
@@ -13,6 +14,7 @@ public:
 	float x;
 	float y;
 	float z;
+	float w;
 	float r;
 	float g;
 	float b;
@@ -21,6 +23,7 @@ public:
 	static const int OFFSET_COLOR;
 	static const int SIZE_POSITION;
 	static const int SIZE_COLOR;
+	static const int STRIDE;
 };
 
 class VertexColorTexture{

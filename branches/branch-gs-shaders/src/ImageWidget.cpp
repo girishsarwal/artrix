@@ -16,17 +16,17 @@ void ImageWidget::createGeometry(){
 	
 	VertexColor vertices[] = 
 	{
-		{-90.0f, -90.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f},
-		{ 90.0f, -90.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f},
-		{ 90.0f,  90.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f}, 
-		{-90.0f,  90.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f}, 
+		{-90.0f, -90.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f},
+		{ 90.0f, -90.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f},
+		{ 90.0f,  90.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f}, 
+		{-90.0f,  90.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f}, 
 	};
 	/*Vertex vertices[] = 
 	{
-		{-90.0f, -90.0f, 0.0f, },
-		{ 90.0f, -90.0f, 0.0f, },
-		{ 90.0f,  90.0f, 0.0f, }, 
-		{-90.0f,  90.0f, 0.0f, }, 
+		{-1.0f, -1.0f, 0.0f, },
+		{ 1.0f, -1.0f, 0.0f, },
+		{ 1.0f,  1.0f, 0.0f, }, 
+		{-1.0f,  1.0f, 0.0f, }, 
 	};*/
 	
 	m_iSizeVertex = sizeof(VertexColor);
@@ -60,26 +60,28 @@ void ImageWidget::onUpdate(double frameTime){
 };
 
 void ImageWidget::onRender(double frameTime){
-	
-	GLuint programId = SHM->getProgramId(std::string("vc"));
-	printf("Program id is %d", programId);
-	glUseProgram(programId);
-	GLuint location = glGetAttribLocation(programId, "position");
-	printf("location is %ud", location);
-	GLuint color = glGetAttribLocation(programId, "multMatrix");
-	printf("multMatrix is %d", color);
-	
-	
+	glUseProgram(SPM->getProgramId("vc"));
 	glColor4ub((m_fBackground & 0x00FF0000) >> 0x10,
 				(m_fBackground & 0x0000FF00) >> 0x08,
 				m_fBackground & 0x000000FF,
 				(m_fBackground & 0xFF000000) >> 0x18);
+	glBindBuffer(GL_ARRAY_BUFFER, m_iVertexBuffer);			
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	
+	glVertexAttribPointer(0, VertexColor::SIZE_POSITION, GL_FLOAT, GL_FALSE, VertexColor::STRIDE, (GLvoid*)0);
+	glVertexAttribPointer(1, VertexColor::SIZE_COLOR, GL_FLOAT, GL_FALSE, VertexColor::STRIDE, (GLvoid*)16);
+		
+	//glScalef(m_vSize.x, m_vSize.y, 1);
 	//glEnable(GL_TEXTURE_2D);
 	//glBindTexture(GL_TEXTURE_2D, m_iTextureId);
 	//glEnable(GL_BLEND);
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDrawElements(GL_TRIANGLES, m_iSizeIndices, GL_UNSIGNED_INT, 0);
+	//glDrawArrays(GL_TRIANGLES, 0, m_iSizeIndices/3);
 	//glDisable(GL_TEXTURE_2D);
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
 }
 
 void ImageWidget::afterInitialize(){
@@ -89,11 +91,7 @@ void ImageWidget::afterInitialize(){
 	glBindBuffer(GL_ARRAY_BUFFER, m_iVertexBuffer);
 	glBufferData (GL_ARRAY_BUFFER, m_iSizeVertices, m_pVertices, GL_STATIC_DRAW);	
 	
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(0, VertexColor::SIZE_POSITION, GL_FLOAT, GL_FALSE, 0, (GLvoid*)VertexColor::OFFSET_POSITION);
-	glVertexAttribPointer(1, VertexColor::SIZE_COLOR, GL_FLOAT, GL_FALSE, 0, (GLvoid*)VertexColor::OFFSET_COLOR);
-
+	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_iIndexBuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_iSizeIndices, m_pIndices, GL_STATIC_DRAW);
 }

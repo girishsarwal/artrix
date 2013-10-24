@@ -1,5 +1,9 @@
 <?xml version ="1.0"?>
 <programs>
+	<program name = "v">
+		<shader source = "v.vert" type="vertex"/>
+		<shader source = "v.frag" type="fragment"/>
+	</program>
 	<program name = "vc">
 		<shader source = "vc.vert" type="vertex"/>
 		<shader source = "vc.frag" type="fragment"/>
