@@ -12,21 +12,14 @@ ShadingProgramManager* ShadingProgramManager::getInstance(){
 	return m_pInstance;
 };
 
-GLuint ShadingProgramManager::getProgramId(const std::string& program){
-	printf("Looking for program %s \n", program.c_str());
-	Program *pProgram = m_pProgramCache[program];
-	if(NULL == pProgram){ 
-		printf("No program found for %s\n", program.c_str());
-		return 0;
+Program* ShadingProgramManager::getProgram(const std::string& program){
+	std::map<std::string, Program*>::const_iterator it = m_pProgramCache.find(program);
+	if (it == m_pProgramCache.end())
+	{
+		return NULL;
 	}
-	GLuint programId = pProgram->getHandle();
-	if(0 > programId){
-		printf("Hell shader found for %s\n", program.c_str());
-		return 0;
-	}
-	return programId;
+	return m_pProgramCache[program];
 };
-
 
 void ShadingProgramManager::initialize(){	
 	printf("+--------------------SHADER MANAGER----------------------+\n");
@@ -82,7 +75,7 @@ void ShadingProgramManager::createStockShadingPrograms(){
 					printf("\t\t");
 					printf("Looking for shader %s...", source.c_str());
 					Shader* shader = NULL;
-					std::map <std::string, Shader* >::const_iterator itShader =m_ShaderCache.find(source);
+					std::map <std::string, Shader* >::const_iterator itShader = m_ShaderCache.find(source);
 					if(itShader == m_ShaderCache.end()){
 						/** read the shader from the source and compile **/
 						shader = new Shader(asShader);
@@ -91,6 +84,10 @@ void ShadingProgramManager::createStockShadingPrograms(){
 							m_ShaderCache[shader->getName()] = shader;
 							printf("\tShader is in cache now with id %s and handle %d. Will not be recompiled", shader->getName().c_str(), shader->getHandle());
 						}
+					}
+					else {
+						shader = itShader->second;
+						printf("\tShader found in cache with id %s and handle %d. Reused", shader->getName().c_str(), shader->getHandle());
 					}
 					program->attachShader(shader);
 					printf("\n");
@@ -115,24 +112,16 @@ void ShadingProgramManager::createStockShadingPrograms(){
 				if(strcmp((char*)nodeShadingProgramSubNode->name, "uniform") == 0){ /** shader program uniform **/
 				}
 			}
-			/** see if program is not in cache then compile and 
-			 *  link it now **/
-			std::map <std::string, Program* >::const_iterator itProgram = m_pProgramCache.find(program->getName());
-			if(itProgram == m_pProgramCache.end()){
-				if(program->link() > 0){
-					m_pProgramCache[program->getName()] = program;
-					printf("\tProgram is in cache now with id %s and handle %d. Will not be re-linked\n", program->getName().c_str(), program->getHandle());
-				}
+			/** compile and add to progrm list  **/
+			if(program->link() > 0){
+				m_pProgramCache[program->getName()] = program;
+				printf("\tProgram in cache with id %s and handle %d. \n", program->getName().c_str(), program->getHandle());
 			}
 		}
-		
-				
 	}
 	#endif
 }
 void ShadingProgramManager::shutdown(){
-};
-	
-	
+};	
 	
 ShadingProgramManager* ShadingProgramManager::m_pInstance = NULL;

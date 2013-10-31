@@ -39,5 +39,7 @@ void TextureManager::loadTexture(std::string& path){
 uint TextureManager::getTexture(std::string& name){
 	return m_Textures[name];
 }
-
+void TextureManager::useTexture(const std::string& textureName){
+	/*glBindTexture(GL_TEXTURE_2D, getTexture(textureName));*/
+}
 TextureManager* TextureManager::m_pInstance = NULL;

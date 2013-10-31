@@ -1,6 +1,5 @@
 #include "afx.h"
 
-
 class Shader{
 		std::string		m_sSource;
 		GLuint			m_iShaderType;
