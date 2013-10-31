@@ -1,14 +1,12 @@
 <?xml version ="1.0"?>
 <programs>
-	<program name = "v">
-		<shader source = "v.vert" type="vertex"/>
-		<shader source = "v.frag" type="fragment"/>
-	</program>
 	<program name = "vc">
 		<shader source = "vc.vert" type="vertex"/>
 		<shader source = "vc.frag" type="fragment"/>
-		<attrib name="position" location="0"/>
-		<attrib name="color" location="1"/>
-		<uniform name="projMatrix"/>
+	</program>
+	<program name="tvc">
+		<shader source = "tvc.vert" type="vertex"/>
+		<shader source = "tvc.frag" type="fragment"/>
+		<uniform name="texture"/>
 	</program>
 </programs>

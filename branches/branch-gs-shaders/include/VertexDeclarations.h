@@ -1,20 +1,20 @@
 #include "afx.h"
-class Vertex{
+#pragma pack(1)
+struct Vertex{
 public:
 	float x;
 	float y;
 	float z;
 	static const int OFFSET_POSITION;
 	static const int SIZE_POSITION;
-	
+	static const int STRIDE;
 };
 
-class VertexColor{
+struct VertexColor{
 public:
 	float x;
 	float y;
 	float z;
-	float w;
 	float r;
 	float g;
 	float b;
@@ -26,7 +26,7 @@ public:
 	static const int STRIDE;
 };
 
-class VertexColorTexture{
+struct VertexColorTexture{
 public:
 	float x;
 	float y;
@@ -42,9 +42,10 @@ public:
 	static const int OFFSET_TEX0;
 	static const int SIZE_POSITION;
 	static const int SIZE_COLOR;
-	static const int SIZE_TEXT0;
+	static const int SIZE_TEX0;
+	static const int STRIDE;
 };
-class VertexColorTextureNormal{
+struct VertexColorTextureNormal{
 public:
 	float x;
 	float y;

@@ -1,11 +1,14 @@
-#version 120
-in vec4 position;
-varying vec2 texel;
+#version 330
+layout(location = 0) in vec3 position;
+layout(location = 1) in vec4 color;
+layout(location = 2) in vec2 tex0;
+
+varying vec4 vertex_color;			/** passed onto fs **/
+varying vec2 vertex_tex_coord;		/** passed onto fs **/
 void main()
 {
-   //Transform the vertex
-   gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
-   
-   //Pass the texture coordinate ahead to the fs
-   texel = vec2(gl_MultiTexCoord0);
+	vertex_color = color;
+	vertex_tex_coord = tex0;
+	
+	gl_Position = vec4(position, 1.0);
 }

@@ -1,7 +1,9 @@
-#version 120
-in vec4 position;
-in vec4 color;
+#version 330
+layout(location = 0) in vec3 position;
+layout(location = 1) in vec4 color;
+out vec4 vertcolor;
 void main()
 {
-   gl_Position = position;
+	vertcolor = color;
+	gl_Position = vec4(position, 1.0);
 }

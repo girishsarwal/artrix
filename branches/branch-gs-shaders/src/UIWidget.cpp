@@ -3,6 +3,7 @@
 UIWidget::UIWidget(){
 	m_pVertices = NULL;
 	m_pIndices = NULL;
+	m_pShadingProgram = NULL;
 };
 
 UIWidget::~UIWidget(){

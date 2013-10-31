@@ -11,9 +11,10 @@ int main(int argc, char* argv[]){
 		throw std::exception();
 	}
 	TM->initialize();
-	VM->initialize();
-	//SHM->initialize();
 	SPM->initialize();
+		
+	VM->initialize();
+
 	BFM->initialize();
 	SI->initialize();
 	SPI->initialize();

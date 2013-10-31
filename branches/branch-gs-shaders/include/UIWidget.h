@@ -34,6 +34,7 @@ protected:
 	GLuint		m_iVertexBuffer;
 	GLuint		m_iIndexBuffer;
 	
+	Program*	m_pShadingProgram;
 public:
 	Vector m_vPosition;
 	Vector m_vSize;
