@@ -14,6 +14,7 @@ bool RenderContext::initialize(int argc, char** argv){
 	glutDisplayFunc(&(loop));
 	glutReshapeFunc(&(resize));
 	glutIdleFunc(&(update));
+	showVersionInformation();
 	return true;
 }
 
@@ -85,3 +86,11 @@ void update(){
 	}
 	glutPostRedisplay();
 }
+
+void RenderContext::showVersionInformation(){
+	printf("GL Information \n");
+	printf("Vendor: %s\n", glGetString(GL_VENDOR));
+	printf("Renderer: %s\n", glGetString(GL_RENDERER));
+	printf("Version: %s\n", glGetString(GL_VERSION));
+	printf("Shader Version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+};
