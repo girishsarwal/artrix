@@ -1,13 +1,17 @@
 #include "afx.h"
-#pragma pack(1)
+#pragma pack(1)			 
 struct Vertex{
 public:
 	float x;
 	float y;
 	float z;
+	static const int INDEX_POSITION;
 	static const int OFFSET_POSITION;
 	static const int SIZE_POSITION;
 	static const int STRIDE;
+	static const int VertexAttribInfo[1][2];
+	static void EnableAttribute(int);
+	static void DisableAttribute(int);
 };
 
 struct VertexColor{
@@ -19,11 +23,16 @@ public:
 	float g;
 	float b;
 	float a;
+	static const int INDEX_POSITION;
+	static const int INDEX_COLOR;
 	static const int OFFSET_POSITION;
 	static const int OFFSET_COLOR;
 	static const int SIZE_POSITION;
 	static const int SIZE_COLOR;
 	static const int STRIDE;
+	static const int VertexAttribInfo[2][2];
+	static void EnableAttribute(int);
+	static void DisableAttribute(int);
 };
 
 struct VertexColorTexture{
@@ -37,6 +46,9 @@ public:
 	float a;
 	float u;
 	float v;
+	static const int INDEX_POSITION;
+	static const int INDEX_COLOR;
+	static const int INDEX_TEX0;
 	static const int OFFSET_POSITION;
 	static const int OFFSET_COLOR;
 	static const int OFFSET_TEX0;
@@ -44,6 +56,9 @@ public:
 	static const int SIZE_COLOR;
 	static const int SIZE_TEX0;
 	static const int STRIDE;
+	static const int VertexAttribInfo[3][2];
+	static void EnableAttribute(int);
+	static void DisableAttribute(int);
 };
 struct VertexColorTextureNormal{
 public:
@@ -59,13 +74,21 @@ public:
 	float nx;
 	float ny;
 	float nz;
+	static const int INDEX_POSITION;
+	static const int INDEX_COLOR;
+	static const int INDEX_TEX0;
+	static const int INDEX_NORMAL;
 	static const int OFFSET_POSITION;
 	static const int OFFSET_COLOR;
 	static const int OFFSET_TEX0;
 	static const int OFFSET_NORMAL;
 	static const int SIZE_POSITION;
 	static const int SIZE_COLOR;
-	static const int SIZE_TEXT0;
+	static const int SIZE_TEX0;
 	static const int SIZE_NORMAL;
+	static const int STRIDE;
+	static const int VertexAttribInfo[4][2];
+	static void EnableAttribute(int);
+	static void DisableAttribute(int);
 };
 
