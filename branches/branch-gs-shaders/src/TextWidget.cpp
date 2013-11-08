@@ -33,7 +33,7 @@ void TextWidget::onRender(double frameTime){
 	glEnable(GL_TEXTURE_2D);
 	glPushMatrix();
 	//FM->setActiveFont(m_pFont, m_pSize, m_bIsBold);
-	uint id = TM->getTexture(m_pFont);
+	//uint id = TM->getTexture(m_pFont);
 	glBindTexture(GL_TEXTURE_2D, TM->getTexture(m_pFont));
 	//glListBase(-32);
 	glScalef(m_pSize/10.0, m_pSize/10.0, 1);

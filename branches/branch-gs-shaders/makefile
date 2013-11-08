@@ -24,11 +24,13 @@ $(OUT_DIR)/$(TARGET): $(OBJ)
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.cpp
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-clean:
+clean: resources
 	rm -f -r $(OUT_DIR)
 	mkdir -p $(OUT_DIR)
 	rm -f -r $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)
+
+resources:
 	rm -f -r $(RES_DIR)
 	mkdir -p $(RES_DIR)
 	cp -r ./res/* $(RES_DIR)

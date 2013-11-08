@@ -24,6 +24,7 @@ Program* ShadingProgramManager::getProgram(const std::string& program){
 void ShadingProgramManager::initialize(){	
 	printf("+--------------------SHADER MANAGER----------------------+\n");
 	printf("Initializing...\n");
+	printf("OK:");
 	createStockShadingPrograms();
 	printf("Initialization Complete \n");
 	
@@ -34,6 +35,19 @@ void ShadingProgramManager::createStockShadingPrograms(){
 	#ifdef LIBXML_TREE_ENABLED
 	xmlDoc* doc = NULL;
 	doc = xmlReadFile("/usr/share/artrix/shaders/shaderprograms.xml", NULL, 0);
+	if(doc == NULL){
+		printf("ERROR: No Shader Metadata found");
+		return;
+	}
+	if(xmlDocGetRootElement(doc) == NULL){
+		printf("ERROR: Malformed XML. No root element found");
+		return;
+	}
+	if(xmlDocGetRootElement(doc)->children == NULL){
+		printf("WARNING: No Shading Programs Found");
+		return;
+	}
+
 	for(xmlNode* nodeShadingProgram = xmlDocGetRootElement(doc)->children; nodeShadingProgram; nodeShadingProgram = nodeShadingProgram->next){
 		if(strcmp((char*)nodeShadingProgram->name, "text") == 0) continue;
 		if(strcmp((char*)nodeShadingProgram->name, "comment") == 0) continue;
@@ -92,7 +106,7 @@ void ShadingProgramManager::createStockShadingPrograms(){
 					program->attachShader(shader);
 					printf("\n");
 				};
-				if(strcmp((char*)nodeShadingProgramSubNode->name, "attrib") == 0){ /** shader program attribute **/
+				if(strcmp((char*)nodeShadingProgramSubNode->name, "attribute") == 0){ /** shader program attribute **/
 					/** set the attributes now**/
 					printf("\tFound Attribute (");
 					xmlAttr* attrProgramAttribute = NULL;
