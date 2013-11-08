@@ -15,6 +15,7 @@ public:
 	View* getCurrentView();
 	static RenderContext* getInstance();
 	~RenderContext();
+	void showVersionInformation();
 };
 
 extern "C" void loop();
