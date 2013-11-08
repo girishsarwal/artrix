@@ -4,19 +4,19 @@
 		
 	</view>-->
 	<view name="splash">
-		<!--<TimerWidget timeout="2000" action="changeView" targetView="home"></TimerWidget>-->
+		<TimerWidget timeout="5000" action="changeView" targetView="home"/>
 		<ImageWidget x="0" y="0" width="0.9" height="0.9" src="bg.png" background="0xFFFF00FF"></ImageWidget>
-		<!--<TextWidget x="20" y="-40" width="100" height="100" text="ARTRIX - gt-jtx UI" color ="0xFFFF0000" size="10" font="trebuchet" bold="1"> </TextWidget>-->
+		<TextWidget x="0" y="0" width="1" height="0.1" text="ARTRIX - gt-jtx UI" color ="0xFFFF0000" size="10" font="trebuchet" bold="1"/>
 	</view>
-	<!--<view name="home">
-		<ImageWidget x="0" y="0" width="200" height="200" src="air-view.jpg" background="0xFFFFFFFF"></ImageWidget>
-		<ImageWidget x="-50" y="95" width="100" height="10" src="black-bar.png" background="0xFFFFFFFF"></ImageWidget>
-		<ImageWidget x="50" y="95" width="100" height="10" src="black-bar.png" background="0xFFFFFFFF"></ImageWidget>
-		<ImageWidget x="90" y="95" width="10" height="10" src="settings-bar.png" background="0xFFFFFFFF"></ImageWidget>
+	<view name="home">
+		<ImageWidget x="0" y="0" width="1" height="1" src="air-view.jpg" background="0xFFFFFFFF"></ImageWidget>
+		<ImageWidget x="-0.50" y="0.95" width="0.1" height="0.1" src="black-bar.png" background="0xFFFFFFFF"></ImageWidget>
+		<!--<ImageWidget x="0.50" y="0.95" width="0.1" height="0.1" src="black-bar.png" background="0xFFFFFFFF"></ImageWidget>
+		<ImageWidget x="0.90" y="0.95" width="0.1" height="1" src="settings-bar.png" background="0xFFFFFFFF"></ImageWidget>
 		<TextWidget x="-70" y="95" width="100" height="100" text="Pilot" color ="0xFFFFFFFF" size="8" font="trebuchet" bold="1"> </TextWidget>
 		<TextWidget x="30" y="95" width="100" height="100" text="Model" color ="0xFFFFFFFF" size="8" font="trebuchet" bold="1"> </TextWidget>
 		<CircularGaugeWidget x="20" y="20" width="50" height="50"  gaugeBg="dial-rpm-min-max.png" needleBg="dial-needle.png" background="0xFFFFFFFF" needleWidth="4" needleHeight="38" min="100" max="200" value="125" gaugeMax = "315" gaugeMin="225"></CircularGaugeWidget>
 		<CircularGaugeWidget x="-40" y="-40" width="40" height="40"  gaugeBg="dial-compass.png" needleBg="needle-airplane-profile.png" background="0xFFFFFFFF" needleWidth="10" needleHeight="20" min="0" max="360" value="90" gaugeMax = "360" gaugeMin="0"></CircularGaugeWidget>
-		<AttitudeIndicatorWidget x="60" y="20" z="1"/>
-	</view>-->
+		<AttitudeIndicatorWidget x="60" y="20" z="1"/>-->
+	</view>
 </views>

@@ -61,15 +61,29 @@ bool Program::getAttribute(){
 	return false;
 };
 
-GLuint Program::getUniformLocation(const char* name) const{
-	return glGetUniformLocation(m_iProgramHandle, name);
+GLuint Program::getUniformLocation(const std::string& name){
+	return glGetUniformLocation(m_iProgramHandle, name.c_str());
 };
 bool Program::getUniform(){
 	return true;
 };
-bool Program::setUniform(const char* name, float v) const{
+bool Program::setUniform(const std::string& name, float v1) {
+	glUniform1f(getUniformLocation(name), v1);
 	return true;
 };
+bool Program::setUniform(const std::string&  name, float v1, float v2) {
+	glUniform2f(getUniformLocation(name), v1, v2);
+	return true;
+};
+bool Program::setUniform(const std::string&  name, float v1, float v2, float v3) {
+	glUniform3f(getUniformLocation(name), v1, v2, v3);
+	return true;
+};
+bool Program::setUniform(const std::string&  name, float v1, float v2, float v3, float v4) {
+	glUniform4f(getUniformLocation(name), v1, v2, v3, v4);
+	return true;
+};
+
 
 void Program::setActive(){
 	glUseProgram(m_iProgramHandle);

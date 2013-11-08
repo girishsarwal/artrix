@@ -23,9 +23,12 @@ class Program{
 		bool getAttribute();
 		bool setAttribute(const char* name, float v) const;
 
-		GLuint getUniformLocation(const char* name) const;
+		GLuint getUniformLocation(const std::string& name);
 		bool getUniform();
-		bool setUniform(const char* name, float v) const;
+		bool setUniform(const std::string&  name, float v1) ;
+		bool setUniform(const std::string&  name, float v1, float v2) ;
+		bool setUniform(const std::string&  name, float v1, float v2, float v3) ;
+		bool setUniform(const std::string&  name, float v1, float v2, float v3, float v4) ;
 
 		void setActive();
 

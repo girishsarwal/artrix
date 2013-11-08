@@ -19,12 +19,12 @@ void ImageWidget::createGeometry(){
 	float b = m_fBackground & 0x000000FF;
 	float a = (m_fBackground & 0xFF000000) >> 0x18;
 	
-	VertexColor vertices[] = 
+	VertexColorTexture vertices[] = 
 	{
-		{-m_vSize.x, -m_vSize.y, 0.0f, r, g, b, a},
-		{ m_vSize.x, -m_vSize.y, 0.0f, r, g, b, a},
-		{ m_vSize.x,  m_vSize.y, 0.0f, r, g, b, a}, 
-		{-m_vSize.x,  m_vSize.y, 0.0f, r, g, b, a},
+		{-m_vSize.x, -m_vSize.y, 0.0f, r, g, b, a, 0.0f, 0.0f},
+		{ m_vSize.x, -m_vSize.y, 0.0f, r, g, b, a, 1.0f, 0.0f},
+		{ m_vSize.x,  m_vSize.y, 0.0f, r, g, b, a, 1.0f, 1.0f}, 
+		{-m_vSize.x,  m_vSize.y, 0.0f, r, g, b, a, 0.0f, 1.0f},
 	};
 	
 	m_iSizeVertex = sizeof(vertices)/sizeof(vertices[0]);
@@ -59,35 +59,20 @@ void ImageWidget::onUpdate(double frameTime){
 
 void ImageWidget::onRender(double frameTime){
 	
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-	//glEnableVertexAttribArray(2);
-	glVertexAttribPointer(0, VertexColor::SIZE_POSITION, GL_FLOAT, GL_FALSE, VertexColor::STRIDE, (GLvoid*)VertexColor::OFFSET_POSITION);
-	glVertexAttribPointer(1, VertexColor::SIZE_COLOR, GL_FLOAT, GL_FALSE, VertexColor::STRIDE, (GLvoid*)VertexColor::OFFSET_COLOR);
-	//glVertexAttribPointer(2, VertexColorTexture::SIZE_TEX0, GL_FLOAT, GL_FALSE, VertexColorTexture::STRIDE, (GLvoid*)VertexColorTexture::OFFSET_TEX0);
-			
-	/* get hold of the sampler location **/
+	VertexColorTexture::EnableAttribute(VertexColorTexture::INDEX_POSITION);
+	VertexColorTexture::EnableAttribute(VertexColorTexture::INDEX_COLOR);
+	VertexColorTexture::EnableAttribute(VertexColorTexture::INDEX_TEX0);
 	
 	m_pShadingProgram->setActive();
-	
-	//glEnable(GL_TEXTURE_2D);
-	//glBindTexture(GL_TEXTURE_2D, m_iTextureId);
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
+
+	glBindTexture(GL_TEXTURE_2D, m_iTextureId);
+
 	glDrawElements(GL_TRIANGLES, m_iSizeIndices, GL_UNSIGNED_INT, 0);
 	
+	VertexColorTexture::DisableAttribute(VertexColorTexture::INDEX_POSITION);
+	VertexColorTexture::DisableAttribute(VertexColorTexture::INDEX_COLOR);
+	VertexColorTexture::DisableAttribute(VertexColorTexture::INDEX_TEX0);
 	
-	//glBindTexture(GL_TEXTURE_2D, m_iTextureId);
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
-	
-	//glDrawArrays(GL_TRIANGLES, 0, m_iSizeIndices);
-	//glDisable(GL_TEXTURE_2D);
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
-	//glDisableVertexAttribArray(2);
 }
 
 void ImageWidget::afterInitialize(){
@@ -99,7 +84,7 @@ void ImageWidget::afterInitialize(){
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_iIndexBuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_iSizeIndices, m_pIndices, GL_STATIC_DRAW);
 			
-	m_pShadingProgram = SPM->getProgram("vc");
+	m_pShadingProgram = SPM->getProgram("tvc");
 }
 
 
