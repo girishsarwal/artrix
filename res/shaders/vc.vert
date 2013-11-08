@@ -1,9 +1,11 @@
-#version 330
-layout(location = 0) in vec3 position;
-layout(location = 1) in vec4 color;
-out vec4 vertcolor;
+#version 120
+attribute in vec3 position;
+attribute in vec4 color;
+
+varying vec4 vertex_color;			/** passed onto fs **/
+
 void main()
 {
-	vertcolor = color;
+	vertex_color = color;
 	gl_Position = vec4(position, 1.0);
 }

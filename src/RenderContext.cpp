@@ -9,6 +9,8 @@ bool RenderContext::initialize(int argc, char** argv){
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(SCREEN_X_SIZE, SCREEN_Y_SIZE);
+	if (!glutGet(GLUT_DISPLAY_MODE_POSSIBLE)) // HACK: From glxGears
+	      exit(1);
 	m_hWnd = glutCreateWindow("ARTRIX");
 	glewInit();
 	glutDisplayFunc(&(loop));

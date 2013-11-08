@@ -1,7 +1,7 @@
-#version 330
-in vec4 vertcolor;
-out vec4 outputColor;
+#version 120
+in vec4 vertex_color;
+varying out vec4 outputColor;
 void main()
 {
-   outputColor = vertcolor;
+   outputColor = vertex_color;
 };
