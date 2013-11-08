@@ -5,6 +5,8 @@ attribute in vec2 tex0;
 
 varying vec4 vertex_color;			/** passed onto fs **/
 varying vec2 vertex_tex_coord;		/** passed onto fs **/
+uniform mat4 projectionMatrix;
+uniform mat4 modelViewMatrix;
 
 void main()
 {

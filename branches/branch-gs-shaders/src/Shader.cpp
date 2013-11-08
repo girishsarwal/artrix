@@ -17,7 +17,7 @@ Shader::Shader(){
 Shader::~Shader(){
 };
 
-GLuint Shader::compile(){
+bool Shader::compile(){
 	
 	printf("compiling %s shader from %s...", m_sShaderType.c_str(), m_sSource.c_str());
 	chdir("/usr/share/artrix/shaders/");
@@ -25,7 +25,7 @@ GLuint Shader::compile(){
     FILE* fp = fopen(m_sSource.c_str(), "r");
     if(NULL == fp){
 		printf("Cannot read file %s\n", m_sSource.c_str());
-		return -1 ;
+		return false;
 	}
 	/** get hold of the file length**/
 	fseek(fp, 0, SEEK_END);
@@ -52,16 +52,16 @@ GLuint Shader::compile(){
         glGetShaderInfoLog(shader, infoLogLength, NULL, m_pInfoLog);
         printf("%d bytes read\n", length);
 		printf("%s", fileContents);
-        printf("Compile failure in %s shader:\n%s\n",m_sShaderType.c_str(), m_pInfoLog);
+        printf("WARNING: Compile failure in %s shader:\n%s\n",m_sShaderType.c_str(), m_pInfoLog);
         delete[] m_pInfoLog;
-        return -1;
+        return false;
     }
     /** setup the other parameters **/
     m_bIsCompiled = true;
 	m_iShaderHandle = shader;
      
 	printf("Successfully compiled.\n");
-	return shader;
+	return true;
 };
 int Shader::incRefCount(){
 	return ++m_iRefCount;
