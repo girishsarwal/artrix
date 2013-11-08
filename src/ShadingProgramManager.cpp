@@ -93,7 +93,7 @@ void ShadingProgramManager::createStockShadingPrograms(){
 					if(itShader == m_ShaderCache.end()){
 						/** read the shader from the source and compile **/
 						shader = new Shader(asShader);
-						if(shader->compile() > 0){
+						if(shader->compile()){
 							/** add it to the cache **/
 							m_ShaderCache[shader->getName()] = shader;
 							printf("\tShader is in cache now with id %s and handle %d. Will not be recompiled", shader->getName().c_str(), shader->getHandle());
@@ -124,6 +124,19 @@ void ShadingProgramManager::createStockShadingPrograms(){
 					program->bindAttribute(name , (GLuint)location);
 				};
 				if(strcmp((char*)nodeShadingProgramSubNode->name, "uniform") == 0){ /** shader program uniform **/
+					/** just add to the list. Uniforms will be retrieved when program links **/
+					printf("\tFound Uniform (");
+					xmlAttr* attrProgramUniform = NULL;
+					AttributeSet asProgramUniform;
+					for(attrProgramUniform = nodeShadingProgramSubNode->properties; attrProgramUniform; attrProgramUniform = attrProgramUniform->next){
+						Attribute aProgramUniform;
+						aProgramUniform.set((const char*)attrProgramUniform->name, (const char*)xmlGetProp(nodeShadingProgramSubNode, attrProgramUniform->name));
+						aProgramUniform.display();
+						asProgramUniform.add(aProgramUniform);
+					}
+					printf(")\n");
+					std::string name = asProgramUniform.get("name").getValue();
+					program->registerUniform(name);
 				}
 			}
 			/** compile and add to progrm list  **/

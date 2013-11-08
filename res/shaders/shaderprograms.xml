@@ -12,5 +12,7 @@
 		<attribute name="position" location="0"/>
 		<attribute name="color" location="1"/>
 		<attribute name="tex0" location="2"/>
+		<uniform name="projectionMatrix"/>
+		<uniform name="modelViewMatrix"/>
 	</program>
 </programs>

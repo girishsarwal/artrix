@@ -3,8 +3,8 @@ class Program{
 	private:
 		std::string 			m_sName;
 		std::vector<Shader*>	m_Shaders; 
-		std::map<std::string, GLuint> m_Attributes;
-		std::map<std::string, GLuint> m_Uniforms;
+		std::map<std::string, GLuint> m_AttributeLocations;
+		std::map<std::string, GLuint> m_UniformLocations;
 		bool					m_bIsLinked;
 		GLuint					m_iProgramHandle;
 		GLchar*					m_pInfoLog;
@@ -23,6 +23,7 @@ class Program{
 		bool getAttribute();
 		bool setAttribute(const char* name, float v) const;
 
+		bool registerUniform(const std::string& name);
 		GLuint getUniformLocation(const std::string& name);
 		bool getUniform();
 		bool setUniform(const std::string&  name, float v1) ;

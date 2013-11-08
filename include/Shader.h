@@ -14,7 +14,7 @@ class Shader{
 		Shader();
 		~Shader();
 		
-		GLuint compile();
+		bool compile();
 		
 		int incRefCount();
 		int decRefCount();
