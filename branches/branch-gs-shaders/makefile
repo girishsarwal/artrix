@@ -1,10 +1,11 @@
 CC = g++
 TARGET = artrix
-INCLUDES = -Iinclude -I/opt/vc/include -I/usr/include/libxml2
+#INCLUDES = -Iinclude -I/usr/include/libxml2
+INCLUDES = -Iinclude -I"$(CYGWIN_HOME)/usr/include/" -I"$(CYGWIN_HOME)/usr/include/w32api/" -I"$(CYGWIN_HOME)/usr/include/libxml2/" 
 CFLAGS = -Wall -g 
 
-LIBS = -lm -lglut -lxml2 -lSOIL -lGLU -lrt -lGLEW
-
+LIBS = -lm -lSOIL -lGL -lopengl32 -lGLEW -lglut -lGLU -lxml2   -lrt
+LIB_DIR = -L"$(CYGWIN_HOME)/usr/lib/w32api/"
 
 RES_DIR = /usr/share/$(TARGET)
 SRC_DIR = src
@@ -19,7 +20,7 @@ all: $(OUT_DIR)/$(TARGET)
 	@echo "Compiling..." 
 
 $(OUT_DIR)/$(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(OUT_DIR)/$(TARGET) $(OBJ) $(LIBS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(OUT_DIR)/$(TARGET) $(OBJ) $(LIB_DIR) $(LIBS)
 	
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.cpp
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
