@@ -1,11 +1,14 @@
 CC = g++
 TARGET = artrix
-#INCLUDES = -Iinclude -I/usr/include/libxml2
-INCLUDES = -Iinclude -I"$(CYGWIN_HOME)/usr/include/" -I"$(CYGWIN_HOME)/usr/include/w32api/" -I"$(CYGWIN_HOME)/usr/include/libxml2/" 
+INCLUDES = -Iinclude -I/usr/include/libxml2
+#INCLUDES = -Iinclude -I"$(CYGWIN_HOME)/usr/include/" -I"$(CYGWIN_HOME)/usr/include/w32api/" -I"$(CYGWIN_HOME)/usr/include/libxml2/" 
 CFLAGS = -Wall -g 
 
-LIBS = -lm -lSOIL -lGL -lopengl32 -lGLEW -lglut -lGLU -lxml2   -lrt
-LIB_DIR = -L"$(CYGWIN_HOME)/usr/lib/w32api/"
+LIBS = -lm -lSOIL -lGL -lGLEW -lglut -lGLU -lxml2 -lrt
+LIB_DIR = -L/usr/lib
+
+#LIBS = -lm -lSOIL -lGL -lopengl32 -lGLEW -lglut -lGLU -lxml2   -lrt
+#LIB_DIR = -L"$(CYGWIN_HOME)/usr/lib/w32api/"
 
 RES_DIR = /usr/share/$(TARGET)
 SRC_DIR = src
@@ -17,7 +20,7 @@ OBJ = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
 .PHONY: depend clean	
 
 all: $(OUT_DIR)/$(TARGET)
-	@echo "Compiling..." 
+	@echo "All done!"
 
 $(OUT_DIR)/$(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(OUT_DIR)/$(TARGET) $(OBJ) $(LIB_DIR) $(LIBS)
@@ -30,6 +33,7 @@ clean: resources
 	mkdir -p $(OUT_DIR)
 	rm -f -r $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)
+	@echo "Finished cleaning..."
 
 resources:
 	rm -f -r $(RES_DIR)

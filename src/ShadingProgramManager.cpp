@@ -47,12 +47,12 @@ void ShadingProgramManager::createStockShadingPrograms(){
 		printf("WARNING: No Shading Programs Found");
 		return;
 	}
-
+	printf("\n");
 	for(xmlNode* nodeShadingProgram = xmlDocGetRootElement(doc)->children; nodeShadingProgram; nodeShadingProgram = nodeShadingProgram->next){
 		if(strcmp((char*)nodeShadingProgram->name, "text") == 0) continue;
 		if(strcmp((char*)nodeShadingProgram->name, "comment") == 0) continue;
 		if(strcmp((char*)nodeShadingProgram->name, "program") == 0){
-			printf("Found Shading Program Definition (");
+			printf("Shading Program (");
 			Program *program = NULL;
 			if(NULL != nodeShadingProgram->properties){
 				xmlAttr* attrShadingProgram = NULL;
@@ -72,7 +72,7 @@ void ShadingProgramManager::createStockShadingPrograms(){
 			 * to idenitfy the shaders involved and the attributes, uniforms etc **/
 			for(xmlNode* nodeShadingProgramSubNode = nodeShadingProgram->children; nodeShadingProgramSubNode; nodeShadingProgramSubNode = nodeShadingProgramSubNode->next){
 				if(strcmp((char*)nodeShadingProgramSubNode->name, "shader") == 0){	/** shader program **/
-					printf("\tFound Shader (");
+					printf("\tShader (");
 					xmlAttr* attrShader = NULL;
 					AttributeSet asShader;
 					for(attrShader = nodeShadingProgramSubNode->properties; attrShader; attrShader = attrShader->next){
@@ -86,8 +86,6 @@ void ShadingProgramManager::createStockShadingPrograms(){
 					 * check to see if a shader already exists**/
 					
 					std::string source = asShader.get("source").getValue();
-					printf("\t\t");
-					printf("Looking for shader %s...", source.c_str());
 					Shader* shader = NULL;
 					std::map <std::string, Shader* >::const_iterator itShader = m_ShaderCache.find(source);
 					if(itShader == m_ShaderCache.end()){
@@ -96,48 +94,17 @@ void ShadingProgramManager::createStockShadingPrograms(){
 						if(shader->compile()){
 							/** add it to the cache **/
 							m_ShaderCache[shader->getName()] = shader;
-							printf("\tShader is in cache now with id %s and handle %d. Will not be recompiled", shader->getName().c_str(), shader->getHandle());
+							printf("\tShader cached (id %s - handle %d)", shader->getName().c_str(), shader->getHandle());
 						}
 					}
 					else {
 						shader = itShader->second;
-						printf("\tShader found in cache with id %s and handle %d. Reused", shader->getName().c_str(), shader->getHandle());
+						printf("\tReusing shader from cache (id %s - handle %d)", shader->getName().c_str(), shader->getHandle());
 					}
 					program->attachShader(shader);
 					printf("\n");
 				};
-				if(strcmp((char*)nodeShadingProgramSubNode->name, "attribute") == 0){ /** shader program attribute **/
-					/** set the attributes now**/
-					printf("\tFound Attribute (");
-					xmlAttr* attrProgramAttribute = NULL;
-					AttributeSet asProgramAttribute;
-					for(attrProgramAttribute = nodeShadingProgramSubNode->properties; attrProgramAttribute; attrProgramAttribute = attrProgramAttribute->next){
-						Attribute aProgramAttribute;
-						aProgramAttribute.set((const char*)attrProgramAttribute->name, (const char*)xmlGetProp(nodeShadingProgramSubNode, attrProgramAttribute->name));
-						aProgramAttribute.display();
-						asProgramAttribute.add(aProgramAttribute);
-					}
-					printf(")\n");
-					std::string name = asProgramAttribute.get("name").getValue();
-					int location =  atoi(asProgramAttribute.get("location").getValue().c_str());
-					
-					program->bindAttribute(name , (GLuint)location);
-				};
-				if(strcmp((char*)nodeShadingProgramSubNode->name, "uniform") == 0){ /** shader program uniform **/
-					/** just add to the list. Uniforms will be retrieved when program links **/
-					printf("\tFound Uniform (");
-					xmlAttr* attrProgramUniform = NULL;
-					AttributeSet asProgramUniform;
-					for(attrProgramUniform = nodeShadingProgramSubNode->properties; attrProgramUniform; attrProgramUniform = attrProgramUniform->next){
-						Attribute aProgramUniform;
-						aProgramUniform.set((const char*)attrProgramUniform->name, (const char*)xmlGetProp(nodeShadingProgramSubNode, attrProgramUniform->name));
-						aProgramUniform.display();
-						asProgramUniform.add(aProgramUniform);
-					}
-					printf(")\n");
-					std::string name = asProgramUniform.get("name").getValue();
-					program->registerUniform(name);
-				}
+				
 			}
 			/** compile and add to progrm list  **/
 			if(program->link() > 0){

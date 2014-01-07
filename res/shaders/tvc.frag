@@ -7,5 +7,4 @@ varying out vec4 outColor;				/** final color of fragment **/
 void main()
 {
    outColor = texture2D(texture, vertex_tex_coord);
-   //outColor = vertex_color;
 };

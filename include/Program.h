@@ -8,6 +8,9 @@ class Program{
 		bool					m_bIsLinked;
 		GLuint					m_iProgramHandle;
 		GLchar*					m_pInfoLog;
+		
+		void					enumerateUniforms();
+		void					enumerateAttributes();
 	public:
 		Program(std::string&);
 		Program(AttributeSet&);

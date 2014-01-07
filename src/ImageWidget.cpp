@@ -19,12 +19,19 @@ void ImageWidget::createGeometry(){
 	float b = m_fBackground & 0x000000FF;
 	float a = (m_fBackground & 0xFF000000) >> 0x18;
 	
-	VertexColorTexture vertices[] = 
+	/*VertexColorTexture vertices[] = 
 	{
 		{-m_vSize.x, -m_vSize.y, 0.0f, r, g, b, a, 0.0f, 0.0f},
 		{ m_vSize.x, -m_vSize.y, 0.0f, r, g, b, a, 1.0f, 0.0f},
 		{ m_vSize.x,  m_vSize.y, 0.0f, r, g, b, a, 1.0f, 1.0f}, 
 		{-m_vSize.x,  m_vSize.y, 0.0f, r, g, b, a, 0.0f, 1.0f},
+	};*/
+	VertexColorTexture vertices[] = 
+	{
+		{-1, -1, 0.0f, r, g, b, a, 0.0f, 0.0f},
+		{ 1, -1, 0.0f, r, g, b, a, 1.0f, 0.0f},
+		{ 1,  1, 0.0f, r, g, b, a, 1.0f, 1.0f}, 
+		{-1,  1, 0.0f, r, g, b, a, 0.0f, 1.0f},
 	};
 	
 	m_iSizeVertex = sizeof(vertices)/sizeof(vertices[0]);
@@ -65,6 +72,8 @@ void ImageWidget::onRender(double frameTime){
 	
 	m_pShadingProgram->setActive();
 
+	
+	
 	glBindTexture(GL_TEXTURE_2D, m_iTextureId);
 
 	glDrawElements(GL_TRIANGLES, m_iSizeIndices, GL_UNSIGNED_INT, 0);

@@ -52,7 +52,10 @@ void UIWidget::beforeRender(double frameTime){
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
+	
 	glLoadIdentity();
+	glTranslatef(m_vPosition.x, m_vPosition.y, 0);
+	glScalef(m_vSize.x, m_vSize.y, 1);
 };
 
 void UIWidget::afterRender(double frameTime){

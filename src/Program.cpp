@@ -21,6 +21,7 @@ GLuint Program::detachShader(Shader* shader){
 	return shader->decRefCount();
 };
 bool Program::link(){
+	m_bIsLinked = false;
 	printf("linking program '%s' ...\n", m_sName.c_str());
     glLinkProgram(m_iProgramHandle);
     
@@ -35,22 +36,62 @@ bool Program::link(){
         glGetShaderInfoLog(m_iProgramHandle, infoLogLength, NULL, m_pInfoLog);
 		printf("WARNING: Link failure in program '%s'... \n\t %s\n",m_sName.c_str(), m_pInfoLog);
         delete[] m_pInfoLog;
-        return false;
+        return m_bIsLinked;
     }
-    /** setup the other parameters **/
-    m_bIsLinked = true;
-
-    /** retrieve the uniform locations that have been given by GL **/
-    std::map<std::string, GLuint>::iterator itUniform = m_UniformLocations.begin();
-    while(itUniform != m_UniformLocations.end()){
-    	itUniform->second = getUniformLocation(itUniform->first);
-    	printf("\t\t'%s' location coerced to '%d'\n", itUniform->first.c_str(), itUniform->second);
-    	itUniform++;
-    }
-
-	printf("Successfully linked program '%s'\n", m_sName.c_str());
-	return true;
+    
+	enumerateUniforms();
+	enumerateAttributes();
+	
+	printf("\nSuccessfully linked program '%s'\n to handle %d", m_sName.c_str(), m_iProgramHandle);
+	
+	m_bIsLinked = true;
+	
+	return m_bIsLinked;
 };
+
+void Program::enumerateUniforms(){
+	GLint numUniforms = 0;
+	GLint uniformNameMaxLength = 0;
+	
+	glGetProgramiv(m_iProgramHandle, GL_ACTIVE_UNIFORMS, &numUniforms);
+	glGetProgramiv(m_iProgramHandle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &uniformNameMaxLength);
+	printf("\n\tNo. Of Active Uniforms %d", numUniforms);
+	
+	GLint size;
+	GLenum type;
+	
+	m_UniformLocations.empty();
+	
+	while(numUniforms-- > 0){
+		char* _name = (char*)malloc(uniformNameMaxLength);
+		glGetActiveUniform(m_iProgramHandle, numUniforms, uniformNameMaxLength, NULL, &size, &type, _name);
+		std::string name(_name);
+		m_UniformLocations[name] = numUniforms;
+		printf("\n\t\tUniform %s coerced to %d", name.c_str(), m_UniformLocations[name]);
+	}
+}
+void Program::enumerateAttributes(){
+	GLint numAttributes = 0;
+	GLint attributeNameMaxLength = 0;
+	
+	glGetProgramiv(m_iProgramHandle, GL_ACTIVE_ATTRIBUTES, &numAttributes);
+	glGetProgramiv(m_iProgramHandle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &attributeNameMaxLength);
+	
+	printf("\n\tNumber of Active Attributes %d", numAttributes); 
+	
+	GLint size;
+	GLenum type;
+	
+	m_AttributeLocations.empty();
+	
+	while(numAttributes-- > 0){
+		char* _name = (char*)malloc(attributeNameMaxLength);
+		glGetActiveAttrib(m_iProgramHandle, numAttributes, attributeNameMaxLength, NULL, &size, &type, _name);
+		std::string name(_name);
+		m_AttributeLocations[name] = numAttributes;
+		printf("\n\t\tAttribute %s coerced to %d", name.c_str(), m_AttributeLocations[name]);
+	}
+}
 
 bool Program::bindAttribute(std::string& name, GLuint index){
 	glBindAttribLocation(m_iProgramHandle, index, (const GLchar*)name.c_str());

@@ -67,7 +67,7 @@ void resize(GLint w, GLint h){
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-100, 100, -100, 100, -100, 100);
+	glOrtho(-SCREEN_UNIT_X, SCREEN_UNIT_X, -SCREEN_UNIT_Y, SCREEN_UNIT_Y, -100, 100);
 	glMatrixMode(GL_MODELVIEW);
 }
 
