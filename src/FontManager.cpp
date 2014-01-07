@@ -51,14 +51,10 @@ void FontManager::createFontDisplayList(uint base, int size){
 	float m = 0;
 	float n = 0;
 	
-	float mThis = 0.0;
-	float nThis = 0.0;
-	float mNext = 0.0;
-	float nNext = 0.0;
 	
+
 	float cx = 1.0/FONT_TEXTURE_COLS;
 	float cy = 1.0/FONT_TEXTURE_ROWS;
-	float halfSize = size / 2.0;
 	
 	int index = -1;
 	

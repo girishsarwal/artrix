@@ -1,4 +1,7 @@
 #pragma once
+#define _STDCALL_SUPPORTED
+
+#define NDEBUG
 
 #include <stdio.h>
 #include <unistd.h>
@@ -22,8 +25,8 @@
 #include <string>
 
 #include <dirent.h>
-#include <linux/types.h>
-#include <linux/spi/spidev.h>
+//#include <linux/types.h>
+//#include <linux/spi/spidev.h>
 #include <stdint.h>
 #include <unistd.h>
 #include <stdio.h>
