@@ -1,5 +1,9 @@
 #pragma once
 #include "afx.h"
+
+#define SCREEN_UNIT_X 100
+#define SCREEN_UNIT_Y 100
+
 class RenderContext{
 private:
 	int m_hWnd;

@@ -19,7 +19,7 @@ Shader::~Shader(){
 
 bool Shader::compile(){
 	
-	printf("compiling %s shader from %s...", m_sShaderType.c_str(), m_sSource.c_str());
+	printf("compiling %s shader from %s...\n", m_sShaderType.c_str(), m_sSource.c_str());
 	chdir("/usr/share/artrix/shaders/");
 	/** read up the file **/
     FILE* fp = fopen(m_sSource.c_str(), "r");
@@ -60,7 +60,7 @@ bool Shader::compile(){
     m_bIsCompiled = true;
 	m_iShaderHandle = shader;
      
-	printf("Successfully compiled.\n");
+	printf("\t\tSuccessfully compiled program '%s' to handle %d\n", m_sSource.c_str(), m_iShaderHandle);
 	return true;
 };
 int Shader::incRefCount(){
