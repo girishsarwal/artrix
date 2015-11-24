@@ -51,6 +51,7 @@ class Renderable;
 class ViewManager;
 class Widget;
 class UIWidget;
+class ButtonWidget;
 class TelemetryWidget;
 class FlapsWidget;
 class TXBatteryMeterWidget;
@@ -94,6 +95,7 @@ class Program;
 #include "Widget.h"
 #include "Renderable.h"
 #include "UIWidget.h"
+#include "ButtonWidget.h"
 #include "TelemetryWidget.h"
 #include "FlapsWidget.h"
 #include "TxBatteryMeterWidget.h"

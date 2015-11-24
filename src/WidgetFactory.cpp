@@ -5,6 +5,10 @@ void WidgetFactory::createWidget(char* pWidgetType, Widget** pWidget, AttributeS
 	}
 	printf("WidgetFactory: Request for widget creation '%s' ", pWidgetType);
 	as.display();
+	if(0 == strcmp(pWidgetType, "comment")){
+		printf("Skipping comment\n");	
+		return;
+	}
 	if(0 == strcmp(pWidgetType, "ImageWidget")){
 		*pWidget = new ImageWidget();
 		printf("ImageWidget created\n");	

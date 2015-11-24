@@ -6,7 +6,7 @@ BMFontManager::~BMFontManager(){
 };
 
 BMFontManager* BMFontManager::getInstance(){
-	if(NULL == m_pInstance){
+	if(!m_pInstance){
 		m_pInstance = new BMFontManager();
 	};
 	return m_pInstance;

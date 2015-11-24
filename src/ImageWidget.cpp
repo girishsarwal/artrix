@@ -10,6 +10,8 @@
 void ImageWidget::onInitialize(){
 	m_pPath = m_asAttributes.get("src").getValue().c_str();
 	m_iTextureId = TM->getTexture(m_pPath);
+	m_pShadingProgram = SPM->getProgram("vc");
+	
 	createGeometry();
 }
 void ImageWidget::createGeometry(){
@@ -87,13 +89,14 @@ void ImageWidget::onRender(double frameTime){
 void ImageWidget::afterInitialize(){
 	glGenBuffers(1, &m_iVertexBuffer);
 	glGenBuffers(1, &m_iIndexBuffer);
+
 	glBindBuffer(GL_ARRAY_BUFFER, m_iVertexBuffer);
 	glBufferData (GL_ARRAY_BUFFER, m_iSizeVertices, m_pVertices, GL_STATIC_DRAW);	
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_iIndexBuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_iSizeIndices, m_pIndices, GL_STATIC_DRAW);
 			
-	m_pShadingProgram = SPM->getProgram("tvc");
+	
 }
 
 

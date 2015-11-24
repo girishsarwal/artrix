@@ -6,7 +6,8 @@ private:
 public:
 	ButtonWidget();
 	ButtonWidget(AttributeSet& attrs);
+	~ButtonWidget();
 	void onInitialize();
 	void onUpdate(double frameTime);
 	void onRender(double frameTime);
-}
+};

@@ -4,9 +4,9 @@
 		
 	</view>-->
 	<view name="splash">
-		<TimerWidget timeout="1000" action="changeView" targetView="home"/>
+		<!--<TimerWidget timeout="1000" action="changeView" targetView="home"/>-->
 		<ImageWidget x="0" y="0" width="100" height="100" src="splash.png" background="0xFFFF00FF"></ImageWidget>
-		<TextWidget x="0" y="0" width="1" height="0.1" text="ARTRIX - gt-jtx UI" color ="0xFFFF0000" size="10" font="trebuchet" bold="1"/>
+		<!--<TextWidget x="0" y="0" width="1" height="0.1" text="ARTRIX - gt-jtx UI" color ="0xFFFF0000" size="10" font="trebuchet" bold="1"/>-->
 	</view>
 	<view name="home">
 		<ImageWidget x="0" y="0" width="100" height="100" src="earth.jpg" background="0xFFFFFFFF"></ImageWidget>
