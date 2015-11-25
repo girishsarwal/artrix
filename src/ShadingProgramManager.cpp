@@ -6,7 +6,7 @@ ShadingProgramManager::~ShadingProgramManager(){
 };
 
 ShadingProgramManager* ShadingProgramManager::getInstance(){
-	if(NULL == m_pInstance){
+	if(!m_pInstance){
 		m_pInstance = new ShadingProgramManager();
 	};
 	return m_pInstance;

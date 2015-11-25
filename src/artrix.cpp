@@ -1,11 +1,11 @@
 #include "afx.h"
 
 int main(int argc, char* argv[]){
-	if(NULL == RC) { printf("ERROR: Cannot create RenderContext\n"); return false; }
-	if(NULL == VM) { printf("ERROR: Cannot create ViewManager\n"); return false; }
-	if(NULL == FM) { printf("ERROR: Cannot create FontManager"); return false; }
-	if(NULL == SI) { printf("ERROR: Cannot create SerialInterface"); return false; }
-	if(NULL == SPM) { printf("ERROR: Cannot create ShaderProgramManager"); return false; }
+	if(!RC) { printf("ERROR: Cannot create RenderContext\n"); return false; }
+	if(!VM) { printf("ERROR: Cannot create ViewManager\n"); return false; }
+	if(!FM) { printf("ERROR: Cannot create FontManager"); return false; }
+	if(!SI) { printf("ERROR: Cannot create SerialInterface"); return false; }
+	if(!SPM) { printf("ERROR: Cannot create ShaderProgramManager"); return false; }
 	
 	if(!RC->initialize(argc, argv)){
 		throw std::exception();

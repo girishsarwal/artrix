@@ -6,7 +6,7 @@ FontManager::~FontManager(){
 };
 
 FontManager* FontManager::getInstance(){
-	if(NULL == m_pInstance){
+	if(!m_pInstance){
 		m_pInstance = new FontManager();
 	};
 	return m_pInstance;

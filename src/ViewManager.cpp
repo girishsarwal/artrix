@@ -102,7 +102,7 @@ ViewManager::~ViewManager(){
 };
 
 ViewManager* ViewManager::getInstance(){
-	if(NULL == m_pTheViewManager){
+	if(!m_pTheViewManager){
 		m_pTheViewManager = new ViewManager();
 	}
 	return m_pTheViewManager;

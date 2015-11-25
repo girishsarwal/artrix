@@ -28,7 +28,7 @@ void SerialInterface::shutdown(){
 
 
 SerialInterface* SerialInterface::getInstance(){
-	if(NULL == m_pInstance){
+	if(!m_pInstance){
 		m_pInstance = new SerialInterface();
 	}
 	return m_pInstance;

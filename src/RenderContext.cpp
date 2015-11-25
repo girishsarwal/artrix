@@ -36,7 +36,7 @@ void RenderContext::shutdown(){
 }
 
 RenderContext* RenderContext::getInstance(){
-	if(NULL == m_pTheContext){
+	if(!m_pTheContext){
 		m_pTheContext = new RenderContext();
 	}
 	return m_pTheContext;
