@@ -3,6 +3,7 @@ angular.module('starter.services', [])
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
+
   // Some fake testing data
   var chats = [{
     id: 0,
@@ -45,6 +46,34 @@ angular.module('starter.services', [])
         }
       }
       return null;
+    }
+  };
+})
+.factory('DataStore', function(){
+  var models =[{
+    name: 'P-51',
+    img: 'img/P-51.jpg',
+    timer: '10:00'
+  }, {
+    name: 'Extra 300',
+    img: 'img/extra300.jpg',
+    timer: '09:00'
+  }, {
+    name: 'Beech Craft',
+    img: 'img/beechcraft.jpg',
+    timer: '09:00'
+  }, {
+    name: 'Cessna Skyhawk',
+    img: 'img/cessna.jpg',
+    timer: '09:00'
+  }, {
+    name: 'Phoenix Trainer',
+    img: 'img/trainer.jpg',
+    timer: '09:00'
+  }];
+  return {
+    all: function() {
+      return models;
     }
   };
 });

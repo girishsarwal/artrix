@@ -1,16 +1,12 @@
-<ion-view view-title="Chats">
+<ion-view view-title="Models">
   <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
+    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+      <ion-slide ng-repeat="model in models">
+      <div >
+        <button class="bar bar-positive button ion-android-options"> {{model.name}} - {{model.timer}}</button>
+        <div class="modelcard item-body" ng-style="{'background-image':'url({{model.img}})'}">
+      </div>
+      </ion-slide>
+    </ion-slide-box>
   </ion-content>
 </ion-view>

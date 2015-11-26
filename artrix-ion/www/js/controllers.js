@@ -1,7 +1,8 @@
 angular.module('starter.controllers', [])
-.controller('ModelsController', function($scope){
+.controller('ModelsController',['$scope','DataStore', function($scope, models){
 
-})
+  $scope.models = models.all();
+}])
 .controller('PilotController', function($scope) {
 
 })
