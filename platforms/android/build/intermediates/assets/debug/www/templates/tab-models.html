@@ -1,0 +1,138 @@
+<ion-view view-title="Models" hide-nav-bar="true">
+  <ion-content>
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" does-continue="true" show-pager="false">
+      <ion-slide ng-repeat="model in models track by $index">
+        <div >
+          <a class="bar bar-positive button"> {{model.name}} - {{model.timer}}</a>
+          <a ng-click="modelClicked({{model}});">
+            <div class="model-card item-body" ng-style="{'background-image':'url({{model.img}})'}">
+              <span style="font-size:40px;color:blue;">
+                <i class="ion-ios-star" ng-if="isFavorite"></i>
+                <i class="ion-ios-star-outline" ng-if="isFavorite"></i>
+                
+              </span>
+            </div>
+          </a>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="model-card item-body add-model" ng-click="addModel()">
+            
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    <div ng-if="editView">
+          <ion-slide-box does-continue="true" show-pager="false">
+            <!-- Basic Setup -->
+            <ion-slide> 
+              <div class="item item-divider positive">
+                Basic
+              </div>
+              <div class="item">
+                Name <input style="display:inline-block;" type="text"/>
+              </div>
+              <div class="item">
+                Running Time <input style="display:inline-block;"type="time"/>
+              </div>
+              <div class="item">
+                Picture <input style="display:inline-block;"type="camera"/>
+              </div>
+            </ion-slide>
+
+            <!-- EPA -->
+            <ion-slide> 
+              <div class="item item-divider positive">
+                End Point Adjustments
+              </div>
+              <div class="item">
+                Channel 1 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 2 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 3 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 4 <input style="display:inline-block;" type="number"/>
+              </div>
+                            <div class="item">
+                Channel 5 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 6 <input style="display:inline-block;" type="number"/>
+              </div>
+                            <div class="item">
+                Channel 7 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 8 <input style="display:inline-block;" type="number"/>
+              </div>
+            </ion-slide>
+
+             <!-- Expo/DR -->
+            <ion-slide> 
+              <div class="item item-divider positive">
+                Exponentials and Dual Rates
+              </div>
+              <div class="item">
+                Channel 1 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 2 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 3 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 4 <input style="display:inline-block;" type="number"/>
+              </div>
+                            <div class="item">
+                Channel 5 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 6 <input style="display:inline-block;" type="number"/>
+              </div>
+                            <div class="item">
+                Channel 7 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 8 <input style="display:inline-block;" type="number"/>
+              </div>
+            </ion-slide>
+
+            <ion-slide> 
+              <div class="item item-divider positive">
+                Mixes
+              </div>
+              <div class="item">
+                Channel 1 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 2 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 3 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 4 <input style="display:inline-block;" type="number"/>
+              </div>
+                            <div class="item">
+                Channel 5 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 6 <input style="display:inline-block;" type="number"/>
+              </div>
+                            <div class="item">
+                Channel 7 <input style="display:inline-block;" type="number"/>
+              </div>
+              <div class="item">
+                Channel 8 <input style="display:inline-block;" type="number"/>
+              </div>
+            </ion-slide>
+          </ion-slide-box>
+    </div>
+    
+
+  </ion-content>
+</ion-view>

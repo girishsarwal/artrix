@@ -1,0 +1,31 @@
+/* Empty. Add your own CSS if you like */
+.box{
+	min-height:200px;
+}
+.model-card, .add-model{
+	height: 220px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.add-model{
+	background-image: url('../img/add.png');	
+	background-size: 200px 200px;
+}
+
+.field{
+	padding-left:100px;
+	border: 1px solid;
+	display: inline-block;
+}
+.actionSheet{
+	text-align: center;
+
+}
+.ok{
+	color:green !important;
+}
+.low{
+	color:red !important;
+}

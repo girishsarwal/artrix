@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/girishsarwal/workarea/gt/artrix/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/debug/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f7fad87b25353e9f7fc6725f7501ca3c3ea7770e">
+        <dex dex="/home/girishsarwal/workarea/gt/artrix/platforms/android/build/intermediates/pre-dexed/debug/classes-75ecc8de702d34feb2aee1c3c78c9926bb5b608f.jar" />
+    </item>
+
+</items>

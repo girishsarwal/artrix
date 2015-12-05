@@ -1,0 +1,51 @@
+<ion-view view-title="Radio Setup" hide-nav-bar="true">
+  <ion-content>
+  	<div class="list">
+  		<div class="item item-divider">
+  			Alerts and Warnings
+  		</div>
+  		<ion-toggle ng-model="settings.throttleWarning" ng-class="item">
+			Throttle Warning
+		</ion-toggle>
+		<ion-toggle ng-model="settings.switchWarning" ng-class="item">
+        	Switch Warning
+    	</ion-toggle>
+	    <ion-toggle ng-model="settings.lowBattery.warning" ng-class="item">
+	        Low Battery Alarm
+	    </ion-toggle>
+	    <div class="item">
+	    	<input type="text" value="{{settings.lowBattery.voltage}}"/>
+	    </div>
+	    <ion-toggle ng-model="settings.inactivity.warning" ng-class="item">
+	        Inactivity Alarm	        
+	    </ion-toggle>
+	    <div class="item">
+	    	<input type="number" value="{{settings.inactivity.timeout}}"/>
+	    </div>
+	    <ion-toggle ng-model="settings.voice.status">
+	        Voice Feedback
+	    </ion-toggle>
+	    <div class="item item-divider">
+  			Stick Mode
+  		</div>
+  		<ion-radio ng-model="settings.mode" ng-value="'1'" ng-class="item">Mode 1</ion-radio>
+		<ion-radio ng-model="settings.mode" ng-value="'2'" ng-class="item">Mode 2</ion-radio>
+		<ion-radio ng-model="settings.mode" ng-value="'3'" ng-class="item">Mode 3</ion-radio>
+    	<ion-radio ng-model="settings.mode" ng-value="'4'" ng-class="item">Mode 4</ion-radio>	
+    	<div class="item item-divider">
+  			Advanced
+  		</div>
+  		<div class="item">
+	    	PPM Frame Length <input type="number" value="{{settings.ppm.frame_length}}"/>
+	    </div>
+	    <div class="item">
+	    	PPM Sync Signal Length <input type="number" value="{{settings.ppm.sync_length}}"/>
+	    </div>
+		<div class="item item-divider">
+  			Backup and Restore
+  		</div>
+  		<button class="button bar">Backup to External Storage</button>
+  		<button class="button bar">Restore from External Storage</button>
+    </div>
+  </ion-content>
+</ion-view>
