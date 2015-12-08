@@ -1,6 +1,6 @@
-# artrix
+#Build
 
-Artrix is a front end for the gt-jtx. 
-These two systems will soon be merged together to form one entity.
+- Ubuntu 14.04
+- sudo apt-get install build-essential freeglut3-dev libSOIL libxml2
+- sudo apt-get install eclipse-cdt
 
-Artirx uses renderable XML views and widgets for displaying information
