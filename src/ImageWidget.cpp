@@ -28,15 +28,16 @@ void ImageWidget::createGeometry(){
 		{ m_vSize.x,  m_vSize.y, 0.0f, r, g, b, a, 1.0f, 1.0f}, 
 		{-m_vSize.x,  m_vSize.y, 0.0f, r, g, b, a, 0.0f, 1.0f},
 	};*/
-	VertexColorTexture vertices[] = 
+	VertexColor vertices[] =
 	{
-		{-1, -1, 0.0f, r, g, b, a, 0.0f, 0.0f},
-		{ 1, -1, 0.0f, r, g, b, a, 1.0f, 0.0f},
-		{ 1,  1, 0.0f, r, g, b, a, 1.0f, 1.0f}, 
-		{-1,  1, 0.0f, r, g, b, a, 0.0f, 1.0f},
+		{-1, -1, 0.0f, r, g, b, a},
+		{ 1, -1, 0.0f, r, g, b, a},
+		{ 1,  1, 0.0f, r, g, b, a},
+		{-1,  1, 0.0f, r, g, b, a},
 	};
 	
-	m_iSizeVertex = sizeof(vertices)/sizeof(vertices[0]);
+
+	m_iSizeVertex = sizeof(vertices[0]);
 	m_iSizeVertices = sizeof(vertices);
 	GLuint indices[] = 
 	{

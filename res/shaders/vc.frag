@@ -1,7 +1,6 @@
 #version 120
-in vec4 vertex_color;
-varying out vec4 outputColor;
+vec4 vertex_color;
 void main()
 {
-   outputColor = vertex_color;
-};
+   gl_FragColor = vertex_color;
+}

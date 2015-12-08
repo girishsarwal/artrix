@@ -8,7 +8,7 @@ private:
 	LogManager();
 
 public:
-	void initialize();
+	void initialize(std::string& logFileName);
 	void shutdown();
 	void log(std::string& message);
 	static LogManager* getInstance();

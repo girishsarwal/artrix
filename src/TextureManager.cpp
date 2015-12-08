@@ -5,23 +5,24 @@ TextureManager* TextureManager::getInstance(){
 	}
 	return m_pInstance;
 }
-void TextureManager::initialize(){
+void TextureManager::initialize(const std::string& root){
+	m_root = root;
 	printf("+--------------------TEXTURE MANAGER----------------------+\n");
 	printf("Initializing...\n");
-	std::string textureRoot("/usr/share/artrix/images");
-	loadAllTextures(textureRoot);
+	printf("Looking for textures in %s \n", m_root.c_str());
+	loadAllTextures();
 }
 
-void TextureManager::loadAllTextures(std::string& textureRoot){
+void TextureManager::loadAllTextures(){
 	printf("Loading textures\n");
 	DIR* dir;
 	dirent* entry;
-	dir = opendir(textureRoot.c_str());
+	dir = opendir(m_root.c_str());
 	if(NULL == dir){
-		printf("Error opening texture directory '%s'\n", textureRoot.c_str());
+		printf("Error opening texture directory '%s'\n", m_root.c_str());
 		return;
 	}
-	chdir(textureRoot.c_str());
+	chdir(m_root.c_str());
 	while(NULL != (entry = readdir(dir))){
 		if(entry->d_type != DT_DIR){
 			std::string texture = std::string(entry->d_name);

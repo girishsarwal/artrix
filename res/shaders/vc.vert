@@ -1,6 +1,6 @@
 #version 120
-attribute in vec3 position;
-attribute in vec4 color;
+attribute vec3 position;
+attribute vec4 color;
 
 varying vec4 vertex_color;			/** passed onto fs **/
 

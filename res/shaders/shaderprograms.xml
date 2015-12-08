@@ -6,13 +6,4 @@
 		<attribute name="position" location="0"/>
 		<attribute name="color" location="1"/>
 	</program>
-	<program name="tvc">
-		<shader source = "tvc.vert" type="vertex"/>
-		<shader source = "tvc.frag" type="fragment"/>
-		<attribute name="position" location="0"/>
-		<attribute name="color" location="1"/>
-		<attribute name="tex0" location="2"/>
-		<uniform name="projectionMatrix"/>
-		<uniform name="modelViewMatrix"/>
-	</program>
 </programs>

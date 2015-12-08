@@ -21,20 +21,23 @@ Program* ShadingProgramManager::getProgram(const std::string& program){
 	return m_pProgramCache[program];
 };
 
-void ShadingProgramManager::initialize(){	
+void ShadingProgramManager::initialize(const std::string& root){
+	sprintf(m_root.c_str(), "%s.shadingprograms.xml", root.c_str());
+
 	printf("+--------------------SHADER MANAGER----------------------+\n");
 	printf("Initializing...\n");
-	printf("OK:");
+	printf("Looking for shader definitions in %s \n", m_root.c_str());
+
 	createStockShadingPrograms();
-	printf("Initialization Complete \n");
 	
 }
 	
 void ShadingProgramManager::createStockShadingPrograms(){
+
 	/** read up the shader definition Xml **/
 	#ifdef LIBXML_TREE_ENABLED
 	xmlDoc* doc = NULL;
-	doc = xmlReadFile("/usr/share/artrix/shaders/shaderprograms.xml", NULL, 0);
+	doc = xmlReadFile(m_root.c_str(), NULL, 0);
 	if(doc == NULL){
 		printf("ERROR: No Shader Metadata found");
 		return;

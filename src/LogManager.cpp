@@ -12,7 +12,7 @@ LogManager* LogManager::getInstance(){
 	return m_pInstance;
 };
 
-void LogManager::initialize(){
+void LogManager::initialize(std::string& logFileName){
 	
 };
 void LogManager::shutdown(){
