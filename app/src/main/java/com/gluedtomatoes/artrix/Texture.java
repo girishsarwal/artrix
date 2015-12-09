@@ -124,4 +124,9 @@ public class Texture {
     private float getHeight(){
         return mHeight;
     }
+
+    public Texture use(){
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mId);
+        return this;
+    }
 }

@@ -5,7 +5,7 @@ package com.gluedtomatoes.artrix;
  */
 public class SplashState implements State{
     public static SplashState state = new SplashState();
-    private Sprite background = new Sprite("bg.jpg");
+    private Sprite background = new Sprite("bg.png");
     @Override
     public void enter(StateMachine sm) {
         background.init();
@@ -13,7 +13,6 @@ public class SplashState implements State{
 
     @Override
     public void update(StateMachine sm) {
-
         background.update();
     }
 

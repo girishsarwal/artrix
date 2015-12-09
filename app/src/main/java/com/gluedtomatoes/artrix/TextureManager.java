@@ -33,8 +33,6 @@ public class TextureManager {
     }
 
     public static Texture use(String textureName){
-        Texture texture = mTextureMap.get(textureName);
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture.getId());
-        return  texture;
+        return mTextureMap.get(textureName).use();
     };
 }

@@ -55,4 +55,18 @@ public class Transform {
         coords.mY = point.y / mScreenHeightPixels;
         return  coords;
     }
+
+    private Transform mParent;
+
+    private Matrix4x4 mLocal;
+    public Matrix4x4 getLocal() {
+        return mLocal;
+    }
+
+    public Matrix4x4 getWorld() {
+        if(mParent != null){
+            return mParent.getWorld().multiply(mLocal);
+        }
+        return mLocal;
+    }
 }

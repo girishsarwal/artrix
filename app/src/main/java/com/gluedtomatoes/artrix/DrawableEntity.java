@@ -28,6 +28,8 @@ public class DrawableEntity extends Entity implements Renderable{
 
     protected VertexDescriptor mVertexDescriptor;
 
+    protected Transform mTransform;
+
     DrawableEntity(){
         buffers = new int[2];
         mPosition = new Vector3();
