@@ -15,7 +15,6 @@ public class TextureManager {
     private static HashMap<String, Texture> mTextureMap= new HashMap<>();
 
     public static void init(Context context){
-
         AssetManager am = context.getAssets();
         String[] list;
 

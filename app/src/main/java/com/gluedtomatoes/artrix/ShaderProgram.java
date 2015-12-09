@@ -76,8 +76,8 @@ public class ShaderProgram {
     private static ShaderProgram createShadingProgram(AssetManager am, String name) {
         String vsPath = String.format("%s/%s/%s.vs", SHADERS_ROOT, name, name);
         String psPath = String.format("%s/%s/%s.ps", SHADERS_ROOT, name, name);
-        String vsSource = readShaderFile(am, vsPath);
-        String psSource = readShaderFile(am, psPath);
+        String vsSource = AssetLoader.readAssetString(am, vsPath);
+        String psSource = AssetLoader.readAssetString(am, psPath);
         ShaderProgram program = new ShaderProgram(name);
 
         program.setNativeId(compileProgram(
@@ -197,25 +197,6 @@ public class ShaderProgram {
         }
         vertexDescriptor.setFormat(format);
         return vertexDescriptor;
-    }
-
-    private static String readShaderFile(AssetManager am, String name){
-        String shaderSource = "";
-        try {
-
-            byte[] buffer = new byte[1024];
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-            InputStream in = am.open(name);
-            int read = 0;
-            while ((read = in.read(buffer)) != -1) {
-                baos.write(buffer, 0, read);
-            }
-            shaderSource = baos.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return shaderSource;
     }
 
     public  static ShaderProgram get(String name){

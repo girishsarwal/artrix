@@ -59,7 +59,7 @@ public class Texture {
 
             GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle[0]);
 
-            byte[] bytes = readAssetBytes(am, name);
+            byte[] bytes = AssetLoader.readAssetBytes(am, name);
             final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
 
             GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
@@ -78,23 +78,6 @@ public class Texture {
         return tex;
     }
 
-    public static byte[] readAssetBytes(AssetManager am, String name){
-        byte[] buffer = null;
-        try {
-            buffer = new byte[1024];
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-            InputStream in = am.open(name);
-            int read = 0;
-            while ((read = in.read(buffer)) != -1) {
-                baos.write(buffer, 0, read);
-            }
-            buffer = baos.toByteArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return buffer;
-    }
 
     public Texture(int texId)
     {
