@@ -54,9 +54,7 @@ public class Sprite extends DrawableEntity  {
         mTriangleCount = mIndexCount/3;
 
         mShadingProgram.use();
-        //mVertexDescriptor =  mShadingProgram.createSuitableVertexFormat();
 
-        /** generate the buffers **/
         GLES20.glGenBuffers(2, buffers, 0);
 
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, buffers[0]);
