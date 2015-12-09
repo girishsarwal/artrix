@@ -29,8 +29,14 @@ public class ArtrixView extends GLSurfaceView implements GLSurfaceView.Renderer{
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+
+        /** POI: Init all managers here **/
+
         ShaderProgram.init(mContext);
-        ((MainActivity)mContext).init();
+        TextureManager.init(mContext);
+
+        ((MainActivity) mContext).init();
+
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
