@@ -10,15 +10,15 @@ import java.nio.ByteOrder;
  */
 public class Sprite extends DrawableEntity  {
 
+    public Sprite(String texture){
+        mTexture = TextureManager.use(texture);
+    }
+
     private static float vertices[]={
-            /*-0.5f, 0.5f, 0.0f, 1.0f,
-            -0.5f, -0.5f, 0.0f, 0.0f,
-            0.5f, -0.5f, 1.0f, 0.0f,
-            0.5f, 0.5f, 1.0f, 1.0f,*/
-            -0.95f, 0.95f, 0.0f, 1.0f, 0.0f, 0.0f,
-            -0.95f, -0.95f, 0.0f, 0.0f, 0.0f, 1.0f,
-            0.95f, -0.95f, 0.0f, 0.0f, 1.0f, 0.0f,
-            0.95f, 0.95f, 0.0f, 1.0f, 1.0f, 1.0f,
+            -1.0f, 1.0f, 0.0f, 0.0f,
+            -1.0f, -1.0f, 0.0f, 1.0f,
+            1.0f, -1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 1.0f, 0.0f,
     };
 
     private static short indices[] = {
@@ -26,14 +26,13 @@ public class Sprite extends DrawableEntity  {
             0, 2, 3,
     };
 
+    private Texture mTexture;
+
     @Override
     public void init() {
         mVertexDescriptor = PredefinedVertexDescriptors.VF_SPRITE;
-        mVertexDescriptor = PredefinedVertexDescriptors.VF_POSITION_COLOR;
-
         setShadingProgram("sprite");
-        setShadingProgram("simple");
-
+        mShadingProgram.setUniformInteger("theTexture", 0);
 
         ByteBuffer bbv = ByteBuffer.allocateDirect(vertices.length * VertexDescriptor.SIZE_OF_FLOAT);
 
@@ -72,8 +71,10 @@ public class Sprite extends DrawableEntity  {
     @Override
     public void render() {
         mShadingProgram.applyVertexAttribute(mVertexDescriptor);
+
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, mIndexCount, GLES20.GL_UNSIGNED_SHORT, 0);
         super.render();
         mShadingProgram.disableVertexAttributes();
     }
+
 }

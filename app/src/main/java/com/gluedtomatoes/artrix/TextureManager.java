@@ -2,6 +2,7 @@ package com.gluedtomatoes.artrix;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.opengl.GLES20;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,9 +22,7 @@ public class TextureManager {
         try {
             list = am.list(TEXTURES_ROOT);
             for(String s: list) {
-                int texid = 0;  /** TODO: do this with a GenTexture **/
-                Texture texture = new Texture(texid);
-                texture.loadFromAssets(am, s);
+                Texture texture = Texture.loadFromAssets(am, String.format("%s/%s", TEXTURES_ROOT, s));
                 if(texture != null) {
                     mTextureMap.put(s, texture);
                 }
@@ -33,7 +32,9 @@ public class TextureManager {
         }
     }
 
-    public void use(String textureName){
-
+    public static Texture use(String textureName){
+        Texture texture = mTextureMap.get(textureName);
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture.getId());
+        return  texture;
     };
 }

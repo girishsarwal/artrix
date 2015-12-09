@@ -25,6 +25,7 @@ public class ShaderProgram {
     private HashMap<String, Integer> mAttributesMap;
 
     public ShaderProgram(String name){
+        mName = name;
         mUniformsMap = new HashMap<>();
         mAttributesMap = new HashMap<>();
     }
@@ -42,26 +43,20 @@ public class ShaderProgram {
 
     }
 
-    public void setUniformMatrix(String uniform, Object matrix){
+    public void setUniformMatrix(String uniform, Matrix4x4 matrix){
 
     }
 
     public void setUniformFloat(String uniform, float value){
 
     }
-    public void setAttributeVector(String attribute, Vector3 value){
 
+    public void setUniformInteger(String uniform, Integer  value){
+        Integer uniformLocation = mUniformsMap.get(uniform);
+        if (uniformLocation != null) {
+            GLES20.glUniform1i(uniformLocation, value);
+        }
     }
-
-    public void setAttrbuteMatrix(String uniform, Object matrix){
-
-    }
-
-    public void setAtteibuteFloat(String uniform, float value){
-
-    }
-
-
 
     public static void init(Context context){
 
@@ -91,6 +86,7 @@ public class ShaderProgram {
         ));
 
         program.fetchAttributes();
+        program.fetchUniforms();
         return program;
     }
 
@@ -131,6 +127,9 @@ public class ShaderProgram {
         return program;
     }
 
+    private void fetchUniforms() {
+        fetchUniform("theTexture");
+    }
 
     private void fetchAttributes() {
         fetchAttribute("inPosition");
@@ -143,7 +142,14 @@ public class ShaderProgram {
         fetchAttribute("inTangent");
     }
 
-    /**TODO: move to a separate class so we do not have to keep passing name **/
+
+    private void fetchUniform(String uniformName){
+        int hUniform = getUniformLocation(uniformName);
+        if(hUniform > 0){
+            mUniformsMap.put(uniformName, hUniform);
+        }
+    }
+
     private void fetchAttribute(String elementName){
         use();
         int hAttribute = getAttributeLocation(elementName);
