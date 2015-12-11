@@ -36,6 +36,7 @@ public class DrawableEntity extends Entity implements Renderable{
         mRotation = 0.0f;
         mSize = new Vector3();
         mVisible = true;
+        mTransform = new Transform();
     }
     public DrawableEntity(String shader){
         setShadingProgram(shader);
@@ -56,7 +57,7 @@ public class DrawableEntity extends Entity implements Renderable{
         this.mPosition = mPosition;
     }
     public void setPosition(Point mPosition) {
-        setPosition(Transform.PixelsToCoords(mPosition));
+        setPosition(Dimension.PixelsToCoords(mPosition));
     }
 
 
@@ -67,7 +68,7 @@ public class DrawableEntity extends Entity implements Renderable{
         this.mSize = mSize;
     }
     public void setSize(Point mSize) {
-        setSize(Transform.PixelsToCoords(mSize));
+        setSize(Dimension.PixelsToCoords(mSize));
     }
 
     public ShaderProgram getShadingProgram(){
@@ -103,9 +104,11 @@ public class DrawableEntity extends Entity implements Renderable{
 
     @Override
     public void update() {
+
         if(!mIsInitialized){
             init();
         }
+        mTransform.update();
         /* is this visible this frame, if yes push it **/
         if(mVisible){
             ArtrixView.RenderQueue.Enque(this);

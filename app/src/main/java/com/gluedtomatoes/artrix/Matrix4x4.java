@@ -1,5 +1,7 @@
 package com.gluedtomatoes.artrix;
 
+import android.opengl.Matrix;
+
 /**
  * Created by gsarwal on 10/26/2015.
  */

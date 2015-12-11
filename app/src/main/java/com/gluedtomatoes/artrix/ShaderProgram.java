@@ -102,6 +102,7 @@ public class ShaderProgram {
                 Log.e("Shader Load Error", GLES20.glGetShaderInfoLog(shader));
                 GLES20.glDeleteShader(shader);
                 shader = 0;
+                return shader;
             }
         }
         Log.i("SHADER_COMPILER", "Shader " + resource + "Compiled successfully!");
@@ -121,6 +122,7 @@ public class ShaderProgram {
                 Log.e("Shader Error", GLES20.glGetProgramInfoLog(program));
                 GLES20.glDeleteProgram(program);
                 program = 0;
+                return program;
             }
         }
         Log.i("PROGRAM_COMPILER", "Shader Program Linked successfully!");
@@ -129,6 +131,7 @@ public class ShaderProgram {
 
     private void fetchUniforms() {
         fetchUniform("theTexture");
+        fetchUniform("theMVP");
     }
 
     private void fetchAttributes() {

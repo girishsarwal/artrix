@@ -32,7 +32,6 @@ public class Sprite extends DrawableEntity  {
     public void init() {
         mVertexDescriptor = PredefinedVertexDescriptors.VF_SPRITE;
         setShadingProgram("sprite");
-        mShadingProgram.setUniformInteger("theTexture", 0);
 
         ByteBuffer bbv = ByteBuffer.allocateDirect(vertices.length * VertexDescriptor.SIZE_OF_FLOAT);
 
@@ -53,7 +52,6 @@ public class Sprite extends DrawableEntity  {
         mIndexCount = indexBuffer.remaining();
         mTriangleCount = mIndexCount/3;
 
-        mShadingProgram.use();
 
         GLES20.glGenBuffers(2, buffers, 0);
 
@@ -68,11 +66,13 @@ public class Sprite extends DrawableEntity  {
 
     @Override
     public void render() {
+        mTexture.use();
+        mShadingProgram.use();
+        mShadingProgram.setUniformInteger("theTexture", 0);
+        mShadingProgram.setUniformInteger("theMVP", 0);
         mShadingProgram.applyVertexAttribute(mVertexDescriptor);
-
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, mIndexCount, GLES20.GL_UNSIGNED_SHORT, 0);
         super.render();
         mShadingProgram.disableVertexAttributes();
     }
-
 }

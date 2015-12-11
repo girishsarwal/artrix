@@ -107,7 +107,7 @@ public class MainActivity extends Activity implements StateMachine{
 
     @Override
     public void init() {
-        Transform.init(this);
+        Dimension.init(this);
         changeState(SplashState.state);
     }
 
