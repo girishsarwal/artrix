@@ -11,22 +11,31 @@ import android.view.Display;
 public class Transform {
     public Transform(){
         mParent = null;
-        Matrix.setIdentityM(mWorld, 0);
-
+        mLocal = new Matrix4x4();
+        mWorld = new Matrix4x4();
     }
 
     private Transform mParent;
-    protected float[] mLocal = new float[16];
-    protected float[] mWorld = new float[16];
+    protected Matrix4x4 mLocal;
+    protected Matrix4x4 mWorld;
 
     public void update(){
         if(mParent == null){
             mWorld = mLocal;
             return;
         }
-        Matrix.multiplyMM(mWorld, 0, mParent.mWorld, 0, mLocal, 0);
+        mWorld.multiply(mLocal);
     }
 
+    public Matrix4x4 getLocal(){
+        return mLocal;
+    }
+    public Matrix4x4 getWorld(){
+        return mWorld;
+    }
 
-
+    public Transform translate(float x, float y, float z){
+        Matrix.translateM(mLocal.getMat(), 0, x, y, z);
+        return this;
+    }
 }

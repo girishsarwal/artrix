@@ -44,11 +44,17 @@ public class ShaderProgram {
     }
 
     public void setUniformMatrix(String uniform, Matrix4x4 matrix){
-
+        Integer uniformLocation = mUniformsMap.get(uniform);
+        if (uniformLocation != null) {
+            GLES20.glUniformMatrix4fv(uniformLocation, 1, false, matrix.getMat(), 0);
+        }
     }
 
     public void setUniformFloat(String uniform, float value){
-
+        Integer uniformLocation = mUniformsMap.get(uniform);
+        if (uniformLocation != null) {
+            GLES20.glUniform1f(uniformLocation, value);
+        }
     }
 
     public void setUniformInteger(String uniform, Integer  value){
@@ -132,6 +138,7 @@ public class ShaderProgram {
     private void fetchUniforms() {
         fetchUniform("theTexture");
         fetchUniform("theMVP");
+        fetchUniform("theGameTime");
     }
 
     private void fetchAttributes() {

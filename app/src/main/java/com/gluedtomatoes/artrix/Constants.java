@@ -9,5 +9,5 @@ import android.view.Display;
  * Created by gsarwal on 5/8/2015.
  */
 public class Constants {
-
+    public static float deltaTime = 0.0f;
 }

@@ -46,6 +46,7 @@ public class ArtrixView extends GLSurfaceView implements GLSurfaceView.Renderer{
 
     @Override
     public void onDrawFrame(GL10 gl) {
+        Constants.deltaTime+=0.01;
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         mGame.update();
         RenderQueue.Process();

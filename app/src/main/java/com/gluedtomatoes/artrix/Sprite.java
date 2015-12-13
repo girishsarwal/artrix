@@ -61,6 +61,7 @@ public class Sprite extends DrawableEntity  {
         GLES20.glBindBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
         GLES20.glBufferData(GLES20.GL_ELEMENT_ARRAY_BUFFER, mIndexCount * VertexDescriptor.SIZE_OF_SHORT, indexBuffer, GLES20.GL_STATIC_DRAW );
 
+        mTransform.translate(0.2f, 0.0f, 0.0f);
         super.init();
     }
 
@@ -69,7 +70,8 @@ public class Sprite extends DrawableEntity  {
         mTexture.use();
         mShadingProgram.use();
         mShadingProgram.setUniformInteger("theTexture", 0);
-        mShadingProgram.setUniformInteger("theMVP", 0);
+        mShadingProgram.setUniformMatrix("theMVP", mTransform.getWorld());
+        mShadingProgram.setUniformFloat("theGameTime", Constants.deltaTime);
         mShadingProgram.applyVertexAttribute(mVertexDescriptor);
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, mIndexCount, GLES20.GL_UNSIGNED_SHORT, 0);
         super.render();
