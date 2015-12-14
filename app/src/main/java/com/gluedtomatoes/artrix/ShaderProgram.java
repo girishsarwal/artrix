@@ -5,9 +5,7 @@ import android.content.res.AssetManager;
 import android.opengl.GLES20;
 import android.util.Log;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 
 /**
@@ -39,14 +37,17 @@ public class ShaderProgram {
     }
 
 
-    public void setUniformVector(String uniform, Vector3 value){
-
+    public void setUniformVector(String uniform, Vector4 vector){
+        Integer uniformLocation = mUniformsMap.get(uniform);
+        if (uniformLocation != null) {
+            GLES20.glUniformMatrix4fv(uniformLocation, 1, false, vector.getRaw(), 0);
+        }
     }
 
     public void setUniformMatrix(String uniform, Matrix4x4 matrix){
         Integer uniformLocation = mUniformsMap.get(uniform);
         if (uniformLocation != null) {
-            GLES20.glUniformMatrix4fv(uniformLocation, 1, false, matrix.getMat(), 0);
+            GLES20.glUniformMatrix4fv(uniformLocation, 1, false, matrix.getRaw(), 0);
         }
     }
 

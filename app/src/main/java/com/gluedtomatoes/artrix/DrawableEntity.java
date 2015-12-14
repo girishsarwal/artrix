@@ -20,8 +20,8 @@ public class DrawableEntity extends Entity implements Renderable{
     protected int mIndexCount = 0;
 
     protected boolean mVisible;
-    protected Vector3 mPosition;
-    protected Vector3 mSize;
+    protected Vector4 mPosition;
+    protected Vector4 mSize;
     protected float mRotation;
 
     protected ShaderProgram mShadingProgram;
@@ -32,9 +32,9 @@ public class DrawableEntity extends Entity implements Renderable{
 
     DrawableEntity(){
         buffers = new int[2];
-        mPosition = new Vector3();
+        mPosition = new Vector4();
         mRotation = 0.0f;
-        mSize = new Vector3();
+        mSize = new Vector4();
         mVisible = true;
         mTransform = new Transform();
     }
@@ -50,10 +50,10 @@ public class DrawableEntity extends Entity implements Renderable{
         this.mRotation = mRotation;
     }
 
-    public Vector3 getPosition() {
+    public Vector4 getPosition() {
         return mPosition;
     }
-    public void setPosition(Vector3 mPosition) {
+    public void setPosition(Vector4 mPosition) {
         this.mPosition = mPosition;
     }
     public void setPosition(Point mPosition) {
@@ -61,10 +61,10 @@ public class DrawableEntity extends Entity implements Renderable{
     }
 
 
-    public Vector3 getSize() {
+    public Vector4 getSize() {
         return mSize;
     }
-    public void setSize(Vector3 mSize) {
+    public void setSize(Vector4 mSize) {
         this.mSize = mSize;
     }
     public void setSize(Point mSize) {

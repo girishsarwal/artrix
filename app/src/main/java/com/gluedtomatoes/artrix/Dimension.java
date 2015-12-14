@@ -38,21 +38,18 @@ public class Dimension {
     public static void WorldToScreen(){
 
     }
-    public static Point CoordsToPixels(Vector3 vector){
+    public static Point CoordsToPixels(Vector4 vector){
         Point screen = new Point();
-        screen.x = (int)vector.mX * mScreenWidthPixels;
-        screen.y = (int)vector.mY * mScreenHeightPixels;
+        screen.x = (int)vector.getX() * mScreenWidthPixels;
+        screen.y = (int)vector.getY() * mScreenHeightPixels;
         return screen;
     }
 
     /***
      * converts from pixels to cooridnates
      */
-    public static Vector3 PixelsToCoords(Point point){
-        Vector3 coords = new Vector3();
-        coords.mX = point.x / mScreenWidthPixels;
-        coords.mY = point.y / mScreenHeightPixels;
-        return  coords;
+    public static Vector4 PixelsToCoords(Point point){
+        return new Vector4(point.x / mScreenWidthPixels, point.y / mScreenHeightPixels, 0.0f);
     }
 
 }
