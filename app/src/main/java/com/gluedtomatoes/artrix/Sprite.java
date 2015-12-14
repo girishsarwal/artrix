@@ -15,10 +15,10 @@ public class Sprite extends DrawableEntity  {
     }
 
     private static float vertices[]={
-            -1.0f, 1.0f, 0.0f, 0.0f,
-            -1.0f, -1.0f, 0.0f, 1.0f,
-            1.0f, -1.0f, 1.0f, 1.0f,
-            1.0f, 1.0f, 1.0f, 0.0f,
+            -1.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+            -1.0f, -1.0f, 0.0f, 0.0f, 1.0f,
+            1.0f, -1.0f, 0.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
     };
 
     private static short indices[] = {
@@ -63,6 +63,8 @@ public class Sprite extends DrawableEntity  {
 
         super.init();
         mTransform.setmCamera(Constants.camera);
+        //mTransform.rotateZ(45);
+
     }
 
     @Override
@@ -71,7 +73,7 @@ public class Sprite extends DrawableEntity  {
         mTexture.use();
         mShadingProgram.use();
         mShadingProgram.setUniformInteger("theTexture", 0);
-        mShadingProgram.setUniformMatrix("theMVP", mTransform.getMVP(Constants.camera));
+        mShadingProgram.setUniformMatrix("theMVP", mTransform.getBillboardMVP(Constants.camera));
         mShadingProgram.setUniformFloat("theGameTime", Constants.deltaTime);
         mShadingProgram.applyVertexAttribute(mVertexDescriptor);
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, mIndexCount, GLES20.GL_UNSIGNED_SHORT, 0);

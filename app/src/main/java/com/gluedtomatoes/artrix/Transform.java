@@ -26,14 +26,15 @@ public class Transform {
     protected Camera mCamera;
 
     public void update() {
-        mWorld.identity();
         mMvp.identity();
+        if(mParent != null){
+            mWorld = mParent.getWorld().multiplyAndClone(mLocal);
+        } else mWorld = mLocal;
 
-        if (mParent == null) {
-            mWorld = mLocal;
-        } else mWorld.multiply(mLocal);
-
-
+        if (mCamera != null) {
+            mMvp.multiply(mCamera.getView());
+            mMvp.multiply(mWorld);
+        }
     }
 
     public Matrix4x4 getLocal(){
@@ -44,15 +45,19 @@ public class Transform {
     }
 
     public Matrix4x4 getMVP(Camera camera){
-        if(mCamera != null){
-            mMvp.multiply(mCamera.getView());
-            mMvp.multiply(mWorld);
-        }
         return mMvp;
     }
-
+    public Matrix4x4 getBillboardMVP(Camera camera){
+        Matrix4x4 bbMatrix = mMvp.clone();
+        bbMatrix.clearUpperTriangle();
+        return  bbMatrix;
+    }
     public Transform translate(float x, float y, float z){
         Matrix.translateM(mLocal.getRaw(), 0, x, y, z);
+        return this;
+    }
+    public Transform rotateZ(float angle){
+        Matrix.rotateM(mLocal.getRaw(),0, angle, 0, 0, 1);
         return this;
     }
 }

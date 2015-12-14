@@ -26,7 +26,7 @@ public class Camera {
     private Matrix4x4 mProjection;
     private Matrix4x4 mView;
 
-    public Camera(Vector4 position, Vector4 lookAt, float aspectRatio, float fov, float near, float far){
+    public Camera(Vector4 position, Vector4 lookAt, float aspectRatio, float fov, float near, float far) {
         mProjection = new Matrix4x4();
         mView = new Matrix4x4();
         mUp = new Vector4(0.0f, 1.0f, 0.0f);
@@ -37,14 +37,11 @@ public class Camera {
         mFov = fov;
         mNearPlane = near;
         mFarPlane = far;
-
-
     }
 
     void update(double gameTime){
         Matrix.setLookAtM(mView.getRaw(), 0, mPosition.getX(), mPosition.getY(), mPosition.getZ(), mLookAt.getX(), mLookAt.getY(), mLookAt.getZ(), mUp.getX(), mUp.getY(), mUp.getZ());
         Matrix.frustumM(mProjection.getRaw(), 0, -mAspectRatio, mAspectRatio, -1.0f, 1.0f, mNearPlane, mFarPlane);
+
     }
-
-
 }
