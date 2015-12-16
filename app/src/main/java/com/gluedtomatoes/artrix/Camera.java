@@ -5,7 +5,7 @@ import android.opengl.Matrix;
 /**
  * Created by gsarwal on 12/14/2015.
  */
-public class Camera {
+public class Camera extends Entity {
     private Vector4 mPosition;
     private Vector4 mLookAt;
     private Vector4 mUp;
@@ -26,7 +26,13 @@ public class Camera {
     private Matrix4x4 mProjection;
     private Matrix4x4 mView;
 
-    public Camera(Vector4 position, Vector4 lookAt, float aspectRatio, float fov, float near, float far) {
+    public static Camera create(String name, Vector4 position, Vector4 lookAt, float aspectRatio, float fov, float near, float far){
+        return new Camera(name, position, lookAt, aspectRatio, fov, near, far);
+    }
+
+    private Camera(String name, Vector4 position, Vector4 lookAt, float aspectRatio, float fov, float near, float far) {
+        setName(name);
+
         mProjection = new Matrix4x4();
         mView = new Matrix4x4();
         mUp = new Vector4(0.0f, 1.0f, 0.0f);

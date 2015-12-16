@@ -1,6 +1,8 @@
 package com.gluedtomatoes.artrix;
 
 import android.opengl.GLES20;
+import android.text.method.TransformationMethod;
+import android.transition.Scene;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -62,9 +64,6 @@ public class Sprite extends DrawableEntity  {
         GLES20.glBufferData(GLES20.GL_ELEMENT_ARRAY_BUFFER, mIndexCount * VertexDescriptor.SIZE_OF_SHORT, indexBuffer, GLES20.GL_STATIC_DRAW);
 
         super.init();
-        mTransform.setmCamera(Constants.camera);
-        //mTransform.rotateZ(45);
-
     }
 
     @Override
@@ -73,7 +72,7 @@ public class Sprite extends DrawableEntity  {
         mTexture.use();
         mShadingProgram.use();
         mShadingProgram.setUniformInteger("theTexture", 0);
-        mShadingProgram.setUniformMatrix("theMVP", mTransform.getBillboardMVP(Constants.camera));
+        mShadingProgram.setUniformMatrix("theMVP", Transform.getMVP(, SceneManager.getActiveCamera());
         mShadingProgram.setUniformFloat("theGameTime", Constants.deltaTime);
         mShadingProgram.applyVertexAttribute(mVertexDescriptor);
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, mIndexCount, GLES20.GL_UNSIGNED_SHORT, 0);

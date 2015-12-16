@@ -9,7 +9,20 @@ public class Entity implements StateMachine {
     protected  State mCurrentState;
     protected  State mPreviousState;
     protected  State mGlobalState;
+    protected Node node;
 
+    public void attachToNode(Node node){
+        this.node = node;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    protected  String name;
     protected boolean mIsInitialized;
 
     public boolean isInitialized() {
