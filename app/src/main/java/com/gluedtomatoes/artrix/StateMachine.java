@@ -12,7 +12,7 @@ public interface StateMachine {
     public void setGlobalState(State state);
 
     public void init();
-    public void update();
+    public void update(double gameTime);
     public void shutdown();
 
     public void changeState(State state);

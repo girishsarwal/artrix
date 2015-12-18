@@ -3,11 +3,12 @@ package com.gluedtomatoes.artrix;
 import android.transition.Scene;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by girishsarwal on 16/12/15.
  */
-public class SceneNode implements Node{
+public class SceneNode implements Node {
     private String mName;
 
     private Vector4 mInitialPosition;
@@ -18,21 +19,28 @@ public class SceneNode implements Node{
     protected Vector4 mSize;
     protected float mRotation;
 
-    protected  SceneNode mParent;
+    protected SceneNode mParent;
+    protected Entity attachedEntity;
+    protected Matrix4x4 mLocal;
+    protected Matrix4x4 mWorld;
+    protected Matrix4x4 mMvp;
+    protected Matrix4x4 mBillboardMvp;
 
+    private HashMap<String, Node> mChildren;
+
+    @Override
     public Node getParent() {
         return mParent;
     }
-    public void setParent(SceneNode parent){
-        this.mParent = parent;
+
+    @Override
+    public void setAttachedEntity(Entity entity) {
+        this.attachedEntity = entity;
     }
 
-    public Matrix4x4 getMvp() {
-        return mMvp;
-    }
-
-    public void setMvp(Matrix4x4 mMvp) {
-        this.mMvp = mMvp;
+    @Override
+    public Entity getAttachedEntity() {
+        return attachedEntity;
     }
 
     public Matrix4x4 getWorld() {
@@ -51,9 +59,13 @@ public class SceneNode implements Node{
         this.mLocal = mLocal;
     }
 
-    protected Matrix4x4 mLocal;
-    protected Matrix4x4 mWorld;
-    protected Matrix4x4 mMvp;
+    public Matrix4x4 getMvp() {
+        return mMvp;
+    }
+
+    public void setMvp(Matrix4x4 mMvp) {
+        this.mMvp = mMvp;
+    }
 
     public Matrix4x4 getBillboardMvp() {
         return mBillboardMvp;
@@ -63,12 +75,11 @@ public class SceneNode implements Node{
         this.mBillboardMvp = mBillboardMvp;
     }
 
-    protected Matrix4x4 mBillboardMvp;
-
-    private HashMap<String, Node> mChildren;
-
-    public SceneNode(String name){
+    public SceneNode(String name, SceneNode parent) {
         mName = name;
+        mParent = parent;
+
+        mChildren = new HashMap<>();
         mLocal = new Matrix4x4();
         mWorld = new Matrix4x4();
         mMvp = new Matrix4x4();
@@ -89,9 +100,15 @@ public class SceneNode implements Node{
 
     @Override
     public Node createChild(String name) {
-        SceneNode node = new SceneNode(name);
-        node.setParent(this);
+        SceneNode node = new SceneNode(name, this);
         mChildren.put(name, node);
+        return node;
+    }
+    public Node createChild(String name, Entity attachedEntity) {
+        SceneNode node = new SceneNode(name, this);
+        mChildren.put(name, node);
+        this.attachedEntity = attachedEntity;
+        attachedEntity.node = node;
         return node;
     }
 
@@ -151,15 +168,13 @@ public class SceneNode implements Node{
 
     }
 
-    public void update(){
-        mMvp.identity();
-        if(mParent != null){
-            mWorld = mParent.getWorld().multiplyAndClone(mLocal);
-        } else mWorld = mLocal;
+    public void update(double gameTime) {
+        if(attachedEntity != null){
+            attachedEntity.update(gameTime);
+        }
 
-        if (SceneManager.getActiveCamera()!= null) {
-            mMvp.multiply(SceneManager.getActiveCamera().getView());
-            mMvp.multiply(mWorld);
+        for(Map.Entry<String, Node> entry : mChildren.entrySet()) {
+            entry.getValue().update(gameTime);
         }
     }
 }

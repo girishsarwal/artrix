@@ -114,12 +114,13 @@ public class MainActivity extends Activity implements StateMachine{
     @Override
     public void init() {
         Dimension.init(this);
+        SplashState.state.init(this);
         changeState(SplashState.state);
     }
 
     @Override
-    public void update() {
-        mCurrentState.update(this);
+    public void update(double gameTime) {
+        mCurrentState.update(this, gameTime);
     }
 
     @Override

@@ -7,7 +7,9 @@ import android.opengl.Matrix;
  */
 public class Transform {
     public static Matrix4x4 getMVP(SceneNode node, Camera camera){
-        return null;
+        Matrix4x4 m = new Matrix4x4();
+        m.multiply(node.getWorld().multiply(camera.getView().multiply(camera.getProjection())));
+        return m;
     }
     public static Matrix4x4 getBillboardMVP(SceneNode node, Camera camera){
         return null;

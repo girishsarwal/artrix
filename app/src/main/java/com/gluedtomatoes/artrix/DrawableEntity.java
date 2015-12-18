@@ -21,7 +21,6 @@ public class DrawableEntity extends Entity implements Renderable{
 
     protected boolean mVisible;
 
-
     protected ShaderProgram mShadingProgram;
 
     protected VertexDescriptor mVertexDescriptor;
@@ -30,16 +29,16 @@ public class DrawableEntity extends Entity implements Renderable{
 
     DrawableEntity(){
         buffers = new int[2];
-
         mVisible = true;
         mTransform = new Transform();
+    }
+    public DrawableEntity(Node node, String shader){
+        this.node = node;
+        setShadingProgram(shader);
     }
     public DrawableEntity(String shader){
         setShadingProgram(shader);
     }
-
-
-
 
     public ShaderProgram getShadingProgram(){
         return mShadingProgram;
@@ -73,7 +72,7 @@ public class DrawableEntity extends Entity implements Renderable{
     }
 
     @Override
-    public void update() {
+    public void update(double gameTime) {
 
         if(!mIsInitialized){
             init();

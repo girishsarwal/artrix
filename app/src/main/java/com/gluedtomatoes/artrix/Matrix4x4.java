@@ -34,8 +34,9 @@ public class Matrix4x4 {
         Matrix.multiplyMM(n._raw, 0, _raw, 0, rhs._raw, 0);
         return n;
     }
-    public void multiply(Matrix4x4 rhs){
+    public Matrix4x4 multiply(Matrix4x4 rhs){
         Matrix.multiplyMM(_raw, 0, _raw, 0, rhs._raw, 0);
+        return this;
     }
 
     public Matrix4x4 set(float _11, float _12, float _13, float _14,

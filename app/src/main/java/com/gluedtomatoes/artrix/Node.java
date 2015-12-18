@@ -34,4 +34,9 @@ public interface Node {
 
     public Node getParent();
 
+    public void setAttachedEntity(Entity entity);
+
+    public Entity getAttachedEntity();
+
+    public void update(double gameTime);
 }

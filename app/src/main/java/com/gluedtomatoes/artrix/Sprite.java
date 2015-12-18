@@ -32,6 +32,7 @@ public class Sprite extends DrawableEntity  {
 
     @Override
     public void init() {
+
         mVertexDescriptor = PredefinedVertexDescriptors.VF_SPRITE;
         setShadingProgram("sprite");
 
@@ -72,7 +73,7 @@ public class Sprite extends DrawableEntity  {
         mTexture.use();
         mShadingProgram.use();
         mShadingProgram.setUniformInteger("theTexture", 0);
-        mShadingProgram.setUniformMatrix("theMVP", Transform.getMVP(, SceneManager.getActiveCamera());
+        mShadingProgram.setUniformMatrix("theMVP", Transform.getMVP((SceneNode)node, SceneManager.getActiveCamera()));
         mShadingProgram.setUniformFloat("theGameTime", Constants.deltaTime);
         mShadingProgram.applyVertexAttribute(mVertexDescriptor);
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, mIndexCount, GLES20.GL_UNSIGNED_SHORT, 0);
