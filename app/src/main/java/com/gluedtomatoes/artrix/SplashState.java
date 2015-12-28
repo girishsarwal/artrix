@@ -22,6 +22,7 @@ public class SplashState implements State{
 
     @Override
     public void update(StateMachine sm, double gameTime) {
+
         visual.update(gameTime);
     }
 

@@ -10,7 +10,6 @@ public class Camera extends Entity {
     private Vector4 mLookAt;
     private Vector4 mUp;
 
-    private float mFov;
     private float mAspectRatio;
     private float mNearPlane;
     private float mFarPlane;
@@ -26,11 +25,11 @@ public class Camera extends Entity {
     private Matrix4x4 mProjection;
     private Matrix4x4 mView;
 
-    public static Camera create(String name, Vector4 position, Vector4 lookAt, float aspectRatio, float fov, float near, float far){
-        return new Camera(name, position, lookAt, aspectRatio, fov, near, far);
+    public static Camera create(String name, Vector4 position, Vector4 lookAt, float aspectRatio, float near, float far){
+        return new Camera(name, position, lookAt, aspectRatio, near, far);
     }
 
-    private Camera(String name, Vector4 position, Vector4 lookAt, float aspectRatio, float fov, float near, float far) {
+    private Camera(String name, Vector4 position, Vector4 lookAt, float aspectRatio, float near, float far) {
         setName(name);
 
         mProjection = new Matrix4x4();
@@ -40,7 +39,7 @@ public class Camera extends Entity {
         mPosition = position;
         mLookAt = lookAt;
         mAspectRatio = aspectRatio;
-        mFov = fov;
+
         mNearPlane = near;
         mFarPlane = far;
     }
