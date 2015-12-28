@@ -6,7 +6,7 @@ package com.gluedtomatoes.artrix;
 public class SplashState implements State{
     public static SplashState state = new SplashState();
     private Scene visual;
-    private Sprite background = new Sprite("bg.png");
+    private Sprite background = new Sprite("test.png");
 
     @Override
     public void init(StateMachine sm) {

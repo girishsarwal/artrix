@@ -36,6 +36,7 @@ public class SceneNode implements Node {
     @Override
     public void setAttachedEntity(Entity entity) {
         this.attachedEntity = entity;
+        entity.node = this;
     }
 
     @Override
@@ -106,9 +107,9 @@ public class SceneNode implements Node {
     }
     public Node createChild(String name, Entity attachedEntity) {
         SceneNode node = new SceneNode(name, this);
+        node.setAttachedEntity(attachedEntity);
         mChildren.put(name, node);
-        this.attachedEntity = attachedEntity;
-        attachedEntity.node = node;
+
         return node;
     }
 

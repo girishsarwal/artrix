@@ -1,7 +1,6 @@
 attribute vec3 inPosition;
 attribute vec2 inTex0;
 uniform mat4 theMVP;
-uniform float theGameTime;
 
 varying vec2 texCoord;
 void main() {
