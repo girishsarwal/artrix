@@ -73,7 +73,7 @@ public class Sprite extends DrawableEntity  {
         mTexture.use();
         mShadingProgram.use();
         mShadingProgram.setUniformInteger("theTexture", 0);
-        mShadingProgram.setUniformMatrix("theMVP", Transform.getMVP((SceneNode)node, SceneManager.getActiveCamera()));
+        mShadingProgram.setUniformMatrix("theMVP", ((SceneNode)node).getMvp());
         mShadingProgram.setUniformFloat("theGameTime", Constants.deltaTime);
         mShadingProgram.applyVertexAttribute(mVertexDescriptor);
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, mIndexCount, GLES20.GL_UNSIGNED_SHORT, 0);

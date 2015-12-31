@@ -60,7 +60,6 @@ public class Matrix4x4 {
         return this;
     }
 
-
     public Matrix4x4 setRow(int row, float _1, float _2, float _3, float _4){
         _raw[((row - 1) * 4) + 0] = _1;
         _raw[((row - 1) * 4) + 1] = _2;
@@ -68,7 +67,4 @@ public class Matrix4x4 {
         _raw[((row - 1) * 4) + 3] = _4;
         return this;
     }
-
-
-
 }

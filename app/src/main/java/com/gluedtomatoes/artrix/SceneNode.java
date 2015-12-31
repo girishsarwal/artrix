@@ -1,7 +1,5 @@
 package com.gluedtomatoes.artrix;
 
-import android.transition.Scene;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,13 +14,15 @@ public class SceneNode implements Node {
     private Vector4 mInitialOrientation;
 
     protected Vector4 mPosition;
-    protected Vector4 mSize;
+    protected Vector4 mScale;
     protected float mRotation;
 
     protected SceneNode mParent;
     protected Entity attachedEntity;
+
     protected Matrix4x4 mLocal;
     protected Matrix4x4 mWorld;
+
     protected Matrix4x4 mMvp;
     protected Matrix4x4 mBillboardMvp;
 
@@ -46,6 +46,13 @@ public class SceneNode implements Node {
 
     public Matrix4x4 getWorld() {
         return mWorld;
+    }
+
+    public Matrix4x4 getParentWorld(){
+        if(mParent == null){
+            return new Matrix4x4();
+        }
+        return mParent.getWorld();
     }
 
     public void setWorld(Matrix4x4 mWorld) {
@@ -84,9 +91,10 @@ public class SceneNode implements Node {
         mLocal = new Matrix4x4();
         mWorld = new Matrix4x4();
         mMvp = new Matrix4x4();
+        mBillboardMvp = new Matrix4x4();
         mPosition = new Vector4();
         mRotation = 0.0f;
-        mSize = new Vector4();
+        mScale = new Vector4();
     }
 
     @Override
@@ -141,12 +149,12 @@ public class SceneNode implements Node {
 
     @Override
     public void translate(Vector4 vector) {
-
+        mPosition.add(vector);
     }
 
     @Override
     public void scale(Vector4 vector) {
-
+        mScale.multiply(vector);
     }
 
     @Override
@@ -170,10 +178,31 @@ public class SceneNode implements Node {
     }
 
     public void update(double gameTime) {
+        /** update the matrices **/
+        mLocal.identity();
+        mWorld.identity();
+
+        /** update local transformations **/
+        Transform.applyScaling(mLocal, mScale);
+        Transform.applyTranslation(mLocal, mPosition);
+
+        /** update world by applying parent world and local transformation **/
+        Transform.applyWorldTransform(mWorld, getParentWorld(), mLocal);
+
+        mMvp.identity();
+        mBillboardMvp.identity();
+        /** update model by applying the model transform**/
+        Transform.applyModelTransform(mMvp, mWorld);
+        /** update projection by applying the default camera transforms, view and projection **/
+        Transform.applyDefaultCameraTransforms(mMvp);
+
+
+        /** upate the attached entity**/
         if(attachedEntity != null){
             attachedEntity.update(gameTime);
         }
 
+        /** update the children **/
         for(Map.Entry<String, Node> entry : mChildren.entrySet()) {
             entry.getValue().update(gameTime);
         }
