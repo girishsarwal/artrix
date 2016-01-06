@@ -199,6 +199,7 @@ public class SceneNode implements Node {
 
         Matrix.translateM(mLocal._raw, 0, mPosition.getX(), mPosition.getY(), mPosition.getZ());
         Matrix.multiplyMM(mWorld._raw, 0, getParentWorld()._raw, 0, mLocal._raw, 0);
+
         Matrix.multiplyMM(mMvp._raw, 0, mMvp._raw, 0, mWorld._raw, 0);
         Matrix.multiplyMM(mMvp._raw, 0, mMvp._raw, 0, SceneManager.getActiveCamera().getView()._raw, 0);
         Matrix.multiplyMM(mMvp._raw, 0, mMvp._raw, 0, SceneManager.getActiveCamera().getProjection()._raw, 0);

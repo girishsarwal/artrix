@@ -13,7 +13,7 @@ public class SplashState implements State{
         background.init();
         visual = SceneManager.createScene("SplashScene");
         visual.getRoot().createChild("background", background);
-
+        background.getNode().translate(new Vector4(0.0f, 0.0f, 0));
     }
 
     @Override
@@ -24,7 +24,7 @@ public class SplashState implements State{
     @Override
     public void update(StateMachine sm, double gameTime) {
         visual.update(gameTime);
-        //background.getNode().translate(new Vector4(0.0f, 0.0f, 0.010f));
+
     }
 
     @Override

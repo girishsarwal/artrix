@@ -69,8 +69,8 @@ public class Camera extends Entity {
 
     @Override
     public void update(double gameTime) {
-        Matrix.setLookAtM(mView.getRaw(), 0, mPosition.getX(), mPosition.getY(), mPosition.getZ(), mLookAt.getX(), mLookAt.getY(), mLookAt.getZ(), mUp.getX(), mUp.getY(), mUp.getZ());
-        Matrix.frustumM(mProjection.getRaw(), 0, -mAspectRatio, mAspectRatio, -1.0f, 1.0f, mNearPlane, mFarPlane);
+        Matrix.setLookAtM(mView._raw, 0, mPosition.getX(), mPosition.getY(), mPosition.getZ(), mLookAt.getX(), mLookAt.getY(), mLookAt.getZ(), mUp.getX(), mUp.getY(), mUp.getZ());
+        Matrix.frustumM(mProjection._raw, 0, -mAspectRatio, mAspectRatio, -1.0f, 1.0f, mNearPlane, mFarPlane);
         //Matrix.perspectiveM(mPosition._raw, 0, mFov, mAspectRatio, mNearPlane, mFarPlane);
     }
 }
