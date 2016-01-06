@@ -41,7 +41,7 @@ public class Transform {
     }
 
     public static void applyCameraTransforms(Matrix4x4 mvp, Camera camera){
-        mvp.multiply(camera.getView()).multiply(camera.getProjection());
+        mvp.multiply(camera.getProjection()).multiply(camera.getView());
     }
     public static void applyDefaultCameraTransforms(Matrix4x4 mvp){
         applyCameraTransforms(mvp, SceneManager.getActiveCamera());

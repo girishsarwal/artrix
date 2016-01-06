@@ -10,5 +10,6 @@ import android.view.Display;
  */
 public class Constants {
     public static float deltaTime = 0.0f;
-    public static Camera camera = (Camera) SceneManager.createCamera("Default Camera", new Vector4(0,0,0), new Vector4(0, 0, 1), Dimension.mAspectRatio, 0.5f, 1000.0f);
+    public static Camera camera = (Camera) SceneManager.createCamera("Default Camera", new Vector4(0, 0, 1.0f), new Vector4(0, 0, 0), Dimension.mAspectRatio, 0.5f, 100.0f);
+    //public static Camera camera = (Camera) SceneManager.createCamera("Default Camera", new Vector4(0,0,0), new Vector4(0, 0, 1), 60.0f, Dimension.mAspectRatio, 0.5f, 1000.0f);
 }

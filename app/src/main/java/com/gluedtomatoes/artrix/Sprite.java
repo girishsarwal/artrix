@@ -17,10 +17,10 @@ public class Sprite extends DrawableEntity  {
     }
 
     private static float vertices[]={
-            -1.0f, 1.0f, 0.0f, 0.0f, 0.0f,
-            -1.0f, -1.0f, 0.0f, 0.0f, 1.0f,
-            1.0f, -1.0f, 0.0f, 1.0f, 1.0f,
-            1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+            -1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+            -1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+            1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f,
     };
 
     private static short indices[] = {
@@ -69,7 +69,6 @@ public class Sprite extends DrawableEntity  {
 
     @Override
     public void render() {
-        Constants.camera.update(0);
         mTexture.use();
         mShadingProgram.use();
         mShadingProgram.setUniformInteger("theTexture", 0);

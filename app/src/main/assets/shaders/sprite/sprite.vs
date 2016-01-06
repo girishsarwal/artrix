@@ -1,9 +1,9 @@
-attribute vec3 inPosition;
+attribute vec4 inPosition;
 attribute vec2 inTex0;
 uniform mat4 theMVP;
 
 varying vec2 texCoord;
 void main() {
-   gl_Position = vec4(inPosition.xy, 0.1, 1.0) * theMVP;
+   gl_Position = theMVP * inPosition;
    texCoord = inTex0;
 }

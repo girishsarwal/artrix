@@ -8,7 +8,6 @@ import android.opengl.Matrix;
 
 public class Vector4 {
     public float[] _raw;
-
     public Vector4(float mX, float mY, float mZ, float mW) {
         _raw = new float[4];
         _raw[0] = mX; _raw[1] = mY; _raw[2] = mZ; _raw[3] = mW;

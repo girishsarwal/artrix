@@ -1,5 +1,7 @@
 package com.gluedtomatoes.artrix;
 
+import android.opengl.Matrix;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +21,12 @@ public class SceneNode implements Node {
 
     protected SceneNode mParent;
     protected Entity attachedEntity;
+
+//    protected float[] local;
+//    protected float[] world;
+//    protected float[] mvp;
+//    protected float [] bmvp;
+//
 
     protected Matrix4x4 mLocal;
     protected Matrix4x4 mWorld;
@@ -95,6 +103,11 @@ public class SceneNode implements Node {
         mPosition = new Vector4();
         mRotation = 0.0f;
         mScale = new Vector4();
+
+//        local = new float[16];
+//        world = new float[16];
+//        mvp = new float[16];
+//        bmvp = new float[16];
     }
 
     @Override
@@ -181,21 +194,37 @@ public class SceneNode implements Node {
         /** update the matrices **/
         mLocal.identity();
         mWorld.identity();
-
-        /** update local transformations **/
-        Transform.applyScaling(mLocal, mScale);
-        Transform.applyTranslation(mLocal, mPosition);
-
-        /** update world by applying parent world and local transformation **/
-        Transform.applyWorldTransform(mWorld, getParentWorld(), mLocal);
-
         mMvp.identity();
         mBillboardMvp.identity();
-        /** update model by applying the model transform**/
-        Transform.applyModelTransform(mMvp, mWorld);
-        /** update projection by applying the default camera transforms, view and projection **/
-        Transform.applyDefaultCameraTransforms(mMvp);
 
+        Matrix.translateM(mLocal._raw, 0, mPosition.getX(), mPosition.getY(), mPosition.getZ());
+        Matrix.multiplyMM(mWorld._raw, 0, getParentWorld()._raw, 0, mLocal._raw, 0);
+        Matrix.multiplyMM(mMvp._raw, 0, mMvp._raw, 0, mWorld._raw, 0);
+        Matrix.multiplyMM(mMvp._raw, 0, mMvp._raw, 0, SceneManager.getActiveCamera().getView()._raw, 0);
+        Matrix.multiplyMM(mMvp._raw, 0, mMvp._raw, 0, SceneManager.getActiveCamera().getProjection()._raw, 0);
+
+
+
+
+
+
+
+
+
+
+
+        /** update local transformations **/
+        //Transform.applyScaling(mLocal, mScale);
+        //Transform.applyTranslation(mLocal, mPosition);
+
+        /** update world by applying parent world and local transformation **/
+        //Transform.applyWorldTransform(mWorld, getParentWorld(), mLocal);
+
+        /** update model by applying the model transform**/
+        //Transform.applyModelTransform(mMvp, mWorld);
+
+        /** update projection by applying the default camera transforms, view and projection **/
+        //Transform.applyDefaultCameraTransforms(mMvp);
 
         /** upate the attached entity**/
         if(attachedEntity != null){

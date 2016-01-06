@@ -6,7 +6,7 @@ import android.opengl.Matrix;
  * Created by gsarwal on 10/26/2015.
  */
 public class Matrix4x4 {
-    private float[] _raw;
+    public float[] _raw;
     public float[] getRaw(){
         return _raw;
     }
@@ -22,10 +22,11 @@ public class Matrix4x4 {
     }
 
     public Matrix4x4 clone(){
-        Matrix4x4 m = new Matrix4x4().set(_raw[0], _raw[1], _raw[2], _raw[3],
-                _raw[4], _raw[5], _raw[6], _raw[7],
-                _raw[8], _raw[9], _raw[10], _raw[11],
-                _raw[12], _raw[13], _raw[14], _raw[15]);
+        Matrix4x4 m = new Matrix4x4().set(
+                _raw[0], _raw[4], _raw[8], _raw[12],
+                _raw[1], _raw[5], _raw[9], _raw[13],
+                _raw[2], _raw[6], _raw[10], _raw[14],
+                _raw[3], _raw[7], _raw[11], _raw[15]);
         return m;
     }
 
@@ -57,14 +58,6 @@ public class Matrix4x4 {
         _raw[0] = 1.0f; _raw[1]= 0.0f; _raw[2] = 0.0f;
         _raw[4] = 0.0f; _raw[5]= 1.0f; _raw[6] = 0.0f;
         _raw[8] = 0.0f; _raw[9]= 0.0f; _raw[10] = 1.0f;
-        return this;
-    }
-
-    public Matrix4x4 setRow(int row, float _1, float _2, float _3, float _4){
-        _raw[((row - 1) * 4) + 0] = _1;
-        _raw[((row - 1) * 4) + 1] = _2;
-        _raw[((row - 1) * 4) + 2] = _3;
-        _raw[((row - 1) * 4) + 3] = _4;
         return this;
     }
 }

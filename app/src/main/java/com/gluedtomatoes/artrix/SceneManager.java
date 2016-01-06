@@ -47,6 +47,11 @@ public class SceneManager {
         cameras.put(name, camera);
         return setActiveCamera(name);
     };
+    public static Entity createCamera(String name, Vector4 position, Vector4 lookAt, float fov, float aspectRatio, float near, float far){
+        Camera camera = Camera.create(name, position, lookAt, fov, aspectRatio, near, far);
+        cameras.put(name, camera);
+        return setActiveCamera(name);
+    };
 
     public static Scene loadScene(){
         return null;
