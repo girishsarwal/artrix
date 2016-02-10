@@ -12,6 +12,8 @@ public class Transform {
         return m;
     }
     public static Matrix4x4 getBillboardMVP(SceneNode node, Camera camera){
+        Matrix4x4 m = getMVP(node, camera);
+        m.clearUpperTriangle();
         return null;
     }
 }
