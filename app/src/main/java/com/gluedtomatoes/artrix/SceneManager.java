@@ -21,6 +21,7 @@ public class SceneManager {
 
     private static Camera activeCamera;
     public static Camera getActiveCamera() {
+        activeCamera.update(0);         //TODO: This has to go to Game class when the game updates as a statemachine
         return activeCamera;
     }
     public static Camera setActiveCamera(String camera) {
@@ -30,6 +31,7 @@ public class SceneManager {
 
     private static Scene activeScene;
     public static Scene getActiveScene() {
+        activeScene.update(0);          //TODO: This has to go to Game class when the game updates as a statemachine
         return activeScene;
     }
     public static Scene setActiveScene(String scene) {
@@ -40,8 +42,13 @@ public class SceneManager {
 
 
 
-    public static Entity createCamera(String name, Vector4 position, Vector4 lookAt, float aspectRatio, float fov, float near, float far){
-        Camera camera = Camera.create(name, position, lookAt, aspectRatio, fov, near, far);
+    public static Entity createCamera(String name, Vector4 position, Vector4 lookAt, float aspectRatio, float near, float far){
+        Camera camera = Camera.create(name, position, lookAt, aspectRatio, near, far);
+        cameras.put(name, camera);
+        return setActiveCamera(name);
+    };
+    public static Entity createCamera(String name, Vector4 position, Vector4 lookAt, float fov, float aspectRatio, float near, float far){
+        Camera camera = Camera.create(name, position, lookAt, fov, aspectRatio, near, far);
         cameras.put(name, camera);
         return setActiveCamera(name);
     };
@@ -55,5 +62,4 @@ public class SceneManager {
         scenes.put(name, scene);
         return setActiveScene(name);
     }
-
 }
