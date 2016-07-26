@@ -52,7 +52,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../../../common/include
 # app source files, must be relative to the jni folder
 LOCAL_SRC_FILES := main.c \
 			   Core.cpp \
-			   template.cpp
+			   template.cpp \
+			   artrix.cpp
 
 # included system libraries
 LOCAL_LDLIBS    := -lm -llog -landroid -lEGL -lGLESv2 -lz -lOpenSLES
