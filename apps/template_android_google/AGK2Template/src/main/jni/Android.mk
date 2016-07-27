@@ -53,7 +53,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../../../common/include
 LOCAL_SRC_FILES := main.c \
 			   Core.cpp \
 			   template.cpp \
-			   artrix.cpp
+			   artrix.cpp \
+			   statemanager.cpp
 
 # included system libraries
 LOCAL_LDLIBS    := -lm -llog -landroid -lEGL -lGLESv2 -lz -lOpenSLES

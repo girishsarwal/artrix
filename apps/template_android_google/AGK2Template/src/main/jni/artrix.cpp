@@ -2,10 +2,23 @@
 
 Artrix::Artrix()
 {
-    //ctor
+
 }
 
 Artrix::~Artrix()
 {
     //dtor
+}
+void Artrix::begin()
+{
+    StateManager::GetInstance();
+}
+
+void Artrix::update()
+{
+
+}
+void Artrix::shutdown()
+{
+    StateManager::DestroyInstance();
 }

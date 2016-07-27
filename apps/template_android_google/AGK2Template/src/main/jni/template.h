@@ -3,12 +3,14 @@
 
 // Include AGK libraries
 #include "agk.h"
+#include "artrix.h"
 
 // Global values for the app
 class app
 {
 	public:
 
+		Artrix *a;
 		// global game vars
 
 	public:

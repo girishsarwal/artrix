@@ -1998,8 +1998,8 @@ public class AGKHelper {
 					switch( symbol )
 					{
 						case '$': price = "$" + price; break;
-						case '£': price = "p" + price; break; // can't transfer pound character to AGK easily, so use a place holder and replace it in AGK
-						case '€': price = "e" + price; break; // can't transfer euro character to AGK easily, so use a place holder and replace it in AGK
+						case 'p': price = "p" + price; break; // can't transfer pound character to AGK easily, so use a place holder and replace it in AGK
+						case 'e': price = "e" + price; break; // can't transfer euro character to AGK easily, so use a place holder and replace it in AGK
 						default: price = price + " " + details.getCurrency();
 					}
 
