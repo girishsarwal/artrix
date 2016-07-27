@@ -1,6 +1,7 @@
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
-
+#include "statemachine.h"
+#include "state.h"
 class StateManager
 {
     public:
@@ -8,6 +9,7 @@ class StateManager
         virtual ~StateManager();
         static StateManager* GetInstance();
         static void DestroyInstance();
+        void GotoState(StateMachine* sm, State* newState);
     protected:
 
     private:
