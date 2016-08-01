@@ -4,3 +4,6 @@ armeabi-v7a
 x86
 build
 apps/template_android_google/.gradle/*
+*.lock
+*.bin
+*.iml

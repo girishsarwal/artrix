@@ -32,12 +32,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Android.mk" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Application.mk" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Core.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/artrix.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/artrix.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/state.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemachine.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemanager.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemanager.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/template.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/template.h" />
 		<Extensions>
