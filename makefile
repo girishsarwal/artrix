@@ -4,6 +4,7 @@ all:
 	pwd; $(NDKBUILDCMD) -C $(NDK_PROJECT_PATH)
 clean:
 	pwd; $(NDKBUILDCMD) -C $(NDK_PROJECT_PATH) clean
-
+Debug:
+	pwd; $(NDKBUILDCMD) -C $(NDK_PROJECT_PATH)
 .PHONY: clean
 .PHONY: all
