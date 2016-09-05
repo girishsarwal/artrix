@@ -1,5 +1,5 @@
-NDKBUILDCMD="C:\android-ndk-r12b\ndk-build.cmd"
-NDK_PROJECT_PATH ="E:\testarea\artrix\apps\template_android_google\AGK2Template\src\main"
+NDKBUILDCMD="/opt/android-ndk-r11c/ndk-build"
+NDK_PROJECT_PATH ="./apps/template_android_google/AGK2Template/src/main"
 all:
 	pwd; $(NDKBUILDCMD) -C $(NDK_PROJECT_PATH)
 clean:
