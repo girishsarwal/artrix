@@ -4,20 +4,21 @@
 // Include AGK libraries
 #include "agk.h"
 #include "artrix.h"
+#include "statemanager.h"
 
 // Global values for the app
 class app
 {
 	public:
 
-		Artrix *a;
-		// global game vars
+		Artrix *pArtrix;
+		StateManager *mStateManager;
 
 	public:
 
 		// constructor
-		app() {}
-        ~app() {}
+		app();
+        ~app();
 
 		// main app functions - mike to experiment with a derived class for this..
         void Begin( void );

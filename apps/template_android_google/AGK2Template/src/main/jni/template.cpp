@@ -6,25 +6,32 @@ using namespace AGK;
 
 app App;
 
+app::app(){
+    pArtrix = new Artrix();
+};
+
+app::~app(){
+    delete(pArtrix);
+};
+
 void app::Begin(void)
 {
-    a = new Artrix();
-	agk::SetVirtualResolution (1024, 768);
-    agk::SetClearColor( 151,170,204 ); // light blue
-    agk::SetSyncRate(60,0);
-    agk::SetScissor(0,0,0,0);
+    /** Initialize the managers **/
+    mStateManager = StateManager::GetInstance();
 
-    a->begin();
+    /** begin artrix program **/
+    pArtrix->Begin();
 }
 
 void app::Loop (void)
 {
 	agk::Print( agk::ScreenFPS() );
+	pArtrix->Loop();
 	agk::Sync();
 }
 
 
 void app::End (void)
 {
-    a->shutdown();
+    pArtrix->End();
 }

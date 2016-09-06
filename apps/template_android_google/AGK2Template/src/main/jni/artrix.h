@@ -8,9 +8,9 @@ class Artrix
         Artrix();
         virtual ~Artrix();
 
-        void begin();
-        void update();
-        void shutdown();
+        void Begin();
+        void Loop();
+        void End();
 
     protected:
 
