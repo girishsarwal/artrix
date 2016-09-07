@@ -21,7 +21,7 @@ LOCAL_SRC_FILES := ../../../../../../platform/android/jni/$(TARGET_ARCH_ABI)/lib
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../../../../../common/include \
     $(LOCAL_PATH)/../../../../../../bullet \
     $(LOCAL_PATH)/../../../../../../bullet/BulletCollision/CollisionShapes
-include $(PREBUILT_STATIC_LIBRARY) 
+include $(PREBUILT_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE    := AGKAssimp
@@ -29,7 +29,7 @@ LOCAL_SRC_FILES := ../../../../../../platform/android/jni/$(TARGET_ARCH_ABI)/lib
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../../../../../common/include \
     $(LOCAL_PATH)/../../../../../../bullet \
     $(LOCAL_PATH)/../../../../../../bullet/BulletCollision/CollisionShapes
-include $(PREBUILT_STATIC_LIBRARY) 
+include $(PREBUILT_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE    := AGKAndroid
@@ -38,7 +38,7 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../../../../../common/include \
     $(LOCAL_PATH)/../../../../../../bullet \
     $(LOCAL_PATH)/../../../../../../bullet/BulletCollision/CollisionShapes
 LOCAL_STATIC_LIBRARIES := AGKBullet AGKAssimp
-include $(PREBUILT_STATIC_LIBRARY) 
+include $(PREBUILT_STATIC_LIBRARY)
 
 ### build the app ###
 include $(CLEAR_VARS)
@@ -50,11 +50,7 @@ LOCAL_MODULE    := android_player
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../../../common/include
 
 # app source files, must be relative to the jni folder
-LOCAL_SRC_FILES := main.c \
-			   Core.cpp \
-			   template.cpp \
-			   artrix.cpp \
-			   statemanager.cpp
+LOCAL_SRC_FILES := main.c Core.cpp template.cpp statemachine.cpp state.cpp statemanager.cpp artrix.cpp
 
 # included system libraries
 LOCAL_LDLIBS    := -lm -llog -landroid -lEGL -lGLESv2 -lz -lOpenSLES

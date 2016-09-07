@@ -1,13 +1,19 @@
 #ifndef STATE_H_INCLUDED
 #define STATE_H_INCLUDED
-
+#include "statemachine.h"
+class StateMachine;
 class State
 {
+private:
+    bool isOneTimeEntered;
 public:
-    virtual void oneTimeEnter() = 0;
-    virtual void enter() = 0;
-    virtual void exit() = 0;
-    virtual void update(double gameTime) = 0;
+    virtual void OneTimeEnter(StateMachine *sm) = 0;
+    virtual void Enter(StateMachine *sm) = 0;
+    virtual void Exit(StateMachine *sm) = 0;
+    virtual void Update(double gameTime) = 0;
+    bool GetIsOneTimeEntered();
+    void SetIsOneTimeEntered(bool);
+
 };
 
 #endif // STATE_H_INCLUDED

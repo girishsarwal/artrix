@@ -23,12 +23,12 @@ void StateManager::GotoState(StateMachine* sm, State* newState)
     {
         return;
     }
-    State* state = sm->getCurrentState();
+    State* state = sm->GetCurrentState();
     if(0 != state){
-        state->exit();
+        state->Exit(sm);
     }
-    sm->setPreviousState(state);
-    sm->setCurrentState(newState);
-    newState->enter();
+    sm->SetPreviousState(state);
+    sm->SetCurrentState(newState);
+    newState->Enter(sm);
 }
 StateManager* StateManager::m_instance = 0;

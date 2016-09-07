@@ -1,8 +1,8 @@
 #ifndef ARTRIX_H
 #define ARTRIX_H
-#include "statemanager.h"
-
+#include "statemachine.h"
 class Artrix
+    : public StateMachine
 {
     public:
         Artrix();
@@ -15,6 +15,13 @@ class Artrix
     protected:
 
     private:
+
+};
+
+class ArtrixMonitorState
+    : public State
+{
+    public:
 
 };
 

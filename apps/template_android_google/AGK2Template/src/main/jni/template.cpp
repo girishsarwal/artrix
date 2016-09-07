@@ -34,4 +34,5 @@ void app::Loop (void)
 void app::End (void)
 {
     pArtrix->End();
+    StateManager::DestroyInstance();
 }
