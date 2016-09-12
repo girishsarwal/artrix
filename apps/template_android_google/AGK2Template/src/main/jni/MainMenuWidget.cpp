@@ -2,7 +2,8 @@
 
 MainMenuWidget::MainMenuWidget()
 {
-    //ctor
+    mPosition.Set(0, 0);
+    mSize.Set(100, 300);
 }
 
 MainMenuWidget::~MainMenuWidget()

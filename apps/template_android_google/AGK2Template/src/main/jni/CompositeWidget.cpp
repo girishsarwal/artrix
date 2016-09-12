@@ -4,7 +4,11 @@ CompositeWidget::CompositeWidget()
 {
     //ctor
 }
+CompositeWidget::CompositeWidget(Vector2& position, Vector2& size)
+    : Widget(position, size)
+{
 
+}
 CompositeWidget::~CompositeWidget()
 {
     //dtor

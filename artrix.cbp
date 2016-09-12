@@ -35,12 +35,24 @@
 		</Compiler>
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Android.mk" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Application.mk" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ButtonWidget.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ButtonWidget.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Core.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/MainMenuWidget.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/MainMenuWidget.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Vector2.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Vector2.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/artrix.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/artrix.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/screen.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/screen.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/state.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/state.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemachine.cpp" />
@@ -49,6 +61,8 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemanager.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/template.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/template.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/widget.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/widget.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

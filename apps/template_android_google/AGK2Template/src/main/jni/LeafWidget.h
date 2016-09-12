@@ -8,6 +8,7 @@ class LeafWidget : public Widget
 {
     public:
         LeafWidget();
+        LeafWidget(Vector2&, Vector2&);
         virtual ~LeafWidget();
         virtual void Update();
     protected:

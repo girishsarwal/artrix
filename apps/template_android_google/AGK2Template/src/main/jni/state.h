@@ -10,7 +10,7 @@ public:
     virtual void OneTimeEnter(StateMachine *sm) = 0;
     virtual void Enter(StateMachine *sm) = 0;
     virtual void Exit(StateMachine *sm) = 0;
-    virtual void Update(double gameTime) = 0;
+    virtual void Update(StateMachine* sm, double gameTime) = 0;
     bool GetIsOneTimeEntered();
     void SetIsOneTimeEntered(bool);
 

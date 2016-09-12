@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AGK2Template/AGK2Template.iml" filepath="$PROJECT_DIR$/AGK2Template/AGK2Template.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FacebookSDK/FacebookSDK.iml" filepath="$PROJECT_DIR$/FacebookSDK/FacebookSDK.iml" />
       <module fileurl="file://$PROJECT_DIR$/template_android_google.iml" filepath="$PROJECT_DIR$/template_android_google.iml" />
     </modules>
   </component>

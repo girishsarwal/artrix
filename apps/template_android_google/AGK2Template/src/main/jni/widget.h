@@ -10,14 +10,21 @@ class Widget
 {
     public:
         Widget();
+        Widget(Vector2&, Vector2&);
+
         virtual ~Widget();
         virtual void Update() = 0;
+
+        bool GetVisible();
+        void SetVisible(bool);
     protected:
-    private:
         string mName;
         Vector2 mPosition;
         Vector2 mAnchor;
         Vector2 mSize;
+        bool mIsVisible;
+    private:
+
 };
 
 #endif // WIDGET_H

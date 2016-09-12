@@ -29,6 +29,9 @@ void StateManager::GotoState(StateMachine* sm, State* newState)
     }
     sm->SetPreviousState(state);
     sm->SetCurrentState(newState);
+    if(!newState->GetIsOneTimeEntered()){
+        newState->OneTimeEnter(sm);
+    }
     newState->Enter(sm);
 }
 StateManager* StateManager::m_instance = 0;
