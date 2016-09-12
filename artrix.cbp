@@ -41,7 +41,9 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/state.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/state.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemachine.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemachine.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemanager.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemanager.h" />
