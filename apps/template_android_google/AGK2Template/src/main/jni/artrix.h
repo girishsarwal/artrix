@@ -22,8 +22,6 @@ class ArtrixHomeState
     : public State
 {
     public:
-        int mBackgroundImageId;
-        int mBackgroundSprteId;
 };
 
 #endif // ARTRIX_H
