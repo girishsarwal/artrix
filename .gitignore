@@ -6,3 +6,4 @@ apps/template_android_google/.gradle/*
 *.lock
 *.bin
 *.iml
+makefile
