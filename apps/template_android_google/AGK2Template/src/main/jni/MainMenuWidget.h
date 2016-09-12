@@ -1,14 +1,15 @@
 #ifndef MAINMENUWIDGET_H
 #define MAINMENUWIDGET_H
 
-#include "widget.h"
+#include "CompositeWidget.h"
 
 
-class MainMenuWidget : public Widget
+class MainMenuWidget : public CompositeWidget
 {
     public:
         MainMenuWidget();
         virtual ~MainMenuWidget();
+        void Update();
     protected:
     private:
 };

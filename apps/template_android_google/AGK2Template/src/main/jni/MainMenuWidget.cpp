@@ -9,3 +9,9 @@ MainMenuWidget::~MainMenuWidget()
 {
     //dtor
 }
+void MainMenuWidget::Update()
+{
+    //Update the buttons
+    CompositeWidget::Update();
+}
+
