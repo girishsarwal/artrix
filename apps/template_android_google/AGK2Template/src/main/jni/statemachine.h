@@ -1,10 +1,10 @@
 #ifndef STATEMACHINE_H_INCLUDED
 #define STATEMACHINE_H_INCLUDED
 #include "state.h"
-class Standate;
+class State;
 class StateMachine
 {
-private:orid
+private:
     State*  mCurrentState;
     State*  mPreviousState;
 
