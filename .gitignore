@@ -1,6 +1,7 @@
 build
 apps/template_android_google/AGK2Template/src/main/libs/
 apps/template_android_google/AGK2Template/src/main/obj/
+apps/template_android_google/AGK2Template/src/main/jniLibs/
 obj/
 apps/template_android_google/.gradle/*
 *.lock
