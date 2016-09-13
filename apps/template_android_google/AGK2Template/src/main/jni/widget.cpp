@@ -1,5 +1,4 @@
 #include "widget.h"
-#include <android/log.h>
 Widget::Widget() {
     mPosition.Set(0.0f, 0.0f);
     mSize.Set(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE);
@@ -52,7 +51,20 @@ void Widget::SetPivot(float pivotX, float pivotY) {
     mPivot.Set(pivotX, pivotY);
 }
 
-void Widget::debug() {
-    __android_log_print(ANDROID_LOG_VERBOSE, "Widget", "mName=%s, mPosition={%f, %f}, mAnchor={%f, %f}, mSize={%f, %f}, mIsVisible=%d",
-            mName.c_str(), mPosition.x, mPosition.y, mPivot.x, mPivot.y, mSize.x, mSize.y, mIsVisible);
+string Widget::ToString() {
+    _str.clear();
+    stringstream ss;
+    ss << "{ name=" << mName.c_str() << ", ";
+    ss << "position =" << mPosition.ToString() << ", ";
+    ss << "pivot =" << mPivot.ToString() << ", ";
+    ss << "size =" << mSize.ToString() << " }";
+    _str = ss.str();
+    return _str;
 }
+
+void Widget::Print() {
+    string s = ToString();
+    __android_log_print(ANDROID_LOG_VERBOSE, s.c_str(), "");
+    //agk::Print(s.c_str());
+}
+

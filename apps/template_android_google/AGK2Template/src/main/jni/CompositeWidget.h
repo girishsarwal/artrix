@@ -15,7 +15,8 @@ class CompositeWidget : public Widget
         void RemoveWidget(std::string&);
         Widget* GetWidget(std::string&);
         virtual void Update();
-        virtual void debug();
+        virtual string ToString();
+        void Print();
     protected:
     private:
         vector<Widget*> mChildren;

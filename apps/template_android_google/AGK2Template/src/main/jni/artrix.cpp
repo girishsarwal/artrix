@@ -54,5 +54,5 @@ void ArtrixHomeState::Exit(StateMachine* sm){
 }
 
 void ArtrixHomeState::Update(StateMachine* sm, double gameTime){
-    mBw->debug();
+    mBw->Print();
 }

@@ -1,7 +1,10 @@
 #ifndef WIDGET_H
 #define WIDGET_H
+#include <android/log.h>
 #include <string>
+#include <sstream>
 
+#include "agk.h"
 #include "Vector2.h"
 #define DEFAULT_WIDGET_SIZE 100
 using namespace std;
@@ -26,7 +29,8 @@ class Widget
         Vector2& GetPivot();
         void SetPivot(const Vector2&);
         void SetPivot(float, float);
-        virtual void debug();
+        virtual string ToString();
+        virtual void Print();
 
     protected:
         string mName;
@@ -34,7 +38,8 @@ class Widget
         Vector2 mPivot;
         Vector2 mSize;
         bool mIsVisible;
-    private:
+
+        string _str;
 
 };
 

@@ -36,11 +36,20 @@ void CompositeWidget::Update()
         it++;
     }
 }
-void CompositeWidget::debug(){
-    Widget::debug();
+string CompositeWidget::ToString(){
+    _str.clear();
+    stringstream ss;
+    ss<< Widget::ToString();
     std::vector<Widget*>::iterator it = mChildren.begin();
     while(it != mChildren.end()){
-        (*it)->debug();
+        ss << (*it)->ToString();
         it++;
     }
+    _str = ss.str();
+    return _str;
 }
+void CompositeWidget::Print() {
+    string s = ToString();
+    agk::Print(s.c_str());
+}
+
