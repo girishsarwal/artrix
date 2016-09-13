@@ -11,7 +11,6 @@ class ButtonWidget : public LeafWidget
         ButtonWidget(const Vector2& position, const Vector2& dimension, const string& text);
         ButtonWidget(const Vector2& position, const Vector2& dimension, const string& text, const string& background);
         virtual ~ButtonWidget();
-
     protected:
     private:
         string mText;

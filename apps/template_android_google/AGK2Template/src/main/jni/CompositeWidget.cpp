@@ -36,3 +36,11 @@ void CompositeWidget::Update()
         it++;
     }
 }
+void CompositeWidget::debug(){
+    Widget::debug();
+    std::vector<Widget*>::iterator it = mChildren.begin();
+    while(it != mChildren.end()){
+        (*it)->debug();
+        it++;
+    }
+}

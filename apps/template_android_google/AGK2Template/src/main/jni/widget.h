@@ -18,7 +18,7 @@ class Widget
         bool GetVisible();
         void SetVisible(bool);
 
-        void debug();
+        virtual void debug();
 
     protected:
         string mName;

@@ -15,3 +15,4 @@ LeafWidget::LeafWidget(const Vector2& position, const Vector2& size)
 void LeafWidget::Update()
 {
 }
+
