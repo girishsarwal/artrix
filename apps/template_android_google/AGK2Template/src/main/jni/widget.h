@@ -29,6 +29,8 @@ class Widget
         Vector2& GetPivot();
         void SetPivot(const Vector2&);
         void SetPivot(float, float);
+        string GetName();
+        void SetName(string&);
         string dump() const;
         virtual void Print();
         friend ostream& operator<<(ostream& stream, const Widget& widget);
@@ -41,7 +43,9 @@ class Widget
         bool mIsVisible;
 
         string _str;
-
+    private:
+        static int nextId;
+        void SetDefaultName();
 };
 
 #endif // WIDGET_H

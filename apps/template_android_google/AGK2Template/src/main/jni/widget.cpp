@@ -4,7 +4,7 @@ Widget::Widget() {
     mSize.Set(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE);
     SetPivot(0.5f, 0.5f);
     SetVisible(true);
-
+    SetDefaultName();
 }
 
 Widget::Widget(const Vector2& position, const Vector2& size) {
@@ -12,6 +12,7 @@ Widget::Widget(const Vector2& position, const Vector2& size) {
     mSize = size;
     SetPivot(0.5f, 0.5f);
     SetVisible(true);
+    SetDefaultName();
 }
 
 Widget::~Widget() {
@@ -50,6 +51,18 @@ void Widget::SetPivot(const Vector2& pivot) {
 void Widget::SetPivot(float pivotX, float pivotY) {
     mPivot.Set(pivotX, pivotY);
 }
+void Widget::SetDefaultName(){
+    string defaultName = string("Widget ");
+    defaultName += (++nextId);
+    SetName(defaultName);
+}
+string Widget::GetName(){
+    return mName;
+}
+
+void Widget::SetName(string& name){
+    mName = name;
+}
 
 string Widget::dump() const{
     stringstream ss;
@@ -68,5 +81,7 @@ ostream& operator<<(ostream& stream, const Widget& widget) {
             << "size: " << widget.mSize.dump() << " }";
     return stream;
 }
+
+int Widget::nextId = 0;
 
 
