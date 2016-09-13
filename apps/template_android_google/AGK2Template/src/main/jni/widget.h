@@ -17,13 +17,21 @@ class Widget
 
         bool GetVisible();
         void SetVisible(bool);
-
+        Vector2& GetSize();
+        void SetSize(const Vector2&);
+        void SetSize(float, float);
+        Vector2& GetPosition();
+        void SetPosition(const Vector2&);
+        void SetPosition(float, float);
+        Vector2& GetPivot();
+        void SetPivot(const Vector2&);
+        void SetPivot(float, float);
         virtual void debug();
 
     protected:
         string mName;
         Vector2 mPosition;
-        Vector2 mAnchor;
+        Vector2 mPivot;
         Vector2 mSize;
         bool mIsVisible;
     private:
