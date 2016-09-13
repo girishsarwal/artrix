@@ -14,10 +14,11 @@ class Vector2
         void Normalize();
 
         virtual ~Vector2();
-    protected:
-    private:
+
         float x;
         float y;
+
+    protected:
 };
 
 #endif // VECTOR2_H

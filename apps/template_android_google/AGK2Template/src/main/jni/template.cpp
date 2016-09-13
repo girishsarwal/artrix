@@ -25,7 +25,6 @@ void app::Begin(void)
 
 void app::Loop (void)
 {
-	agk::Print( agk::ScreenFPS() );
 	pArtrix->Loop();
 	agk::Sync();
 }

@@ -1,6 +1,6 @@
 package com.thegamecreators.agk_player;
 
-import com.mycompany.mytemplate.R;
+import com.gt.artrix.R;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

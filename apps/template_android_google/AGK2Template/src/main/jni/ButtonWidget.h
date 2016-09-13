@@ -8,8 +8,8 @@ class ButtonWidget : public LeafWidget
 {
     public:
         ButtonWidget();
-        ButtonWidget(Vector2& position, Vector2& dimension, string& text);
-        ButtonWidget(Vector2& position, Vector2& dimension, string& text, string& background);
+        ButtonWidget(const Vector2& position, const Vector2& dimension, const string& text);
+        ButtonWidget(const Vector2& position, const Vector2& dimension, const string& text, const string& background);
         virtual ~ButtonWidget();
 
     protected:

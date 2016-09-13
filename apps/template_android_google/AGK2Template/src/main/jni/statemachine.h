@@ -4,7 +4,7 @@
 class State;
 class StateMachine
 {
-private:
+protected:
     State*  mCurrentState;
     State*  mPreviousState;
 

@@ -1,15 +1,13 @@
 #include "LeafWidget.h"
 
-LeafWidget::LeafWidget()
-{
-    //ctor
+LeafWidget::LeafWidget(){
+
 }
 
-LeafWidget::~LeafWidget()
-{
+LeafWidget::~LeafWidget(){
     //dtor
 }
-LeafWidget::LeafWidget(Vector2& position, Vector2& size)
+LeafWidget::LeafWidget(const Vector2& position, const Vector2& size)
     : Widget(position, size)
 {
 

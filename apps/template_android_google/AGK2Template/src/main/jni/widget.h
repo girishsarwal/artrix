@@ -10,13 +10,16 @@ class Widget
 {
     public:
         Widget();
-        Widget(Vector2&, Vector2&);
+        Widget(const Vector2&, const Vector2&);
 
         virtual ~Widget();
         virtual void Update() = 0;
 
         bool GetVisible();
         void SetVisible(bool);
+
+        void debug();
+
     protected:
         string mName;
         Vector2 mPosition;

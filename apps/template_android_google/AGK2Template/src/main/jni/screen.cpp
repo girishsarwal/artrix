@@ -1,15 +1,13 @@
 #include "screen.h"
 
-Screen::Screen()
-{
+Screen::Screen(){
     //ctor
 }
 
-Screen::~Screen()
-{
+Screen::~Screen(){
     //dtor
 }
-void Screen::AddWidget(Widget* widget)
-{
+
+void Screen::AddWidget(Widget* widget){
     mWidgets.push_back(widget);
 }

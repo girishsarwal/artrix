@@ -2,20 +2,19 @@
 #include "agk.h"
 #include "ButtonWidget.h"
 #include "statemanager.h"
+#include <android/log.h>
 using namespace AGK;
-Artrix::Artrix()
-{
+Artrix::Artrix(){
 
 }
 
-Artrix::~Artrix()
-{
+Artrix::~Artrix(){
     //dtor
 }
 void Artrix::Begin()
 {
     agk::SetVirtualResolution (1024, 768);
-    agk::SetClearColor( 151,170,204 ); // light blue
+    agk::SetClearColor( 0, 0, 0); // black
     agk::SetSyncRate(60,0);
     agk::SetScissor(0,0,0,0);
     StateManager::GetInstance()->GotoState(this, new ArtrixHomeState());
@@ -23,29 +22,37 @@ void Artrix::Begin()
 
 void Artrix::Loop()
 {
-    agk::Print("Looping");
-
+    agk::Print(mCurrentState->GetName().c_str());
+    mCurrentState->Update(this, 0);
 }
 void Artrix::End()
 {
     agk::Print("Ending");
 }
 
-void ArtrixHomeState::Enter(StateMachine* sm)
-{
+ArtrixHomeState::ArtrixHomeState()
+    : State("Home"){
+        mBw = 0;
+}
+
+
+ArtrixHomeState::~ArtrixHomeState(){
+}
+
+void ArtrixHomeState::Enter(StateMachine* sm){
 
 }
 
 void ArtrixHomeState::OneTimeEnter(StateMachine* sm)
 {
     mHomeScreen  = new Screen();
-    ButtonWidget* bw = new ButtonWidget();
-    mHomeScreen->AddWidget(bw);
+    mBw = new ButtonWidget(Vector2(0, 0), Vector2(100, 100), std::string("pilot"), std::string("buttons/blue-bar.png"));
+    mHomeScreen->AddWidget(mBw);
 }
 
-void ArtrixHomeState::Exit(StateMachine* sm)
-{
+void ArtrixHomeState::Exit(StateMachine* sm){
 }
-void ArtrixHomeState::Update(StateMachine* sm, double gameTime)
-{
+
+void ArtrixHomeState::Update(StateMachine* sm, double gameTime){
+    mBw->debug();
 }

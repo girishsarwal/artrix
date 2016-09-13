@@ -93,7 +93,7 @@ import com.chartboost.sdk.Model.CBError.CBImpressionError;
 
 import com.amazon.device.ads.*;
 
-import com.mycompany.mytemplate.R;
+import com.gt.artrix.R;
 
 // Used for agk::Message()
 class RunnableMessage implements Runnable

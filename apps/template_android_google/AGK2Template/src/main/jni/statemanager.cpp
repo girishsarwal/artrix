@@ -1,4 +1,5 @@
 #include "statemanager.h"
+#include <android/log.h>
 StateManager::StateManager()
 {
 
@@ -19,6 +20,7 @@ void StateManager::DestroyInstance()
 }
 void StateManager::GotoState(StateMachine* sm, State* newState)
 {
+    __android_log_print(ANDROID_LOG_DEBUG, "StateManager", "changing state");
     if(0 == newState)
     {
         return;

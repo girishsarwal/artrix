@@ -2,6 +2,7 @@
 #define ARTRIX_H
 #include "statemachine.h"
 #include "screen.h"
+#include "ButtonWidget.h"
 class Artrix
     : public StateMachine
 {
@@ -27,9 +28,11 @@ class ArtrixHomeState
         void Enter(StateMachine*);
         void Exit(StateMachine*);
         void Update(StateMachine*, double gameTime);
-
+        ArtrixHomeState();
+        ~ArtrixHomeState();
     private:
         Screen* mHomeScreen;
+        ButtonWidget* mBw;
 
 };
 

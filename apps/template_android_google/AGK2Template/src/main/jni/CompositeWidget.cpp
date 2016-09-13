@@ -4,7 +4,7 @@ CompositeWidget::CompositeWidget()
 {
     //ctor
 }
-CompositeWidget::CompositeWidget(Vector2& position, Vector2& size)
+CompositeWidget::CompositeWidget(const Vector2& position, const Vector2& size)
     : Widget(position, size)
 {
 

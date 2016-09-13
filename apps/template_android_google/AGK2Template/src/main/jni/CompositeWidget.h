@@ -9,7 +9,7 @@ class CompositeWidget : public Widget
 {
     public:
         CompositeWidget();
-        CompositeWidget(Vector2&, Vector2&);
+        CompositeWidget(const Vector2&, const Vector2&);
         virtual ~CompositeWidget();
         void AddWidget();
         void RemoveWidget(std::string&);
