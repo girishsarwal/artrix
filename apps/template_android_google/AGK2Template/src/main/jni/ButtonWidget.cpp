@@ -25,6 +25,4 @@ ButtonWidget::ButtonWidget(const Vector2& position, const Vector2& size, const s
     mBackgroundSpriteId = agk::CreateSprite(mBackgroundImageId);
     agk::SetSpriteVisible(mBackgroundSpriteId, mIsVisible);
     __android_log_print(ANDROID_LOG_VERBOSE, "ButtonWidget", "ImageId=%d, SpriteId=%d", mBackgroundImageId, mBackgroundSpriteId);
-
-
 }

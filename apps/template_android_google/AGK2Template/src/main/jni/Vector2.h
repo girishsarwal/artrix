@@ -22,12 +22,13 @@ class Vector2
         float Dot(const Vector2&);
         Vector2 GetRight(const Vector2&);
         Vector2 GetLeft(const Vector2&);
-        string ToString();
         void Print();
 
         float x;
         float y;
 
+        string dump() const;
+        friend ostream& operator<<(ostream& stream, const Vector2& vec);
     protected:
     private:
         string _str;

@@ -29,8 +29,9 @@ class Widget
         Vector2& GetPivot();
         void SetPivot(const Vector2&);
         void SetPivot(float, float);
-        virtual string ToString();
+        string dump() const;
         virtual void Print();
+        friend ostream& operator<<(ostream& stream, const Widget& widget);
 
     protected:
         string mName;

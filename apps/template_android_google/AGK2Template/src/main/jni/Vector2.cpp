@@ -53,19 +53,19 @@ Vector2 Vector2::GetLeft(const Vector2 &rhs) {
     return Vector2(rhs.y, -rhs.x);
 }
 
-string Vector2::ToString() {
-    _str.clear();
-    stringstream ss;
-    ss << "{ x=" << x << ", ";
-    ss << "y=" << y << " }";
-    _str = ss.str();
-    return _str;
+void Vector2::Print() {
+
+    __android_log_print(ANDROID_LOG_VERBOSE, "Vector2", "%s", dump().c_str());
 }
 
-void Vector2::Print() {
-    string s = ToString();
-    __android_log_print(ANDROID_LOG_VERBOSE, s.c_str(), "");
-    //agk::Print(s.c_str());
+string Vector2::dump() const{
+    stringstream stream;
+    stream << *this;
+    return stream.str();
+}
+ostream& operator<<(ostream& stream, const Vector2& vec){
+    stream << "{ x: " << vec.x << ", y: " << vec.y << " }";
+    return stream;
 }
 
 

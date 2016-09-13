@@ -36,20 +36,22 @@ void CompositeWidget::Update()
         it++;
     }
 }
-string CompositeWidget::ToString(){
-    _str.clear();
+string CompositeWidget::dump() const{
     stringstream ss;
-    ss<< Widget::ToString();
-    std::vector<Widget*>::iterator it = mChildren.begin();
+    ss << *this;
+    std::vector<Widget*>::const_iterator it = mChildren.begin();
     while(it != mChildren.end()){
-        ss << (*it)->ToString();
+        ss << (*it)->dump();
         it++;
     }
-    _str = ss.str();
-    return _str;
+    return ss.str();
 }
 void CompositeWidget::Print() {
-    string s = ToString();
-    agk::Print(s.c_str());
+    __android_log_print(ANDROID_LOG_VERBOSE, "CompositeWidget", "%s", dump().c_str());
+}
+
+ostream& operator<<(ostream& stream, const CompositeWidget& compositeWidget){
+    // add to stream
+    return stream;
 }
 

@@ -51,20 +51,22 @@ void Widget::SetPivot(float pivotX, float pivotY) {
     mPivot.Set(pivotX, pivotY);
 }
 
-string Widget::ToString() {
-    _str.clear();
+string Widget::dump() const{
     stringstream ss;
-    ss << "{ name=" << mName.c_str() << ", ";
-    ss << "position =" << mPosition.ToString() << ", ";
-    ss << "pivot =" << mPivot.ToString() << ", ";
-    ss << "size =" << mSize.ToString() << " }";
-    _str = ss.str();
-    return _str;
+    ss << *this;
+    return ss.str();
 }
 
 void Widget::Print() {
-    string s = ToString();
-    __android_log_print(ANDROID_LOG_VERBOSE, s.c_str(), "");
-    //agk::Print(s.c_str());
+    __android_log_print(ANDROID_LOG_VERBOSE, "Widget", "%s", dump().c_str());
 }
+
+ostream& operator<<(ostream& stream, const Widget& widget) {
+    stream << "{ name: " << widget.mName.c_str() << ", "
+            << "position: " << widget.mPosition.dump() << ", "
+            << "pivot: " << widget.mPivot.dump() << ", "
+            << "size: " << widget.mSize.dump() << " }";
+    return stream;
+}
+
 
