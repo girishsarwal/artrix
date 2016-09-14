@@ -23,6 +23,17 @@ ButtonWidget::ButtonWidget(const Vector2& position, const Vector2& size, const s
     mText = text;
     mBackgroundImageId = agk::LoadImage(background.c_str());
     mBackgroundSpriteId = agk::CreateSprite(mBackgroundImageId);
-    agk::SetSpriteVisible(mBackgroundSpriteId, mIsVisible);
+
     __android_log_print(ANDROID_LOG_VERBOSE, "ButtonWidget", "ImageId=%d, SpriteId=%d", mBackgroundImageId, mBackgroundSpriteId);
+}
+void ButtonWidget::OnSetVisible() {
+    agk::SetSpriteVisible(mBackgroundSpriteId, mIsVisible);
+}
+
+void ButtonWidget::OnSetPosition() {
+    agk::SetSpritePosition(mBackgroundSpriteId, mPosition.x, mPosition.y);
+}
+
+void ButtonWidget::OnSetSize() {
+    agk::SetSpriteSize(mBackgroundSpriteId, mSize.x, mSize.y);
 }

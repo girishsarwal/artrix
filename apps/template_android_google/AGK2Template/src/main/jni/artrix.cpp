@@ -47,6 +47,7 @@ void ArtrixHomeState::OneTimeEnter(StateMachine* sm)
 {
     mHomeScreen  = new Screen();
     mBw = new ButtonWidget(Vector2(0, 0), Vector2(100, 100), std::string("pilot"), std::string("buttons/blue-bar.png"));
+    mBw->SetSize(20, 20);
     mHomeScreen->AddWidget(mBw);
 }
 

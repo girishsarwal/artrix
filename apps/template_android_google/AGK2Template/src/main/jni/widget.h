@@ -43,6 +43,10 @@ class Widget
         Vector2 mSize;
         bool mIsVisible;
 
+        virtual void OnSetVisible();
+        virtual void OnSetPosition();
+        virtual void OnSetSize();
+
         string _str;
     private:
         static int nextId;

@@ -23,6 +23,7 @@ bool Widget::GetVisible() {
 }
 void Widget::SetVisible(bool isVisible){
     mIsVisible = isVisible;
+    OnSetVisible();
 }
 Vector2& Widget::GetSize() {
     return mSize;
@@ -32,6 +33,7 @@ void Widget::SetSize(const Vector2& size) {
 }
 void Widget::SetSize(float width, float height) {
     mSize.Set(width, height);
+    OnSetSize();
 }
 Vector2& Widget::GetPosition() {
     return mPosition;
@@ -41,6 +43,7 @@ void Widget::SetPosition(const Vector2& position) {
 }
 void Widget::SetPosition(float x, float y) {
     mPosition.Set(x, y);
+    OnSetPosition();
 }
 Vector2& Widget::GetPivot() {
     return mPivot;
@@ -64,6 +67,11 @@ string Widget::GetName(){
 void Widget::SetName(string& name){
     mName = name;
 }
+
+
+void Widget::OnSetVisible() {}
+void Widget::OnSetPosition() {}
+void Widget::OnSetSize() {}
 
 string Widget::dump() const{
     stringstream ss;

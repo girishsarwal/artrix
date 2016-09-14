@@ -12,6 +12,9 @@ class ButtonWidget : public LeafWidget
         ButtonWidget(const Vector2& position, const Vector2& dimension, const string& text, const string& background);
         virtual ~ButtonWidget();
     protected:
+        virtual void OnSetVisible();
+        virtual void OnSetPosition();
+        virtual void OnSetSize();
     private:
         string mText;
         int mBackgroundImageId;
