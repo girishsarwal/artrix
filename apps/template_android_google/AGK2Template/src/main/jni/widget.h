@@ -1,5 +1,6 @@
 #ifndef WIDGET_H
 #define WIDGET_H
+#include <stdio.h>
 #include <android/log.h>
 #include <string>
 #include <sstream>

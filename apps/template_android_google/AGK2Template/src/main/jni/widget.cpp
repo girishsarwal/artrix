@@ -52,8 +52,9 @@ void Widget::SetPivot(float pivotX, float pivotY) {
     mPivot.Set(pivotX, pivotY);
 }
 void Widget::SetDefaultName(){
-    string defaultName = string("Widget ");
-    defaultName += (++nextId);
+    char widgetName[10];
+    sprintf(widgetName, "Widget%d", (++nextId));
+    string defaultName = string(widgetName);
     SetName(defaultName);
 }
 string Widget::GetName(){
