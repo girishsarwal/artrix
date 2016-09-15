@@ -40,6 +40,26 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../../../../../common/include \
 LOCAL_STATIC_LIBRARIES := AGKBullet AGKAssimp
 include $(PREBUILT_STATIC_LIBRARY)
 
+
+### extra libraries ###
+include $(CLEAR_VARS)
+LOCAL_MODULE    := mxml
+LOCAL_SRC_FILES := ../../../../../../platform/mxml-2.10/mxml-attr.c \
+                   ../../../../../../platform/mxml-2.10/mxmldoc.c \
+                   ../../../../../../platform/mxml-2.10/mxml-entity.c \
+                   ../../../../../../platform/mxml-2.10/mxml-file.c \
+                   ../../../../../../platform/mxml-2.10/mxml-get.c \
+                   ../../../../../../platform/mxml-2.10/mxml-index.c \
+                   ../../../../../../platform/mxml-2.10/mxml-node.c \
+                   ../../../../../../platform/mxml-2.10/mxml-private.c \
+                   ../../../../../../platform/mxml-2.10/mxml-search.c \
+                   ../../../../../../platform/mxml-2.10/mxml-set.c \
+                   ../../../../../../platform/mxml-2.10/mxml-string.c \
+
+
+LOCAL_C_INCLUDES := ../../../../../../platform/mxml-2.10/
+include $(BUILD_SHARED_LIBRARY)
+
 ### build the app ###
 include $(CLEAR_VARS)
 
@@ -52,6 +72,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../../../common/include
 # app source files, must be relative to the jni folder
 LOCAL_SRC_FILES := main.c Core.cpp template.cpp \
                     Vector2.cpp statemachine.cpp state.cpp statemanager.cpp artrix.cpp screen.cpp widget.cpp WidgetAttribute.cpp WidgetFactory.cpp\
+                    ConfigParser.cpp\
                     LeafWidget.cpp CompositeWidget.cpp \
                     ButtonWidget.cpp MainMenuWidget.cpp
 
@@ -59,7 +80,7 @@ LOCAL_SRC_FILES := main.c Core.cpp template.cpp \
 LOCAL_LDLIBS    := -lm -llog -landroid -lEGL -lGLESv2 -lz -lOpenSLES
 
 # included user libraris
-LOCAL_STATIC_LIBRARIES := AGKBullet AGKAssimp AGKAndroid android_native_app_glue
+LOCAL_STATIC_LIBRARIES := AGKBullet AGKAssimp AGKAndroid mxml android_native_app_glue
 
 # define IDE_ANDROID (for AGK) and use O3 optimizations
 LOCAL_CFLAGS += -DIDE_ANDROID -O3 -fsigned-char

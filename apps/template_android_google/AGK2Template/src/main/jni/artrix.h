@@ -1,8 +1,12 @@
 #ifndef ARTRIX_H
 #define ARTRIX_H
+
+
 #include "statemachine.h"
 #include "screen.h"
 #include "ButtonWidget.h"
+#include "ConfigParser.h"
+
 class Artrix
     : public StateMachine
 {

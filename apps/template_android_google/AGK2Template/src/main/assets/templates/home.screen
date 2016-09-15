@@ -1,0 +1,8 @@
+<?xml version="1.0">
+<screens>
+	<screen name="home">
+		<ButtonWidget position="{0, 20}" size="{100, 100}" anchor="{0.5, 0.5}" background="buttons/blue-bar.png" text="Pilot" action="gotoScreen" params="pilot">
+		<ButtonWidget position="{0, 20}" size="{100, 100}" anchor="{0.5, 0.5}" background="buttons/blue-bar.png" text="Models" action="gotoScreen" params="modellist">
+		<ButtonWidget position="{0, 20}" size="{100, 100}" anchor="{0.5, 0.5}" background="buttons/blue-bar.png" text="Settings" action="gotoScreen" params="settings">
+	</screen>
+</screens>

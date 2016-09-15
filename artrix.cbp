@@ -15,6 +15,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="apps/template_android_google/AGK2Template/src/main/jni" />
 				</Compiler>
 				<MakeCommands>
 					<Build command="$make -f $makefile $target" />
@@ -35,6 +36,8 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ButtonWidget.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ConfigParser.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ConfigParser.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Core.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.h" />
