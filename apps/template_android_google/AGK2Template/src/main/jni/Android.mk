@@ -43,21 +43,9 @@ include $(PREBUILT_STATIC_LIBRARY)
 
 ### extra libraries ###
 include $(CLEAR_VARS)
-LOCAL_MODULE    := mxml
-LOCAL_SRC_FILES := ../../../../../../platform/mxml-2.10/mxml-attr.c \
-                   ../../../../../../platform/mxml-2.10/mxmldoc.c \
-                   ../../../../../../platform/mxml-2.10/mxml-entity.c \
-                   ../../../../../../platform/mxml-2.10/mxml-file.c \
-                   ../../../../../../platform/mxml-2.10/mxml-get.c \
-                   ../../../../../../platform/mxml-2.10/mxml-index.c \
-                   ../../../../../../platform/mxml-2.10/mxml-node.c \
-                   ../../../../../../platform/mxml-2.10/mxml-private.c \
-                   ../../../../../../platform/mxml-2.10/mxml-search.c \
-                   ../../../../../../platform/mxml-2.10/mxml-set.c \
-                   ../../../../../../platform/mxml-2.10/mxml-string.c \
-
-
-LOCAL_C_INCLUDES := ../../../../../../platform/mxml-2.10/
+LOCAL_MODULE    := tinyxml
+LOCAL_SRC_FILES := ../../../../../../platform/tinyxml2/source/tinyxml2.cpp
+LOCAL_C_INCLUDES := ../../../../../../platform/tinyxml2/include
 include $(BUILD_SHARED_LIBRARY)
 
 ### build the app ###
@@ -68,6 +56,7 @@ LOCAL_MODULE    := android_player
 
 # agk includes folder
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../../../common/include
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../../../../platform/tinyxml2/include
 
 # app source files, must be relative to the jni folder
 LOCAL_SRC_FILES := main.c Core.cpp template.cpp \
@@ -80,7 +69,7 @@ LOCAL_SRC_FILES := main.c Core.cpp template.cpp \
 LOCAL_LDLIBS    := -lm -llog -landroid -lEGL -lGLESv2 -lz -lOpenSLES
 
 # included user libraris
-LOCAL_STATIC_LIBRARIES := AGKBullet AGKAssimp AGKAndroid mxml android_native_app_glue
+LOCAL_STATIC_LIBRARIES := AGKBullet AGKAssimp AGKAndroid tinyxml android_native_app_glue
 
 # define IDE_ANDROID (for AGK) and use O3 optimizations
 LOCAL_CFLAGS += -DIDE_ANDROID -O3 -fsigned-char

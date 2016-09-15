@@ -1,5 +1,5 @@
 #include "ConfigParser.h"
-
+#define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
 ConfigParser::ConfigParser() {
     //ctor
 }
@@ -21,10 +21,11 @@ void ConfigParser::ParseScreen(const string& file, Screen** screen) {
         }
         agk::CloseFile(fileHandle);
     }
-    mxml_node_t* tree = mxmlLoadString(NULL, configString, MXML_TEXT_CALLBACK);
-    mxml_node_t* screensNode = mxmlFindPath(tree, "screens/screen");
-    if(screensNode != NULL) {
-        mxmlElementGetAttr(screensNode, "type");
+    XMLDocument doc;
+    XMLError err;
+    err = doc.Parse(configString, 2048);
+    if(err == 0) {
+        LOGW("xml loaded");
     }
     delete(line);
 }
