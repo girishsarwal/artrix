@@ -43,10 +43,10 @@ include $(PREBUILT_STATIC_LIBRARY)
 
 ### extra libraries ###
 include $(CLEAR_VARS)
-LOCAL_MODULE    := tinyxml
+LOCAL_MODULE    := tinyxml2
 LOCAL_SRC_FILES := ../../../../../../platform/tinyxml2/source/tinyxml2.cpp
 LOCAL_C_INCLUDES := ../../../../../../platform/tinyxml2/include
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)
 
 ### build the app ###
 include $(CLEAR_VARS)
@@ -69,7 +69,7 @@ LOCAL_SRC_FILES := main.c Core.cpp template.cpp \
 LOCAL_LDLIBS    := -lm -llog -landroid -lEGL -lGLESv2 -lz -lOpenSLES
 
 # included user libraris
-LOCAL_STATIC_LIBRARIES := AGKBullet AGKAssimp AGKAndroid tinyxml android_native_app_glue
+LOCAL_STATIC_LIBRARIES := AGKBullet AGKAssimp AGKAndroid tinyxml2 android_native_app_glue
 
 # define IDE_ANDROID (for AGK) and use O3 optimizations
 LOCAL_CFLAGS += -DIDE_ANDROID -O3 -fsigned-char

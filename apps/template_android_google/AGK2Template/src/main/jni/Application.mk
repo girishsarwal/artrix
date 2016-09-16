@@ -2,5 +2,5 @@
 APP_ABI := armeabi armeabi-v7a x86
 APP_PLATFORM := android-9
 APP_OPTIM := release
-APP_MODULES := android_player tinyxml
+APP_MODULES := tinyxml2 android_player
 APP_STL := stlport_static
