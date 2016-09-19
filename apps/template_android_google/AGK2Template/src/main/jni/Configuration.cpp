@@ -1,13 +1,13 @@
-#include "ConfigParser.h"
+#include "Configuration.h"
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
-ConfigParser::ConfigParser() {
+Configuration::Configuration() {
     //ctor
 }
 
-ConfigParser::~ConfigParser() {
+Configuration::~Configuration() {
     //dtor
 }
-void ConfigParser::ParseScreen(const string& file, Screen** screen) {
+void Configuration::ParseScreen(const string& file, Screen** screen) {
     /** we cant use fopen here as all assets in Agk are zipped up into the AssetManager.
     We plan to use the AGK open file to load up the contents into the xml stream **/
     int fileHandle = agk::OpenToRead(file.c_str());
@@ -16,18 +16,19 @@ void ConfigParser::ParseScreen(const string& file, Screen** screen) {
     if(agk::FileIsOpen(fileHandle)){
         while(!agk::FileEOF(fileHandle)) {
             line = agk::ReadLine(fileHandle);
-            __android_log_print(ANDROID_LOG_INFO, "ConfigParser", "%s", line);
+            __android_log_print(ANDROID_LOG_INFO, "Configuration", "%s", line);
             strcat(configString, line);
         }
         agk::CloseFile(fileHandle);
     }
-    /*XMLDocument doc;
+    XMLDocument doc;
     XMLError err;
+    /* todo: find a way to load larger files */
     err = doc.Parse(configString, 2048);
     if(err == 0) {
-        __android_log_print(ANDROID_LOG_INFO, "ConfigParser", "Parsed XML Document");
+        __android_log_print(ANDROID_LOG_INFO, "Configuration", "Parsed XML Document");
     } else {
-    __android_log_print(ANDROID_LOG_INFO, "ConfigParser", "Problem Parsing");
-    }*/
+    __android_log_print(ANDROID_LOG_INFO, "Configuration", "Problem Parsing %d, %s, %s", doc.ErrorID(), doc.GetErrorStr1(), doc.GetErrorStr2());
+    }
     delete(line);
 }

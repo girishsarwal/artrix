@@ -1,21 +1,21 @@
-#ifndef CONFIGPARSER_H
-#define CONFIGPARSER_H
+#ifndef CONFIGURATION_H
+#define CONFIGURATION_H
 #include <string>
 #include <android/log.h>
-//#include <tinyxml2.h>
+#include <tinyxml2.h>
 #include "screen.h"
 #include "agk.h"
 using namespace std;
 using namespace AGK;
-//using namespace tinyxml2;
-class ConfigParser
+using namespace tinyxml2;
+class Configuration
 {
     public:
-        ConfigParser();
-        virtual ~ConfigParser();
+        Configuration();
+        virtual ~Configuration();
         static void ParseScreen(const string& file, Screen** screen);
     protected:
     private:
 };
 
-#endif // CONFIGPARSER_H
+#endif // CONFIGURATION_H
