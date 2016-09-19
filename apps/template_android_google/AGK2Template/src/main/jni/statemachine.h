@@ -8,11 +8,13 @@ protected:
     State*  mCurrentState;
     State*  mPreviousState;
 
+    State*  mBlipState;
 public:
     State* GetCurrentState();
     void SetCurrentState(State*);
     State* GetPreviousState();
     void SetPreviousState(State*);
+
 
     StateMachine();
     ~StateMachine();

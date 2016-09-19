@@ -1,8 +1,7 @@
 #include "statemachine.h"
-
 StateMachine::StateMachine(){
-    mCurrentState = 0;
-    mPreviousState = 0;
+    mCurrentState = NULL;
+    mPreviousState = NULL;
 }
 StateMachine::~StateMachine(){
     delete(mCurrentState);

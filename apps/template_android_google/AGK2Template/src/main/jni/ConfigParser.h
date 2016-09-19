@@ -2,12 +2,12 @@
 #define CONFIGPARSER_H
 #include <string>
 #include <android/log.h>
-#include <tinyxml2.h>
+//#include <tinyxml2.h>
 #include "screen.h"
 #include "agk.h"
 using namespace std;
 using namespace AGK;
-using namespace tinyxml2;
+//using namespace tinyxml2;
 class ConfigParser
 {
     public:

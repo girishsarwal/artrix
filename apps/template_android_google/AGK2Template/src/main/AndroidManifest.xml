@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       android:versionCode="46"
-      android:versionName="2.0.16" package="com.gt.artrix" android:installLocation="auto">
+      android:versionName="2.0.16" package="com.mycompany.mytemplate" android:installLocation="auto">
     <uses-feature android:glEsVersion="0x00020000"></uses-feature>
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19" />d
     

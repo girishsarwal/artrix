@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.gt.artrix.R;
+import com.mycompany.mytemplate.R;
 
 public class NotificationAlarmReceiver extends BroadcastReceiver {
     @Override

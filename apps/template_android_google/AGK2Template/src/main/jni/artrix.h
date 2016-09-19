@@ -24,14 +24,21 @@ class Artrix
 
 };
 
+class ArtrixSanityCheckState
+    : public State {
+
+};
+
+class ArtrixJtxCheckState
+    : public State {
+};
+
 class ArtrixHomeState
     : public State
 {
     public:
-        void OneTimeEnter(StateMachine*);
-        void Enter(StateMachine*);
-        void Exit(StateMachine*);
-        void Update(StateMachine*, double gameTime);
+        void OnOneTimeEnter(const StateMachine* );
+        void Update(const StateMachine*, double gameTime);
         ArtrixHomeState();
         ~ArtrixHomeState();
     private:

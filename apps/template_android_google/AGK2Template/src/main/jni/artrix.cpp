@@ -14,7 +14,7 @@ Artrix::~Artrix(){
 void Artrix::Begin()
 {
     agk::SetVirtualResolution (1024, 768);
-    agk::SetClearColor( 0, 0, 0); // black
+    agk::SetClearColor( 128, 128, 128); // black
     agk::SetSyncRate(60,0);
     agk::SetScissor(0,0,0,0);
     StateManager::GetInstance()->GotoState(this, new ArtrixHomeState());
@@ -22,6 +22,7 @@ void Artrix::Begin()
 
 void Artrix::Loop()
 {
+    agk::Print("This is a sample!");
     agk::Print(mCurrentState->GetName().c_str());
     mCurrentState->Update(this, 0);
 }
@@ -39,22 +40,19 @@ ArtrixHomeState::ArtrixHomeState()
 ArtrixHomeState::~ArtrixHomeState(){
 }
 
-void ArtrixHomeState::Enter(StateMachine* sm){
-
-}
-
-void ArtrixHomeState::OneTimeEnter(StateMachine* sm)
+void ArtrixHomeState::OnOneTimeEnter(const StateMachine* sm)
 {
-    ConfigParser::ParseScreen("templates/home.screen", 0);
+//    //ConfigParser::ParseScreen("templates/home.screen", 0);
     mHomeScreen  = new Screen();
+    __android_log_print(ANDROID_LOG_DEBUG, "ArtrixHomeState", "1");
     mBw = new ButtonWidget(Vector2(100, 0), Vector2(100, 100), std::string("pilot"), std::string("buttons/blue-bar.png"));
+    __android_log_print(ANDROID_LOG_DEBUG, "ArtrixHomeState", "2");
     mBw->SetSize(100, 50);
+    __android_log_print(ANDROID_LOG_DEBUG, "ArtrixHomeState", "3");
     mHomeScreen->AddWidget(mBw);
+    __android_log_print(ANDROID_LOG_DEBUG, "ArtrixHomeState", "4");
 }
 
-void ArtrixHomeState::Exit(StateMachine* sm){
-}
-
-void ArtrixHomeState::Update(StateMachine* sm, double gameTime){
+void ArtrixHomeState::Update(const StateMachine* sm, double gameTime){
     mBw->Print();
 }

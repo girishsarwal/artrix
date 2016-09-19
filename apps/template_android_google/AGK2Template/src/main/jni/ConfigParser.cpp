@@ -21,11 +21,13 @@ void ConfigParser::ParseScreen(const string& file, Screen** screen) {
         }
         agk::CloseFile(fileHandle);
     }
-    XMLDocument doc;
+    /*XMLDocument doc;
     XMLError err;
     err = doc.Parse(configString, 2048);
     if(err == 0) {
-        LOGW("xml loaded");
-    }
+        __android_log_print(ANDROID_LOG_INFO, "ConfigParser", "Parsed XML Document");
+    } else {
+    __android_log_print(ANDROID_LOG_INFO, "ConfigParser", "Problem Parsing");
+    }*/
     delete(line);
 }

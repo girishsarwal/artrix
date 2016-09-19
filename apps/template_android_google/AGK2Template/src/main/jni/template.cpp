@@ -32,6 +32,6 @@ void app::Loop (void)
 
 void app::End (void)
 {
-    pArtrix->End();
+    if (pArtrix) pArtrix->End();
     StateManager::DestroyInstance();
 }

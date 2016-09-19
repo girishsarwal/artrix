@@ -9,7 +9,7 @@ class StateManager
         virtual ~StateManager();
         static StateManager* GetInstance();
         static void DestroyInstance();
-        void GotoState(StateMachine* sm, State* newState);
+        void GotoState(StateMachine*, State*);
     protected:
 
     private:

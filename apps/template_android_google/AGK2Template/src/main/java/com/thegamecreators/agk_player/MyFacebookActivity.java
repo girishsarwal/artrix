@@ -1,6 +1,6 @@
 package com.thegamecreators.agk_player;
 
-import com.gt.artrix.R;
+import com.mycompany.mytemplate.R;
 import java.util.Arrays;
 
 import com.facebook.Session;

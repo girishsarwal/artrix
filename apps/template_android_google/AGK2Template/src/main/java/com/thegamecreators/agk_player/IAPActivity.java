@@ -1,6 +1,6 @@
 package com.thegamecreators.agk_player;
 
-import com.gt.artrix.R;
+import com.mycompany.mytemplate.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
