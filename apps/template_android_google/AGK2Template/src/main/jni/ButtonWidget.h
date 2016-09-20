@@ -1,7 +1,8 @@
 #ifndef BUTTONWIDGET_H
 #define BUTTONWIDGET_H
-
 #include "LeafWidget.h"
+#include "WidgetAttribute.h"
+#include <vector>
 using namespace std;
 
 class ButtonWidget : public LeafWidget
@@ -10,6 +11,8 @@ class ButtonWidget : public LeafWidget
         ButtonWidget();
         ButtonWidget(const Vector2& position, const Vector2& dimension, const string& text);
         ButtonWidget(const Vector2& position, const Vector2& dimension, const string& text, const string& background);
+        ButtonWidget(vector<WidgetAttribute*> attributes);
+        void SetText(const string&);
         virtual ~ButtonWidget();
     protected:
         virtual void OnSetVisible();

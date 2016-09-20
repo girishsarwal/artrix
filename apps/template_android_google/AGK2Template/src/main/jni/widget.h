@@ -16,6 +16,7 @@ class Widget
         Widget();
         Widget(const Vector2&, const Vector2&);
 
+
         virtual ~Widget();
         virtual void Update() = 0;
 

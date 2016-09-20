@@ -13,6 +13,7 @@ class Configuration
     public:
         Configuration();
         virtual ~Configuration();
+        static void GenerateFactoryConfiguration();
         static void ParseScreen(const string& file, Screen** screen);
     protected:
     private:

@@ -1,12 +1,15 @@
 #include "WidgetAttribute.h"
 WidgetAttribute::WidgetAttribute() {
-    //ctor
+
 }
 
 WidgetAttribute::~WidgetAttribute() {
-    //dtor
+
 }
-WidgetAttribute::WidgetAttribute(const string& name, const string& value) {
+
+WidgetAttribute::WidgetAttribute(const string& name, XMLNode* xmlNode) {
+    mName = name;
+    mXmlNode = xmlNode;
 }
 
 string WidgetAttribute::GetName() {
@@ -18,19 +21,22 @@ void WidgetAttribute::SetName(const string& name) {
 }
 
 string WidgetAttribute::GetValueStr() {
-    return mValue;
+    return GetValue();
 }
 
 int WidgetAttribute::GetValueInt() {
-    return atoi(mValue.c_str());
+    return atoi(GetValue().c_str());
 }
 
 float WidgetAttribute::GetValueFloat() {
-    return atof(mValue.c_str());
+    return atof(GetValue().c_str());
+}
+string WidgetAttribute::GetValue() {
+    return mXmlNode->Value();
 }
 
 void WidgetAttribute::SetValueStr(const string& value) {
-    mValue = value;
+    //mXmlNode = new XMLElement(value);
 }
 
 void WidgetAttribute::SetValueInt(int value) {

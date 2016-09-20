@@ -39,13 +39,17 @@ ArtrixHomeState::~ArtrixHomeState(){
 
 void ArtrixHomeState::OnOneTimeEnter(const StateMachine* sm)
 {
-    Configuration::ParseScreen("templates/home.screen", 0);
+    Configuration::ParseScreen("templates/screens.default", 0);
     mHomeScreen  = new Screen();
-    mBw = new ButtonWidget(Vector2(100, 0), Vector2(100, 100), std::string("pilot"), std::string("buttons/blue-bar.png"));
-    mBw->SetSize(100, 50);
-    mHomeScreen->AddWidget(mBw);
+
+
+
+//    mBw = new ButtonWidget(Vector2(100, 0), Vector2(100, 100), std::string("pilot"), std::string("buttons/blue-bar.png"));
+//    mBw->SetSize(100, 50);
+//    mHomeScreen->AddWidget(mBw);
 }
 
 void ArtrixHomeState::Update(const StateMachine* sm, double gameTime){
-    mBw->Print();
+//    mBw->Print();
+
 }

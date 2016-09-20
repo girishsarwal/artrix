@@ -5,7 +5,9 @@
 #include <sstream>
 #include "agk.h"
 #include <android/log.h>
+#include <tinyxml2.h>
 using namespace std;
+using namespace tinyxml2;
 class Vector2
 {
 
@@ -13,6 +15,8 @@ class Vector2
         Vector2();
         Vector2(const Vector2&);
         Vector2(float, float);
+        Vector2(XMLNode* xml);
+
         virtual ~Vector2();
 
         void Set(float, float);

@@ -1,7 +1,5 @@
 #include "Vector2.h"
 
-using namespace std;
-
 Vector2::Vector2() {
     x = 0.0f;
     y = 0.0f;
@@ -17,10 +15,21 @@ Vector2::Vector2(float _x, float _y) {
     y = _y;
 }
 
+Vector2::Vector2(XMLNode* node) {
+    XMLElement* element = node->ToElement();
+    if(NULL == element){
+        Set(0, 0);
+        return;
+    }
+    Set(atof(element->Attribute("x")), atof(element->Attribute("y")));
+}
+
 void Vector2::Set(float _x, float _y) {
     x = _x;
     y = _y;
 }
+
+
 
 Vector2::~Vector2() {
     //dtor
@@ -63,10 +72,8 @@ string Vector2::dump() const{
     stream << *this;
     return stream.str();
 }
+
 ostream& operator<<(ostream& stream, const Vector2& vec){
     stream << "{ x: " << vec.x << ", y: " << vec.y << " }";
     return stream;
 }
-
-
-
