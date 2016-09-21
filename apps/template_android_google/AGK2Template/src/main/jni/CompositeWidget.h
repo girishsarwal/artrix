@@ -12,8 +12,8 @@ class CompositeWidget : public Widget
         CompositeWidget(const Vector2&, const Vector2&);
         virtual ~CompositeWidget();
         void AddWidget();
-        void RemoveWidget(std::string&);
-        Widget* GetWidget(std::string&);
+        void RemoveWidget(string&);
+        Widget* GetWidget(string&);
         virtual void Update();
         string dump() const;
         void Print();

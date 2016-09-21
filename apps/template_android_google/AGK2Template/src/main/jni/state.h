@@ -18,9 +18,10 @@ public:
     void Exit(StateMachine*);
     virtual void Update(const StateMachine*, double gameTime) = 0;
 
-    string& GetName();
-    bool GetIsOneTimeEntered();
-    bool GetIsTerminable();
+    const string& GetName() const;
+    const bool GetIsOneTimeEntered() const;
+    const bool GetIsTerminable() const;
+
     void SetIsOneTimeEntered(bool);
 
     State(const string&);

@@ -12,7 +12,7 @@ WidgetAttribute::WidgetAttribute(const string& name, XMLNode* xmlNode) {
     mXmlNode = xmlNode;
 }
 
-string WidgetAttribute::GetName() {
+const string& WidgetAttribute::GetName() const {
     return mName;
 }
 
@@ -20,18 +20,18 @@ void WidgetAttribute::SetName(const string& name) {
     mName = name;
 }
 
-string WidgetAttribute::GetValueStr() {
+string WidgetAttribute::GetValueStr() const {
     return GetValue();
 }
 
-int WidgetAttribute::GetValueInt() {
+const int WidgetAttribute::GetValueInt() const {
     return atoi(GetValue().c_str());
 }
 
-float WidgetAttribute::GetValueFloat() {
+const float WidgetAttribute::GetValueFloat() const {
     return atof(GetValue().c_str());
 }
-string WidgetAttribute::GetValue() {
+string WidgetAttribute::GetValue() const {
     return mXmlNode->Value();
 }
 

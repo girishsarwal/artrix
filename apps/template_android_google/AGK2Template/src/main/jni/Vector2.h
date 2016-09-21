@@ -20,16 +20,17 @@ class Vector2
         virtual ~Vector2();
 
         void Set(float, float);
-        float Length();
-        float LengthSq();
+        float Length() const;
+        float LengthSq() const;
         void Normalize();
         float Dot(const Vector2&);
-        Vector2 GetRight(const Vector2&);
-        Vector2 GetLeft(const Vector2&);
+        Vector2 GetRight() const;
+        Vector2 GetLeft() const;
         void Print();
 
         float x;
         float y;
+
 
         string dump() const;
         friend ostream& operator<<(ostream& stream, const Vector2& vec);

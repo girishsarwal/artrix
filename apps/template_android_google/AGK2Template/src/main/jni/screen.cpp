@@ -16,7 +16,7 @@ void Screen::AddWidget(Widget* widget){
     mWidgets.push_back(widget);
 }
 
-vector<Widget*> Screen::GetWidgets() const {
+const vector<Widget*>& Screen::GetWidgets() const {
     return mWidgets;
 }
 bool Screen::operator==(const Screen& rhs) const {
@@ -40,7 +40,7 @@ ostream& operator<<(ostream& stream, const Screen& screen) {
     stream << "{ name: " << screen.mName.c_str() << ", "
         << "widgets: ";
 
-    vector<Widget*>::iterator it = screen.GetWidgets().begin();
+    vector<Widget*>::const_iterator it = screen.GetWidgets().begin();
     while(it != screen.GetWidgets().end()) {
         stream << "[" << (*it)->dump() << "]";
         it++;

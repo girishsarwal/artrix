@@ -10,12 +10,12 @@ class WidgetAttribute
         WidgetAttribute();
         WidgetAttribute(const string&, XMLNode*);
         virtual ~WidgetAttribute();
-        string GetName();
+        const string& GetName() const;
         void SetName(const string&);
 
-        string GetValueStr();
-        int GetValueInt();
-        float GetValueFloat();
+        string GetValueStr() const;
+        const int GetValueInt() const;
+        const float GetValueFloat() const;
 
 
         void SetValueStr(const string&);
@@ -26,7 +26,7 @@ class WidgetAttribute
         string mName;
         XMLNode* mXmlNode;
     private:
-        string GetValue();
+        string GetValue() const;
 };
 
 #endif // WIDGETATTRIBUTE_H

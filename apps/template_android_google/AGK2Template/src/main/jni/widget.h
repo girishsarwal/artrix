@@ -20,18 +20,18 @@ class Widget
         virtual ~Widget();
         virtual void Update() = 0;
 
-        bool GetVisible();
+        bool GetVisible() const;
         void SetVisible(bool);
-        Vector2& GetSize();
+        const Vector2& GetSize() const;
         void SetSize(const Vector2&);
         void SetSize(float, float);
-        Vector2& GetPosition();
+        const Vector2& GetPosition() const;
         void SetPosition(const Vector2&);
         void SetPosition(float, float);
-        Vector2& GetPivot();
+        const Vector2& GetPivot() const;
         void SetPivot(const Vector2&);
         void SetPivot(float, float);
-        string GetName();
+        const string& GetName() const;
         void SetName(string&);
         string dump() const;
         virtual void Print();

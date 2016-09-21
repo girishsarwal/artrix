@@ -3,13 +3,13 @@ void State::SetIsOneTimeEntered(bool _isOneTimeEntered){
     mIsOneTimeEntered = _isOneTimeEntered;
 }
 
-bool State::GetIsOneTimeEntered(){
+const bool State::GetIsOneTimeEntered() const {
     return mIsOneTimeEntered;
 }
-bool State::GetIsTerminable() {
+const bool State::GetIsTerminable() const {
     return mIsTerminable;
 }
-string& State::GetName(){
+const string& State::GetName() const {
     return mName;
 }
 

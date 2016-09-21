@@ -36,11 +36,11 @@ Vector2::~Vector2() {
 }
 
 
-float Vector2::Length() {
+float Vector2::Length() const {
     return sqrt(LengthSq());
 }
 
-float Vector2::LengthSq() {
+float Vector2::LengthSq() const {
     return (x*x + y*y);
 }
 
@@ -54,12 +54,12 @@ float Vector2::Dot(const Vector2& rhs) {
     return 0;
 }
 
-Vector2 Vector2::GetRight(const Vector2 &rhs) {
-    return Vector2(-rhs.y, rhs.x);
+Vector2 Vector2::GetRight() const {
+    return Vector2(-this->y, this->x);
 }
 
-Vector2 Vector2::GetLeft(const Vector2 &rhs) {
-    return Vector2(rhs.y, -rhs.x);
+Vector2 Vector2::GetLeft() const {
+    return Vector2(this->y, -this->x);
 }
 
 void Vector2::Print() {

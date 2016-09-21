@@ -18,14 +18,14 @@ Widget::Widget(const Vector2& position, const Vector2& size) {
 Widget::~Widget() {
 
 }
-bool Widget::GetVisible() {
+bool Widget::GetVisible() const {
     return mIsVisible;
 }
 void Widget::SetVisible(bool isVisible){
     mIsVisible = isVisible;
     OnSetVisible();
 }
-Vector2& Widget::GetSize() {
+const Vector2& Widget::GetSize() const {
     return mSize;
 }
 void Widget::SetSize(const Vector2& size) {
@@ -35,7 +35,7 @@ void Widget::SetSize(float width, float height) {
     mSize.Set(width, height);
     OnSetSize();
 }
-Vector2& Widget::GetPosition() {
+const Vector2& Widget::GetPosition() const {
     return mPosition;
 }
 void Widget::SetPosition(const Vector2& position) {
@@ -45,7 +45,7 @@ void Widget::SetPosition(float x, float y) {
     mPosition.Set(x, y);
     OnSetPosition();
 }
-Vector2& Widget::GetPivot() {
+const Vector2& Widget::GetPivot() const {
     return mPivot;
 }
 void Widget::SetPivot(const Vector2& pivot) {
@@ -60,7 +60,7 @@ void Widget::SetDefaultName(){
     string defaultName = string(widgetName);
     SetName(defaultName);
 }
-string Widget::GetName(){
+const string& Widget::GetName() const{
     return mName;
 }
 

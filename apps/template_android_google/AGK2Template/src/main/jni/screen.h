@@ -10,8 +10,8 @@ class Screen
         Screen();
         Screen(const string&);
         virtual ~Screen();
-        string GetName();
-        vector<Widget*> GetWidgets() const;
+        const string& GetName() const;
+        const vector<Widget*>& GetWidgets() const;
         void AddWidget(Widget*);
         bool operator==(const Screen&) const;
         bool operator!=(const Screen&) const;
