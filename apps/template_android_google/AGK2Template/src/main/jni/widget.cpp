@@ -94,3 +94,9 @@ ostream& operator<<(ostream& stream, const Widget& widget) {
 int Widget::nextId = 0;
 
 
+bool Widget::operator==(const Widget& rhs) const {
+    return (this->mName == rhs.mName);
+};
+bool Widget::operator!=(const Widget& rhs) const {
+    return !(*this == rhs);
+};

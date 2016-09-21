@@ -15,6 +15,7 @@ public:
     State* GetPreviousState();
     void SetPreviousState(State*);
 
+    void GotoState(State*);
 
     StateMachine();
     ~StateMachine();

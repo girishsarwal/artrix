@@ -18,7 +18,8 @@ void Configuration::GenerateFactoryConfiguration() {
 
 
 }
-void Configuration::ParseScreen(const string& file, Screen** screen) {
+
+void Configuration::ParseScreens(const string& file) {
     /** we cant use fopen here as all assets in Agk are zipped up into the AssetManager.
     We plan to use the AGK open file to load up the contents into the xml stream **/
     int fileHandle = agk::OpenToRead(file.c_str());
@@ -44,7 +45,7 @@ void Configuration::ParseScreen(const string& file, Screen** screen) {
     }
 
     for(XMLNode* screenNode = doc.RootElement()->FirstChild(); screenNode; screenNode = screenNode->NextSibling()) {        //screens
-        Screen* screen = new Screen();
+        Screen* screen = new Screen(screenNode->ToElement()->Attribute("name"));
         /** descend **/
         for(XMLNode* widgetNode = screenNode->FirstChild(); widgetNode; widgetNode= widgetNode->NextSibling()) {            //widgets
             vector<WidgetAttribute*> attributes;
@@ -54,7 +55,16 @@ void Configuration::ParseScreen(const string& file, Screen** screen) {
                 attributes.push_back(wa);
                 __android_log_print(ANDROID_LOG_DEBUG, "XML", "Property %s, %s", wa->GetName().c_str(), wa->GetValueStr().c_str());
             }
-            ButtonWidget* bw = new ButtonWidget(attributes);
+            Widget *w = NULL;
+            WidgetFactory::CreateWidget(string(widgetNode->ToElement()->Attribute("type")), attributes, &w);
+            screen->AddWidget(w);
         }
+        mScreens.push_back(screen);
     }
 }
+
+vector<Screen*> Configuration::GetScreens() {
+    return mScreens;
+}
+
+vector<Screen*> Configuration::mScreens;

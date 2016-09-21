@@ -37,6 +37,9 @@ class Widget
         virtual void Print();
         friend ostream& operator<<(ostream& stream, const Widget& widget);
 
+        bool operator==(const Widget& rhs) const;
+        bool operator!=(const Widget& rhs) const;
+
     protected:
         string mName;
         Vector2 mPosition;

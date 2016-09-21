@@ -3,7 +3,9 @@
 #include "ButtonWidget.h"
 #include "statemanager.h"
 #include <android/log.h>
+#include <algorithm>
 using namespace AGK;
+using namespace std;
 Artrix::Artrix(){
 
 }
@@ -30,7 +32,7 @@ void Artrix::End()
 
 ArtrixHomeState::ArtrixHomeState()
     : State("Home"){
-        mBw = 0;
+
 }
 
 
@@ -39,17 +41,12 @@ ArtrixHomeState::~ArtrixHomeState(){
 
 void ArtrixHomeState::OnOneTimeEnter(const StateMachine* sm)
 {
-    Configuration::ParseScreen("templates/screens.default", 0);
-    mHomeScreen  = new Screen();
-
-
-
-//    mBw = new ButtonWidget(Vector2(100, 0), Vector2(100, 100), std::string("pilot"), std::string("buttons/blue-bar.png"));
-//    mBw->SetSize(100, 50);
-//    mHomeScreen->AddWidget(mBw);
+    vector<Screen*> screens = Configuration::GetScreens();
+    Screen* s = new Screen("home");
+    vector<Screen*>::iterator screen = std::find(screens.begin(), screens.end(), s);
+    mHomeScreen = *screen;
 }
 
 void ArtrixHomeState::Update(const StateMachine* sm, double gameTime){
-//    mBw->Print();
 
 }

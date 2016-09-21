@@ -43,9 +43,6 @@ class ArtrixHomeState
         ~ArtrixHomeState();
     private:
         Screen* mHomeScreen;
-        ButtonWidget* mBw;
-        Vector2 mTestVec;
-
 };
 
 #endif // ARTRIX_H

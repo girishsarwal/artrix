@@ -5,6 +5,7 @@
 #include <tinyxml2.h>
 #include "screen.h"
 #include "agk.h"
+#include "WidgetFactory.h"
 using namespace std;
 using namespace AGK;
 using namespace tinyxml2;
@@ -14,9 +15,11 @@ class Configuration
         Configuration();
         virtual ~Configuration();
         static void GenerateFactoryConfiguration();
-        static void ParseScreen(const string& file, Screen** screen);
+        static void ParseScreens(const string& file);
+        static vector<Screen*> GetScreens();
     protected:
     private:
+        static vector<Screen*> mScreens;
 };
 
 #endif // CONFIGURATION_H

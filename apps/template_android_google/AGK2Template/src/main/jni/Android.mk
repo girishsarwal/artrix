@@ -61,7 +61,7 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../../../../platform/tinyxml2/include
 # app source files, must be relative to the jni folder
 LOCAL_SRC_FILES := main.c Core.cpp template.cpp \
                     Vector2.cpp statemachine.cpp state.cpp statemanager.cpp artrix.cpp screen.cpp widget.cpp WidgetAttribute.cpp WidgetFactory.cpp\
-                    Configuration.cpp\
+                    Configuration.cpp Managers.cpp\
                     LeafWidget.cpp CompositeWidget.cpp \
                     ButtonWidget.cpp MainMenuWidget.cpp
 

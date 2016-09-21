@@ -19,6 +19,8 @@ void app::Begin(void)
     /** Initialize the managers **/
     mStateManager = StateManager::GetInstance();
 
+    Configuration::ParseScreens("templates/screens.default");
+
     /** begin artrix program **/
     pArtrix->Begin();
 }

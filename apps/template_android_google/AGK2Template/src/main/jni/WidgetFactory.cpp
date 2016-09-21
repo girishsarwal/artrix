@@ -1,5 +1,6 @@
 #include "WidgetFactory.h"
 
+#include "ButtonWidget.h"
 WidgetFactory::WidgetFactory()
 {
     //ctor
@@ -11,12 +12,9 @@ WidgetFactory::~WidgetFactory()
 }
 
 void WidgetFactory::CreateWidget(const string& type, const vector<WidgetAttribute*>& attributes, Widget** widget) {
-    if(widget == 0) {
-        //memory allocation code
+    if(type.compare("ButtonWidget")) {
+        *widget = new ButtonWidget(attributes);
     }
 }
 void WidgetFactory::CreateWidget(const string& name, const string& type, const vector<WidgetAttribute*>&, Widget** widget) {
-    if(widget == 0) {
-        //memory allocation code
-    }
 }
