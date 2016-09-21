@@ -9,3 +9,4 @@ apps/template_android_google/.idea/
 *.bin
 *.iml
 makefile
+local.properties

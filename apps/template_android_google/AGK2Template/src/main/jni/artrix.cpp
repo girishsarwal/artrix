@@ -42,11 +42,16 @@ ArtrixHomeState::~ArtrixHomeState(){
 void ArtrixHomeState::OnOneTimeEnter(const StateMachine* sm)
 {
     vector<Screen*> screens = Configuration::GetScreens();
-    Screen* s = new Screen("home");
-    vector<Screen*>::iterator screen = std::find(screens.begin(), screens.end(), s);
-    mHomeScreen = *screen;
+    vector<Screen*>::const_iterator it = screens.begin();
+    while(it != screens.end()) {
+        (*it)->Print();
+        it++;
+    }
+//    Screen* s = new Screen("home");
+//    vector<Screen*>::iterator screen = std::find(screens.begin(), screens.end(), s);
+//    mHomeScreen = *screen;
 }
 
 void ArtrixHomeState::Update(const StateMachine* sm, double gameTime){
-
+    //mHomeScreen->Print();
 }
