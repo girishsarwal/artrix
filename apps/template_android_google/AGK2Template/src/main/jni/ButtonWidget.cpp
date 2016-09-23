@@ -14,23 +14,33 @@ ButtonWidget::~ButtonWidget(){
 ButtonWidget::ButtonWidget(const Vector2& position, const Vector2& size, const string& text)
     : LeafWidget(position, size)
 {
-    SetText(text);
+    mText = text;
 }
 
 
-ButtonWidget::ButtonWidget(XMLNode* node)
-    : LeafWidget (node) {
-    SetBackground(node->FirstChildElement("background")->GetText());
-    SetText(node->FirstChildElement("text")->GetText());
-    SetAction(node->FirstChildElement("action")->GetText(),node->FirstChildElement("action")->GetText());
-}
 
 ButtonWidget::ButtonWidget(const Vector2& position, const Vector2& size, const string& text, const string& background)
     : LeafWidget(position, size)
 {
-    SetText(text);
-    SetBackground(background);
-    __android_log_print(ANDROID_LOG_DEBUG, "ButtonWidget", "ImageId=%d, SpriteId=%d", mBackgroundImageId, mBackgroundSpriteId);
+    mText = text;
+    mBackgroundPath = background;
+}
+
+ButtonWidget::ButtonWidget(XMLNode* node)
+    : LeafWidget (node) {
+    mText = node->FirstChildElement("text")->GetText();
+    mBackgroundPath = node->FirstChildElement("background")->GetText();
+    mAction = node->FirstChildElement("action")->GetText();
+    mParameters = node->FirstChildElement("action")->GetText();
+
+}
+void ButtonWidget::OnBeforeInitialize() {
+    SetBackground(mBackgroundPath);     /** this widget needs the background before position etc can be set because the position of the sprite depends on the size **/
+
+}
+void ButtonWidget::OnInitialize() {
+    SetText(mText);
+    SetAction(mAction, mParameters);
 }
 void ButtonWidget::SetText(const string& text) {
     mText = text;
@@ -48,6 +58,7 @@ void ButtonWidget::SetBackground(const string& file) {
     mBackgroundSpriteId = agk::CreateSprite(mBackgroundImageId);
 
     OnSetBackground();
+    __android_log_print(ANDROID_LOG_DEBUG, "ButtonWidget::SetBackground", "background regenerated ImageId=%d, SpriteId=%d", mBackgroundImageId, mBackgroundSpriteId);
 }
 const string& ButtonWidget::GetBackground() const {
     return mBackgroundPath;
@@ -76,3 +87,4 @@ void ButtonWidget::OnSetAction() {
 }
 void ButtonWidget::OnSetText() { }
 void ButtonWidget::OnSetBackground() { }
+

@@ -20,8 +20,14 @@ class Widget
         virtual ~Widget();
         virtual void Update();
 
-        bool GetVisible() const;
-        void SetVisible(bool);
+        bool GetIsInitialized() const;
+        void BeforeInitialize();
+        void Initialize();
+        void AfterInitialize();
+
+
+        bool GetIsVisible() const;
+        void SetIsVisible(bool);
         const Vector2& GetSize() const;
         void SetSize(const Vector2&);
         void SetSize(float, float);
@@ -47,12 +53,17 @@ class Widget
         Vector2 mSize;
         bool mIsVisible;
 
+        virtual void OnBeforeInitialize();
+        virtual void OnInitialize();
+        virtual void OnAfterInitialize();
+
         virtual void OnSetVisible();
         virtual void OnSetPosition();
         virtual void OnSetSize();
         virtual void OnUpdate();
         string _str;
 
+        bool mIsInitialized;
     private:
         static int nextId;
         void SetDefaultName();

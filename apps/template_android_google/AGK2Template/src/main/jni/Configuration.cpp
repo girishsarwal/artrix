@@ -51,6 +51,7 @@ void Configuration::ParseScreens(const string& file) {
         for(XMLNode* widgetNode = screenNode->FirstChild(); widgetNode; widgetNode= widgetNode->NextSibling()) {            //widgets
             Widget *w = NULL;
             WidgetFactory::CreateWidget(string(widgetNode->ToElement()->Attribute("type")), widgetNode, &w);
+            w->Initialize();            /** This function is introduced to maintain the object creation inheritance hierarchy **/
             screen->AddWidget(w);
         }
         mScreens.push_back(screen);

@@ -37,16 +37,14 @@ void Screen::Print() {
 }
 
 ostream& operator<<(ostream& stream, const Screen& screen) {
-/** TODO: Change to xml serialization **/
-    stream << "{ name: " << screen.mName.c_str() << ", "
+    stream << "<screen name=\"" << screen.mName.c_str() << "\">\n"
         << "widgets: ";
-
     vector<Widget*>::const_iterator it = screen.GetWidgets().begin();
     while(it != screen.GetWidgets().end()) {
-        stream << "[" << (*it)->dump() << "]";
+        stream << (*it)->dump();
         it++;
     }
-    stream << "}";
+    stream << "</screen>\n";
 
     return stream;
 }
@@ -59,7 +57,7 @@ void Screen::SetIsVisible(bool visible) {
     /** set all the wigets visible ***/
     std::vector<Widget*>::iterator it = mWidgets.begin();
     while (it != mWidgets.end()) {
-        (*it)->SetVisible(visible);
+        (*it)->SetIsVisible(visible);
         it++;
     }
     mIsVisible = visible;
@@ -67,6 +65,9 @@ void Screen::SetIsVisible(bool visible) {
 void Screen::Update() {
     std::vector<Widget*>::iterator it = mWidgets.begin();
     while (it != mWidgets.end()) {
+        if(! (*it)->GetIsInitialized()) {
+            (*it)->Initialize();
+        }
         (*it)->Update();
         it++;
     }

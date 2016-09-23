@@ -21,6 +21,9 @@ class ButtonWidget : public LeafWidget
         const string& GetAction() const;
 
     protected:
+        virtual void OnBeforeInitialize();
+        virtual void OnInitialize();
+
         virtual void OnSetVisible();
         virtual void OnSetPosition();
         virtual void OnSetSize();

@@ -73,6 +73,6 @@ string Vector2::dump() const{
 }
 
 ostream& operator<<(ostream& stream, const Vector2& vec){
-    stream << "<vec x=\"" << vec.x << "\" y=\"" << (vec.y) << "\">-</vec>";
+    stream << "<vec x=\"" << vec.x << "\" y=\"" << (vec.y) << "\"></vec>";
     return stream;
 }

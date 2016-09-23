@@ -1,7 +1,7 @@
 <screens>
 	<screen name="home">
 	    <widget type="ButtonWidget">
-            <position><vec x="0" y="20"></vec></position>
+            <position><vec x="0" y="500"></vec></position>
             <size><vec x="100" y="200"></vec></size>
             <anchor><vec x="0.5" y="0.5"></vec></anchor>
             <background>buttons/blue-bar.png</background>

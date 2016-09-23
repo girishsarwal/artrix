@@ -1,33 +1,53 @@
 #include "widget.h"
 Widget::Widget() {
-    SetPosition(0.0f, 0.0f);
-    SetSize(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE);
-    SetPivot(0.5f, 0.5f);
-    SetVisible(true);
+    mPosition.Set(0.0f, 0.0f);
+    mSize.Set(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE);
+    mPivot.Set(0.5f, 0.5f);
+    mIsVisible = true;
     SetDefaultName();
 }
 
 Widget::Widget(const Vector2& position, const Vector2& size) {
-    SetPosition(position);
-    SetSize(size);
-    SetPivot(0.5f, 0.5f);
-    SetVisible(true);
+    mPosition.Set(0.0f, 0.0f);
+    mSize.Set(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE);
+    mPivot.Set(0.5f, 0.5f);
+    mIsVisible = true;
     SetDefaultName();
 }
 
 Widget::Widget(XMLNode* node) {
-    SetPosition(Vector2(node->FirstChildElement("position")->FirstChild()));
-    SetSize(Vector2(node->FirstChildElement("size")->FirstChild()));
-    SetPivot(Vector2(node->FirstChildElement("anchor")->FirstChild()));
+    mPosition = Vector2(node->FirstChildElement("position")->FirstChild());
+    mSize = Vector2(node->FirstChildElement("size")->FirstChild());
+    mPivot = Vector2(node->FirstChildElement("anchor")->FirstChild());
 }
 
 Widget::~Widget() {
 
 }
-bool Widget::GetVisible() const {
+
+bool Widget::GetIsInitialized() const {
+    return mIsInitialized;
+}
+void Widget::Initialize() {
+
+    OnBeforeInitialize();
+
+    SetPosition(mPosition);     /** I know this sounds stupid to do but C++ makes objects like an onion, inside out and we need to call some virt func during creation **/
+    SetSize(mSize);
+    SetPivot(mPivot);
+    SetIsVisible(mIsVisible);
+
+    OnInitialize();             /** we let the dervied class function execute first **/
+    mIsInitialized = true;
+
+    OnAfterInitialize();
+}
+
+
+bool Widget::GetIsVisible() const {
     return mIsVisible;
 }
-void Widget::SetVisible(bool isVisible){
+void Widget::SetIsVisible(bool isVisible){
     mIsVisible = isVisible;
     OnSetVisible();
 }
@@ -50,6 +70,12 @@ void Widget::SetPosition(const Vector2& position) {
 void Widget::SetPosition(float x, float y) {
     mPosition.Set(x, y);
     OnSetPosition();
+}
+void Widget::BeforeInitialize() {
+    OnBeforeInitialize();
+}
+void Widget::AfterInitialize() {
+    OnAfterInitialize();
 }
 const Vector2& Widget::GetPivot() const {
     return mPivot;
@@ -79,9 +105,12 @@ void Widget::Update() {
     OnUpdate();
 }
 
-void Widget::OnSetVisible() {}
-void Widget::OnSetPosition() {}
-void Widget::OnSetSize() {}
+void Widget::OnBeforeInitialize() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnBeforeInitialize", "base was called"); }
+void Widget::OnInitialize() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnBeforeInitialize", "base was called"); }
+void Widget::OnAfterInitialize() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnAfterInitialize", "base was called"); }
+void Widget::OnSetVisible() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnSetVisible", "base was called"); }
+void Widget::OnSetPosition() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnSetPosition", "base was called");}
+void Widget::OnSetSize() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnSetSize", "base was called");}
 void Widget::OnUpdate() {}
 
 string Widget::dump() const{
