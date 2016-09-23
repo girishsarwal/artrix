@@ -1,18 +1,24 @@
 #include "widget.h"
 Widget::Widget() {
-    mPosition.Set(0.0f, 0.0f);
-    mSize.Set(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE);
+    SetPosition(0.0f, 0.0f);
+    SetSize(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE);
     SetPivot(0.5f, 0.5f);
     SetVisible(true);
     SetDefaultName();
 }
 
 Widget::Widget(const Vector2& position, const Vector2& size) {
-    mPosition = position;
-    mSize = size;
+    SetPosition(position);
+    SetSize(size);
     SetPivot(0.5f, 0.5f);
     SetVisible(true);
     SetDefaultName();
+}
+
+Widget::Widget(XMLNode* node) {
+    SetPosition(Vector2(node->FirstChildElement("position")->FirstChild()));
+    SetSize(Vector2(node->FirstChildElement("size")->FirstChild()));
+    SetPivot(Vector2(node->FirstChildElement("anchor")->FirstChild()));
 }
 
 Widget::~Widget() {
@@ -68,10 +74,15 @@ void Widget::SetName(string& name){
     mName = name;
 }
 
+void Widget::Update() {
+    __android_log_print(ANDROID_LOG_DEBUG, "Widget::Update", "position is %s, %f, %f", mName.c_str(), mPosition.x, mPosition.y);
+    OnUpdate();
+}
 
 void Widget::OnSetVisible() {}
 void Widget::OnSetPosition() {}
 void Widget::OnSetSize() {}
+void Widget::OnUpdate() {}
 
 string Widget::dump() const{
     stringstream ss;
@@ -80,14 +91,16 @@ string Widget::dump() const{
 }
 
 void Widget::Print() {
-    __android_log_print(ANDROID_LOG_VERBOSE, "Widget", "%s", dump().c_str());
+    __android_log_print(ANDROID_LOG_DEBUG, "Widget", "%s", dump().c_str());
 }
 
 ostream& operator<<(ostream& stream, const Widget& widget) {
-    stream << "{ name: " << widget.mName.c_str() << ", "
-            << "position: " << widget.mPosition.dump() << ", "
-            << "pivot: " << widget.mPivot.dump() << ", "
-            << "size: " << widget.mSize.dump() << " }";
+    stream << "<widget type=\"undefined\" name =\"" << widget.mName.c_str() << "\">\n"
+            << "\t<position>" << widget.mPosition.dump() << "</position>\n"
+            << "\t<pivot>" << widget.mPivot.dump() << "</pivot>\n"
+            << "\t<size>" << widget.mSize.dump() << "</size>\n"
+            << "</widget>";
+
     return stream;
 }
 
@@ -100,3 +113,4 @@ bool Widget::operator==(const Widget& rhs) const {
 bool Widget::operator!=(const Widget& rhs) const {
     return !(*this == rhs);
 };
+

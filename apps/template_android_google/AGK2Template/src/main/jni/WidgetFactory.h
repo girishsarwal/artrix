@@ -2,7 +2,6 @@
 #define WIDGETFACTORY_H
 #include <vector>
 #include "widget.h"
-#include "WidgetAttribute.h"
 
 using namespace std;
 class WidgetFactory
@@ -10,8 +9,8 @@ class WidgetFactory
     public:
         WidgetFactory();
         virtual ~WidgetFactory();
-        static void CreateWidget(const string&, const vector<WidgetAttribute*>&, Widget**);
-        static void CreateWidget(const string&, const string&, const vector<WidgetAttribute*>&, Widget**);
+        static void CreateWidget(const string&, XMLNode*, Widget**);
+        static void CreateWidget(const string&, const string&, XMLNode*, Widget**);
     protected:
     private:
 };

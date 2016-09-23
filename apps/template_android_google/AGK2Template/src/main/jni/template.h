@@ -12,7 +12,6 @@ class app
 	public:
 
 		Artrix *pArtrix;
-		StateManager *mStateManager;
 
 	public:
 

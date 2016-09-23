@@ -17,16 +17,15 @@ Vector2::Vector2(float _x, float _y) {
 
 Vector2::Vector2(XMLNode* node) {
     XMLElement* element = node->ToElement();
-    if(NULL == element){
-        Set(0, 0);
-        return;
-    }
-    Set(atof(element->Attribute("x")), atof(element->Attribute("y")));
+    if(NULL != element){
+        Set(atof(element->Attribute("x")), atof(element->Attribute("y")));
+    } else Set(0, 0);
 }
 
 void Vector2::Set(float _x, float _y) {
     x = _x;
     y = _y;
+    Print();
 }
 
 
@@ -64,7 +63,7 @@ Vector2 Vector2::GetLeft() const {
 
 void Vector2::Print() {
 
-    __android_log_print(ANDROID_LOG_VERBOSE, "Vector2", "%s", dump().c_str());
+    __android_log_print(ANDROID_LOG_DEBUG, "Vector2", "%s", dump().c_str());
 }
 
 string Vector2::dump() const{
@@ -74,6 +73,6 @@ string Vector2::dump() const{
 }
 
 ostream& operator<<(ostream& stream, const Vector2& vec){
-    stream << "{ x: " << vec.x << ", y: " << vec.y << " }";
+    stream << "<vec x=\"" << vec.x << "\" y=\"" << (vec.y) << "\">-</vec>";
     return stream;
 }

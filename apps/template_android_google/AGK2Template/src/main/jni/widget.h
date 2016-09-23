@@ -4,21 +4,21 @@
 #include <android/log.h>
 #include <string>
 #include <sstream>
-
 #include "agk.h"
 #include "Vector2.h"
+#include <tinyxml2.h>
 #define DEFAULT_WIDGET_SIZE 100
 using namespace std;
-
+using namespace tinyxml2;
 class Widget
 {
     public:
         Widget();
         Widget(const Vector2&, const Vector2&);
-
+        Widget(XMLNode*);
 
         virtual ~Widget();
-        virtual void Update() = 0;
+        virtual void Update();
 
         bool GetVisible() const;
         void SetVisible(bool);
@@ -50,8 +50,9 @@ class Widget
         virtual void OnSetVisible();
         virtual void OnSetPosition();
         virtual void OnSetSize();
-
+        virtual void OnUpdate();
         string _str;
+
     private:
         static int nextId;
         void SetDefaultName();

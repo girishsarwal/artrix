@@ -1,6 +1,6 @@
 // Includes
 #include "template.h"
-
+#include "Managers.h"
 // Namespace
 using namespace AGK;
 
@@ -17,8 +17,7 @@ app::~app(){
 void app::Begin(void)
 {
     /** Initialize the managers **/
-    mStateManager = StateManager::GetInstance();
-
+    Managers::Initialize();
     Configuration::ParseScreens("templates/screens.default");
 
     /** begin artrix program **/

@@ -47,8 +47,6 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Managers.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Vector2.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Vector2.h" />
-		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/WidgetAttribute.cpp" />
-		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/WidgetAttribute.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/WidgetFactory.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/WidgetFactory.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/artrix.cpp" />

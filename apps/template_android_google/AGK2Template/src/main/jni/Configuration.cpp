@@ -1,7 +1,6 @@
 #include "Configuration.h"
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
 #include <vector>
-#include "WidgetAttribute.h"
 #include "ButtonWidget.h"
 Configuration::Configuration() {
     //ctor
@@ -47,16 +46,11 @@ void Configuration::ParseScreens(const string& file) {
     for(XMLNode* screenNode = doc.RootElement()->FirstChild(); screenNode; screenNode = screenNode->NextSibling()) {        //screens
         Screen* screen = new Screen(screenNode->ToElement()->Attribute("name"));
         /** descend **/
+
+
         for(XMLNode* widgetNode = screenNode->FirstChild(); widgetNode; widgetNode= widgetNode->NextSibling()) {            //widgets
-            vector<WidgetAttribute*> attributes;
-            for(XMLNode* widgetAttributeNode = widgetNode->FirstChild(); widgetAttributeNode; widgetAttributeNode= widgetAttributeNode->NextSibling()) {
-                string waName = string(widgetAttributeNode->Value());
-                WidgetAttribute *wa = new WidgetAttribute(waName, widgetAttributeNode->FirstChild());
-                attributes.push_back(wa);
-                __android_log_print(ANDROID_LOG_DEBUG, "XML", "Property %s, %s", wa->GetName().c_str(), wa->GetValueStr().c_str());
-            }
             Widget *w = NULL;
-            WidgetFactory::CreateWidget(string(widgetNode->ToElement()->Attribute("type")), attributes, &w);
+            WidgetFactory::CreateWidget(string(widgetNode->ToElement()->Attribute("type")), widgetNode, &w);
             screen->AddWidget(w);
         }
         mScreens.push_back(screen);

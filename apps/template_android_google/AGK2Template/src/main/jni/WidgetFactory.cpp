@@ -1,5 +1,5 @@
 #include "WidgetFactory.h"
-
+#include <android/log.h>
 #include "ButtonWidget.h"
 WidgetFactory::WidgetFactory()
 {
@@ -11,10 +11,12 @@ WidgetFactory::~WidgetFactory()
     //dtor
 }
 
-void WidgetFactory::CreateWidget(const string& type, const vector<WidgetAttribute*>& attributes, Widget** widget) {
-    if(type.compare("ButtonWidget")) {
-        *widget = new ButtonWidget(attributes);
+void WidgetFactory::CreateWidget(const string& type, XMLNode* node, Widget** widget) {
+    __android_log_print(ANDROID_LOG_DEBUG, "WidgetFactory::CreateWidget", "Request for widget creation of type %s", type.c_str());
+    if(type == "ButtonWidget") {
+        __android_log_print(ANDROID_LOG_DEBUG, "WidgetFactory::CreateWidget", "Creating ButtonWidget");
+        *widget = new ButtonWidget(node);
     }
 }
-void WidgetFactory::CreateWidget(const string& name, const string& type, const vector<WidgetAttribute*>&, Widget** widget) {
+void WidgetFactory::CreateWidget(const string& name, const string& type, XMLNode* node, Widget** widget) {
 }

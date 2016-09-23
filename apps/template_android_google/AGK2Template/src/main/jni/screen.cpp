@@ -33,10 +33,11 @@ string Screen::dump() const{
 }
 
 void Screen::Print() {
-    __android_log_print(ANDROID_LOG_VERBOSE, "Screen", "%s", dump().c_str());
+    __android_log_print(ANDROID_LOG_DEBUG, "Screen", "%s", dump().c_str());
 }
 
 ostream& operator<<(ostream& stream, const Screen& screen) {
+/** TODO: Change to xml serialization **/
     stream << "{ name: " << screen.mName.c_str() << ", "
         << "widgets: ";
 
@@ -48,4 +49,25 @@ ostream& operator<<(ostream& stream, const Screen& screen) {
     stream << "}";
 
     return stream;
+}
+
+bool Screen::GetIsVisible() const {
+    return mIsVisible;
+}
+
+void Screen::SetIsVisible(bool visible) {
+    /** set all the wigets visible ***/
+    std::vector<Widget*>::iterator it = mWidgets.begin();
+    while (it != mWidgets.end()) {
+        (*it)->SetVisible(visible);
+        it++;
+    }
+    mIsVisible = visible;
+}
+void Screen::Update() {
+    std::vector<Widget*>::iterator it = mWidgets.begin();
+    while (it != mWidgets.end()) {
+        (*it)->Update();
+        it++;
+    }
 }

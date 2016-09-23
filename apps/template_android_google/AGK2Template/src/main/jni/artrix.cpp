@@ -4,6 +4,7 @@
 #include "statemanager.h"
 #include <android/log.h>
 #include <algorithm>
+#include "Managers.h"
 using namespace AGK;
 using namespace std;
 Artrix::Artrix(){
@@ -19,7 +20,7 @@ void Artrix::Begin()
     agk::SetClearColor( 0, 0, 0); // black
     agk::SetSyncRate(60,0);
     agk::SetScissor(0,0,0,0);
-    StateManager::GetInstance()->GotoState(this, new ArtrixHomeState());
+    Managers::SM->GotoState(this, new ArtrixHomeState());
 }
 
 void Artrix::Loop()
@@ -42,16 +43,18 @@ ArtrixHomeState::~ArtrixHomeState(){
 void ArtrixHomeState::OnOneTimeEnter(const StateMachine* sm)
 {
     vector<Screen*> screens = Configuration::GetScreens();
-    vector<Screen*>::const_iterator it = screens.begin();
-    while(it != screens.end()) {
-        (*it)->Print();
-        it++;
-    }
+
+//    vector<Screen*>::const_iterator it = screens.begin();
+//    while(it != screens.end()) {
+//        (*it)->Print();
+//        it++;
+//    }
 //    Screen* s = new Screen("home");
 //    vector<Screen*>::iterator screen = std::find(screens.begin(), screens.end(), s);
 //    mHomeScreen = *screen;
 }
 
 void ArtrixHomeState::Update(const StateMachine* sm, double gameTime){
-    //mHomeScreen->Print();
+    //mHomeScreen->Update();
+    //__android_log_print(ANDROID_LOG_DEBUG, "test", "count is %d", Configuration::GetScreens().size());
 }

@@ -9,6 +9,10 @@ CompositeWidget::CompositeWidget(const Vector2& position, const Vector2& size)
 {
 
 }
+CompositeWidget::CompositeWidget(XMLNode* node)
+    : Widget(node) {
+
+}
 CompositeWidget::~CompositeWidget()
 {
     //dtor
