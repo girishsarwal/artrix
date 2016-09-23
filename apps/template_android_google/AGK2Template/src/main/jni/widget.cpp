@@ -18,6 +18,7 @@ Widget::Widget(const Vector2& position, const Vector2& size) {
 Widget::Widget(XMLNode* node) {
     mPosition = Vector2(node->FirstChildElement("position")->FirstChild());
     mSize = Vector2(node->FirstChildElement("size")->FirstChild());
+    mIsVisible = true;
     mPivot = Vector2(node->FirstChildElement("anchor")->FirstChild());
 }
 
@@ -96,7 +97,7 @@ const string& Widget::GetName() const{
     return mName;
 }
 
-void Widget::SetName(string& name){
+void Widget::SetName(const string& name){
     mName = name;
 }
 

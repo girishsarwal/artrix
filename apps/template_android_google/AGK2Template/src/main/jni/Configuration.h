@@ -16,10 +16,12 @@ class Configuration
         virtual ~Configuration();
         static void GenerateFactoryConfiguration();
         static void ParseScreens(const string& file);
+        static void ParseConfig(const string& file);
         static vector<Screen*> GetScreens();
     protected:
     private:
         static vector<Screen*> mScreens;
+        static const void ReadFromAGKFile(const string& file, XMLDocument*);
 };
 
 #endif // CONFIGURATION_H

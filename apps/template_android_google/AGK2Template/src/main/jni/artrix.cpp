@@ -16,10 +16,11 @@ Artrix::~Artrix(){
 }
 void Artrix::Begin()
 {
-    agk::SetVirtualResolution (1024, 768);
+    agk::SetVirtualResolution (1920, 1080);
     agk::SetClearColor( 0, 0, 0); // black
     agk::SetSyncRate(60,0);
     agk::SetScissor(0,0,0,0);
+    agk::SetOrientationAllowed(0, 0, 1, 1);
     Managers::SM->GotoState(this, new ArtrixHomeState());
 }
 

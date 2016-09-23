@@ -19,4 +19,6 @@ void WidgetFactory::CreateWidget(const string& type, XMLNode* node, Widget** wid
     }
 }
 void WidgetFactory::CreateWidget(const string& name, const string& type, XMLNode* node, Widget** widget) {
+    CreateWidget(type, node, widget);
+    (*widget)->SetName(name);
 }

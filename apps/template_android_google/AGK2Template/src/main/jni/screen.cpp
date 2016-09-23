@@ -25,7 +25,9 @@ bool Screen::operator==(const Screen& rhs) const {
 bool Screen::operator!=(const Screen& rhs) const {
     return !(*this == rhs);
 }
-
+const string& Screen::GetName() const {
+    return mName;
+}
 string Screen::dump() const{
     stringstream ss;
     ss << *this;

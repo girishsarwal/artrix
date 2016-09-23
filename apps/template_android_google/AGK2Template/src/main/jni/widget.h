@@ -38,7 +38,7 @@ class Widget
         void SetPivot(const Vector2&);
         void SetPivot(float, float);
         const string& GetName() const;
-        void SetName(string&);
+        void SetName(const string&);
         string dump() const;
         virtual void Print();
         friend ostream& operator<<(ostream& stream, const Widget& widget);
