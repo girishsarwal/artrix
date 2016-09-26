@@ -36,9 +36,11 @@ void ConfigurationManager::ParseScreens(const string& file) {
         Screen* screen = new Screen(screenNode->ToElement()->Attribute("name"));
         for(XMLNode* widgetNode = screenNode->FirstChild(); widgetNode; widgetNode= widgetNode->NextSibling()) {            //widgets
             Widget *w = NULL;
-            WidgetFactory::CreateWidget(string(widgetNode->ToElement()->Attribute("type")), widgetNode, &w);
-            w->Initialize();            /** This function is introduced to maintain the object creation inheritance hierarchy **/
-            screen->AddWidget(w);
+            WidgetFactory::CreateWidget(string(widgetNode->Value()), widgetNode, &w);
+            if (w != NULL) {
+                w->Initialize();            /** This function is introduced to maintain the object creation inheritance hierarchy **/
+                screen->AddWidget(w);
+            } else __android_log_print(ANDROID_LOG_WARN, "Configuration::ParseScreens", "There was a problem creating a widget of type %s", widgetNode->Value());
             __android_log_print(ANDROID_LOG_DEBUG, "Configuration::ParseScreens", "%d widgets were aded to screen %s", screen->GetWidgets().size(), screen->GetName().c_str());
         }
         mScreens.push_back(screen);
@@ -47,7 +49,15 @@ void ConfigurationManager::ParseScreens(const string& file) {
 }
 
 void ConfigurationManager::ParseConfig(const string& file) {
+    __android_log_print(ANDROID_LOG_DEBUG, "Configuration::ParseConfig", "parsing configurations from %s", file.c_str());
+    XMLDocument doc;
+    ReadFromAGKFile(file, &doc);
 
+    XMLElement* metrics = doc.RootElement()->FirstChildElement("metrics")->FirstChildElement();
+    Managers::MM->Initialize(atof(metrics->Attribute("x")), atof(metrics->Attribute("y")));
+
+
+    __android_log_print(ANDROID_LOG_DEBUG, "Configuration::ParseConfig", "%d keys were parsed", mScreens.size());
 }
 
 vector<Screen*> ConfigurationManager::GetScreens() {

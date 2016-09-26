@@ -4,7 +4,9 @@
 #include "ConfigurationManager.h"
 #include "MetricsManager.h"
 #include "StateManager.h"
-
+class ConfigurationManager;
+class MetricsManager;
+class StateManager;
 class Managers
 {
     public:

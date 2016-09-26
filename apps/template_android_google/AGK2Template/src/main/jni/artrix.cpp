@@ -15,7 +15,7 @@ Artrix::~Artrix(){
 }
 void Artrix::Begin()
 {
-    agk::SetVirtualResolution (1920, 1080);
+    agk::SetVirtualResolution (Managers::MM->GetResolution().x, Managers::MM->GetResolution().x);
     agk::SetClearColor( 0, 0, 0); // black
     agk::SetSyncRate(60,0);
     agk::SetScissor(0,0,0,0);

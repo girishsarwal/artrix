@@ -15,6 +15,7 @@ void Managers::Initialize() {
     /** rest of the managers depend on config manager **/
     SM = StateManager::GetInstance();
     MM = MetricsManager::GetInstance();
+    if(MM != NULL) MM->Initialize(1920, 1080);
 }
 void Managers::Destroy(){
     delete(SM);

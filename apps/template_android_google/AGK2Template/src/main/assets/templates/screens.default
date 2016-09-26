@@ -1,6 +1,6 @@
 <screens>
 	<screen name="home">
-	    <widget type="ButtonWidget" name="pilot">
+	    <ButtonWidget name="pilot">
             <position><vec x="0" y="0"></vec></position>
             <size><vec x="720" y="100"></vec></size>
             <anchor><vec x="0.5" y="0.5"></vec></anchor>
@@ -8,8 +8,8 @@
             <text>pilot</text>
             <action>gotoScreen</action>
             <params>pilot</params>
-	    </widget>
-	    <widget type="ButtonWidget" name="models">
+	    </ButtonWidget>
+	    <ButtonWidget name="models">
             <position><vec x="720" y="0"></vec></position>
             <size><vec x="720" y="100"></vec></size>
             <anchor><vec x="0.5" y="0.5"></vec></anchor>
@@ -17,8 +17,8 @@
             <text>pilot</text>
             <action>gotoScreen</action>
             <params>pilot</params>
-        </widget>
-        <widget type="ButtonWidget" name="settings">
+        </ButtonWidget>
+        <ButtonWidget name="settings">
             <position><vec x="1440" y="0"></vec></position>
             <size><vec x="240" y="100"></vec></size>
             <anchor><vec x="0.5" y="0.5"></vec></anchor>
@@ -26,8 +26,8 @@
             <text>pilot</text>
             <action>gotoScreen</action>
             <params>pilot</params>
-        </widget>
-        <widget type="ButtonWidget" name="extra">
+        </ButtonWidget>
+        <ToggleButtonWidget name="extra">
              <position><vec x="1680" y="0"></vec></position>
              <size><vec x="240" y="100"></vec></size>
              <anchor><vec x="0.5" y="0.5"></vec></anchor>
@@ -35,6 +35,6 @@
              <text>pilot</text>
              <action>gotoScreen</action>
              <params>pilot</params>
-        </widget>
+        </ToggleButtonWidget>
 	</screen>
 </screens>

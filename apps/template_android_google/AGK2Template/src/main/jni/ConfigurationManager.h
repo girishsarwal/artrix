@@ -8,7 +8,7 @@
 #include "screen.h"
 #include "WidgetFactory.h"
 #include "ButtonWidget.h"
-
+#include "Managers.h"
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
 
 using namespace std;

@@ -18,6 +18,7 @@ void app::Begin(void)
 {
     /** Initialize the managers **/
     Managers::Initialize();
+    Managers::CM->ParseConfig("templates/config.default");
     Managers::CM->ParseScreens("templates/screens.default");
 
     /** begin artrix program **/
