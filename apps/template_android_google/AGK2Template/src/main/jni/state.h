@@ -1,8 +1,8 @@
 #ifndef STATE_H_INCLUDED
 #define STATE_H_INCLUDED
-#include "statemachine.h"
 #include <string>
 #include <android/log.h>
+#include "statemachine.h"
 using namespace std;
 class StateMachine;
 class State

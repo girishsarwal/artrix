@@ -1,5 +1,4 @@
-#include "statemanager.h"
-#include <android/log.h>
+#include "StateManager.h"
 StateManager::StateManager()
 {
 
@@ -26,4 +25,4 @@ void StateManager::GotoState(StateMachine* sm, State* newState)
     }
     sm->GotoState(newState);
 }
-StateManager* StateManager::m_instance = 0;
+StateManager* StateManager::m_instance = NULL;

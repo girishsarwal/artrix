@@ -1,15 +1,25 @@
-#include "Configuration.h"
-#define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
-#include <vector>
-#include "ButtonWidget.h"
-Configuration::Configuration() {
+#include "ConfigurationManager.h"
+ConfigurationManager::ConfigurationManager() {
     //ctor
 }
 
-Configuration::~Configuration() {
+ConfigurationManager::~ConfigurationManager() {
     //dtor
 }
-void Configuration::GenerateFactoryConfiguration() {
+
+ConfigurationManager* ConfigurationManager::GetInstance()
+{
+    if(0 == mInstance)
+        mInstance = new ConfigurationManager();
+    return mInstance;
+}
+void ConfigurationManager::DestroyInstance()
+{
+    delete(mInstance);
+}
+
+
+void ConfigurationManager::GenerateFactoryConfiguration() {
     /** we cant use fopen here as all assets in Agk are zipped up into the AssetManager.
     This function will check each file on startup and copy the defaults to the data directory
     **/
@@ -18,7 +28,7 @@ void Configuration::GenerateFactoryConfiguration() {
 
 }
 
-void Configuration::ParseScreens(const string& file) {
+void ConfigurationManager::ParseScreens(const string& file) {
     __android_log_print(ANDROID_LOG_DEBUG, "Configuration::ParseScreens", "parsing screens from %s", file.c_str());
     XMLDocument doc;
     ReadFromAGKFile(file, &doc);
@@ -36,17 +46,16 @@ void Configuration::ParseScreens(const string& file) {
     __android_log_print(ANDROID_LOG_DEBUG, "Configuration::ParseScreens", "%d screens were parsed", mScreens.size());
 }
 
-void Configuration::ParseConfig(const string& file) {
+void ConfigurationManager::ParseConfig(const string& file) {
 
 }
 
-vector<Screen*> Configuration::GetScreens() {
+vector<Screen*> ConfigurationManager::GetScreens() {
     return mScreens;
 }
 
-vector<Screen*> Configuration::mScreens;
 
-const void Configuration::ReadFromAGKFile(const string& file, XMLDocument* doc) {
+const void ConfigurationManager::ReadFromAGKFile(const string& file, XMLDocument* doc) {
      /** we cant use fopen here as all assets in Agk are zipped up into the AssetManager.
     We plan to use the AGK open file to load up the contents into the xml stream **/
     __android_log_print(ANDROID_LOG_DEBUG, "Configuration::ReadFromAGKFile", "trying to parse xml %s", file.c_str());
@@ -71,3 +80,5 @@ const void Configuration::ReadFromAGKFile(const string& file, XMLDocument* doc) 
     }
     __android_log_print(ANDROID_LOG_DEBUG, "Configuration::ReadFromAGKFile", "xml %s was parsed", file.c_str());
 }
+
+ConfigurationManager* ConfigurationManager::mInstance = NULL;

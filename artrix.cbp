@@ -36,8 +36,8 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ButtonWidget.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.h" />
-		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Configuration.cpp" />
-		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Configuration.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ConfigurationManager.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ConfigurationManager.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Core.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.h" />
@@ -45,6 +45,10 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/MainMenuWidget.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Managers.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Managers.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/MetricsManager.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/MetricsManager.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/StateManager.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/StateManager.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Vector2.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Vector2.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/WidgetFactory.cpp" />
@@ -60,8 +64,6 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/state.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemachine.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemachine.h" />
-		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemanager.cpp" />
-		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemanager.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/template.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/template.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/widget.cpp" />

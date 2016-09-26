@@ -1,9 +1,8 @@
-#include "artrix.h"
-#include "agk.h"
-#include "ButtonWidget.h"
-#include "statemanager.h"
 #include <android/log.h>
 #include <algorithm>
+#include "artrix.h"
+#include "agk.h"
+
 #include "Managers.h"
 using namespace AGK;
 using namespace std;
@@ -43,7 +42,7 @@ ArtrixHomeState::~ArtrixHomeState(){
 
 void ArtrixHomeState::OnOneTimeEnter(const StateMachine* sm)
 {
-    vector<Screen*> screens = Configuration::GetScreens();
+    vector<Screen*> screens = Managers::CM->GetScreens();
 
 //    vector<Screen*>::const_iterator it = screens.begin();
 //    while(it != screens.end()) {

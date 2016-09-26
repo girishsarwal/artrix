@@ -1,7 +1,10 @@
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
+#include <android/log.h>
 #include "statemachine.h"
 #include "state.h"
+class StateMachine;
+class State;
 class StateManager
 {
     public:

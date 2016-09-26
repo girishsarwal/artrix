@@ -23,6 +23,9 @@ class Vector2
         float Length() const;
         float LengthSq() const;
         void Normalize();
+        void Add (const Vector2&);
+        void Translate(const Vector2&);
+        void Scale(float);
         float Dot(const Vector2&);
         Vector2 GetRight() const;
         Vector2 GetLeft() const;

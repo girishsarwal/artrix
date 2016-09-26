@@ -4,7 +4,7 @@
 // Include AGK libraries
 #include "agk.h"
 #include "artrix.h"
-#include "statemanager.h"
+#include "Managers.h"
 
 // Global values for the app
 class app

@@ -1,6 +1,4 @@
 #include "statemachine.h"
-#include "statemanager.h"
-#include <android/log.h>
 StateMachine::StateMachine(){
     mCurrentState = NULL;
     mPreviousState = NULL;

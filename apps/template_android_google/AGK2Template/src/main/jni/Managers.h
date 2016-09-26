@@ -1,13 +1,20 @@
 #ifndef MANAGERS_H
 #define MANAGERS_H
 
-#include "statemanager.h"
+#include "ConfigurationManager.h"
+#include "MetricsManager.h"
+#include "StateManager.h"
 
 class Managers
 {
     public:
         static void Initialize();
+        static ConfigurationManager* CM;
+
         static StateManager* SM;
+        static MetricsManager* MM;
+
+        static void Destroy();
         Managers();
         virtual ~Managers();
     protected:

@@ -60,7 +60,18 @@ Vector2 Vector2::GetRight() const {
 Vector2 Vector2::GetLeft() const {
     return Vector2(this->y, -this->x);
 }
+void Vector2::Add(const Vector2& rhs) {
+    x += rhs.x;
+    y += rhs.y;
+}
 
+void Vector2::Translate(const Vector2& rhs) {
+    Add(rhs);
+}
+void Vector2::Scale(float scalar) {
+    x *= scalar;
+    y *= scalar;
+}
 void Vector2::Print() {
 
     __android_log_print(ANDROID_LOG_DEBUG, "Vector2", "%s", dump().c_str());

@@ -18,7 +18,7 @@ void app::Begin(void)
 {
     /** Initialize the managers **/
     Managers::Initialize();
-    Configuration::ParseScreens("templates/screens.default");
+    Managers::CM->ParseScreens("templates/screens.default");
 
     /** begin artrix program **/
     pArtrix->Begin();
@@ -34,5 +34,5 @@ void app::Loop (void)
 void app::End (void)
 {
     if (pArtrix) pArtrix->End();
-    StateManager::DestroyInstance();
+    Managers::Destroy();
 }

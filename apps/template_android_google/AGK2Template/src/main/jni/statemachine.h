@@ -1,6 +1,8 @@
 #ifndef STATEMACHINE_H_INCLUDED
 #define STATEMACHINE_H_INCLUDED
+#include <android/log.h>
 #include "state.h"
+#include "StateManager.h"
 class State;
 class StateMachine
 {
