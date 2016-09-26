@@ -1,13 +1,11 @@
 #include "MetricsManager.h"
 
-MetricsManager::MetricsManager()
-{
-    //ctor
+MetricsManager::MetricsManager() {
+    Calculate();
 }
 
-MetricsManager::~MetricsManager()
-{
-    //dtor
+MetricsManager::~MetricsManager() {
+
 }
 
 void MetricsManager::Calculate() {
