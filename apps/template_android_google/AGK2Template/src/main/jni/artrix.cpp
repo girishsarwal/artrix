@@ -43,18 +43,7 @@ ArtrixHomeState::~ArtrixHomeState(){
 void ArtrixHomeState::OnOneTimeEnter(const StateMachine* sm)
 {
     vector<Screen*> screens = Managers::CM->GetScreens();
-
-//    vector<Screen*>::const_iterator it = screens.begin();
-//    while(it != screens.end()) {
-//        (*it)->Print();
-//        it++;
-//    }
-//    Screen* s = new Screen("home");
-//    vector<Screen*>::iterator screen = std::find(screens.begin(), screens.end(), s);
-//    mHomeScreen = *screen;
 }
 
 void ArtrixHomeState::Update(const StateMachine* sm, double gameTime){
-    //mHomeScreen->Update();
-    //__android_log_print(ANDROID_LOG_DEBUG, "test", "count is %d", Configuration::GetScreens().size());
 }

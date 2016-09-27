@@ -1,6 +1,6 @@
 <screens>
 	<screen name="home">
-	    <ButtonWidget name="pilot">
+	    <ButtonWidget name="pilot" background="backgrounds/horizon.jpg">
             <position><vec x="0" y="0"></vec></position>
             <size><vec x="720" y="100"></vec></size>
             <anchor><vec x="0.5" y="0.5"></vec></anchor>

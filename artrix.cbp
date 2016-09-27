@@ -34,6 +34,8 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Application.mk" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ButtonWidget.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ButtonWidget.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Color.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Color.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ConfigurationManager.cpp" />

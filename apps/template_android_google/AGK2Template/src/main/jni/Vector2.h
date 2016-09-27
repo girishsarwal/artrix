@@ -34,7 +34,6 @@ class Vector2
         float x;
         float y;
 
-
         string dump() const;
         friend ostream& operator<<(ostream& stream, const Vector2& vec);
     protected:
