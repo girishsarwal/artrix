@@ -36,6 +36,8 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ButtonWidget.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Color.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Color.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Command.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Command.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ConfigurationManager.cpp" />
@@ -70,6 +72,7 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/statemachine.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/template.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/template.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/utils.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/widget.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/widget.h" />
 		<Extensions>
