@@ -41,6 +41,8 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ConfigurationManager.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ConfigurationManager.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Core.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ImageWidget.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/ImageWidget.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/MainMenuWidget.cpp" />

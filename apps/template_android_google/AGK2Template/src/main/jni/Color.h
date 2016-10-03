@@ -14,7 +14,6 @@ class Color
         float r;
         float g;
         float b;
-
 };
 
 #endif // COLOR_H

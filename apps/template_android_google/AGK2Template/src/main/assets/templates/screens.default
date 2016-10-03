@@ -1,6 +1,11 @@
 <screens>
 	<screen name="home">
-	    <ButtonWidget name="pilot" background="backgrounds/horizon.jpg">
+	    <ImageWidget name="background" src="backgrounds/horizon.jpg">
+	        <position><vec x="0" y="0"></vec></position>
+	        <size><vec x="1920" y="1080"></vec></size>
+	        <anchor><vec x="0.5" y="0.5"></vec></anchor>
+	    </ImageWidget>
+	    <ButtonWidget name="pilot">
             <position><vec x="0" y="0"></vec></position>
             <size><vec x="720" y="100"></vec></size>
             <anchor><vec x="0.5" y="0.5"></vec></anchor>
@@ -27,7 +32,7 @@
             <action>gotoScreen</action>
             <params>pilot</params>
         </ButtonWidget>
-        <ToggleButtonWidget name="extra">
+        <ButtonWidget name="extra">
              <position><vec x="1680" y="0"></vec></position>
              <size><vec x="240" y="100"></vec></size>
              <anchor><vec x="0.5" y="0.5"></vec></anchor>
@@ -35,6 +40,6 @@
              <text>pilot</text>
              <action>gotoScreen</action>
              <params>pilot</params>
-        </ToggleButtonWidget>
+        </ButtonWidget>
 	</screen>
 </screens>

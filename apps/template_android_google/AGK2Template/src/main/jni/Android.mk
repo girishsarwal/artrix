@@ -64,7 +64,7 @@ LOCAL_SRC_FILES := main.c Core.cpp template.cpp \
                     statemachine.cpp state.cpp artrix.cpp \
                     screen.cpp widget.cpp WidgetFactory.cpp\
                     LeafWidget.cpp CompositeWidget.cpp \
-                    ButtonWidget.cpp MainMenuWidget.cpp
+                    ButtonWidget.cpp ImageWidget.cpp MainMenuWidget.cpp
 
 # included system libraries
 LOCAL_LDLIBS    := -lm -llog -landroid -lEGL -lGLESv2 -lz -lOpenSLES
