@@ -30,7 +30,6 @@ bool Widget::GetIsInitialized() const {
     return mIsInitialized;
 }
 void Widget::Initialize() {
-
     OnBeforeInitialize();
 
     SetPosition(mPosition);     /** I know this sounds stupid to do but C++ makes objects like an onion, inside out and we need to call some virt func during creation **/
@@ -102,17 +101,19 @@ void Widget::SetName(const string& name){
 }
 
 void Widget::Update() {
-    __android_log_print(ANDROID_LOG_DEBUG, "Widget::Update", "position is %s, %f, %f", mName.c_str(), mPosition.x, mPosition.y);
     OnUpdate();
 }
-
-void Widget::OnBeforeInitialize() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnBeforeInitialize", "base was called"); }
-void Widget::OnInitialize() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnBeforeInitialize", "base was called"); }
-void Widget::OnAfterInitialize() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnAfterInitialize", "base was called"); }
-void Widget::OnSetVisible() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnSetVisible", "base was called"); }
-void Widget::OnSetPosition() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnSetPosition", "base was called");}
-void Widget::OnSetSize() { __android_log_print(ANDROID_LOG_DEBUG, "Widget::OnSetSize", "base was called");}
-void Widget::OnUpdate() {}
+void Widget::Draw() {
+    OnDraw();
+}
+void Widget::OnBeforeInitialize() { ALOGW("Widget::OnBeforeInitialize", "base was called"); }
+void Widget::OnInitialize() { ALOGW("Widget::OnBeforeInitialize", "base was called"); }
+void Widget::OnAfterInitialize() { ALOGW("Widget::OnAfterInitialize", "base was called"); }
+void Widget::OnSetVisible() { ALOGW("Widget::OnSetVisible", "base was called"); }
+void Widget::OnSetPosition() { ALOGW("Widget::OnSetPosition", "base was called");}
+void Widget::OnSetSize() { ALOGW("Widget::OnSetSize", "base was called");}
+void Widget::OnUpdate() { }
+void Widget::OnDraw() { }
 
 string Widget::dump() const{
     stringstream ss;

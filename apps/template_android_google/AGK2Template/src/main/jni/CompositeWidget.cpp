@@ -13,23 +13,27 @@ CompositeWidget::CompositeWidget(XMLNode* node)
     : Widget(node) {
 
 }
-CompositeWidget::~CompositeWidget()
-{
+CompositeWidget::~CompositeWidget() {
     //dtor
 }
-void CompositeWidget::AddWidget()
-{
+void CompositeWidget::AddWidget(Widget* widget) {
+    mChildren.push_back(widget);
+}
+
+void CompositeWidget::RemoveWidget(const string& name) {
 
 }
 
-void CompositeWidget::RemoveWidget(std::string& _name)
-{
+Widget* CompositeWidget::GetWidget(const string& name) {
 
 }
 
-Widget* CompositeWidget::GetWidget(std::string& _name)
-{
-
+void CompositeWidget::OnInitialize() {
+    std::vector<Widget*>::iterator it = mChildren.begin();
+    while(it != mChildren.end()){
+        (*it)->Initialize();
+        it++;
+    }
 }
 
 void CompositeWidget::Update()
@@ -51,7 +55,7 @@ string CompositeWidget::dump() const{
     return ss.str();
 }
 void CompositeWidget::Print() {
-    __android_log_print(ANDROID_LOG_VERBOSE, "CompositeWidget", "%s", dump().c_str());
+    ALOGD("CompositeWidget", "%s", dump().c_str());
 }
 
 ostream& operator<<(ostream& stream, const CompositeWidget& compositeWidget){

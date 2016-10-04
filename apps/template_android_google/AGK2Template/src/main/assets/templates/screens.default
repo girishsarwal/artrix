@@ -1,45 +1,54 @@
 <screens>
 	<screen name="home">
 	    <ImageWidget name="background" src="backgrounds/horizon.jpg">
-	        <position><vec x="0" y="0"></vec></position>
-	        <size><vec x="1920" y="1080"></vec></size>
-	        <anchor><vec x="0.5" y="0.5"></vec></anchor>
-	    </ImageWidget>
-	    <ButtonWidget name="pilot">
+            <anchor><vec x="0" y="0"></vec></anchor>
+            <size><vec x="1920" y="1080"></vec></size>
             <position><vec x="0" y="0"></vec></position>
+        </ImageWidget>
+        <ButtonWidget name="pilot">
             <size><vec x="720" y="100"></vec></size>
+            <position><vec x="0" y="0"></vec></position>
             <anchor><vec x="0.5" y="0.5"></vec></anchor>
-            <background>buttons/blue-bar.png</background>
+            <background>
+                <ImageWidget name="background" src="buttons/blue-bar.png">
+                    <size><vec x="720" y="100"></vec></size>
+                    <position><vec x="0" y="0"></vec></position>
+                    <anchor><vec x="0.5" y="0.5"></vec></anchor>
+                </ImageWidget>
+            </background>
             <text>pilot</text>
             <action>gotoScreen</action>
             <params>pilot</params>
-	    </ButtonWidget>
-	    <ButtonWidget name="models">
+        </ButtonWidget>
+        <ButtonWidget name="pilot">
+            <size><vec x="720" y="100"></vec></size>
             <position><vec x="720" y="0"></vec></position>
-            <size><vec x="720" y="100"></vec></size>
             <anchor><vec x="0.5" y="0.5"></vec></anchor>
-            <background>buttons/blue-bar.png</background>
+            <background>
+                <ImageWidget name="background" src="buttons/blue-bar.png">
+                    <size><vec x="720" y="100"></vec></size>
+                    <position><vec x="720" y="0"></vec></position>
+                    <anchor><vec x="0.5" y="0.5"></vec></anchor>
+                </ImageWidget>
+            </background>
             <text>pilot</text>
             <action>gotoScreen</action>
             <params>pilot</params>
         </ButtonWidget>
-        <ButtonWidget name="settings">
+        <ButtonWidget name="pilot">
+            <size><vec x="480" y="100"></vec></size>
             <position><vec x="1440" y="0"></vec></position>
-            <size><vec x="240" y="100"></vec></size>
             <anchor><vec x="0.5" y="0.5"></vec></anchor>
-            <background>buttons/yellow-bar.png</background>
+            <background>
+                <ImageWidget name="background" src="buttons/yellow-bar.png">
+                    <size><vec x="480" y="100"></vec></size>
+                    <position><vec x="1440" y="0"></vec></position>
+                    <anchor><vec x="0.5" y="0.5"></vec></anchor>
+                </ImageWidget>
+            </background>
             <text>pilot</text>
             <action>gotoScreen</action>
             <params>pilot</params>
         </ButtonWidget>
-        <ButtonWidget name="extra">
-             <position><vec x="1680" y="0"></vec></position>
-             <size><vec x="240" y="100"></vec></size>
-             <anchor><vec x="0.5" y="0.5"></vec></anchor>
-             <background>buttons/blue-bar.png</background>
-             <text>pilot</text>
-             <action>gotoScreen</action>
-             <params>pilot</params>
-        </ButtonWidget>
-	</screen>
+    </screen>
 </screens>

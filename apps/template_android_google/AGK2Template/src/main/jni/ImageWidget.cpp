@@ -1,53 +1,49 @@
 #include "ImageWidget.h"
 
 ImageWidget::ImageWidget() {
-    //ctor
+
 }
 
 ImageWidget::~ImageWidget() {
     //dtor
 }
 ImageWidget::ImageWidget(const Vector2& position, const Vector2& size)
-    : LeafWidget(position, size)
-{
+    : LeafWidget(position, size) {
 
 }
 
 
 ImageWidget::ImageWidget(XMLNode* node)
     : LeafWidget (node) {
-    mBackgroundPath = node->ToElement()->Attribute("src");
+    mSource = node->ToElement()->Attribute("src");
 }
 
-string ImageWidget::GetBackground() { return mBackgroundPath; }
-void ImageWidget::SetBackground(const string& file) {
-    mBackgroundPath = file;
+string ImageWidget::GetSource() { return mSource; }
+void ImageWidget::SetSource(const string& file) {
+    mSource = file;
 
-    mBackgroundImageId = agk::LoadImage(file.c_str());
-    mBackgroundSpriteId = agk::CreateSprite(mBackgroundImageId);
+    mSourceImageId = agk::LoadImage(file.c_str());
+    mSourceSpriteId = agk::CreateSprite(mSourceImageId);
 
-    OnSetBackground();
-    __android_log_print(ANDROID_LOG_DEBUG, "ButtonWidget::SetBackground", "background regenerated ImageId=%d, SpriteId=%d", mBackgroundImageId, mBackgroundSpriteId);
+    OnSetSource();
+    ALOGD("ButtonWidget::SetBackground", "background regenerated ImageId=%d, SpriteId=%d", mSourceImageId, mSourceSpriteId);
 }
 
 void ImageWidget::OnBeforeInitialize() {
-    SetBackground(mBackgroundPath); /** this widget expects background to be available for initialization **/
+    SetSource(mSource);
 }
-void ImageWidget::OnInitialize() {
 
+void ImageWidget::OnSetSource() {
 }
 
 void ImageWidget::OnSetVisible() {
-    agk::SetSpriteVisible(mBackgroundSpriteId, mIsVisible);
+    agk::SetSpriteVisible(mSourceSpriteId, mIsVisible);
 }
 void ImageWidget::OnSetPosition() {
-    agk::SetSpritePosition(mBackgroundSpriteId, mPosition.x, mPosition.y);
+    agk::SetSpritePosition(mSourceSpriteId, mPosition.x, mPosition.y);
 }
-
 void ImageWidget::OnSetSize() {
-    agk::SetSpriteSize(mBackgroundSpriteId, mSize.x, mSize.y);
-}
-void ImageWidget::OnSetBackground() {
+    agk::SetSpriteSize(mSourceSpriteId, mSize.x, mSize.y);
 }
 
 

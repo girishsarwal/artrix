@@ -20,7 +20,7 @@ void StateManager::DestroyInstance()
 void StateManager::GotoState(StateMachine* sm, State* newState)
 {
     if(NULL == sm){
-        __android_log_print(ANDROID_LOG_DEBUG, "StateManager::GotoState", "cannot change state, state machine is null");
+        ALOGE("StateManager::GotoState", "cannot change state, state machine is null");
         return;
     }
     sm->GotoState(newState);

@@ -10,20 +10,21 @@ WidgetFactory::~WidgetFactory() {
     //dtor
 }
 
-void WidgetFactory::CreateWidget(const string& type, XMLNode* node, Widget** widget) {
-    __android_log_print(ANDROID_LOG_DEBUG, "WidgetFactory::CreateWidget", "request for widget creation of type '%s'", type.c_str());
+void WidgetFactory::CreateWidget(XMLNode* node, Widget** widget) {
+    string type = string(node->Value());
+    ALOGD("WidgetFactory::CreateWidget", "request for widget creation of type '%s'", type.c_str());
     if(type == "ButtonWidget") {
-        __android_log_print(ANDROID_LOG_DEBUG, "WidgetFactory::CreateWidget", "'ButtonWidget' created");
+        ALOGD("WidgetFactory::CreateWidget", "'ButtonWidget' created");
         *widget = new ButtonWidget(node);
         return;
     } else if(type == "ImageWidget") {
-        __android_log_print(ANDROID_LOG_DEBUG, "WidgetFactory::CreateWidget", "'ImageWidget' created");
+        ALOGD("WidgetFactory::CreateWidget", "'ImageWidget' created");
         *widget = new ImageWidget(node);
         return;
     }
-    __android_log_print(ANDROID_LOG_WARN, "WidgetFactory::CreateWidget", "factory does not understand widget of type '%s'", type.c_str());
+    ALOGW("WidgetFactory::CreateWidget", "factory does not understand widget of type '%s'", type.c_str());
 }
-void WidgetFactory::CreateWidget(const string& name, const string& type, XMLNode* node, Widget** widget) {
-    CreateWidget(type, node, widget);
+void WidgetFactory::CreateWidget(const string& name, XMLNode* node, Widget** widget) {
+    CreateWidget(node, widget);
     (*widget)->SetName(name);
 }

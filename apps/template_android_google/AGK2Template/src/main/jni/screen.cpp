@@ -35,7 +35,7 @@ string Screen::dump() const{
 }
 
 void Screen::Print() {
-    __android_log_print(ANDROID_LOG_DEBUG, "Screen", "%s", dump().c_str());
+    ALOGD("Screen::Print", "%s", dump().c_str());
 }
 
 ostream& operator<<(ostream& stream, const Screen& screen) {
@@ -71,6 +71,7 @@ void Screen::Update() {
             (*it)->Initialize();
         }
         (*it)->Update();
+        (*it)->Draw();
         it++;
     }
 }

@@ -1,0 +1,24 @@
+<screens>
+	<screen name="home">
+	    <ImageWidget name="background" src="backgrounds/horizon2.jpg">
+	        <size><vec x="1920" y="1080"></vec></size>
+	        <position><vec x="960" y="540"></vec></position>
+	        <anchor><vec x="0.5" y="0.5"></vec></anchor>
+	    </ImageWidget>
+	    <ButtonWidget name="pilot">
+            <size><vec x="720" y="100"></vec></size>
+            <position><vec x="960" y="540"></vec></position>
+            <anchor><vec x="0.5" y="0.5"></vec></anchor>
+            <background>
+                <ImageWidget name="background" src="buttons/blue-bar.png">
+                    <size><vec x="100" y="100"></vec></size>
+                    <position><vec x="960" y="100"></vec></position>
+                    <anchor><vec x="0.5" y="0.5"></vec></anchor>
+                </ImageWidget>
+            </background>
+            <text>pilot</text>
+            <action>gotoScreen</action>
+            <params>pilot</params>
+        </ButtonWidget>
+	</screen>
+</screens>

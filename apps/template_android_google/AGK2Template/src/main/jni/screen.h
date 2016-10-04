@@ -1,7 +1,8 @@
 #ifndef SCREEN_H
 #define SCREEN_H
-#include "widget.h"
 #include <vector>
+#include "widget.h"
+#include "utils.h"
 using namespace std;
 class Screen
 {

@@ -9,7 +9,9 @@
 #include "WidgetFactory.h"
 #include "ButtonWidget.h"
 #include "Managers.h"
-#define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
+#include "utils.h"
+
+#define FILE_BUFFER_LENGTH 4096
 
 using namespace std;
 using namespace AGK;

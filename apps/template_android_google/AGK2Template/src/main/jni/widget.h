@@ -13,17 +13,17 @@ using namespace tinyxml2;
 class Widget
 {
     public:
+        /** constructors **/
         Widget();
         Widget(const Vector2&, const Vector2&);
         Widget(XMLNode*);
 
         virtual ~Widget();
-        virtual void Update();
+
+        /** Properties **/
 
         bool GetIsInitialized() const;
-        void BeforeInitialize();
-        void Initialize();
-        void AfterInitialize();
+
 
 
         bool GetIsVisible() const;
@@ -39,6 +39,18 @@ class Widget
         void SetPivot(float, float);
         const string& GetName() const;
         void SetName(const string&);
+
+
+        /** Lifecycle **/
+        bool ValidateAttributes();
+        void BeforeInitialize();
+        void Initialize();
+        void AfterInitialize();
+
+        void Update();
+        void Draw();
+
+        /** Debug **/
         string dump() const;
         virtual void Print();
         friend ostream& operator<<(ostream& stream, const Widget& widget);
@@ -53,16 +65,19 @@ class Widget
         Vector2 mSize;
         bool mIsVisible;
 
-        virtual void OnBeforeInitialize();
-        virtual void OnInitialize();
-        virtual void OnAfterInitialize();
-
+        /** property change hooks **/
         virtual void OnSetVisible();
         virtual void OnSetPosition();
         virtual void OnSetSize();
-        virtual void OnUpdate();
-        string _str;
 
+        /** lifecycle hooks **/
+        virtual void OnBeforeInitialize();          /** use to setup resources required for initialization **/
+        virtual void OnInitialize();                /** use for initialization **/
+        virtual void OnAfterInitialize();           /** use for validating intialization was successfully carried out **/
+        virtual void OnUpdate();
+        virtual void OnDraw();
+
+        string _str;
         bool mIsInitialized;
     private:
         static int nextId;

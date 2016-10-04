@@ -10,7 +10,7 @@ class LeafWidget : public Widget
         LeafWidget(const Vector2&, const Vector2&);
         LeafWidget(XMLNode*);
         virtual ~LeafWidget();
-        virtual void Update();
+
     protected:
     private:
 };

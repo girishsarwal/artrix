@@ -3,9 +3,10 @@
 #include <math.h>
 #include <string>
 #include <sstream>
-#include "agk.h"
-#include <android/log.h>
 #include <tinyxml2.h>
+#include "utils.h"
+
+
 using namespace std;
 using namespace tinyxml2;
 class Vector2

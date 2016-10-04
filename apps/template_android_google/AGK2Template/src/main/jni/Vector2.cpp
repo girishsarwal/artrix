@@ -74,7 +74,7 @@ void Vector2::Scale(float scalar) {
 }
 void Vector2::Print() {
 
-    __android_log_print(ANDROID_LOG_DEBUG, "Vector2", "%s", dump().c_str());
+    ALOGD("Vector2", "%s", dump().c_str());
 }
 
 string Vector2::dump() const{

@@ -1,9 +1,7 @@
-#include <android/log.h>
 #include "ButtonWidget.h"
-#include "agk.h"
 using namespace AGK;
 ButtonWidget::ButtonWidget()
-    : LeafWidget(){
+    : CompositeWidget() {
 
 }
 
@@ -12,35 +10,36 @@ ButtonWidget::~ButtonWidget(){
 }
 
 ButtonWidget::ButtonWidget(const Vector2& position, const Vector2& size, const string& text)
-    : LeafWidget(position, size)
-{
+    : CompositeWidget(position, size) {
     mText = text;
 }
 
-
-
-ButtonWidget::ButtonWidget(const Vector2& position, const Vector2& size, const string& text, const string& background)
-    : LeafWidget(position, size)
-{
+ButtonWidget::ButtonWidget(const Vector2& position, const Vector2& size, const string& text, XMLNode* backgroundNode)
+    : CompositeWidget(position, size) {
     mText = text;
-    mBackgroundPath = background;
 }
 
 ButtonWidget::ButtonWidget(XMLNode* node)
-    : LeafWidget (node) {
+    : CompositeWidget (node) {
     mText = node->FirstChildElement("text")->GetText();
-    mBackgroundPath = node->FirstChildElement("background")->GetText();
+
+    /** background Widget **/
+    WidgetFactory::CreateWidget(node->FirstChildElement("background")->FirstChild(), &mBackgroundWidget);
+
     mAction = node->FirstChildElement("action")->GetText();
     mParameters = node->FirstChildElement("action")->GetText();
 
 }
 void ButtonWidget::OnBeforeInitialize() {
-    SetBackground(mBackgroundPath);     /** this widget needs the background before position etc can be set because the position of the sprite depends on the size **/
 
 }
 void ButtonWidget::OnInitialize() {
     SetText(mText);
     SetAction(mAction, mParameters);
+
+    mBackgroundWidget->Initialize();
+
+    AddWidget(mBackgroundWidget);
 }
 void ButtonWidget::SetText(const string& text) {
     mText = text;
@@ -51,17 +50,12 @@ const string& ButtonWidget::GetText() const {
 }
 
 
-void ButtonWidget::SetBackground(const string& file) {
-    mBackgroundPath = file;
-
-    mBackgroundImageId = agk::LoadImage(file.c_str());
-    mBackgroundSpriteId = agk::CreateSprite(mBackgroundImageId);
-
+void ButtonWidget::SetBackground(ImageWidget* widget) {
+    mBackgroundWidget = widget;
     OnSetBackground();
-    __android_log_print(ANDROID_LOG_DEBUG, "ButtonWidget::SetBackground", "background regenerated ImageId=%d, SpriteId=%d", mBackgroundImageId, mBackgroundSpriteId);
 }
-const string& ButtonWidget::GetBackground() const {
-    return mBackgroundPath;
+ImageWidget* ButtonWidget::GetBackground() const {
+    return reinterpret_cast<ImageWidget*>(mBackgroundWidget);
 }
 void ButtonWidget::SetAction(const string& action, const string& parameters) {
     mAction = action;
@@ -72,15 +66,15 @@ const string& ButtonWidget::GetAction() const {
     return mAction;
 }
 void ButtonWidget::OnSetVisible() {
-    agk::SetSpriteVisible(mBackgroundSpriteId, mIsVisible);
+    mBackgroundWidget->SetIsVisible(mIsVisible);
 }
 
 void ButtonWidget::OnSetPosition() {
-    agk::SetSpritePosition(mBackgroundSpriteId, mPosition.x, mPosition.y);
+
 }
 
 void ButtonWidget::OnSetSize() {
-    agk::SetSpriteSize(mBackgroundSpriteId, mSize.x, mSize.y);
+
 }
 void ButtonWidget::OnSetAction() {
 

@@ -17,7 +17,4 @@ LeafWidget::LeafWidget(XMLNode* node)
 {
 
 }
-void LeafWidget::Update()
-{
-}
 

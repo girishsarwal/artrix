@@ -13,9 +13,10 @@ class CompositeWidget : public Widget
         CompositeWidget(const Vector2&, const Vector2&);
         CompositeWidget(XMLNode*);
         virtual ~CompositeWidget();
-        void AddWidget();
-        void RemoveWidget(string&);
-        Widget* GetWidget(string&);
+        void AddWidget(Widget* widget);
+        void RemoveWidget(const string&);
+        Widget* GetWidget(const string&);
+        virtual void OnInitialize();
         virtual void Update();
         string dump() const;
         void Print();
