@@ -55,6 +55,8 @@
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/MetricsManager.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/StateManager.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/StateManager.h" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/TextWidget.cpp" />
+		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/TextWidget.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Vector2.cpp" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/Vector2.h" />
 		<Unit filename="apps/template_android_google/AGK2Template/src/main/jni/WidgetFactory.cpp" />
