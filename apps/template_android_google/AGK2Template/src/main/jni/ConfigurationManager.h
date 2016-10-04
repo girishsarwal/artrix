@@ -11,7 +11,7 @@
 #include "Managers.h"
 #include "utils.h"
 
-#define FILE_BUFFER_LENGTH 4096
+#define FILE_BUFFER_LENGTH 8192
 
 using namespace std;
 using namespace AGK;
@@ -25,6 +25,7 @@ class ConfigurationManager
         static void DestroyInstance();
 
         void GenerateFactoryConfiguration();
+        void CopyMedia(const string& file);
         void ParseScreens(const string& file);
         void ParseConfig(const string& file);
         vector<Screen*> GetScreens();
@@ -32,7 +33,8 @@ class ConfigurationManager
     private:
         static ConfigurationManager* mInstance;
         vector<Screen*> mScreens;
-        const void ReadFromAGKFile(const string& file, XMLDocument*);
+        void ReadFromAGKFile(const string& file, XMLDocument*);
+        void CopyMediaAssetToLocal(const string& file);
 };
 
 #endif // CONFIGURATIONMANAGER_H
