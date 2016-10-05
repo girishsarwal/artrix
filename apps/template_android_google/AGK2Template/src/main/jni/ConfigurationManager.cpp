@@ -98,6 +98,16 @@ void ConfigurationManager::ReadFromAGKFile(const string& file, XMLDocument* doc)
 
 void ConfigurationManager::CopyMediaAssetToLocal(const string& file) {
     ALOGD("ConfigurationManager::CopyMediaAssetToLocal" ,"%s%s", mLocalWritePath.c_str(), file.c_str());
+    AAsset* asset = AAssetManager_open(mActivity->assetManager, file.c_str(), AASSET_MODE_UNKNOWN);
+    if (NULL == asset) {
+        ALOGE("ConfigurationManager::CopyMediaAssetToLocal", "Asset not found");
+        return;
+    }
+    long size = AAsset_getLength(asset);
+    char* buffer = (char*) malloc (sizeof(char) * size);
+    AAsset_read (asset,buffer,size);
+    ALOGD("ConfigurationManager::CopyMediaAssetToLocal", "%p - %ld", buffer, size);
+    AAsset_close(asset);
 
     /*AAssetManager* mgr = AAssetManager_fromJava(env, assetManager);
     AAsset* asset = AAssetManager_open(mgr, (const char *) js, AASSET_MODE_UNKNOWN);
