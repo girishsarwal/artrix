@@ -1,16 +1,18 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 #include <stdio.h>
-#include <android/log.h>
 #include <string>
 #include <sstream>
+#include <tinyxml2.h>
 #include "agk.h"
 #include "Vector2.h"
-#include <tinyxml2.h>
+#include "utils.h"
+#include "statemachine.h"
 #define DEFAULT_WIDGET_SIZE 100
 using namespace std;
 using namespace tinyxml2;
-class Widget
+class Widget :
+    public StateMachine
 {
     public:
         /** constructors **/

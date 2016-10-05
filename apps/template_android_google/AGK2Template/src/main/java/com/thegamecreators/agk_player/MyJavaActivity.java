@@ -38,7 +38,7 @@ public class MyJavaActivity extends Activity
 		this.startActivityForResult(photoPickerIntent, SELECT_PHOTO);    
 	}	
 	
-	private void downloadImage(Uri imageUri) 
+	private void downloadImage(Uri imageUri)
 	{
 
 	    File cacheDir;

@@ -1,6 +1,6 @@
 #ifndef MANAGERS_H
 #define MANAGERS_H
-
+#include <android/native_activity.h>
 #include "ConfigurationManager.h"
 #include "MetricsManager.h"
 #include "StateManager.h"
@@ -10,7 +10,7 @@ class StateManager;
 class Managers
 {
     public:
-        static void Initialize();
+        static void Initialize(ANativeActivity*);
         static ConfigurationManager* CM;
 
         static StateManager* SM;

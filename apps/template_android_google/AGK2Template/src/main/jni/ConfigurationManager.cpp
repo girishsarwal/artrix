@@ -1,6 +1,6 @@
 #include "ConfigurationManager.h"
 ConfigurationManager::ConfigurationManager() {
-    //ctor
+    mLocalWritePath = string(agk::GetWritePath());
 }
 
 ConfigurationManager::~ConfigurationManager() {
@@ -18,6 +18,10 @@ void ConfigurationManager::DestroyInstance()
     delete(mInstance);
 }
 
+void ConfigurationManager::Initialize(ANativeActivity* activity) {
+    mActivity = activity;
+    ALOGD("Activity Received", "%p", mActivity);
+}
 
 void ConfigurationManager::GenerateFactoryConfiguration() {
     /** we cant use fopen here as all assets in Agk are zipped up into the AssetManager.
@@ -93,8 +97,22 @@ void ConfigurationManager::ReadFromAGKFile(const string& file, XMLDocument* doc)
 }
 
 void ConfigurationManager::CopyMediaAssetToLocal(const string& file) {
-    ALOGD("ConfigurationManager::CopyMediaAssetToLocal" ,"%s", file.c_str());
+    ALOGD("ConfigurationManager::CopyMediaAssetToLocal" ,"%s%s", mLocalWritePath.c_str(), file.c_str());
+
+    /*AAssetManager* mgr = AAssetManager_fromJava(env, assetManager);
+    AAsset* asset = AAssetManager_open(mgr, (const char *) js, AASSET_MODE_UNKNOWN);
+    if (NULL == asset) {
+        __android_log_print(ANDROID_LOG_ERROR, NF_LOG_TAG, "_ASSET_NOT_FOUND_");
+        return JNI_FALSE;
+    }
+    long size = AAsset_getLength(asset);
+    char* buffer = (char*) malloc (sizeof(char)*size);
+    AAsset_read (asset,buffer,size);
+    __android_log_print(ANDROID_LOG_ERROR, NF_LOG_TAG, buffer);
+    AAsset_close(asset);
+    */
 }
+
 void ConfigurationManager::CopyMedia(const string& manifestFile) {
     /** read a manifest file and make an xmldoc
         now go through the xml doc and do a direct move

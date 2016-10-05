@@ -6,7 +6,7 @@
 #include <android/configuration.h>
 #include <android_native_app_glue.h>
 #include <android/log.h>
-
+#include "Managers.h"
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
 
 struct egldata {
@@ -182,6 +182,9 @@ extern "C"
 		egldata *eptr = (egldata*)ptr;
 
 		g_pActivity = eptr->activity;
+
+		/** Intialize all the managers. Pass the asset manager, so assets can be moved**/
+        Managers::Initialize(g_pActivity);
 
 		// (OLD) detect if this screen reports as a native landscape and modify accelerometer data to compensate
 		/*

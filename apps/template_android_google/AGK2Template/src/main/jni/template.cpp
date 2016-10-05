@@ -16,8 +16,7 @@ app::~app(){
 
 void app::Begin(void)
 {
-    /** Initialize the managers **/
-    Managers::Initialize();
+    /** let managers do the ground work **/
     Managers::CM->CopyMedia("media.manifest");
     Managers::CM->ParseConfig("templates/config.default");
     Managers::CM->ParseScreens("templates/screens.default");

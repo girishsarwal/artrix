@@ -1031,10 +1031,10 @@ void android_main(struct android_app* state) {
     engine.proximitySensor = ASensorManager_getDefaultSensor(engine.sensorManager, ASENSOR_TYPE_PROXIMITY);
     engine.lightSensor = ASensorManager_getDefaultSensor(engine.sensorManager, ASENSOR_TYPE_LIGHT);
     engine.magneticSensor = ASensorManager_getDefaultSensor(engine.sensorManager, ASENSOR_TYPE_MAGNETIC_FIELD);
-    
+
 	int rotationID = 15;
 	engine.rotVectorSensor = ASensorManager_getDefaultSensor(engine.sensorManager, 15); // ASENSOR_TYPE_GAME_ROTATION_VECTOR
-	if ( !engine.rotVectorSensor ) 
+	if ( !engine.rotVectorSensor )
 	{
 		LOGW("Failed to get sensor 15, trying sensor 11");
 		rotationID = 11;
@@ -1047,6 +1047,8 @@ void android_main(struct android_app* state) {
         // We are starting with a previous saved state; restore from it.
         engine.state = *(struct saved_state*)state->savedState;
     }
+
+
 
     // loop waiting for stuff to do.
 
@@ -1096,7 +1098,7 @@ void android_main(struct android_app* state) {
 						break;
 					}
                 }
-            
+
             }
 
             // Check if we are exiting.

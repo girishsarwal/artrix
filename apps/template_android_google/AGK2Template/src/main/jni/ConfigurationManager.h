@@ -1,6 +1,8 @@
 #ifndef CONFIGURATIONMANAGER_H
 #define CONFIGURATIONMANAGER_H
 #include <android/log.h>
+#include <android/native_activity.h>
+#include <android/asset_manager.h>
 #include <string>
 #include <vector>
 #include <tinyxml2.h>
@@ -10,6 +12,7 @@
 #include "ButtonWidget.h"
 #include "Managers.h"
 #include "utils.h"
+
 
 #define FILE_BUFFER_LENGTH 8192
 
@@ -24,6 +27,8 @@ class ConfigurationManager
         static ConfigurationManager* GetInstance();
         static void DestroyInstance();
 
+        void Initialize(ANativeActivity*);
+
         void GenerateFactoryConfiguration();
         void CopyMedia(const string& file);
         void ParseScreens(const string& file);
@@ -32,7 +37,9 @@ class ConfigurationManager
     protected:
     private:
         static ConfigurationManager* mInstance;
+        ANativeActivity* mActivity;
         vector<Screen*> mScreens;
+        string mLocalWritePath;
         void ReadFromAGKFile(const string& file, XMLDocument*);
         void CopyMediaAssetToLocal(const string& file);
 };
