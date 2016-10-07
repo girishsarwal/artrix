@@ -1,4 +1,5 @@
 #include "ConfigurationManager.h"
+#include <libgen.h>
 ConfigurationManager::ConfigurationManager() {
     mLocalWritePath = string(agk::GetWritePath());
 }
@@ -27,9 +28,7 @@ void ConfigurationManager::GenerateFactoryConfiguration() {
     /** we cant use fopen here as all assets in Agk are zipped up into the AssetManager.
     This function will check each file on startup and copy the defaults to the data directory
     **/
-
-
-
+    CopyMedia("media.manifest", COPY_MODE_FACTORY);
 }
 
 void ConfigurationManager::ParseScreens(const string& file) {
@@ -96,9 +95,53 @@ void ConfigurationManager::ReadFromAGKFile(const string& file, XMLDocument* doc)
     ALOGD("Configuration::ReadFromAGKFile", "xml %s was parsed", file.c_str());
 }
 
-void ConfigurationManager::CopyMediaAssetToLocal(const string& file) {
-    ALOGD("ConfigurationManager::CopyMediaAssetToLocal" ,"%s%s", mLocalWritePath.c_str(), file.c_str());
-    AAsset* asset = AAssetManager_open(mActivity->assetManager, file.c_str(), AASSET_MODE_UNKNOWN);
+int ConfigurationManager::CreateContainingFolder(const char* folder) {
+
+    const size_t len = strlen(folder);
+    char _path[PATH_MAX];
+    char *p;
+    errno = 0;
+    if (len > sizeof(_path)-1) {
+        errno = ENAMETOOLONG;
+        return -1;
+    }
+    strcpy(_path, folder);
+    for (p = _path + 1; *p; p++) {
+        if (*p == '/') {
+            *p = '\0';
+
+            if (mkdir(_path, S_IRWXU) != 0) {
+                if (errno != EEXIST)
+                    return -1;
+            }
+            *p = '/';
+        }
+    }
+
+    if (mkdir(_path, S_IRWXU) != 0) {
+        if (errno != EEXIST)
+            return -1;
+    }
+
+
+
+}
+void ConfigurationManager::CopyMediaAssetToLocal(const string& assetName, bool force = false) {
+    /** splice the names into useful stuff **/
+
+    const char* assetId = assetName.c_str();
+    const char* rootpath = mLocalWritePath.c_str();
+    char* filePath = (char*)malloc(sizeof(char) * (strlen(rootpath) + strlen(assetId)));
+    sprintf(filePath, "%s%s", rootpath, assetId);
+    char* folderPath = dirname(filePath);
+    char* fileName = basename(filePath);
+
+    CreateContainingFolder(folderPath);
+
+    ALOGD("Filecopy", "file %s wll be copied to %s", fileName, folderPath);
+
+    ALOGD("ConfigurationManager::CopyMediaAssetToLocal" ,"%s%s", mLocalWritePath.c_str(), assetId);
+    AAsset* asset = AAssetManager_open(mActivity->assetManager, assetName.c_str(), AASSET_MODE_UNKNOWN);
     if (NULL == asset) {
         ALOGE("ConfigurationManager::CopyMediaAssetToLocal", "Asset not found");
         return;
@@ -107,32 +150,32 @@ void ConfigurationManager::CopyMediaAssetToLocal(const string& file) {
     char* buffer = (char*) malloc (sizeof(char) * size);
     AAsset_read (asset,buffer,size);
     ALOGD("ConfigurationManager::CopyMediaAssetToLocal", "%p - %ld", buffer, size);
+
+    FILE* fp = fopen(filePath, force? "w+":"w");
+    if(NULL == fp){
+        ALOGE("ConfigurationManager::CopyMediaAssetToLocal", "cannot open destination file %s", filePath);
+        return;
+    }
+
+    long written = fwrite(buffer, sizeof(char), size, fp);
+    ALOGD("ConfigurationManager::CopyMediaAssetToLocal", "%ld bytes copied to %s", written, filePath);
+    fflush(fp);
+    fclose(fp);
     AAsset_close(asset);
 
-    /*AAssetManager* mgr = AAssetManager_fromJava(env, assetManager);
-    AAsset* asset = AAssetManager_open(mgr, (const char *) js, AASSET_MODE_UNKNOWN);
-    if (NULL == asset) {
-        __android_log_print(ANDROID_LOG_ERROR, NF_LOG_TAG, "_ASSET_NOT_FOUND_");
-        return JNI_FALSE;
-    }
-    long size = AAsset_getLength(asset);
-    char* buffer = (char*) malloc (sizeof(char)*size);
-    AAsset_read (asset,buffer,size);
-    __android_log_print(ANDROID_LOG_ERROR, NF_LOG_TAG, buffer);
-    AAsset_close(asset);
-    */
 }
 
-void ConfigurationManager::CopyMedia(const string& manifestFile) {
+void ConfigurationManager::CopyMedia(const string& manifestFile, int mode) {
     /** read a manifest file and make an xmldoc
         now go through the xml doc and do a direct move
     **/
     XMLDocument manifest;
     ReadFromAGKFile(manifestFile, &manifest);
     for(XMLNode* fileNode = manifest.RootElement()->FirstChild(); fileNode ; fileNode = fileNode ->NextSibling()) {
-        CopyMediaAssetToLocal(string(fileNode->FirstChild()->ToText()->Value()));
+        CopyMediaAssetToLocal(string(fileNode->FirstChild()->ToText()->Value()), mode);
     }
     ALOGD("Configuration::CopyMedia", "media was copied");
 }
+
 
 ConfigurationManager* ConfigurationManager::mInstance = NULL;

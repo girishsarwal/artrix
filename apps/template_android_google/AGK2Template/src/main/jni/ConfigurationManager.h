@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <tinyxml2.h>
+#include <errno.h>
 #include "agk.h"
 #include "screen.h"
 #include "WidgetFactory.h"
@@ -14,7 +15,12 @@
 #include "utils.h"
 
 
+
 #define FILE_BUFFER_LENGTH 8192
+
+#define COPY_MODE_DEFAULT   false  //follow each files force flag in manifest
+#define COPY_MODE_FACTORY   true   //simulate all flags as force copy
+
 
 using namespace std;
 using namespace AGK;
@@ -30,7 +36,7 @@ class ConfigurationManager
         void Initialize(ANativeActivity*);
 
         void GenerateFactoryConfiguration();
-        void CopyMedia(const string& file);
+        void CopyMedia(const string& file, int mode);
         void ParseScreens(const string& file);
         void ParseConfig(const string& file);
         vector<Screen*> GetScreens();
@@ -41,7 +47,8 @@ class ConfigurationManager
         vector<Screen*> mScreens;
         string mLocalWritePath;
         void ReadFromAGKFile(const string& file, XMLDocument*);
-        void CopyMediaAssetToLocal(const string& file);
+        int CreateContainingFolder(const char* folder);
+        void CopyMediaAssetToLocal(const string& file, bool force);
 };
 
 #endif // CONFIGURATIONMANAGER_H
