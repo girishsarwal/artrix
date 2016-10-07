@@ -17,7 +17,7 @@ app::~app(){
 void app::Begin(void)
 {
     /** let managers do the ground work **/
-    Managers::CM->GenerateFactoryConfiguration();
+    Managers::CM->CopyMedia("media.manifest", COPY_MODE_DEFAULT);
     Managers::CM->ParseConfig("templates/config.default");
     Managers::CM->ParseScreens("templates/screens.default");
 

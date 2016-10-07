@@ -126,6 +126,43 @@ int ConfigurationManager::CreateContainingFolder(const char* folder) {
 
 
 }
+void ConfigurationManager::CopyMediaAssetToLocalAgk(const string& assetName, bool force = false) {
+    /** we cant use fopen here as all assets in Agk are zipped up into the AssetManager.
+    we will use AGK functon to copy files **/
+    const char* an = assetName.c_str();
+    ALOGD("ConfigurationManager::CopyMediaAssetToLocalAgk", "copying file %s", an);
+
+    if(agk::GetFileExists(an)) {
+        if(!force) {
+            ALOGD("Configuration::CopyMediaAssetToLocalAgk", "file exists at %s%s", mLocalWritePath.c_str(), an);
+            return;
+        } else {
+            ALOGD("Configuration::CopyMediaAssetToLocalAgk", "file exists %s%s. will be purged", mLocalWritePath.c_str(), an);
+            agk::DeleteFile(an);
+        }
+
+    }
+
+    int fileHandleSource = agk::OpenToRead(an);
+    int fileHandleDestination = agk::OpenToWrite(an);
+    long count = 0;
+    if(!agk::FileIsOpen(fileHandleSource)) {
+        ALOGE("ConfigurationManager::CopyMediaAssetToLocalAgk", "cannot read source file %s", an);
+        return;
+    }
+    if(!agk::FileIsOpen(fileHandleSource)) {
+        ALOGE("ConfigurationManager::CopyMediaAssetToLocalAgk", "cannot read destination file %s", an);
+        return;
+    }
+
+    while(!agk::FileEOF(fileHandleSource)) {
+        agk::WriteByte(fileHandleDestination, agk::ReadByte(fileHandleSource));
+        count++;
+    }
+    agk::CloseFile(fileHandleSource);
+    agk::CloseFile(fileHandleDestination);
+    ALOGD("Configuration::CopyMediaAssetToLocalAgk", "%ld bytes were copied to %s%s", count, mLocalWritePath.c_str(), an);
+}
 void ConfigurationManager::CopyMediaAssetToLocal(const string& assetName, bool force = false) {
     /** splice the names into useful stuff **/
 
@@ -172,7 +209,9 @@ void ConfigurationManager::CopyMedia(const string& manifestFile, int mode) {
     XMLDocument manifest;
     ReadFromAGKFile(manifestFile, &manifest);
     for(XMLNode* fileNode = manifest.RootElement()->FirstChild(); fileNode ; fileNode = fileNode ->NextSibling()) {
-        CopyMediaAssetToLocal(string(fileNode->FirstChild()->ToText()->Value()), mode);
+        const char* force = fileNode->ToElement()->Attribute("force");
+        if (mode != COPY_MODE_FACTORY) mode = force ? atoi(force): 0;
+        CopyMediaAssetToLocalAgk(string(fileNode->FirstChild()->ToText()->Value()), mode);
     }
     ALOGD("Configuration::CopyMedia", "media was copied");
 }

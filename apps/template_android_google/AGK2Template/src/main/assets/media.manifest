@@ -1,8 +1,6 @@
 <media>
-	<file>backgrounds/horizon.jpg</file>
-    <file>backgrounds/horizon2.jpg</file>
-    <file>buttons/blue-bar.png</file>
-    <file>buttons/yellow-bar.png</file>
     <file>templates/config.default</file>
     <file>templates/screens.default</file>
+	<file>backgrounds/dots.jpg</file>
+    <file>buttons/menu-button.png</file>
 </media>

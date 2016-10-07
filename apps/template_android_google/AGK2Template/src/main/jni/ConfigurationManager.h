@@ -49,6 +49,7 @@ class ConfigurationManager
         void ReadFromAGKFile(const string& file, XMLDocument*);
         int CreateContainingFolder(const char* folder);
         void CopyMediaAssetToLocal(const string& file, bool force);
+        void CopyMediaAssetToLocalAgk(const string& file, bool force);
 };
 
 #endif // CONFIGURATIONMANAGER_H
