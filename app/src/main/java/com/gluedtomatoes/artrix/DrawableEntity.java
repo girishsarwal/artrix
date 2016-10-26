@@ -20,9 +20,6 @@ public class DrawableEntity extends Entity implements Renderable{
     protected int mIndexCount = 0;
 
     protected boolean mVisible;
-    protected Vector4 mPosition;
-    protected Vector4 mSize;
-    protected float mRotation;
 
     protected ShaderProgram mShadingProgram;
 
@@ -32,43 +29,15 @@ public class DrawableEntity extends Entity implements Renderable{
 
     DrawableEntity(){
         buffers = new int[2];
-        mPosition = new Vector4();
-        mRotation = 0.0f;
-        mSize = new Vector4();
         mVisible = true;
         mTransform = new Transform();
     }
-    public DrawableEntity(String shader){
+    public DrawableEntity(Node node, String shader){
+        this.node = node;
         setShadingProgram(shader);
     }
-
-
-    public float getRotation() {
-        return mRotation;
-    }
-    public void setRotation(float mRotation) {
-        this.mRotation = mRotation;
-    }
-
-    public Vector4 getPosition() {
-        return mPosition;
-    }
-    public void setPosition(Vector4 mPosition) {
-        this.mPosition = mPosition;
-    }
-    public void setPosition(Point mPosition) {
-        setPosition(Dimension.PixelsToCoords(mPosition));
-    }
-
-
-    public Vector4 getSize() {
-        return mSize;
-    }
-    public void setSize(Vector4 mSize) {
-        this.mSize = mSize;
-    }
-    public void setSize(Point mSize) {
-        setSize(Dimension.PixelsToCoords(mSize));
+    public DrawableEntity(String shader){
+        setShadingProgram(shader);
     }
 
     public ShaderProgram getShadingProgram(){
@@ -103,12 +72,11 @@ public class DrawableEntity extends Entity implements Renderable{
     }
 
     @Override
-    public void update() {
+    public void update(double gameTime) {
 
         if(!mIsInitialized){
             init();
         }
-        mTransform.update();
         /* is this visible this frame, if yes push it **/
         if(mVisible){
             ArtrixView.RenderQueue.Enque(this);

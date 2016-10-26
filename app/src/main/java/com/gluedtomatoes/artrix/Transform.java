@@ -1,63 +1,59 @@
 package com.gluedtomatoes.artrix;
 
+import android.opengl.GLES20;
 import android.opengl.Matrix;
 
 /**
  * Created by gsarwal on 5/8/2015.
  */
 public class Transform {
-    public Transform(){
-        mParent = null;
-        mLocal = new Matrix4x4();
-        mWorld = new Matrix4x4();
-        mMvp = new Matrix4x4();
-        mCamera = null;
+    public static Matrix4x4 getMVP(SceneNode node, Camera camera){
+        Matrix4x4 m = new Matrix4x4();
+        Matrix4x4 w = node.getWorld().clone();
+        Matrix4x4 v = camera.getView().clone();
+        Matrix4x4 p = camera.getProjection().clone();
+
+        m.multiply(p);
+        m.multiply(v);
+        m.multiply(w);
+
+
+
+        Matrix4x4 mvp = m.multiplyAndClone(w.multiplyAndClone(v).multiplyAndClone(p));
+        return m;
+    }
+    public static Matrix4x4 getBillboardMVP(SceneNode node, Camera camera){
+        Matrix4x4 m = getMVP(node, camera);
+        m.clearUpperTriangle();
+        return null;
     }
 
-    private Transform mParent;
-    protected Matrix4x4 mLocal;
-    protected Matrix4x4 mWorld;
-    protected Matrix4x4 mMvp;
+    public static void applyTranslation(Matrix4x4 mat, Vector4 vec){
+        Matrix.translateM(mat.getRaw(), 0, vec.getX(), vec.getY(), vec.getZ());
+    }
+    public static void applyScaling(Matrix4x4 mat, Vector4 vec){
 
-    public void setmCamera(Camera mCamera) {
-        this.mCamera = mCamera;
     }
 
-    protected Camera mCamera;
-
-    public void update() {
-        mMvp.identity();
-        if(mParent != null){
-            mWorld = mParent.getWorld().multiplyAndClone(mLocal);
-        } else mWorld = mLocal;
-
-        if (mCamera != null) {
-            mMvp.multiply(mCamera.getView());
-            mMvp.multiply(mWorld);
-        }
+    public static void applyWorldTransform(Matrix4x4 world, Matrix4x4 parentWorld, Matrix4x4 local){
+        world.multiply(parentWorld).multiply(local);
+    }
+    public static void applyModelTransform(Matrix4x4 mvp, Matrix4x4 model){
+        mvp.multiply(model);
     }
 
-    public Matrix4x4 getLocal(){
-        return mLocal;
+    public static void applyCameraTransforms(Matrix4x4 mvp, Camera camera){
+        mvp.multiply(camera.getProjection()).multiply(camera.getView());
     }
-    public Matrix4x4 getWorld(){
-        return mWorld;
+    public static void applyDefaultCameraTransforms(Matrix4x4 mvp){
+        applyCameraTransforms(mvp, SceneManager.getActiveCamera());
     }
 
-    public Matrix4x4 getMVP(Camera camera){
-        return mMvp;
+    public static void applyTranslation(Vector4 v, Vector4 rhs){
+        v.add(rhs);
     }
-    public Matrix4x4 getBillboardMVP(Camera camera){
-        Matrix4x4 bbMatrix = mMvp.clone();
-        bbMatrix.clearUpperTriangle();
-        return  bbMatrix;
-    }
-    public Transform translate(float x, float y, float z){
-        Matrix.translateM(mLocal.getRaw(), 0, x, y, z);
-        return this;
-    }
-    public Transform rotateZ(float angle){
-        Matrix.rotateM(mLocal.getRaw(),0, angle, 0, 0, 1);
-        return this;
-    }
+
+
+
+
 }

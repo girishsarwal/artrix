@@ -156,7 +156,7 @@ public class ShaderProgram {
 
     private void fetchUniform(String uniformName){
         int hUniform = getUniformLocation(uniformName);
-        if(hUniform > 0){
+        if(hUniform >= 0){
             mUniformsMap.put(uniformName, hUniform);
         }
     }

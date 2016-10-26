@@ -10,6 +10,25 @@ public class Entity implements StateMachine {
     protected  State mPreviousState;
     protected  State mGlobalState;
 
+    public Node getNode() {
+        return node;
+    }
+
+    public void setNode(Node node) {
+        this.node = node;
+    }
+
+    protected Node node;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    protected  String name;
     protected boolean mIsInitialized;
 
     public boolean isInitialized() {
@@ -63,8 +82,8 @@ public class Entity implements StateMachine {
         mCurrentState = NopState.state;
     }
     @Override
-    public void update(){
-        mCurrentState.update(this);
+    public void update(double gameTime){
+        mCurrentState.update(this, gameTime);
     }
     @Override
     public void shutdown(){

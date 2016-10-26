@@ -5,15 +5,26 @@ package com.gluedtomatoes.artrix;
  */
 public class SplashState implements State{
     public static SplashState state = new SplashState();
-    private Sprite background = new Sprite("bg.png");
+    private Scene visual;
+    private Sprite background = new Sprite("test.png");
+
     @Override
-    public void enter(StateMachine sm) {
+    public void init(StateMachine sm) {
         background.init();
+        visual = SceneManager.createScene("SplashScene");
+        visual.getRoot().createChild("background", background);
+        background.getNode().translate(new Vector4(0.0f, 0.0f, 0));
     }
 
     @Override
-    public void update(StateMachine sm) {
-        background.update();
+    public void enter(StateMachine sm) {
+
+    }
+
+    @Override
+    public void update(StateMachine sm, double gameTime) {
+        visual.update(gameTime);
+
     }
 
     @Override

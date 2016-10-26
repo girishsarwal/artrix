@@ -1,6 +1,8 @@
 package com.gluedtomatoes.artrix;
 
 import android.opengl.GLES20;
+import android.text.method.TransformationMethod;
+import android.transition.Scene;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -15,10 +17,10 @@ public class Sprite extends DrawableEntity  {
     }
 
     private static float vertices[]={
-            -1.0f, 1.0f, 0.0f, 0.0f, 0.0f,
-            -1.0f, -1.0f, 0.0f, 0.0f, 1.0f,
-            1.0f, -1.0f, 0.0f, 1.0f, 1.0f,
-            1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+            -1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+            -1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+            1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f,
     };
 
     private static short indices[] = {
@@ -30,6 +32,7 @@ public class Sprite extends DrawableEntity  {
 
     @Override
     public void init() {
+
         mVertexDescriptor = PredefinedVertexDescriptors.VF_SPRITE;
         setShadingProgram("sprite");
 
@@ -62,18 +65,14 @@ public class Sprite extends DrawableEntity  {
         GLES20.glBufferData(GLES20.GL_ELEMENT_ARRAY_BUFFER, mIndexCount * VertexDescriptor.SIZE_OF_SHORT, indexBuffer, GLES20.GL_STATIC_DRAW);
 
         super.init();
-        mTransform.setmCamera(Constants.camera);
-        //mTransform.rotateZ(45);
-
     }
 
     @Override
     public void render() {
-        Constants.camera.update(0);
         mTexture.use();
         mShadingProgram.use();
         mShadingProgram.setUniformInteger("theTexture", 0);
-        mShadingProgram.setUniformMatrix("theMVP", mTransform.getBillboardMVP(Constants.camera));
+        mShadingProgram.setUniformMatrix("theMVP", ((SceneNode)node).getMvp());
         mShadingProgram.setUniformFloat("theGameTime", Constants.deltaTime);
         mShadingProgram.applyVertexAttribute(mVertexDescriptor);
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, mIndexCount, GLES20.GL_UNSIGNED_SHORT, 0);

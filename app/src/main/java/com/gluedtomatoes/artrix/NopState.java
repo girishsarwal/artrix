@@ -5,13 +5,19 @@ package com.gluedtomatoes.artrix;
  */
 public class NopState implements State{
     public static NopState state = new NopState();
+
+    @Override
+    public void init(StateMachine sm) {
+
+    }
+
     @Override
     public void enter(StateMachine sm) {
 
     }
 
     @Override
-    public void update(StateMachine sm) {
+    public void update(StateMachine sm, double gameTime) {
 
     }
 
