@@ -1,2 +1,0 @@
-/home/girishsarwal/workarea/gt/artrix/platforms/android/build/intermediates/classes/debug
-/home/girishsarwal/workarea/gt/artrix/platforms/android/build/intermediates/pre-dexed/debug/classes-75ecc8de702d34feb2aee1c3c78c9926bb5b608f.jar
