@@ -2,6 +2,7 @@ build
 apps/template_android_google/AGK2Template/src/main/libs/
 apps/template_android_google/AGK2Template/src/main/obj/
 apps/template_android_google/AGK2Template/src/main/jniLibs/
+apps/template_android_google/AGK2Template/.externalNativeBuild/
 obj/
 apps/template_android_google/.gradle/
 apps/template_android_google/.idea/
