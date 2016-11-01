@@ -9,6 +9,9 @@ android {
         applicationId "com.mycompany.mytemplate"
         minSdkVersion 10
         targetSdkVersion 19
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86'
+        }
     }
 
     buildTypes {
@@ -17,6 +20,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+
 }
 
 dependencies {

@@ -73,8 +73,10 @@ LOCAL_LDLIBS    := -lm -llog -landroid -lEGL -lGLESv2 -lz -lOpenSLES
 LOCAL_STATIC_LIBRARIES := AGKBullet AGKAssimp AGKAndroid tinyxml2 android_native_app_glue
 
 # define IDE_ANDROID (for AGK) and use O3 optimizations
-LOCAL_CFLAGS += -DIDE_ANDROID -O3 -fsigned-char
-LOCAL_CPPFLAGS += -fexceptions
+LOCAL_CFLAGS += -DIDE_ANDROID -O3 -fsigned-char -w
+LOCAL_CPPFLAGS += -fexceptions -w
+
+LOCAL_DISABLE_FATAL_LINKER_WARNINGS=true
 
 # use arm instead of thumb instructions
 LOCAL_ARM_MODE := arm
