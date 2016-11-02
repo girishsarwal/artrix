@@ -4,7 +4,7 @@ Widget::Widget() {
     mSize.Set(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE);
     mPivot.Set(0.5f, 0.5f);
     mIsVisible = true;
-    SetDefaultName();
+    SetDefaultName(string("Widget"));
 }
 
 Widget::Widget(const Vector2& position, const Vector2& size) {
@@ -12,7 +12,7 @@ Widget::Widget(const Vector2& position, const Vector2& size) {
     mSize.Set(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE);
     mPivot.Set(0.5f, 0.5f);
     mIsVisible = true;
-    SetDefaultName();
+    SetDefaultName(string("Widget"));
 }
 
 Widget::Widget(XMLNode* node) {
@@ -20,6 +20,7 @@ Widget::Widget(XMLNode* node) {
     mSize = Vector2(node->FirstChildElement("size")->FirstChild());
     mIsVisible = true;
     mPivot = Vector2(node->FirstChildElement("anchor")->FirstChild());
+    SetDefaultName(string("Widget"));
 }
 
 Widget::~Widget() {

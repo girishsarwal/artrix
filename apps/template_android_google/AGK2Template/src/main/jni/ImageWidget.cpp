@@ -1,7 +1,6 @@
 #include "ImageWidget.h"
 
 ImageWidget::ImageWidget() {
-
 }
 
 ImageWidget::~ImageWidget() {
@@ -9,13 +8,12 @@ ImageWidget::~ImageWidget() {
 }
 ImageWidget::ImageWidget(const Vector2& position, const Vector2& size)
     : LeafWidget(position, size) {
-
 }
 
 
 ImageWidget::ImageWidget(XMLNode* node)
     : LeafWidget (node) {
-    mSource = node->ToElement()->Attribute("src");
+	mSource = node->ToElement()->Attribute("src");
 }
 
 string ImageWidget::GetSource() { return mSource; }

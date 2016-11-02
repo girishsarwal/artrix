@@ -62,7 +62,6 @@ class Widget :
         bool operator!=(const Widget& rhs) const;
 
     protected:
-        string mName;
         Vector2 mPosition;
         Vector2 mPivot;
         Vector2 mSize;

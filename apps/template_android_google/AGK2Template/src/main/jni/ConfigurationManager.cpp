@@ -41,11 +41,11 @@ void ConfigurationManager::ParseScreens(const string& file) {
 
 		for (XMLNode *widgetNode = screenNode->FirstChild(); widgetNode; widgetNode = widgetNode->NextSibling()) {            //widgets
 			Widget *w = NULL;
-			WidgetFactory::CreateWidget(string(widgetNode->Value()), widgetNode, &w);
+            WidgetFactory::CreateWidget(widgetNode, &w);
 			if (w != NULL) {
 				w->Initialize();            /** This function is introduced to maintain the object creation inheritance hierarchy **/
 				screen->AddWidget(w);
-				ALOGD("Adding widget ", "%s", w->GetName().c_str());
+//				ALOGD("Adding widget ", "%s", w->GetName().c_str());
 			} else
 				ALOGW("Configuration::ParseScreens",
 				      "There was a problem creating a widget of type %s", widgetNode->Value());

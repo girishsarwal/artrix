@@ -9,16 +9,16 @@ using namespace std;
 
 class KeyManageable {
 private:
-	static uint16_t nextId;
-	static uint16_t __getNextId();
+	static int nextId;
+	static int __getNextId();
 
 protected:
-	uint16_t mId;
+	int mId;
 	string mName;
 public:
 	const string& GetName() const;
 	void SetName(const string&);
-	void SetDefaultName();
+	void SetDefaultName(const string&);
 };
 
 

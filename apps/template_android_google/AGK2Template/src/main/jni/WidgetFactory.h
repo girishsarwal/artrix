@@ -10,7 +10,6 @@ class WidgetFactory
         WidgetFactory();
         virtual ~WidgetFactory();
         static void CreateWidget(XMLNode*, Widget**);
-        static void CreateWidget(const string&, XMLNode*, Widget**);
     protected:
     private:
 };

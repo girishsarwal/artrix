@@ -1,7 +1,7 @@
 #include "screen.h"
 
 Screen::Screen(){
-    SetDefaultName();
+    SetDefaultName(string("Screen"));
 }
 
 Screen::~Screen(){

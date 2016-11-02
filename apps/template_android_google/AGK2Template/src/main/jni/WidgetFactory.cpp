@@ -16,15 +16,21 @@ void WidgetFactory::CreateWidget(XMLNode* node, Widget** widget) {
     if(type == "ButtonWidget") {
         ALOGD("WidgetFactory::CreateWidget", "'ButtonWidget' created");
         *widget = new ButtonWidget(node);
-        return;
     } else if(type == "ImageWidget") {
         ALOGD("WidgetFactory::CreateWidget", "'ImageWidget' created");
         *widget = new ImageWidget(node);
+    } else {
+        ALOGW("WidgetFactory::CreateWidget", "factory does not understand widget of type '%s'",
+              type.c_str());
         return;
     }
-    ALOGW("WidgetFactory::CreateWidget", "factory does not understand widget of type '%s'", type.c_str());
-}
-void WidgetFactory::CreateWidget(const string& name, XMLNode* node, Widget** widget) {
-    CreateWidget(node, widget);
-    (*widget)->SetName(name);
+    if(NULL == (*widget)) {
+        ALOGW("WidgetFactory::CreateWidget", "There was a problem creating the widget type '%s'",
+              type.c_str());
+        return;
+    }
+    const char* widgetName = node->ToElement()->Attribute("name");
+    if(NULL != widgetName) {
+        (*widget)->SetName(string(widgetName));
+    }
 }
