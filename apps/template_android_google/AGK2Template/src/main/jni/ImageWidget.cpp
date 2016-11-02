@@ -13,7 +13,7 @@ ImageWidget::ImageWidget(const Vector2& position, const Vector2& size)
 
 ImageWidget::ImageWidget(XMLNode* node)
     : LeafWidget (node) {
-	mSource = node->ToElement()->Attribute("src");
+	mSource = node->ToElement()->FirstChildElement("src")->FirstChild()->Value();
 }
 
 string ImageWidget::GetSource() { return mSource; }

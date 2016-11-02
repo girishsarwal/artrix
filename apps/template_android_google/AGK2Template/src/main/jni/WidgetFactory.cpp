@@ -2,6 +2,8 @@
 #include <android/log.h>
 #include "ButtonWidget.h"
 #include "ImageWidget.h"
+#include "TextWidget.h"
+
 WidgetFactory::WidgetFactory() {
     //ctor
 }
@@ -19,6 +21,9 @@ void WidgetFactory::CreateWidget(XMLNode* node, Widget** widget) {
     } else if(type == "ImageWidget") {
         ALOGD("WidgetFactory::CreateWidget", "'ImageWidget' created");
         *widget = new ImageWidget(node);
+    } else if(type == "TextWidget") {
+	    ALOGD("WidgetFactory::CreateWidget", "'TextWidget' created");
+	    *widget = new TextWidget(node);
     } else {
         ALOGW("WidgetFactory::CreateWidget", "factory does not understand widget of type '%s'",
               type.c_str());

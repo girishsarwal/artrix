@@ -11,19 +11,15 @@ ButtonWidget::~ButtonWidget(){
 
 ButtonWidget::ButtonWidget(const Vector2& position, const Vector2& size, const string& text)
     : CompositeWidget(position, size) {
-    mText = text;
 }
 
 ButtonWidget::ButtonWidget(const Vector2& position, const Vector2& size, const string& text, XMLNode* backgroundNode)
     : CompositeWidget(position, size) {
-    mText = text;
 }
 
 ButtonWidget::ButtonWidget(XMLNode* node)
     : CompositeWidget (node) {
-    mText = node->FirstChildElement("text")->GetText();
-
-    /** background Widget **/
+    WidgetFactory::CreateWidget(node->FirstChildElement("text")->FirstChild(), &mTextWidget);
     WidgetFactory::CreateWidget(node->FirstChildElement("background")->FirstChild(), &mBackgroundWidget);
 
     mAction = node->FirstChildElement("action")->GetText();

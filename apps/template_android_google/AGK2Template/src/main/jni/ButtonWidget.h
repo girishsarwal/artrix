@@ -40,6 +40,7 @@ class ButtonWidget : public CompositeWidget
         string mAction;
         string mParameters;
         Widget* mBackgroundWidget;
+		Widget* mTextWidget;
 
 };
 

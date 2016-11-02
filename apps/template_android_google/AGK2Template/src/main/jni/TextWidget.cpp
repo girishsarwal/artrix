@@ -15,6 +15,7 @@ TextWidget::TextWidget(const Vector2& position, const Vector2& size, const strin
 TextWidget::TextWidget(XMLNode* node):
     LeafWidget(node) {
     /** build the properties **/
+    mText = node->ToElement()->FirstChildElement("value")->FirstChild()->Value();
 }
 
 const string& TextWidget::GetText() const { return mText; }
