@@ -86,19 +86,7 @@ void Widget::SetPivot(const Vector2& pivot) {
 void Widget::SetPivot(float pivotX, float pivotY) {
     mPivot.Set(pivotX, pivotY);
 }
-void Widget::SetDefaultName(){
-    char widgetName[10];
-    sprintf(widgetName, "Widget%d", (++nextId));
-    string defaultName = string(widgetName);
-    SetName(defaultName);
-}
-const string& Widget::GetName() const{
-    return mName;
-}
 
-void Widget::SetName(const string& name){
-    mName = name;
-}
 
 void Widget::Update() {
     OnUpdate();
@@ -135,7 +123,6 @@ ostream& operator<<(ostream& stream, const Widget& widget) {
     return stream;
 }
 
-int Widget::nextId = 0;
 
 
 bool Widget::operator==(const Widget& rhs) const {

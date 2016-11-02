@@ -6,6 +6,7 @@
 #include "screen.h"
 #include "ButtonWidget.h"
 #include "Managers.h"
+#include "utils.h"
 
 class Artrix
     : public StateMachine

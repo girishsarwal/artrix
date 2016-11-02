@@ -8,11 +8,13 @@
 #include "Vector2.h"
 #include "utils.h"
 #include "statemachine.h"
+#include "KeyManageable.h"
+
 #define DEFAULT_WIDGET_SIZE 100
 using namespace std;
 using namespace tinyxml2;
 class Widget :
-    public StateMachine
+    public StateMachine, public KeyManageable
 {
     public:
         /** constructors **/
@@ -39,8 +41,7 @@ class Widget :
         const Vector2& GetPivot() const;
         void SetPivot(const Vector2&);
         void SetPivot(float, float);
-        const string& GetName() const;
-        void SetName(const string&);
+
 
 
         /** Lifecycle **/
@@ -81,9 +82,6 @@ class Widget :
 
         string _str;
         bool mIsInitialized;
-    private:
-        static int nextId;
-        void SetDefaultName();
 };
 
 #endif // WIDGET_H

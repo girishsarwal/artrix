@@ -13,7 +13,7 @@
 #include "ButtonWidget.h"
 #include "Managers.h"
 #include "utils.h"
-
+#include "KeyedManager.h"
 
 
 #define FILE_BUFFER_LENGTH 8192
@@ -39,12 +39,14 @@ class ConfigurationManager
         void CopyMedia(const string& file, int mode);
         void ParseScreens(const string& file);
         void ParseConfig(const string& file);
-        vector<Screen*> GetScreens();
+
+
+		KeyedManager<Screen*> mScreensManager;
     protected:
     private:
         static ConfigurationManager* mInstance;
         ANativeActivity* mActivity;
-        vector<Screen*> mScreens;
+
         string mLocalWritePath;
         void ReadFromAGKFile(const string& file, XMLDocument*);
         int CreateContainingFolder(const char* folder);

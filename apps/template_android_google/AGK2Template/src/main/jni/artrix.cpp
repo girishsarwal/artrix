@@ -4,6 +4,8 @@
 #include "agk.h"
 
 #include "Managers.h"
+#include "utils.h"
+
 using namespace AGK;
 using namespace std;
 Artrix::Artrix(){
@@ -40,9 +42,8 @@ ArtrixHomeState::ArtrixHomeState()
 ArtrixHomeState::~ArtrixHomeState(){
 }
 
-void ArtrixHomeState::OnOneTimeEnter(const StateMachine* sm)
-{
-    vector<Screen*> screens = Managers::CM->GetScreens();
+void ArtrixHomeState::OnOneTimeEnter(const StateMachine* sm) {
+    mHomeScreen = Managers::CM->mScreensManager.Get("home");
 }
 
 void ArtrixHomeState::Update(const StateMachine* sm, double gameTime){

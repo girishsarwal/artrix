@@ -1,14 +1,159 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="debug" />
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/state.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/ButtonWidget.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="548" topLine="0" />
+			<Cursor1 position="739" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/TextWidget.h" open="1" top="0" tabpos="30" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="504" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/template.cpp" open="1" top="0" tabpos="36" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="394" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/artrix.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="555" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/Core.cpp" open="1" top="0" tabpos="34" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6457" topLine="157" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/Color.cpp" open="1" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="36" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/widget.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3488" topLine="108" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/screen.cpp" open="1" top="0" tabpos="38" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1340" topLine="40" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/state.cpp" open="1" top="1" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="844" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/ConfigurationManager.cpp" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4754" topLine="112" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/StateManager.cpp" open="1" top="0" tabpos="28" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="391" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/utils.h" open="1" top="0" tabpos="25" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="313" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.h" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="348" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/state.h" open="1" top="0" tabpos="37" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="431" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/artrix.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="710" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/statemachine.cpp" open="0" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1420" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/ImageWidget.h" open="1" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="429" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/screen.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="641" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.h" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="362" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/Managers.h" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="74" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="apps/template_android_google/AGK2Template/src/main/jni/ImageWidget.cpp" open="1" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="210" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/TextWidget.cpp" open="1" top="0" tabpos="31" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="625" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/MetricsManager.cpp" open="1" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="142" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/ButtonWidget.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="750" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/Color.h" open="1" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="237" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/widget.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1156" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.cpp" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="261" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/Application.mk" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="175" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/MainMenuWidget.h" open="0" top="0" tabpos="32" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="285" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/ConfigurationManager.h" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="916" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/MetricsManager.h" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="477" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.cpp" open="1" top="0" tabpos="27" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -18,72 +163,7 @@
 	</File>
 	<File name="apps/template_android_google/AGK2Template/src/main/jni/Managers.cpp" open="1" top="0" tabpos="35" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="96" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/Vector2.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="154" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/Color.cpp" open="1" top="1" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="82" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/Vector2.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1264" topLine="28" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/WidgetFactory.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="382" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/Managers.h" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="74" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/statemachine.h" open="1" top="0" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="506" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.h" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="348" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/widget.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1156" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/state.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1133" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/WidgetFactory.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="751" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/MainMenuWidget.h" open="0" top="0" tabpos="32" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="285" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/Color.h" open="1" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="237" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/ButtonWidget.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="739" topLine="0" />
+			<Cursor1 position="592" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="apps/template_android_google/AGK2Template/src/main/jni/MainMenuWidget.cpp" open="1" top="0" tabpos="32" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -91,94 +171,24 @@
 			<Cursor1 position="256" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/ButtonWidget.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="750" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/Application.mk" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="175" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/artrix.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="695" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/TextWidget.cpp" open="1" top="0" tabpos="31" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="625" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/screen.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="641" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/MetricsManager.h" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="477" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/statemachine.cpp" open="0" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1420" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/main.c" open="1" top="0" tabpos="33" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="17520" topLine="559" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/utils.h" open="1" top="0" tabpos="25" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="313" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/widget.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2891" topLine="81" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/ImageWidget.h" open="1" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="429" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/ConfigurationManager.cpp" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4754" topLine="112" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/template.cpp" open="1" top="0" tabpos="36" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="181" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/Core.cpp" open="1" top="0" tabpos="34" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6457" topLine="157" />
-		</Cursor>
-	</File>
 	<File name="apps/template_android_google/AGK2Template/src/main/jni/StateManager.h" open="1" top="0" tabpos="29" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="64" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/ConfigurationManager.h" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/WidgetFactory.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="916" topLine="6" />
+			<Cursor1 position="751" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/Android.mk" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/WidgetFactory.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2920" topLine="24" />
+			<Cursor1 position="382" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/TextWidget.h" open="1" top="0" tabpos="30" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/Vector2.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="504" topLine="0" />
+			<Cursor1 position="1264" topLine="28" />
 		</Cursor>
 	</File>
 	<File name="apps/template_android_google/AGK2Template/src/main/jni/template.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -186,39 +196,29 @@
 			<Cursor1 position="166" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/LeafWidget.cpp" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/Vector2.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="261" topLine="0" />
+			<Cursor1 position="154" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/CompositeWidget.h" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/Android.mk" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="362" topLine="0" />
+			<Cursor1 position="2920" topLine="29" />
 		</Cursor>
 	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/MetricsManager.cpp" open="1" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/statemachine.h" open="1" top="0" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="142" topLine="0" />
+			<Cursor1 position="506" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="apps/template_android_google/AGK2Template/src/main/jni/main.c" open="1" top="0" tabpos="33" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="17387" topLine="550" />
 		</Cursor>
 	</File>
 	<File name="apps/template_android_google/AGK2Template/src/main/jni/Command.h" open="1" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="626" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/StateManager.cpp" open="1" top="0" tabpos="28" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="391" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/screen.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1615" topLine="44" />
-		</Cursor>
-	</File>
-	<File name="apps/template_android_google/AGK2Template/src/main/jni/artrix.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="525" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

@@ -3,15 +3,15 @@
 #include <vector>
 #include "widget.h"
 #include "utils.h"
+#include "KeyManageable.h"
 using namespace std;
 class Screen
+	: public KeyManageable
 {
     public:
 
         Screen();
-        Screen(const string&);
         virtual ~Screen();
-        const string& GetName() const;
         bool GetIsVisible() const;
         void SetIsVisible(bool);
         const vector<Widget*>& GetWidgets() const;
@@ -25,7 +25,6 @@ class Screen
 
     protected:
     private:
-        string mName;
         bool mIsVisible;
         vector<Widget*> mWidgets;
 };

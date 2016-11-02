@@ -32,23 +32,30 @@ void ConfigurationManager::GenerateFactoryConfiguration() {
 }
 
 void ConfigurationManager::ParseScreens(const string& file) {
-    ALOGD("Configuration::ParseScreens", "parsing screens from %s", file.c_str());
-    XMLDocument doc;
-    ReadFromAGKFile(file, &doc);
-    for(XMLNode* screenNode = doc.RootElement()->FirstChild(); screenNode; screenNode = screenNode->NextSibling()) {        //screens
-        Screen* screen = new Screen(screenNode->ToElement()->Attribute("name"));
-        for(XMLNode* widgetNode = screenNode->FirstChild(); widgetNode; widgetNode= widgetNode->NextSibling()) {            //widgets
-            Widget *w = NULL;
-            WidgetFactory::CreateWidget(string(widgetNode->Value()), widgetNode, &w);
-            if (w != NULL) {
-                w->Initialize();            /** This function is introduced to maintain the object creation inheritance hierarchy **/
-                screen->AddWidget(w);
-            } else ALOGW("Configuration::ParseScreens", "There was a problem creating a widget of type %s", widgetNode->Value());
-            ALOGD("Configuration::ParseScreens", "%d widgets were aded to screen %s", screen->GetWidgets().size(), screen->GetName().c_str());
-        }
-        mScreens.push_back(screen);
-    }
-    ALOGD("Configuration::ParseScreens", "%d screens were parsed", mScreens.size());
+	ALOGD("Configuration::ParseScreens", "parsing screens from %s", file.c_str());
+	XMLDocument doc;
+	ReadFromAGKFile(file, &doc);
+	for (XMLNode *screenNode = doc.RootElement()->FirstChild(); screenNode; screenNode = screenNode->NextSibling()) {        //screens
+		Screen *screen = new Screen();
+		screen->SetName(screenNode->ToElement()->Attribute("name"));
+
+		for (XMLNode *widgetNode = screenNode->FirstChild(); widgetNode; widgetNode = widgetNode->NextSibling()) {            //widgets
+			Widget *w = NULL;
+			WidgetFactory::CreateWidget(string(widgetNode->Value()), widgetNode, &w);
+			if (w != NULL) {
+				w->Initialize();            /** This function is introduced to maintain the object creation inheritance hierarchy **/
+				screen->AddWidget(w);
+				ALOGD("Adding widget ", "%s", w->GetName().c_str());
+			} else
+				ALOGW("Configuration::ParseScreens",
+				      "There was a problem creating a widget of type %s", widgetNode->Value());
+			ALOGD("Configuration::ParseScreens", "%d widgets were added to screen %s",
+			      screen->GetWidgets().size(), screen->GetName().c_str());
+
+			mScreensManager.Add(screen);
+		}
+		ALOGD("Configuration::ParseScreens", "%d screens were parsed", mScreensManager.Size());
+	}
 }
 
 void ConfigurationManager::ParseConfig(const string& file) {
@@ -60,13 +67,8 @@ void ConfigurationManager::ParseConfig(const string& file) {
     Managers::MM->Initialize(atof(metrics->Attribute("x")), atof(metrics->Attribute("y")));
 
 
-    ALOGD("Configuration::ParseConfig", "%d keys were parsed", mScreens.size());
+    ALOGD("Configuration::ParseConfig", "%d keys were parsed", mScreensManager.Size());
 }
-
-vector<Screen*> ConfigurationManager::GetScreens() {
-    return mScreens;
-}
-
 
 void ConfigurationManager::ReadFromAGKFile(const string& file, XMLDocument* doc) {
      /** we cant use fopen here as all assets in Agk are zipped up into the AssetManager.
