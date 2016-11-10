@@ -12,5 +12,5 @@ class TextureManager{
 		void loadAllTextures();
 		void loadTexture(std::string& texturePath);
 		void useTexture(const std::string& textureName);
-		void initialize(const std::string& root);
+		bool initialize(const std::string& root);
 };

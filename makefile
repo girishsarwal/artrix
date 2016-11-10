@@ -1,6 +1,7 @@
 CC = g++
 TARGET = artrix
 INCLUDES = -Iinclude -I/usr/include/libxml2
+
 #INCLUDES = -Iinclude -I"$(CYGWIN_HOME)/usr/include/" -I"$(CYGWIN_HOME)/usr/include/w32api/" -I"$(CYGWIN_HOME)/usr/include/libxml2/" 
 CFLAGS = -Wall -g 
 

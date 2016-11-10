@@ -13,6 +13,6 @@ class ShadingProgramManager{
 		static ShadingProgramManager* getInstance();
 		Program* getProgram(const std::string&);
 		void createStockShadingPrograms();
-		void initialize(const std::string&);
+		bool initialize(const std::string&);
 		void shutdown();
 };

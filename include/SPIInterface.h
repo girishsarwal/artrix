@@ -34,7 +34,7 @@ private:
 	SPIInterface();
 
 public:
-	void initialize();
+	bool initialize(const string&);
 	void shutdown();
 	static SPIInterface* getInstance();
 	~SPIInterface();

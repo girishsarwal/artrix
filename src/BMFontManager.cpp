@@ -16,16 +16,19 @@ void BMFontManager::setActiveFont(std::string& font){
 
 };
 
-void BMFontManager::initialize(){	
+bool BMFontManager::initialize(const string& root){
+	string manifestRoot = root;
+	string manifestPath = "fonts.mf";
+	mRoot = root + "/" + manifestPath;
 	printf("+--------------------FONT MANAGER----------------------+\n");
-	printf("Initializing...\n");
+	printf("Initializing from %s\n", mRoot.c_str());
 	std::string fontRoot(FONTROOT);
 	DIR* dir;
 	dirent* entry;
 	dir = opendir(fontRoot.c_str());
 	if(NULL == dir){
 		printf("Error opening font directory '%s'\n", fontRoot.c_str());
-		return;
+		return false;
 	}
 	chdir(fontRoot.c_str());
 	while(NULL != (entry = readdir(dir))){
@@ -35,6 +38,7 @@ void BMFontManager::initialize(){
 			printf("Found font %s\n", fontName.c_str());
 		}
 	}
+	return true;
 };
 
 void BMFontManager::createFontDisplayListFromBMFont(std::string& fontFile){

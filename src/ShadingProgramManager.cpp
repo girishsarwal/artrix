@@ -21,8 +21,10 @@ Program* ShadingProgramManager::getProgram(const std::string& program){
 	return m_pProgramCache[program];
 };
 
-void ShadingProgramManager::initialize(const std::string& root){
-	sprintf(m_root.c_str(), "%s.shadingprograms.xml", root.c_str());
+bool ShadingProgramManager::initialize(const string& root){
+	std::string manifestRoot= std::string(root.c_str());
+	std::string manifestFile = std::string("shadingprograms.xml");
+	m_root = manifestRoot + manifestFile;
 
 	printf("+--------------------SHADER MANAGER----------------------+\n");
 	printf("Initializing...\n");

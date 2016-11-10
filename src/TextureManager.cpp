@@ -5,7 +5,7 @@ TextureManager* TextureManager::getInstance(){
 	}
 	return m_pInstance;
 }
-void TextureManager::initialize(const std::string& root){
+bool TextureManager::initialize(const std::string& root){
 	m_root = root;
 	printf("+--------------------TEXTURE MANAGER----------------------+\n");
 	printf("Initializing...\n");

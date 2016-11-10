@@ -78,6 +78,8 @@ class Shader;
 class Program;
 
 
+using namespace std;
+
 /**Data types **/
 #include "Vector.h"
 #include "SharedAllocation.h"
@@ -136,4 +138,6 @@ class Program;
 #define SPM ShadingProgramManager::getInstance()
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]
+
+
 

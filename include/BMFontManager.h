@@ -6,6 +6,7 @@
 #define FONTROOT "/usr/share/artrix/fonts"
 class BMFontManager{
 	private:
+		std::string mRoot;
 		static BMFontManager* m_pInstance;
 		BMFontManager();
 		uint m_uiFontLists;
@@ -15,6 +16,6 @@ class BMFontManager{
 		~BMFontManager();
 		static BMFontManager* getInstance();
 		void setActiveFont(std::string& font);
-		void initialize();
+		bool initialize(const string& root);
 		void shutdown();
 };

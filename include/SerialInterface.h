@@ -10,7 +10,7 @@ private:
 	SerialInterface();
 
 public:
-	void initialize();
+	bool initialize(const string&);
 	void shutdown();
 	static SerialInterface* getInstance();
 	~SerialInterface();
