@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "RenderContext.h"
 static timespec tvLastTime;
 static timespec tvCurrentTime;
 static long int dElapsedTime;

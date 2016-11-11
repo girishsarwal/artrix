@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SHADERMANAGER_H
+#define SHADERMANAGER_H
 #include "afx.h"
 #define SHADER_ROOT "/usr/share/artrix/shaders"
 struct ProgramShader{
@@ -26,3 +27,4 @@ class ShaderManager{
 		void initialize();
 		void shutdown();
 };
+#endif

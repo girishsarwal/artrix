@@ -1,5 +1,7 @@
 #pragma once
 #include "afx.h"
+#include "TelemetryWidget.h"
+#include "Attribute.h"
 class AttitudeIndicatorWidget :
 	public TelemetryWidget{
 private:

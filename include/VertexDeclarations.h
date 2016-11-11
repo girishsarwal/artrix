@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "VertexDeclarations.h"
 #pragma pack(1)			 
 struct Vertex{
 public:

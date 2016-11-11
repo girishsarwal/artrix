@@ -1,15 +1,14 @@
-#include "afx.h"
+#include "Shader.h"
 
-Shader::Shader(AttributeSet& as){
-	Shader();
+Shader::Shader(tinyxml2::XMLNode* node){
 	
-	m_sShaderType = as.get("type").getValue();
-	
-	if(m_sShaderType == "vertex") m_iShaderType = GL_VERTEX_SHADER;
-	else if (m_sShaderType == "geometry") m_iShaderType = GL_GEOMETRY_SHADER;
-	else if (m_sShaderType == "fragment") m_iShaderType = GL_FRAGMENT_SHADER;
-	
-	m_sSource = as.get("source").getValue();
+//	m_sShaderType = as.get("type").getValue();
+//
+//	if(m_sShaderType == "vertex") m_iShaderType = GL_VERTEX_SHADER;
+//	else if (m_sShaderType == "geometry") m_iShaderType = GL_GEOMETRY_SHADER;
+//	else if (m_sShaderType == "fragment") m_iShaderType = GL_FRAGMENT_SHADER;
+//
+//	m_sSource = as.get("source").getValue();
 };
 Shader::Shader(){
 	m_iRefCount = 0;

@@ -6,7 +6,7 @@
  */
 
 #pragma once
-#include "afx.h"
+#include "TimerWidget.h"
 
 
 class TimerWidget

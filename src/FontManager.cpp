@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "FontManager.h"
 FontManager::FontManager(){
 };
 

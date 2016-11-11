@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "TelemetryWidget.h"
 
 TelemetryWidget::TelemetryWidget(){
 };

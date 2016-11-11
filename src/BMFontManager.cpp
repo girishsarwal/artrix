@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "BMFontManager.h"
 BMFontManager::BMFontManager(){
 };
 
@@ -16,9 +16,9 @@ void BMFontManager::setActiveFont(std::string& font){
 
 };
 
-bool BMFontManager::initialize(const string& root){
-	string manifestRoot = root;
-	string manifestPath = "fonts.mf";
+bool BMFontManager::initialize(const std::string& root){
+	std::string manifestRoot = root;
+	std::string manifestPath = "fonts.mf";
 	mRoot = root + "/" + manifestPath;
 	printf("+--------------------FONT MANAGER----------------------+\n");
 	printf("Initializing from %s\n", mRoot.c_str());

@@ -1,6 +1,9 @@
-#pragma once
+#ifndef SPIMANAGER_H
+#define SPIMANAGER_H
+
+#include <string>
 #include "afx.h"
-class SPIInterface{
+class SPIManager{
 private:
 /**
  * { "device",  1, 0, 'D' },
@@ -30,12 +33,14 @@ private:
 	uint16_t m_ui16Delay;
 
 
-    static SPIInterface* m_pInstance;
-	SPIInterface();
+    static SPIManager* m_pInstance;
+    SPIManager();
 
 public:
-	bool initialize(const string&);
+	bool initialize(const std::string&);
 	void shutdown();
-	static SPIInterface* getInstance();
-	~SPIInterface();
+	static SPIManager* getInstance();
+	~SPIManager();
 };
+#define SPIM	SPIManager::getInstance()
+#endif

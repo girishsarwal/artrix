@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "UIWidget.h"
 
 UIWidget::UIWidget(){
 	m_pVertices = NULL;
@@ -17,27 +17,26 @@ void UIWidget::setDrawRectangle(float _left, float _top, float _width, float _he
 }
 
 
-void UIWidget::initialize(AttributeSet& as){
-	m_asAttributes = as;
+void UIWidget::initialize(){
 	beforeInitialize();
 	onInitialize();
 	afterInitialize();
 };
 
 void UIWidget::beforeInitialize(){
-	m_vPosition.x = atof(m_asAttributes.get("x").getValue().c_str());
-	m_vPosition.y = atof(m_asAttributes.get("y").getValue().c_str());
-	m_vPosition.z = atof(m_asAttributes.get("z").getValue().c_str());;
-	
-	m_vSize.x = atof(m_asAttributes.get("width").getValue().c_str());
-	m_vSize.y = atof(m_asAttributes.get("height").getValue().c_str());
-	m_vHalfSize = m_vSize;
-	m_vHalfSize.scale(0.5);
-	m_fBackground = strtoll(m_asAttributes.get("background").getValue().c_str(), NULL, 16);
+//	m_vPosition.x = atof(m_asAttributes.get("x").getValue().c_str());
+//	m_vPosition.y = atof(m_asAttributes.get("y").getValue().c_str());
+//	m_vPosition.z = atof(m_asAttributes.get("z").getValue().c_str());;
+//
+//	m_vSize.x = atof(m_asAttributes.get("width").getValue().c_str());
+//	m_vSize.y = atof(m_asAttributes.get("height").getValue().c_str());
+//	m_vHalfSize = m_vSize;
+//	m_vHalfSize.Scale(0.5);
+//	m_fBackground = strtoll(m_asAttributes.get("background").getValue().c_str(), NULL, 16);
 };
 
 void UIWidget::afterInitialize(){
-	m_bInitialized = true;
+	//m_bInitialized = true;
 };
 
 

@@ -7,7 +7,12 @@
 
 #pragma once
 #include "afx.h"
-class UIWidget : public Widget, IRenderable {
+#include "Vector3.h"
+#include "Widget.h"
+#include "Renderable.h"
+#include "Program.h"
+
+class UIWidget : public Widget, Renderable {
 
 protected:	
 
@@ -36,15 +41,15 @@ protected:
 	
 	Program*	m_pShadingProgram;
 public:
-	Vector m_vPosition;
-	Vector m_vSize;
-	Vector m_vHalfSize;
+	Vector3 m_vPosition;
+	Vector3 m_vSize;
+	Vector3 m_vHalfSize;
 	unsigned long long m_fBackground;
 	UIWidget();
 	virtual ~UIWidget();
 	
 	/**impl of Widget **/
-	virtual void initialize(AttributeSet& as);
+	virtual void initialize();
 	virtual void update(double frameTime);
 	virtual void render(double frameTime);
 	

@@ -12,14 +12,13 @@
 #include <termios.h>
 #include <unistd.h>
 #include <math.h>
-#include <string.h>
+#include <typeinfo>
+#include <sstream>
+
 //#include <bcm_host.h>
 
 #include <GL/glew.h>
 #include <GL/glut.h>
-
-#include <libxml/xmlreader.h>
-
 #include <vector>
 #include <map>
 #include <string>
@@ -35,114 +34,20 @@
 #include <sys/ioctl.h>
 #include <curl/curl.h>
 
-
+#include "tinyxml2/tinyxml2.h"
 #include "artrix-defines.h"
-#include "SOIL.h"
+#include "SOIL/SOIL.h"
 
-struct Vector;
-struct ProgramShader;
+/** managers **/
 
-class Vertex;
-class VertexColor;
-class VertexColorTexture;
-
-class View;
-class SplashView;
-class Renderable;
-class ViewManager;
-class Widget;
-class UIWidget;
-class ButtonWidget;
-class TelemetryWidget;
-class FlapsWidget;
-class TXBatteryMeterWidget;
-class AttitudeIndicatorWidget;
-class ImageWidget;
-class TimerWidget;
-class RenderContext;
-class WidgetFactory;
-class TextureManager;
-class TextWidget;
-class SerialInterface;
-class FontManager;
-class StateManager;
-class LogManager;
-class IState;
-class ISupportsStates;
-class BMFontManager;
-class SPIInterface;
-class CircularGaugeWidget;
-
-class ShaderManager;
-class ShadingProgramManager;
-class Shader;
-class Program;
-class DownloadManager;
-
-
-using namespace std;
-
-/**Data types **/
-#include "Vector.h"
-#include "SharedAllocation.h"
-#include "Attribute.h"
-
-#include "View.h"
-#include "Widget.h"
-
-#include "VertexDeclarations.h"
-
-/** Some Views **/
-#include "SplashView.h"
-
-/** Widgets **/
-#include "Widget.h"
-#include "Renderable.h"
-#include "UIWidget.h"
-#include "ButtonWidget.h"
-#include "TelemetryWidget.h"
-#include "FlapsWidget.h"
-#include "TxBatteryMeterWidget.h"
-#include "AttitudeIndicatorWidget.h"
-#include "ImageWidget.h"
-#include "TimerWidget.h"
-#include "RenderContext.h"
-#include "ViewManager.h"
-
-#include "WidgetFactory.h"
-#include "TextureManager.h"
-#include "LogManager.h"
-#include "TextWidget.h"
-#include "CircularGaugeWidget.h"
-#include "SerialInterface.h"
-#include "SPIInterface.h"
-#include "FontManager.h"
-#include "StateManager.h"
-#include "SupportsStates.h"
-#include "State.h"
-#include "SupportsTelemetry.h"
-#include "BMFontManager.h"
-#include "ShaderManager.h"
-#include "ShadingProgramManager.h"
-#include "Shader.h"
-#include "Program.h"
-#include "DownloadManager.h"
-
-#define RC RenderContext::getInstance()
-#define VM ViewManager::getInstance()
-#define TM TextureManager::getInstance()
-#define SI SerialInterface::getInstance()
-#define SPI SPIInterface::getInstance()
-#define FM FontManager::getInstance()
-#define SM StateManager::getInstance()
-#define LM LogManager::getInstance()
-#define DM DownloadManager::getInstance()
-#define BFM BMFontManager::getInstance()
-#define SHM	ShaderManager::getInstance()
-#define SPM ShadingProgramManager::getInstance()
 
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]
+
+#define ALOGI(h, ...) ((void)printf(h, __VA_ARGS__))
+#define ALOGW(h, ...) ((void)printf(h, __VA_ARGS__))
+#define ALOGE(h, ...) ((void)printf(h, __VA_ARGS__))
+#define ALOGD(h, ...) ((void)printf(h, __VA_ARGS__))
 
 
 

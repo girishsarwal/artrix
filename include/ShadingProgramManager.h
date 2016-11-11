@@ -1,6 +1,10 @@
-#pragma once
+#ifndef SHADINGPROGRAMMANAGER_H
+#define SHADINGPROGRAMMANAGER_H
+class Program;
+class Shader;
 #include "afx.h"
-#define SHADER_ROOT "/usr/share/artrix/shaders"
+#include "Shader.h"
+#include "Program.h"
 class ShadingProgramManager{
 	private:
 		std::map<std::string, Program*> m_pProgramCache;
@@ -16,3 +20,4 @@ class ShadingProgramManager{
 		bool initialize(const std::string&);
 		void shutdown();
 };
+#endif

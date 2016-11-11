@@ -26,7 +26,6 @@
 								<option id="gnu.cpp.compiler.option.dialect.std.1508504529" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" value="gnu.cpp.compiler.dialect.default" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1251524821" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="../include"/>
-									<listOptionValue builtIn="false" value="/usr/include/libxml2"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.warnings.nowarn.1632407231" name="Inhibit all warnings (-w)" superClass="gnu.cpp.compiler.option.warnings.nowarn" value="false" valueType="boolean"/>
 								<option id="gnu.cpp.compiler.option.warnings.allwarn.1910136508" name="All warnings (-Wall)" superClass="gnu.cpp.compiler.option.warnings.allwarn" value="true" valueType="boolean"/>
@@ -41,6 +40,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.482451913" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool command="g++" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GLDErrorParser" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.563826966" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.797610750" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="tinyxml2"/>
 									<listOptionValue builtIn="false" value="SOIL"/>
 									<listOptionValue builtIn="false" value="GL"/>
 									<listOptionValue builtIn="false" value="GLEW"/>
@@ -63,6 +63,12 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.199923066.1078986813" name="AttitudeIndicatorWidget.cpp" rcbsApplicability="disable" resourcePath="src/AttitudeIndicatorWidget.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1298568026.1304462933">
+						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1298568026.1304462933" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1298568026"/>
+					</fileInfo>
+					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>

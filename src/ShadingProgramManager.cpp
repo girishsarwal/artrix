@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "ShadingProgramManager.h"
 ShadingProgramManager::ShadingProgramManager(){
 };
 
@@ -21,7 +21,7 @@ Program* ShadingProgramManager::getProgram(const std::string& program){
 	return m_pProgramCache[program];
 };
 
-bool ShadingProgramManager::initialize(const string& root){
+bool ShadingProgramManager::initialize(const std::string& root){
 	std::string manifestRoot= std::string(root.c_str());
 	std::string manifestFile = std::string("shadingprograms.xml");
 	m_root = manifestRoot + manifestFile;

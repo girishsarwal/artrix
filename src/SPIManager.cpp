@@ -1,16 +1,16 @@
-#include "afx.h"
+#include "SPIManager.h"
 
-SPIInterface::SPIInterface(){
+SPIManager::SPIManager(){
 	m_pPortName = "/dev/spidev0.0";			/** TOOD: Read from settings **/
 	m_iBaudRate = 9600;
 	m_iParity = 0;
 	
 };
 
-SPIInterface::~SPIInterface(){
+SPIManager::~SPIManager(){
 };
 
-bool SPIInterface::initialize(const string& root){
+bool SPIManager::initialize(const std::string& root){
 	m_pPortName = root;
 	printf("+--------------------SPI MANAGER----------------------+\n");
 	printf("Initializing from %s\n", m_pPortName.c_str());
@@ -23,19 +23,19 @@ bool SPIInterface::initialize(const string& root){
 	printf("Port '%s' opened successfully\n", m_pPortName.c_str());
 	return true;
 };
-void SPIInterface::shutdown(){
+void SPIManager::shutdown(){
 	
 }
 
 
-SPIInterface* SPIInterface::getInstance(){
+SPIManager* SPIManager::getInstance(){
 	if(NULL == m_pInstance){
-		m_pInstance = new SPIInterface();
+		m_pInstance = new SPIManager();
 	}
 	return m_pInstance;
 }
 
-SPIInterface* SPIInterface::m_pInstance = NULL;
+SPIManager* SPIManager::m_pInstance = NULL;
 
 
 

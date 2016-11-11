@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "LogManager.h"
 LogManager::LogManager(){
 };
 

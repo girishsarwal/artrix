@@ -5,7 +5,7 @@
  *      Author: girish
  */
 
-#include "afx.h"
+#include "TxBatteryMeterWidget.h"
 
 TxBatteryMeterWidget::TxBatteryMeterWidget() {
 	// TODO Auto-generated constructor stub

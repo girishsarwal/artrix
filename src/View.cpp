@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "View.h"
 void View::update(double frameTime){
 	short index = -1;
 	onUpdate(frameTime);
@@ -6,7 +6,7 @@ void View::update(double frameTime){
 	while(++index < count)
 	{
 		if(NULL != m_Widgets[index]){
-			m_Widgets[index]->update(frameTime);
+			m_Widgets[index]->Update(frameTime);
 		}
 	}
 }
@@ -16,7 +16,7 @@ void View::render(double frameTime){
 	onRender(frameTime);
 	while(++index < count){
 		if(NULL != m_Widgets[index]){
-			m_Widgets[index]->render(frameTime);
+			m_Widgets[index]->Draw(frameTime);
 		}
 	}
 }

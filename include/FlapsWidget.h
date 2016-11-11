@@ -1,6 +1,8 @@
-#pragma once
+#ifndef FLAPSWIDGET_H
+#define FLAPSWIDGET_H
 #include "afx.h"
-class FlapsWidget : public Widget{
+#include "UIWidget.h"
+class FlapsWidget : public UIWidget{
 private:
 	int m_iPosition;
 public:
@@ -8,3 +10,4 @@ public:
 	void onUpdate(double frameTime);
 	void onRender(double frameTime);
 };
+#endif

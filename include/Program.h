@@ -1,4 +1,7 @@
+#ifndef PROGRAM_H
+#define PROGRAM_H
 #include "afx.h"
+#include "Shader.h"
 class Program{
 	private:
 		std::string 			m_sName;
@@ -13,7 +16,7 @@ class Program{
 		void					enumerateAttributes();
 	public:
 		Program(std::string&);
-		Program(AttributeSet&);
+		Program(tinyxml2::XMLNode*);
 		~Program();
 		
 		GLuint attachShader(Shader*);
@@ -40,3 +43,4 @@ class Program{
 		std::string& getName();
 		bool getIsLinked();
 };
+#endif

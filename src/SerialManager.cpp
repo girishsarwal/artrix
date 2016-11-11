@@ -1,15 +1,15 @@
-#include "afx.h"
+#include "SerialManager.h"
 
-SerialInterface::SerialInterface(){
+SerialManager::SerialManager(){
 	m_pPortName = "/dev/ttyS0";			/** Read from settings **/
 	m_iBaudRate = 9600;
 	m_iParity = 0;
 };
 
-SerialInterface::~SerialInterface(){
+SerialManager::~SerialManager(){
 };
 
-bool SerialInterface::initialize(const string& root){
+bool SerialManager::initialize(const std::string& root){
 	m_pPortName = root;
 	printf("+--------------------RS232 SERIAL MANAGER----------------------+\n");
 	printf("Initializing from %s\n", m_pPortName.c_str());
@@ -24,19 +24,19 @@ bool SerialInterface::initialize(const string& root){
 	return true;
 	
 };
-void SerialInterface::shutdown(){
+void SerialManager::shutdown(){
 	
 }
 
 
-SerialInterface* SerialInterface::getInstance(){
+SerialManager* SerialManager::getInstance(){
 	if(!m_pInstance){
-		m_pInstance = new SerialInterface();
+		m_pInstance = new SerialManager();
 	}
 	return m_pInstance;
 }
 
-SerialInterface* SerialInterface::m_pInstance = NULL;
+SerialManager* SerialManager::m_pInstance = NULL;
 
 
 

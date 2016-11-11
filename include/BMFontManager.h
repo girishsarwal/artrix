@@ -1,5 +1,6 @@
 #pragma once
 #include "afx.h"
+#include <string>
 //#define SMALL_TEXT std::string("small")
 //#define MEDIUM_TEXT std::string("medium")
 //#define LARGE_TEXT std::string("large")
@@ -16,6 +17,6 @@ class BMFontManager{
 		~BMFontManager();
 		static BMFontManager* getInstance();
 		void setActiveFont(std::string& font);
-		bool initialize(const string& root);
+		bool initialize(const std::string& root);
 		void shutdown();
 };

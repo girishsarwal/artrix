@@ -1,10 +1,13 @@
-#include "afx.h"
-
-Program::Program(std::string&){
+#include "Program.h"
+#include <GL/glew.h>
+#include <GL/glut.h>
+Program::Program(std::string& name){
+	m_pInfoLog = NULL;
 };
-Program::Program(AttributeSet& as){
-	m_sName = as.get("name").getValue().c_str();
-	m_iProgramHandle = glCreateProgram();
+
+Program::Program(tinyxml2::XMLNode* node){
+/*	m_sName = as.get("name").getValue().c_str();
+	m_iProgramHandle = glCreateProgram();*/
 };
 Program::~Program(){
 	

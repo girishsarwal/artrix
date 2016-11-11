@@ -1,9 +1,11 @@
 #pragma once
 #include "afx.h"
+#include "KeyedManager.h"
+#include "Widget.h"
 class View
 {
 public:
-	SharedAllocation<Widget*> m_Widgets;
+	KeyedManager<Widget*> m_Widgets;
 	std::string m_sName;
 	
 	View();
@@ -12,11 +14,11 @@ public:
 	void update(double frameTime);
 	void render(double frameTime);
 	void addWidget(Widget* pWidget);
-	void initialize(AttributeSet& as);
+	void initialize(tinyxml2::XMLNode*);
 	
 protected:
 	
-	virtual void onInitialize(AttributeSet& as);
+	virtual void onInitialize();
 	virtual void onUpdate(double frameTime);
 	virtual void onRender(double frameTime);
 };

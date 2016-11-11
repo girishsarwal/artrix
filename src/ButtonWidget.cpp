@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "ButtonWidget.h"
 ButtonWidget::ButtonWidget(){
 };
 

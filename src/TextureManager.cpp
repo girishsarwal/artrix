@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "TextureManager.h"
 TextureManager* TextureManager::getInstance(){
 	if(NULL == m_pInstance){
 		m_pInstance = new TextureManager();

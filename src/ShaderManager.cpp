@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "ShaderManager.h"
 ShaderManager::ShaderManager(){
 };
 

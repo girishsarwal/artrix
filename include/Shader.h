@@ -1,5 +1,9 @@
+#ifndef SHADER_H
+#define SHADER_H
 #include "afx.h"
-
+#include <GL/glut.h>
+#include <GL/glew.h>
+#include <stdio.h>
 class Shader{
 		std::string		m_sSource;
 		GLuint			m_iShaderType;
@@ -10,7 +14,7 @@ class Shader{
 		GLchar*			m_pInfoLog;
 		
 	public:
-		Shader(AttributeSet&);
+		Shader(tinyxml2::XMLNode*);
 		Shader();
 		~Shader();
 		
@@ -25,3 +29,4 @@ class Shader{
 		GLuint 			getHandle();
 		GLint 			getReferenceCount();
 };
+#endif

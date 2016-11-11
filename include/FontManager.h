@@ -1,11 +1,15 @@
-#pragma once
-#include "afx.h"
+#ifndef FONTMANAGER_H
+#define FONTMANAGER_H
+
 #define FONT_TEXTURE_ROWS 16
 #define FONT_TEXTURE_COLS 16
 #define FONT_MAX_CHARS FONT_TEXTURE_ROWS * FONT_TEXTURE_COLS
 #define SMALL_TEXT std::string("small")
 #define MEDIUM_TEXT std::string("medium")
 #define LARGE_TEXT std::string("large")
+
+#include "afx.h"
+#include "TextureManager.h"
 class FontManager{
 	private:
 		int m_iNumTextures;
@@ -25,3 +29,4 @@ class FontManager{
 		void initialize();
 		void shutdown();
 };
+#endif

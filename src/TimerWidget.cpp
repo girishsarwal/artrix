@@ -20,10 +20,10 @@ TimerWidget::~TimerWidget() {
 static float fElapsedTime = 0.0f;
 
 void TimerWidget::initialize(AttributeSet& as){
-	m_asAttributes = as;
-	m_fTime = atof(m_asAttributes.get("timeout").getValue().c_str());
-	m_sAction = m_asAttributes.get("action").getValue().c_str();
-	m_sTargetView = m_asAttributes.get("targetView").getValue().c_str();
+//	m_asAttributes = as;
+//	m_fTime = atof(m_asAttributes.get("timeout").getValue().c_str());
+//	m_sAction = m_asAttributes.get("action").getValue().c_str();
+//	m_sTargetView = m_asAttributes.get("targetView").getValue().c_str();
 };
 
 void TimerWidget::update(double frameTime){

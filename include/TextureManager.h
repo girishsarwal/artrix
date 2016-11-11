@@ -1,4 +1,6 @@
-#pragma once
+#ifndef TEXTUREMANAGER_H
+#define TEXTUREMANAGER_H
+#include "afx.h"
 class TextureManager{
 	private:
 		int m_iNumTextures;
@@ -14,3 +16,5 @@ class TextureManager{
 		void useTexture(const std::string& textureName);
 		bool initialize(const std::string& root);
 };
+#define TM TextureManager::getInstance()
+#endif

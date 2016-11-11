@@ -20,7 +20,7 @@ DownloadManager* DownloadManager::getInstance(){
 	return m_pInstance;
 };
 
-bool DownloadManager::initialize(const string& host, const string& root){
+bool DownloadManager::initialize(const std::string& host, const std::string& root){
 	mHost = host;
 	mRoot = root;
 
@@ -44,16 +44,16 @@ void DownloadManager::shutdown(){
 
 DownloadManager* DownloadManager::m_pInstance = NULL;
 
-void DownloadManager::FromURI(const string& url, const string& file) {
+void DownloadManager::FromURI(const std::string& url, const std::string& file) {
 	Download(url, file);
 }
 
-void DownloadManager::FromMediaServer(const string& url, const string& file) {
+void DownloadManager::FromMediaServer(const std::string& url, const std::string& file) {
 	Download(mHost + mRoot + url, file);
 
 }
 
-void DownloadManager::Download(const string& url, const string& file) {
+void DownloadManager::Download(const std::string& url, const std::string& file) {
 	FILE *fileHandle = NULL;
 	curl_easy_setopt(mpCurl, CURLOPT_URL, url.c_str());
 	fileHandle= fopen(file.c_str(), "wb");

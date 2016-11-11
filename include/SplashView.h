@@ -1,10 +1,13 @@
-#pragma once
+#ifndef SPLASHVIEW_H
+#define SPLASHVIEW_H
 #include "afx.h"
+#include "View.h"
+#include "ImageWidget.h"
 class SplashView
 	: public View
 {
 private:
-		ImageWidget*	m_pSplashImage;
+	ImageWidget*	m_pSplashImage;
 public:
 	SplashView();
 	virtual ~SplashView();
@@ -12,4 +15,4 @@ public:
 	void onUpdate(double frameTime);
 	void onCreate();
 };
-
+#endif

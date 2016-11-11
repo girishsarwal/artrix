@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "WidgetFactory.h"
 void WidgetFactory::createWidget(char* pWidgetType, Widget** pWidget, AttributeSet& as){
 	if(NULL != *pWidget){
 		printf("WARNING: Widget is not NULL, will be recreated!\n");

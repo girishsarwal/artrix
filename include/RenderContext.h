@@ -1,8 +1,12 @@
-#pragma once
-#include "afx.h"
+#ifndef RENDERCONTEXT_H
+#define RENDERCONTEXT_H
 
 #define SCREEN_UNIT_X 100
 #define SCREEN_UNIT_Y 100
+
+#include "afx.h"
+#include "View.h"
+#include "ViewManager.h"
 
 class RenderContext{
 private:
@@ -26,3 +30,5 @@ extern "C" void loop();
 extern "C" void update();
 extern "C" void resize(GLint w, GLint h);
 
+#define RC RenderContext::getInstance()
+#endif

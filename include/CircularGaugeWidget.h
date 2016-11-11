@@ -6,9 +6,10 @@
  * 		modified: girish
  */
 
-#pragma once
-
+#ifndef CIRCULARGAUGEWIDGET_H
+#define CIRCULARGAUGEWIDGET_H
 #include "afx.h"
+#include "UIWidget.h"
 class CircularGaugeWidget: public UIWidget {
 private:
 	std::string m_sDialTexture;
@@ -25,15 +26,14 @@ private:
 	
 	double m_dNeedleRotation;
 
-	Vector m_vNeedleSize;
+	Vector3 m_vNeedleSize;
 protected:
 	void onInitialize();
 	void onRender(double frameTime);
 	void onUpdate(double frameTime);
 public:
 	CircularGaugeWidget();
-	CircularGaugeWidget(AttributeSet& attrs);
+	CircularGaugeWidget(tinyxml2::XMLNode*);
 	virtual ~CircularGaugeWidget();
 };
-
-
+#endif

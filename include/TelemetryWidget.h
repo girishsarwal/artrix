@@ -6,8 +6,8 @@
  */
 
 #pragma once
-
 #include "afx.h"
+#include "UIWidget.h"
 #include "SupportsTelemetry.h"
 class TelemetryWidget
 	: public UIWidget

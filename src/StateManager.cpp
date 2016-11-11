@@ -1,22 +1,28 @@
-/** State Manager
-Knows how to make stuff switch states
-**/
 #include "afx.h"
-StateManager* StateManager::getInstance(){
-	if(NULL == m_pTheStateManager){
-		m_pTheStateManager = new StateManager();
-	};
-	return m_pTheStateManager;
-};
-void StateManager::initialize(){
-};
-void StateManager::shutdown(){
-};
-void StateManager::gotoState(ISupportsStates* attachedObject, IState* state){
-};
-StateManager::StateManager(){
-};
-StateManager::~StateManager(){
-};
-StateManager* StateManager::m_pTheStateManager = NULL;
+StateManager::StateManager()
+{
 
+}
+StateManager::~StateManager()
+{
+
+}
+StateManager* StateManager::GetInstance()
+{
+    if(0 == m_instance)
+        m_instance = new StateManager();
+    return m_instance;
+}
+void StateManager::DestroyInstance()
+{
+    delete(m_instance);
+}
+void StateManager::GotoState(StateMachine* sm, State* newState)
+{
+    if(NULL == sm){
+        printf("StateManager::GotoState - cannot change state, state machine is null");
+        return;
+    }
+    sm->GotoState(newState);
+}
+StateManager* StateManager::m_instance = NULL;

@@ -4,11 +4,10 @@
  *  Created on: Aug 29, 2012
  *      Author: girish
  */
-
-#pragma once
-
+#ifndef IMAGEWIDGET_H
+#define IMAGEWIDGET_H
 #include "afx.h"
-
+#include "UIWidget.h"
 class ImageWidget: public UIWidget {
 private:
 	uint 	m_iTextureId;
@@ -24,5 +23,5 @@ public:
 	ImageWidget();
 	virtual ~ImageWidget();
 };
-
+#endif
 

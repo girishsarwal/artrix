@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "SplashView.h"
 SplashView::SplashView(){
 	m_pSplashImage = NULL;
 

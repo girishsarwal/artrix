@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "FlapsWidget.h"
 void FlapsWidget::onGetValuesFromSensors(){
 	/** m_iPosition = read form sensors **/
 }
