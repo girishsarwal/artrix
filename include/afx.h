@@ -33,6 +33,7 @@
 #include <stdlib.h>
 #include <getopt.h>
 #include <sys/ioctl.h>
+#include <curl/curl.h>
 
 
 #include "artrix-defines.h"
@@ -76,6 +77,7 @@ class ShaderManager;
 class ShadingProgramManager;
 class Shader;
 class Program;
+class DownloadManager;
 
 
 using namespace std;
@@ -124,6 +126,7 @@ using namespace std;
 #include "ShadingProgramManager.h"
 #include "Shader.h"
 #include "Program.h"
+#include "DownloadManager.h"
 
 #define RC RenderContext::getInstance()
 #define VM ViewManager::getInstance()
@@ -133,9 +136,11 @@ using namespace std;
 #define FM FontManager::getInstance()
 #define SM StateManager::getInstance()
 #define LM LogManager::getInstance()
+#define DM DownloadManager::getInstance()
 #define BFM BMFontManager::getInstance()
 #define SHM	ShaderManager::getInstance()
 #define SPM ShadingProgramManager::getInstance()
+
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]
 

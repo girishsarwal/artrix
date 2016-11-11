@@ -5,7 +5,7 @@ INCLUDES = -Iinclude -I/usr/include/libxml2
 #INCLUDES = -Iinclude -I"$(CYGWIN_HOME)/usr/include/" -I"$(CYGWIN_HOME)/usr/include/w32api/" -I"$(CYGWIN_HOME)/usr/include/libxml2/" 
 CFLAGS = -Wall -g 
 
-LIBS = -lm -lSOIL -lGL -lGLEW -lglut -lGLU -lxml2 -lrt
+LIBS = -lm -lSOIL -lGL -lGLEW -lglut -lGLU -lxml2 -lrt -lcurl
 LIB_DIR = -L/usr/lib
 
 #LIBS = -lm -lSOIL -lGL -lopengl32 -lGLEW -lglut -lGLU -lxml2   -lrt

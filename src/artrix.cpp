@@ -1,12 +1,17 @@
 #include "afx.h"
 
 int main(int argc, char* argv[]){
+	if(!DM) { printf("ERROR: Cannot create DLCManager"); return false; }
 	if(!RC) { printf("ERROR: Cannot create RenderContext\n"); return false; }
 	if(!VM) { printf("ERROR: Cannot create ViewManager\n"); return false; }
 	if(!FM) { printf("ERROR: Cannot create FontManager"); return false; }
 	if(!SI) { printf("ERROR: Cannot create SerialInterface"); return false; }
 	if(!SPM) { printf("ERROR: Cannot create ShaderProgramManager"); return false; }
 	
+	if(!DM->initialize("http://availability.localhost.com", "/devops/manifests/")) {	/** DLC Manager **/
+		throw std::exception();
+	}
+
 	if(!RC->initialize(argc, argv)){
 		throw std::exception();
 	}
