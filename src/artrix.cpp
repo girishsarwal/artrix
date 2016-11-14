@@ -9,7 +9,7 @@
 #include "TextureManager.h"
 #include "ShadingProgramManager.h"
 
-
+#define TESTMODE
 int main(int argc, char* argv[]){
 	if(!DM) { printf("ERROR: Cannot create DLCManager"); return false; }
 	if(!RC) { printf("ERROR: Cannot create RenderContext\n"); return false; }
@@ -19,18 +19,20 @@ int main(int argc, char* argv[]){
 	if(!RS232M) { printf("ERROR: Cannot create Serialmanager"); return false; }
 	if(!SPI) { printf("ERROR: Cannot create ShaderProgramManager"); return false; }
 	
-	if(!DM->initialize("http://availability.localhost.com", "/devops/manifests/")) {	/** DLC Manager **/
+	if(!DM->initialize("http://availability.localhost.com", "/artrix")) {	/** DLC Manager **/
 		throw std::exception();
 	}
+#ifdef TESTMODE
 
+	DM->FromMediaServer("/pratham.zip", "./.artrix/pratham", true);
 	if(!RC->initialize(argc, argv)){
 		throw std::exception();
 	}
 
-	if(!TM->initialize("/usr/share/artrix/images")) {	/** Texture Manager **/
+	if(!TM->initialize("./.artrix/pratham/images")) {	/** Texture Manager **/
 			throw std::exception();
 	}
-
+#else
 	if(!SPM->initialize("/dev/share/artrix/shaders")) { 	/** Shading Program Manager **/
 			throw std::exception();
 	}
@@ -63,6 +65,8 @@ int main(int argc, char* argv[]){
 	RS232M->shutdown();
 
 	printf("Ready to exit");
+#endif
 	
 	return 0;
 };
+

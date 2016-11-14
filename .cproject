@@ -48,6 +48,7 @@
 									<listOptionValue builtIn="false" value="GLU"/>
 									<listOptionValue builtIn="false" value="curl"/>
 									<listOptionValue builtIn="false" value="xml2"/>
+									<listOptionValue builtIn="false" value="zip"/>
 									<listOptionValue builtIn="false" value="rt"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.1386345483" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
@@ -63,9 +64,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.199923066.1078986813" name="AttitudeIndicatorWidget.cpp" rcbsApplicability="disable" resourcePath="src/AttitudeIndicatorWidget.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1298568026.1304462933">
-						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1298568026.1304462933" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1298568026"/>
-					</fileInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>

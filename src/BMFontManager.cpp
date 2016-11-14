@@ -20,7 +20,7 @@ bool BMFontManager::initialize(const std::string& root){
 	std::string manifestRoot = root;
 	std::string manifestPath = "fonts.mf";
 	mRoot = root + "/" + manifestPath;
-	printf("+--------------------FONT MANAGER----------------------+\n");
+	printf("\n+--------------------FONT MANAGER----------------------+\n");
 	printf("Initializing from %s\n", mRoot.c_str());
 	DIR* dir;
 	dirent* entry;

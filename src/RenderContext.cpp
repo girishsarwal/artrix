@@ -4,7 +4,7 @@ static timespec tvCurrentTime;
 static long int dElapsedTime;
 
 bool RenderContext::initialize(int argc, char** argv){
-	printf("+--------------------RENDER CONTEXT----------------------+\n");
+	printf("\n+--------------------RENDER CONTEXT----------------------+\n");
 	printf("Initializing...\n");
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);

@@ -4,16 +4,23 @@
 #define NDEBUG
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include <errno.h>
+#include <math.h>
 #include <fcntl.h> 
 #include <time.h>
-#include <sys/time.h>
-#include <errno.h>
 #include <termios.h>
-#include <unistd.h>
-#include <math.h>
+#include <limits.h>
 #include <typeinfo>
 #include <sstream>
+#include <sys/time.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/resource.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <zip.h>
 
 //#include <bcm_host.h>
 
@@ -33,7 +40,8 @@
 #include <getopt.h>
 #include <sys/ioctl.h>
 #include <curl/curl.h>
-
+#include <zip.h>
+#include <dirent.h>
 #include "tinyxml2/tinyxml2.h"
 #include "artrix-defines.h"
 #include "SOIL/SOIL.h"
@@ -49,5 +57,7 @@
 #define ALOGE(h, ...) ((void)printf(h, __VA_ARGS__))
 #define ALOGD(h, ...) ((void)printf(h, __VA_ARGS__))
 
+
+uint8_t safe_create_dir(const char *dir);
 
 
