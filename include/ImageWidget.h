@@ -20,7 +20,7 @@ protected:
 public:
 	std::string	m_pPath;
 		
-	ImageWidget();
+	ImageWidget(tinyxml2::XMLNode*);
 	virtual ~ImageWidget();
 };
 #endif

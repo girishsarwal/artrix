@@ -20,4 +20,5 @@ class ShadingProgramManager{
 		bool initialize(const std::string&);
 		void shutdown();
 };
+#define SPM ShadingProgramManager::getInstance()
 #endif

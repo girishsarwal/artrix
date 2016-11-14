@@ -1,4 +1,5 @@
-#include "VertexDeclarations.h"
+#ifndef VERTEXDECLARATAIONS_H
+#define VERTEXDECLARATAIONS_H
 #pragma pack(1)			 
 struct Vertex{
 public:
@@ -91,4 +92,4 @@ public:
 	static void EnableAttribute(int);
 	static void DisableAttribute(int);
 };
-
+#endif

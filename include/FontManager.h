@@ -29,4 +29,5 @@ class FontManager{
 		void initialize();
 		void shutdown();
 };
+#define FM FontManager::getInstance()
 #endif

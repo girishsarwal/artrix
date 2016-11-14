@@ -22,15 +22,14 @@ bool BMFontManager::initialize(const std::string& root){
 	mRoot = root + "/" + manifestPath;
 	printf("+--------------------FONT MANAGER----------------------+\n");
 	printf("Initializing from %s\n", mRoot.c_str());
-	std::string fontRoot(FONTROOT);
 	DIR* dir;
 	dirent* entry;
-	dir = opendir(fontRoot.c_str());
+	dir = opendir(mRoot.c_str());
 	if(NULL == dir){
-		printf("Error opening font directory '%s'\n", fontRoot.c_str());
+		printf("Error opening font directory '%s'\n", mRoot.c_str());
 		return false;
 	}
-	chdir(fontRoot.c_str());
+	chdir(mRoot.c_str());
 	while(NULL != (entry = readdir(dir))){
 		if(entry->d_type != DT_DIR){
 			std::string fontName = std::string(entry->d_name);

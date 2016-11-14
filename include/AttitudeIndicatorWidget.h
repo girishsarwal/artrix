@@ -14,8 +14,7 @@ public:
 	std::string m_pGimbalTexture;
 	std::string m_pPanelTexture;
 	
-	AttitudeIndicatorWidget();
-	AttitudeIndicatorWidget(AttributeSet& as);
+	AttitudeIndicatorWidget(tinyxml2::XMLNode*);
 	~AttitudeIndicatorWidget();
 	
 	void onInitialize();

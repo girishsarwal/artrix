@@ -7,9 +7,8 @@
  */
 
 #pragma once
-
 #include "afx.h"
-
+#include "UIWidget.h"
 class TextWidget: public UIWidget {
 protected:
 	void onInitialize();
@@ -24,7 +23,7 @@ public:
 
 	bool m_bIsBold;
 	TextWidget();
-	TextWidget(AttributeSet& attrs);
+	TextWidget(tinyxml2::XMLNode*);
 	virtual ~TextWidget();
 };
 

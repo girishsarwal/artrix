@@ -6,8 +6,9 @@
  */
 
 #pragma once
-#include "TimerWidget.h"
-
+#include "afx.h"
+#include "Widget.h"
+#include "ViewManager.h"
 
 class TimerWidget
 	: public Widget {
@@ -18,9 +19,9 @@ private:
 	
 public:
 	TimerWidget();
-	TimerWidget(AttributeSet& as);
+	TimerWidget(tinyxml2::XMLNode*);
 	virtual ~TimerWidget();
-	void initialize(AttributeSet& as);
+	void initialize();
 	void update(double frameTime);
 	void render(double frameTime);
 };

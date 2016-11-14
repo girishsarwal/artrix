@@ -1,4 +1,5 @@
 #include "afx.h"
+#include "VertexDeclarations.h"
 
 const int Vertex::OFFSET_POSITION 				= 0;
 const int Vertex::INDEX_POSITION				= 0;

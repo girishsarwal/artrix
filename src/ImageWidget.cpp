@@ -55,7 +55,8 @@ void ImageWidget::createGeometry(){
 //	memcpy(m_pVertices, vertices, m_iSizeVertices);
 //	memcpy(m_pIndices, indices, m_iSizeIndices);
 };
-ImageWidget::ImageWidget() {
+ImageWidget::ImageWidget(tinyxml2::XMLNode*) {
+
 };
 
 ImageWidget::~ImageWidget() {

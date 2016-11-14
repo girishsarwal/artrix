@@ -29,5 +29,5 @@ private:
 	void Download(const std::string& url, const std::string& archive);
 	static size_t __write_data(void *ptr, size_t size, size_t nmemb, void *stream);
 };
-
+#define DM DownloadManager::getInstance()
 #endif /* DOWNLOADMANAGER_H_ */

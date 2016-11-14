@@ -1,5 +1,5 @@
 #include "AttitudeIndicatorWidget.h"
-AttitudeIndicatorWidget::AttitudeIndicatorWidget(){
+AttitudeIndicatorWidget::AttitudeIndicatorWidget(tinyxml2::XMLNode* node){
 //	m_fPitch = 0.0;
 //	m_fRoll = 0.0;
 //	m_fYaw = 0.0;

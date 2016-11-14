@@ -42,5 +42,5 @@ public:
 	static SPIManager* getInstance();
 	~SPIManager();
 };
-#define SPIM	SPIManager::getInstance()
+#define SPI SPIManager::getInstance()
 #endif

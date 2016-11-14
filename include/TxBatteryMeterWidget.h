@@ -7,7 +7,7 @@
 
 #pragma once
 #include "afx.h"
-
+#include "UIWidget.h"
 
 class TxBatteryMeterWidget: public UIWidget {
 private:

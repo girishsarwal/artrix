@@ -93,12 +93,13 @@ bool ViewManager::initialize(const string& root){
 	printf("+--------------------VIEW MANAGER----------------------+\n");
 	printf("Initializing from %s\n", mRoot.c_str());
 	//createStockViews();
+	return true;
 };
 void ViewManager::shutdown(){
 	
 };
 ViewManager::ViewManager(){
-	m_Views.clear();
+	//m_Views.clear();
 };
 
 ViewManager::~ViewManager(){

@@ -3,6 +3,7 @@
 #include "afx.h"
 class StateMachine;
 class State;
+#include "StateMachine.h"
 class StateManager
 {
     public:

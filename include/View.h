@@ -14,7 +14,7 @@ public:
 	void update(double frameTime);
 	void render(double frameTime);
 	void addWidget(Widget* pWidget);
-	void initialize(tinyxml2::XMLNode*);
+	void initialize();
 	
 protected:
 	

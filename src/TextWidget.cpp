@@ -7,7 +7,7 @@
  */
 
 #include "TextWidget.h"
-TextWidget::TextWidget() {
+TextWidget::TextWidget(tinyxml2::XMLNode* node) {
 	m_pSize = 10;
 	m_pText= "No Text";
 }

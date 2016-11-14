@@ -1,5 +1,5 @@
 #include "ButtonWidget.h"
-ButtonWidget::ButtonWidget(){
+ButtonWidget::ButtonWidget(tinyxml2::XMLNode* node){
 };
 
 ButtonWidget::~ButtonWidget(){

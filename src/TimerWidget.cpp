@@ -5,9 +5,9 @@
  *      Author: girish
  */
 
-#include "afx.h"
+#include "TimerWidget.h"
 
-TimerWidget::TimerWidget() {
+TimerWidget::TimerWidget(tinyxml2::XMLNode* node) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -19,7 +19,7 @@ TimerWidget::~TimerWidget() {
 
 static float fElapsedTime = 0.0f;
 
-void TimerWidget::initialize(AttributeSet& as){
+void TimerWidget::initialize(){
 //	m_asAttributes = as;
 //	m_fTime = atof(m_asAttributes.get("timeout").getValue().c_str());
 //	m_sAction = m_asAttributes.get("action").getValue().c_str();

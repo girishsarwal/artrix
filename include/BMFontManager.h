@@ -1,10 +1,10 @@
-#pragma once
+#ifndef BMFONTMANAGER_H
+#define BMFONTMANAGER_H
 #include "afx.h"
-#include <string>
-//#define SMALL_TEXT std::string("small")
-//#define MEDIUM_TEXT std::string("medium")
-//#define LARGE_TEXT std::string("large")
-#define FONTROOT "/usr/share/artrix/fonts"
+#define SMALL_TEXT std::string("small")
+#define MEDIUM_TEXT std::string("medium")
+#define LARGE_TEXT std::string("large")
+
 class BMFontManager{
 	private:
 		std::string mRoot;
@@ -20,3 +20,6 @@ class BMFontManager{
 		bool initialize(const std::string& root);
 		void shutdown();
 };
+#define BFM BMFontManager::getInstance()
+#endif
+

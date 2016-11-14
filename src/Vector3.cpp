@@ -90,7 +90,7 @@ void Vector3::Print() {
 }
 
 std::string Vector3::dump() const{
-    stringstream stream;
+    std::stringstream stream;
     stream << *this;
     return stream.str();
 }

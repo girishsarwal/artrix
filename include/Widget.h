@@ -8,7 +8,8 @@ class StateMachine;
 #define DEFAULT_WIDGET_SIZE 100
 
 class Widget :
-    public StateMachine
+    public StateMachine,
+	public KeyManageable
 {
     public:
         /** constructors **/

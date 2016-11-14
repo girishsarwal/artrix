@@ -1,4 +1,4 @@
-#include "afx.h"
+#include "StateManager.h"
 StateManager::StateManager()
 {
 
