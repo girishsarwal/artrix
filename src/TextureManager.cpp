@@ -27,6 +27,7 @@ bool TextureManager::loadAllTextures(){
 		Texture* texture = new Texture();
 		texture->SetName(textureNode->ToElement()->Attribute("name"));
 		texture->SetTextureFile(path);
+		TM->Add(texture);
 	}
 	return true;
 }
