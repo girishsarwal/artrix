@@ -8,6 +8,7 @@
 class BMFontManager{
 	private:
 		std::string mRoot;
+		std::string mManifest;
 		static BMFontManager* m_pInstance;
 		BMFontManager();
 		uint m_uiFontLists;
@@ -17,7 +18,7 @@ class BMFontManager{
 		~BMFontManager();
 		static BMFontManager* getInstance();
 		void setActiveFont(std::string& font);
-		bool initialize(const std::string& root);
+		bool initialize(const std::string& root, const std::string& manifest);
 		void shutdown();
 };
 #define BFM BMFontManager::getInstance()

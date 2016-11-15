@@ -18,7 +18,7 @@ bool SPIManager::initialize(const std::string& root){
 	fd = open(m_pPortName.c_str(), O_RDWR | O_NOCTTY | O_SYNC);
 	if (fd == -1){
 		printf("WARNING: port open for '%s' failed.  Cannot connect to gt-jtx.\n\n ***Realtime updates will be unavailable***\n\n", m_pPortName.c_str());
-		return false;
+		return true;
 	}
 	printf("Port '%s' opened successfully\n", m_pPortName.c_str());
 	return true;

@@ -16,27 +16,26 @@ void BMFontManager::setActiveFont(std::string& font){
 
 };
 
-bool BMFontManager::initialize(const std::string& root){
-	std::string manifestRoot = root;
-	std::string manifestPath = "fonts.mf";
-	mRoot = root + "/" + manifestPath;
+bool BMFontManager::initialize(const std::string& root, const std::string& manifest){
+	mRoot = root;
+	mManifest = manifest;
 	printf("\n+--------------------FONT MANAGER----------------------+\n");
 	printf("Initializing from %s\n", mRoot.c_str());
-	DIR* dir;
-	dirent* entry;
-	dir = opendir(mRoot.c_str());
-	if(NULL == dir){
-		printf("Error opening font directory '%s'\n", mRoot.c_str());
-		return false;
-	}
-	chdir(mRoot.c_str());
-	while(NULL != (entry = readdir(dir))){
-		if(entry->d_type != DT_DIR){
-			std::string fontName = std::string(entry->d_name);
-			createFontDisplayListFromBMFont(fontName);
-			printf("Found font %s\n", fontName.c_str());
-		}
-	}
+//	DIR* dir;
+//	dirent* entry;
+//	dir = opendir(mRoot.c_str());
+//	if(NULL == dir){
+//		printf("Error opening font directory '%s'\n", mRoot.c_str());
+//		return false;
+//	}
+//	chdir(mRoot.c_str());
+//	while(NULL != (entry = readdir(dir))){
+//		if(entry->d_type != DT_DIR){
+//			std::string fontName = std::string(entry->d_name);
+//			createFontDisplayListFromBMFont(fontName);
+//			printf("Found font %s\n", fontName.c_str());
+//		}
+//	}
 	return true;
 };
 

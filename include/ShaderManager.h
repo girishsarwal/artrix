@@ -1,7 +1,6 @@
 #ifndef SHADERMANAGER_H
 #define SHADERMANAGER_H
 #include "afx.h"
-#define SHADER_ROOT "/usr/share/artrix/shaders"
 struct ProgramShader{
 	GLuint vs;
 	GLuint fs;
@@ -17,6 +16,7 @@ class ShaderManager{
 		std::map<std::string, GLuint> m_pPrograms;
 		static ShaderManager* m_pInstance;
 		ShaderManager();
+		std::string mRoot;
 		GLuint createVertexShader(const std::string&);
 		GLuint createFragmentShader(const std::string&);
 		GLuint createShader(GLenum eShaderType, const std::string&);
@@ -24,7 +24,7 @@ class ShaderManager{
 		~ShaderManager();
 		static ShaderManager* getInstance();
 		GLuint getProgramId(const std::string&);
-		void initialize();
+		bool initialize(const std::string&);
 		void shutdown();
 };
 #endif

@@ -17,7 +17,7 @@ void FontManager::setActiveFont(std::string& font, std::string& size){
 };
 
 void FontManager::setActiveFont(std::string& font, std::string& size, bool bold){
-	glBindTexture(GL_TEXTURE_2D, TM->getTexture(font));
+	glBindTexture(GL_TEXTURE_2D, reinterpret_cast<Texture*>(TM->Get(font))->GetTextureId());
 	if(size == SMALL_TEXT){
 		m_uiActiveListBase = m_uiSmallFont;
 	}

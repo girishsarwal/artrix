@@ -3,3 +3,4 @@ Release
 *.o
 bin
 obj
+.artrix

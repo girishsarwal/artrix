@@ -86,10 +86,9 @@ void ViewManager::createStockViews(){
 //#endif
 	
 };
-bool ViewManager::initialize(const string& root){
-	string manifestRoot = root;
-	string manifestPath = "screens.mf";
-	mRoot = root + "/" + manifestPath;
+bool ViewManager::initialize(const std::string& root, const std::string& manifest){
+	mRoot = root;
+	mManifest = manifest;
 	printf("+--------------------VIEW MANAGER----------------------+\n");
 	printf("Initializing from %s\n", mRoot.c_str());
 	//createStockViews();

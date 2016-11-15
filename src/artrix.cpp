@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
 	if(!TM) { printf("ERROR: Cannot create TextureManager\n"); return false; }
 	if(!VM) { printf("ERROR: Cannot create ViewManager\n"); return false; }
 	if(!FM) { printf("ERROR: Cannot create FontManager"); return false; }
-	if(!RS232M) { printf("ERROR: Cannot create Serialmanager"); return false; }
+	if(!RS232M) { printf("ERROR: Cannot create SerialManager"); return false; }
 	if(!SPI) { printf("ERROR: Cannot create ShaderProgramManager"); return false; }
 	
 	if(!DM->initialize("http://availability.localhost.com", "/artrix")) {	/** DLC Manager **/
@@ -24,27 +24,26 @@ int main(int argc, char* argv[]){
 	}
 #ifdef TESTMODE
 
-	DM->FromMediaServer("/pratham.zip", "./.artrix/pratham", true);
+	DM->FromMediaServer("/pratham.zip", "./.artrix/dlc/", true);
 	if(!RC->initialize(argc, argv)){
 		throw std::exception();
 	}
 
-	if(!TM->initialize("./.artrix/pratham/images")) {	/** Texture Manager **/
-			throw std::exception();
-	}
-#else
-	if(!SPM->initialize("/dev/share/artrix/shaders")) { 	/** Shading Program Manager **/
-			throw std::exception();
-	}
-
-	if(!VM->initialize("/usr/share/artrix/screens")) { 	/** View Manager **/
+	if(!TM->initialize("./.artrix/dlc/pratham/textures", "textures.mf")) {	/** Texture Manager **/
 		throw std::exception();
 	}
 
-	if(!BFM->initialize("/usr/share/artrix/fonts")) {		/** BM Font Manager **/
+	if(!SPM->initialize("./.artrix/dlc/pratham/shaders", "shadingprograms.mf")) { 	/** Shading Program Manager **/
 		throw std::exception();
 	}
 
+	if(!VM->initialize("./.artrix/dlc/pratham/screens", "screens.mf")) { 	/** View Manager **/
+		throw std::exception();
+	}
+
+	if(!BFM->initialize("./.artrix/dlc/pratham/fonts", "fonts.mf")) {		/** BM Font Manager **/
+		throw std::exception();
+	}
 	if(!RS232M->initialize("/dev/ttyS0")) { 				/** Serial Interface Manager **/
 		throw std::exception();
 	}
@@ -53,7 +52,7 @@ int main(int argc, char* argv[]){
 		throw std::exception();
 	}
 
-
+#else
 	RC->setup();
 	RC->begin();
 

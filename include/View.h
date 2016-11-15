@@ -1,12 +1,12 @@
 #pragma once
 #include "afx.h"
-#include "KeyedManager.h"
+#include "KeyManageable.h"
 #include "Widget.h"
 class View
+	: public KeyManageable
 {
 public:
-	KeyedManager<Widget*> m_Widgets;
-	std::string m_sName;
+	vector<Widget*> m_Widgets;
 	
 	View();
 	virtual ~View(void);

@@ -1,4 +1,3 @@
-<?xml version ="1.0"?>
 <programs>
 	<program name = "vc">
 		<shader source = "vc.vert" type="vertex"/>

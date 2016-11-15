@@ -16,6 +16,7 @@ Keeps  a list of views and return as necessary
 class ViewManager{
 private:
 	std::string	mRoot;
+	std::string mManifest;
 
 	int m_iNumTextures;
 	KeyedManager<View*>	 m_Views;
@@ -33,7 +34,7 @@ public:
 	View* getCurrentView();
 	void createStockViews();
 	static ViewManager* getInstance();
-	bool initialize(const std::string& root);
+	bool initialize(const std::string& root, const std::string& manifest);
 	void shutdown();
 	void changeView(View* view);
 	ViewManager();

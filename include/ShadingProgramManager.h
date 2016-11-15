@@ -9,7 +9,8 @@ class ShadingProgramManager{
 	private:
 		std::map<std::string, Program*> m_pProgramCache;
 		std::map<std::string, Shader*> m_ShaderCache;
-		std::string m_root;
+		std::string mRoot;
+		std::string mManifest;
 		static ShadingProgramManager* m_pInstance;
 		ShadingProgramManager();
 	public:
@@ -17,7 +18,7 @@ class ShadingProgramManager{
 		static ShadingProgramManager* getInstance();
 		Program* getProgram(const std::string&);
 		void createStockShadingPrograms();
-		bool initialize(const std::string&);
+		bool initialize(const std::string& root, const std::string& manifest);
 		void shutdown();
 };
 #define SPM ShadingProgramManager::getInstance()
