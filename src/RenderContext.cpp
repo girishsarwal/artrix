@@ -76,15 +76,15 @@ void loop(){
 	clock_gettime(CLOCK_REALTIME, &tvCurrentTime);
 	dElapsedTime = ((tvCurrentTime.tv_sec - tvLastTime.tv_sec) * 1000)  + (tvCurrentTime.tv_nsec - tvLastTime.tv_nsec)/ 1000000;
 	tvLastTime = tvCurrentTime; 
-	if(NULL != VM->getCurrentView()){
-		VM->getCurrentView()->render(dElapsedTime);		
+	if(NULL != VM->GetCurrentView()){
+		VM->GetCurrentView()->render(dElapsedTime);
 	}
 	glutSwapBuffers();
 }
 
 void update(){
-	if(NULL != VM->getCurrentView()){
-		VM->getCurrentView()->update(dElapsedTime);		
+	if(NULL != VM->GetCurrentView()){
+		VM->GetCurrentView()->update(dElapsedTime);
 	}
 	glutPostRedisplay();
 }

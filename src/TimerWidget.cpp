@@ -29,7 +29,7 @@ void TimerWidget::initialize(){
 void TimerWidget::update(double frameTime){
 	fElapsedTime+=frameTime;
 	if(fElapsedTime >=m_fTime){
-		VM->changeView(VM->getView(m_sTargetView));
+		VM->ChangeView(VM->Get(m_sTargetView));
 		fElapsedTime = 0;
 	};
 };

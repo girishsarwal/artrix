@@ -6,37 +6,35 @@ Keeps  a list of views and return as necessary
 
 #ifndef VIEWMANAGER_H
 #define VIEWMANAGER_H
-
+class View;
+class Widget;
 #include <string>
 #include "afx.h"
 #include "KeyedManager.h"
 #include "View.h"
 #include "Widget.h"
 
-class ViewManager{
+class ViewManager:
+	public KeyedManager<View*> {
 private:
 	std::string	mRoot;
 	std::string mManifest;
 
-	int m_iNumTextures;
-	KeyedManager<View*>	 m_Views;
-	//void processNode(xmlTextReaderPtr reader);
-	View* m_pCurrentView;
-	Widget* m_pCurrentWidget;
+	View* mCurrentView;
+
 	static ViewManager* m_pTheViewManager;
 
+	bool CreateStockViews();
+	void SetCurrentView(View*);
 
 public:
-	void loadViewFromXml(char* pPath);
-	int getNumWidgetsInView(View* pView);
-	int getNumTextures();
-	View* getView(std::string& sName);
-	View* getCurrentView();
-	void createStockViews();
+	View* GetCurrentView();
+	void ChangeView(View*);
+
 	static ViewManager* getInstance();
 	bool initialize(const std::string& root, const std::string& manifest);
 	void shutdown();
-	void changeView(View* view);
+
 	ViewManager();
 	~ViewManager();
 };

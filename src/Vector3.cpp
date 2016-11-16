@@ -96,7 +96,7 @@ std::string Vector3::dump() const{
 }
 
 std::ostream& operator<<(std::ostream& stream, const Vector3& vec){
-    stream << "<vec x=\"" << vec.x << "\" y=\"" << (vec.y) << "\" z=\"" << (vec.z) << "\"></vec>";
+    stream << "\n<vec x=\"" << vec.x << "\" y=\"" << (vec.y) << "\" z=\"" << (vec.z) << "\"></vec>";
     return stream;
 }
 

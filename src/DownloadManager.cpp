@@ -24,8 +24,8 @@ bool DownloadManager::initialize(const std::string& host, const std::string& roo
 	mHost = host;
 	mRoot = root;
 
-	printf("\n+--------------------DOWNLOAD MANAGER----------------------+\n");
-	printf("Initializing from %s%s\n", mHost.c_str(), mRoot.c_str());
+	printf("\n+--------------------DOWNLOAD MANAGER----------------------+");
+	printf("\nInitializing from %s%s\n", mHost.c_str(), mRoot.c_str());
 
 	curl_global_init(CURL_GLOBAL_ALL);
 	mpCurl= curl_easy_init();

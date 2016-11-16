@@ -16,6 +16,7 @@ public:
 	static TextureManager* getInstance();
 	bool loadAllTextures();
 	bool initialize(const std::string& root,const std::string& manifest);
+	void Use(const std::string&);
 };
 #define TM TextureManager::getInstance()
 #endif

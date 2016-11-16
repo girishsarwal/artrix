@@ -1,5 +1,5 @@
 <screens>
-    <screen name="splash">
+    <screen name="splash" default>
         <TimerWidget timeout="1000">
             <action>gotoScreen</action>
             <params>home</params>
@@ -11,10 +11,10 @@
             <position><vec x="0" y="0"></vec></position>
         </ImageWidget>
         <TextWidget>
-                    <value>pilot</value>
-                    <size><vec x="720" y="100"></vec></size>
-                    <position><vec x="0" y="20"></vec></position>
-                    <anchor><vec x="0.5" y="0.5"></vec></anchor>
+            <value>pilot</value>
+            <size><vec x="720" y="100"></vec></size>
+            <position><vec x="0" y="20"></vec></position>
+            <anchor><vec x="0.5" y="0.5"></vec></anchor>
         </TextWidget>
     </screen>
     <screen name="home">

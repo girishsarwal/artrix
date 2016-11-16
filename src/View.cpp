@@ -22,29 +22,34 @@ void View::render(double frameTime){
 //	}
 }
 
-void View::addWidget(Widget* pWidget){
-	//m_Widgets.add(pWidget);
+void View::AddWidget(Widget* pWidget){
+
 }
 
 void View::initialize(){
-	//m_sName = std::string(as.get("name").getValue().c_str());
 	onInitialize();
 }
 
-void View::onUpdate(double frameTime){
+void View::onUpdate(double frameTime) {
 
 }
-void View::onRender(double frameTime){
+void View::onRender(double frameTime) {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	
 }
-void View::onInitialize(){
+void View::onInitialize() {
 	
 }
-View::View()
-{
-	//m_Widgets.clear();
+View::View() {
+	SetDefaultName("View");
+}
+
+View::View(tinyxml2::XMLNode* node) {
+	tinyxml2::XMLElement* elem = node->ToElement();
+	if(elem != NULL){
+		SetName(elem->Attribute("name"));
+	}
 }
 
 View::~View(void)

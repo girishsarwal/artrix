@@ -41,6 +41,7 @@ int main(int argc, char* argv[]){
 		throw std::exception();
 	}
 
+
 	if(!BFM->initialize("./.artrix/dlc/pratham/fonts", "fonts.mf")) {		/** BM Font Manager **/
 		throw std::exception();
 	}
@@ -68,4 +69,5 @@ int main(int argc, char* argv[]){
 	
 	return 0;
 };
+
 

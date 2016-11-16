@@ -11,7 +11,7 @@ const string& KeyManageable::GetName() const{
 }
 
 void KeyManageable::SetName(const string& name){
-	printf("KeyManageable::SetName  %s", name.c_str());
+	printf("\nKeyManageable::SetName  %s", name.c_str());
 	mName = name;
 }
 
@@ -28,3 +28,10 @@ void KeyManageable::SetDefaultName(const string& baseType){
 int KeyManageable:: __getNextId() {
 	return ++nextId;
 }
+
+//bool KeyManageable::operator==(const KeyManageable& rhs) const {
+//    return (this->mName == rhs.mName);
+//};
+//bool KeyManageable::operator!=(const KeyManageable& rhs) const {
+//    return !(*this == rhs);
+//};

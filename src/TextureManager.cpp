@@ -23,12 +23,19 @@ bool TextureManager::loadAllTextures(){
 		return false;
 	}
 	for (tinyxml2::XMLNode *textureNode = doc.RootElement()->FirstChild(); textureNode; textureNode = textureNode->NextSibling()) {
-		std::string path = mRoot + "/" + textureNode->ToElement()->Attribute("source");
-		Texture* texture = new Texture();
-		texture->SetName(textureNode->ToElement()->Attribute("name"));
-		texture->SetTextureFile(path);
+		Texture* texture = new Texture(textureNode);
+		texture->SetTextureRoot(mRoot);
 		TM->Add(texture);
 	}
 	return true;
+}
+
+void TextureManager::Use(const std::string& name) {
+	Texture* t = Get(name);
+	if(NULL != t) {
+		t->Use();
+	} else {
+		printf("\nWARNING: Texture %s not found", name.c_str());
+	}
 }
 TextureManager* TextureManager::m_pInstance = NULL;
