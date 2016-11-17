@@ -4,11 +4,12 @@
 #include "Shader.h"
 #include "KeyManageable.h"
 #include "KeyedManager.h"
+#include "ShadingProgramManager.h"
 class Program
 	: public KeyManageable {
 private:
 
-
+	std::vector<Shader*> mShaders;
 	std::map<std::string, GLuint> mAttributes;
 	std::map<std::string, GLuint> mUniforms;
 

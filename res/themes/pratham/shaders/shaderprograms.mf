@@ -1,8 +1,18 @@
-<programs>
-	<program name = "vc">
-		<shader source = "vc.vert" type="vertex"></shader>
-		<shader source = "vc.frag" type="fragment"/></shader>
-		<attribute name="position" location="0"/></attribute>
-		<attribute name="color" location="1"/></attribute>
-	</program>
-</programs>
+<gpu>
+	<shaders>
+		<shader source="vc.vert" type="vertex"></shader>
+		<shader source="vc.frag" type="fragment"></shader>
+	</shaders>
+	<programs>
+		<program name="vc">
+			<shaders>
+				<shader>vc.vert</shader> 
+				<shader>vc.frag</shader>
+			</shaders>
+			<attributes>
+				<attribute name="position" location="0"></attribute>
+				<attribute name="color" location="1"></attribute>
+			</attributes>
+		</program>
+	</programs>
+</gpu>

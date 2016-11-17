@@ -4,6 +4,7 @@
 #define FRAG_SHADER	GL_FRAGMENT_SHADER
 #include "afx.h"
 #include "KeyManageable.h"
+#include "ShadingProgramManager.h"
 class Shader :
 	public KeyManageable {
 

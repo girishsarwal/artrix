@@ -32,97 +32,52 @@ Shader* ShadingProgramManager::GetFromShaderCache(const std::string& name) {
 };
 
 bool ShadingProgramManager::CreateStockShadingPrograms(){
+	std::string manifest = mRoot+ "/" + mManifest;
+	tinyxml2::XMLDocument doc;
+	tinyxml2::XMLError result = doc.LoadFile(manifest.c_str());
+
+	if(result != tinyxml2::XML_SUCCESS){
+		printf("cannot open manifest %s", manifest.c_str());
+		return false;
+	}
 
 
-/** read up the shader definition Xml **/
+	printf("\n *** Enumerating shaders ***;");
+	tinyxml2::XMLElement* shadersNode = doc.RootElement()->FirstChildElement("shaders");
+	if(NULL == shadersNode) {
+		printf("\nWARNING: No shaders defined");
+		return true;
+	}
+	for (tinyxml2::XMLNode *shaderNode = shadersNode->FirstChild(); shaderNode; shaderNode = shaderNode->NextSibling()) {
+		Shader* shader = new Shader(shaderNode);
+		mShaderCache.Add(shader);
+	}
+	printf("\n *** Enumerating gpu programs ***");
+	tinyxml2::XMLElement* gpuProgramsNode = doc.RootElement()->FirstChildElement("programs");
+	if(NULL == gpuProgramsNode) {
+		printf("\nWARNING: No gpu programs defined");
+		return true;
+	}
+	for (tinyxml2::XMLNode *gpuProgramNode = gpuProgramsNode->FirstChild(); gpuProgramNode; gpuProgramNode = gpuProgramNode->NextSibling()) {
+		Program* program = new Program(gpuProgramNode);
+		SPM->Add(program);
+	}
 
-//
-//
-//	#ifdef LIBXML_TREE_ENABLED
-//	xmlDoc* doc = NULL;
-//	doc = xmlReadFile(m_root.c_str(), NULL, 0);
-//	if(doc == NULL){
-//		printf("ERROR: No Shader Metadata found");
-//		return;
-//	}
-//	if(xmlDocGetRootElement(doc) == NULL){
-//		printf("ERROR: Malformed XML. No root element found");
-//		return;
-//	}
-//	if(xmlDocGetRootElement(doc)->children == NULL){
-//		printf("WARNING: No Shading Programs Found");
-//		return;
-//	}
-//	printf("\n");
-//	for(xmlNode* nodeShadingProgram = xmlDocGetRootElement(doc)->children; nodeShadingProgram; nodeShadingProgram = nodeShadingProgram->next){
-//		if(strcmp((char*)nodeShadingProgram->name, "text") == 0) continue;
-//		if(strcmp((char*)nodeShadingProgram->name, "comment") == 0) continue;
-//		if(strcmp((char*)nodeShadingProgram->name, "program") == 0){
-//			printf("Shading Program (");
-//			Program *program = NULL;
-//			if(NULL != nodeShadingProgram->properties){
-//				xmlAttr* attrShadingProgram = NULL;
-//				AttributeSet asProgram;
-//				for(attrShadingProgram = nodeShadingProgram->properties; attrShadingProgram; attrShadingProgram = attrShadingProgram->next){
-//					Attribute aShadingProgram;
-//					aShadingProgram.set((const char*)attrShadingProgram->name, (const char*)xmlGetProp(nodeShadingProgram, attrShadingProgram->name));
-//					aShadingProgram.display();
-//					asProgram.add(aShadingProgram);
-//				}
-//				/** attributes for shader program created
-//				 * create a program object now*/
-//				program = new Program(asProgram);
-//			}
-//			printf(")\n");
-//			/** read up the shader program's sub children
-//			 * to idenitfy the shaders involved and the attributes, uniforms etc **/
-//			for(xmlNode* nodeShadingProgramSubNode = nodeShadingProgram->children; nodeShadingProgramSubNode; nodeShadingProgramSubNode = nodeShadingProgramSubNode->next){
-//				if(strcmp((char*)nodeShadingProgramSubNode->name, "shader") == 0){	/** shader program **/
-//					printf("\tShader (");
-//					xmlAttr* attrShader = NULL;
-//					AttributeSet asShader;
-//					for(attrShader = nodeShadingProgramSubNode->properties; attrShader; attrShader = attrShader->next){
-//						Attribute aShader;
-//						aShader.set((const char*)attrShader->name, (const char*)xmlGetProp(nodeShadingProgramSubNode, attrShader->name));
-//						aShader.display();
-//						asShader.add(aShader);
-//					}
-//					printf(")\n");
-//					/**attributes have been created
-//					 * check to see if a shader already exists**/
-//
-//					std::string source = asShader.get("source").getValue();
-//					Shader* shader = NULL;
-//					std::map <std::string, Shader* >::const_iterator itShader = m_ShaderCache.find(source);
-//					if(itShader == m_ShaderCache.end()){
-//						/** read the shader from the source and compile **/
-//						shader = new Shader(asShader);
-//						if(shader->compile()){
-//							/** add it to the cache **/
-//							m_ShaderCache[shader->getName()] = shader;
-//							printf("\tShader cached (id %s - handle %d)", shader->getName().c_str(), shader->getHandle());
-//						}
-//					}
-//					else {
-//						shader = itShader->second;
-//						printf("\tReusing shader from cache (id %s - handle %d)", shader->getName().c_str(), shader->getHandle());
-//					}
-//					program->attachShader(shader);
-//					printf("\n");
-//				};
-//
-//			}
-//			/** compile and add to progrm list  **/
-//			if(program->link() > 0){
-//				m_pProgramCache[program->getName()] = program;
-//				printf("\tProgram in cache with id %s and handle %d. \n", program->getName().c_str(), program->getHandle());
-//			}
-//		}
-//	}
-//	#endif
 	return true;
+}
+const std::string& ShadingProgramManager::GetRoot() const{
+	return mRoot;
 }
 void ShadingProgramManager::shutdown(){
 };	
-	
+
+void ShadingProgramManager::UseProgram(const std::string& name){
+	Program* program = Get(name);
+	if(NULL == program) {
+		printf("\nWARNING: cannot find program %s", name.c_str());
+		return;
+	}
+	program->Use();
+}
+
 ShadingProgramManager* ShadingProgramManager::m_pInstance = NULL;

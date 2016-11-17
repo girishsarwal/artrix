@@ -4,13 +4,13 @@ Shader::Shader(tinyxml2::XMLNode* node){
 	mRefCount = 0;
 	mIsCompiled = false;
 	mIsInitialized = false;
-
+	mShaderHandle = 0;
 	tinyxml2::XMLElement* elem = node->ToElement();
 	if(elem == NULL){
 		printf("\nWARNING: Cannot create shader");
 		return;
 	}
-
+	mRoot = SPM->GetRoot();
 	mName = elem->Attribute("source");
 	mSource = elem->Attribute("source");
 	mShaderType = elem->Attribute("type");
@@ -19,6 +19,8 @@ Shader::Shader(){
 	mRefCount = 0;
 	mIsCompiled = false;
 	mIsInitialized = false;
+	mRoot = SPM->GetRoot();
+	mShaderHandle = 0;
 	SetDefaultName("Shader");
 };
 
@@ -78,8 +80,9 @@ GLint Shader::GetReferenceCount(){
 
 
 void Shader::Initialize() {
+	SetName(mName);
 	SetRoot(mRoot);
-	SetSource(mSource);     /** I know this sounds stupid to do but C++ makes objects like an onion, inside out and we need to call some virt func during creation **/
+	SetSource(mSource);
 	SetType(mShaderType);
 	Compile();
     mIsInitialized = true;
@@ -102,37 +105,36 @@ bool Shader::Compile(){
 
     fileContents[length] = '\0';
     fclose(fp);
-    GLuint shader = glCreateShader(GetShaderType(mShaderType));
-    glShaderSource(shader, 1, (const GLchar**) &fileContents, NULL);
-    glCompileShader(shader);
-
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &mShaderHandle);
-    if (mShaderHandle == GL_FALSE)
+    mShaderHandle = glCreateShader(GetShaderType(mShaderType));
+    glShaderSource(mShaderHandle, 1, (const GLchar**) &fileContents, NULL);
+    glCompileShader(mShaderHandle);
+    GLint status;
+    glGetShaderiv(mShaderHandle, GL_COMPILE_STATUS, &status);
+    if (status == GL_FALSE)
     {
         GLint infoLogLength;
-        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLogLength);
+        glGetShaderiv(mShaderHandle, GL_INFO_LOG_LENGTH, &infoLogLength);
 
         mInfoLog = new GLchar[infoLogLength + 1];
-        glGetShaderInfoLog(shader, infoLogLength, NULL, mInfoLog);
-        printf("%d bytes read\n", length);
-		printf("%s", fileContents);
-        printf("\nWARNING: Compile failure in %s shader:\n%s\n",mShaderType.c_str(), mInfoLog);
+        glGetShaderInfoLog(mShaderHandle, infoLogLength, NULL, mInfoLog);
+        printf("\nWARNING: Compile failure in shader %s (%d bytes)...\n\t %s \n\t\t",mSource.c_str(), length, fileContents, mInfoLog);
         delete[] mInfoLog;
         return false;
     }
     /** setup the other parameters **/
     mIsCompiled = true;
-	printf("\t\tSuccessfully compiled program '%s' to handle %d\n", mSource, mShaderHandle);
+
+	printf("\tSuccessfully compiled program '%s' to handle %d", mSource.c_str(), mShaderHandle);
 	return mIsCompiled;
 };
 
 GLuint	Shader::GetShaderType(const std::string& type) {
 	if(type == "vertex"){
 		return VERTEX_SHADER;
-	} else if (type == "vertex") {
+	} else if (type == "fragment") {
 		return FRAG_SHADER;
 	} else {
-		printf("\nWARNING: cannot determine shader type from %s", type);
+		printf("\nWARNING: cannot determine shader type from '%s'", type.c_str());
 		return -1;
 	}
 }

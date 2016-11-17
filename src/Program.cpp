@@ -24,46 +24,84 @@ Program::Program(tinyxml2::XMLNode* node){
 
 	mName = elem->Attribute("name");
 
+	tinyxml2::XMLElement* shaders = elem->FirstChildElement("shaders");
+	if(NULL == shaders) {
+		printf("\nWARNING: there are no shaders defined. Program may be unuseable");
+		return;
+	}
+	for(tinyxml2::XMLNode* shaderNode = shaders->FirstChild(); shaderNode; shaderNode = shaderNode->NextSibling()) {
+		std::string shaderName = shaderNode->FirstChild()->Value();
+		Shader* shader = SPM->GetFromShaderCache(shaderName);
+		if(NULL == shader){
+			printf("\nWARNING: specified shader %s not found in cache. Program may be unuseable", shaderName.c_str());
+			continue;
+		}
+		mShaders.push_back(shader);
+	}
+
+	tinyxml2::XMLElement* attributes = elem->FirstChildElement("attributes");
+	if(NULL == attributes) {
+		printf("\nWARNING: there are no attributes defined. Program may be unusable");
+		return;
+	}
+	for(tinyxml2::XMLNode* attributeNode = attributes->FirstChild(); attributeNode; attributeNode = attributeNode->NextSibling()) {
+		std::string attributeName = attributeNode->ToElement()->Attribute("name");
+		GLuint attributeLocation = atoi(attributeNode->ToElement()->Attribute("location"));
+		mAttributes[attributeName] = attributeLocation;
+	}
+
+	tinyxml2::XMLElement* uniforms = elem->FirstChildElement("uniforms");
+	if(NULL == uniforms) {
+		printf("\nWARNING: there are no uniforms defined. Program may be unusable");
+		return;
+	}
+	for(tinyxml2::XMLNode* uniformNode = uniforms->FirstChild(); uniformNode; uniformNode = uniformNode->NextSibling()) {
+		std::string uniformName = uniformNode->ToElement()->Attribute("name");
+		GLuint uniformLocation = atoi(uniformNode->ToElement()->Attribute("location"));
+		mUniforms[uniformName] = uniformLocation;
+	}
 };
 Program::~Program(){
 	
 };
 
 GLuint Program::AttachShader(Shader* shader){
-	//glAttachShader(m_iProgramHandle, shader->getHandle());
-	//m_Shaders.push_back(shader);
+	glAttachShader(mProgramHandle, shader->GetHandle());
 	return shader->IncrementRefCount();
 };
 GLuint Program::DetachShader(Shader* shader){
-	//glDetachShader(m_iProgramHandle, shader->getHandle());
-	//m_Shaders.remove(shader);
+	glDetachShader(mProgramHandle, shader->GetHandle());
 	return shader->DecrementRefCount();
 };
 bool Program::Link(){
 	mIsLinked = false;
-	printf("linking program '%s' ...\n", mName.c_str());
-//    glLinkProgram(m_iProgramHandle);
-//
-//    GLint status;
-//    glGetShaderiv(m_iProgramHandle, GL_LINK_STATUS, &status);
-//    if (status == GL_FALSE)
-//    {
-//        GLint infoLogLength;
-//        glGetShaderiv(m_iProgramHandle, GL_INFO_LOG_LENGTH, &infoLogLength);
-//
-//        m_pInfoLog = new GLchar[infoLogLength + 1];
-//        glGetShaderInfoLog(m_iProgramHandle, infoLogLength, NULL, m_pInfoLog);
-//		printf("WARNING: Link failure in program '%s'... \n\t %s\n",m_sName.c_str(), m_pInfoLog);
-//        delete[] m_pInfoLog;
-//        return m_bIsLinked;
-//    }
-//
-//	enumerateUniforms();
-//	enumerateAttributes();
+	mProgramHandle = glCreateProgram();
+	printf("\nLinking program '%s' ...\n", mName.c_str());
+    glLinkProgram(mProgramHandle);
+
+    GLint status;
+    glGetShaderiv(mProgramHandle, GL_LINK_STATUS, &status);
+    if (status == GL_FALSE)
+    {
+        GLint infoLogLength;
+        glGetShaderiv(mProgramHandle, GL_INFO_LOG_LENGTH, &infoLogLength);
+        mInfoLog = new GLchar[infoLogLength + 1];
+        glGetShaderInfoLog(mProgramHandle, infoLogLength, NULL, mInfoLog);
+		printf("\nWARNING: Link failure in program '%s'...\n\t %s",mName.c_str(), mInfoLog);
+        delete[] mInfoLog;
+        return mIsLinked;
+    }
+
+	enumerateUniforms();
+	enumerateAttributes();
 
 	mIsLinked = true;
-	printf("\nSuccessfully linked program '%s'\n to handle %d", mName.c_str(), mProgramHandle);
+	printf("\nSuccessfully linked program '%s' to handle %d", mName.c_str(), mProgramHandle);
 	return mIsLinked;
+};
+
+void Program::enumerateAttributes(){
+
 };
 
 void Program::enumerateUniforms(){
@@ -111,8 +149,8 @@ void Program::enumerateUniforms(){
 }
 
 bool Program::bindAttribute(std::string& name, GLuint index){
-	/*glBindAttribLocation(m_iProgramHandle, index, (const GLchar*)name.c_str());
-	m_AttributeLocations[name] = index;	/** add to map for future **/
+//	glBindAttribLocation(m_iProgramHandle, index, (const GLchar*)name.c_str());
+//	m_AttributeLocations[name] = index;	/** add to map for future **
 	printf("\t\tAttribute %s bound to location %d\n", name.c_str(), index);
 	return true;
 };
@@ -158,7 +196,10 @@ bool Program::setUniform(const std::string&  name, float v1, float v2, float v3,
 
 
 void Program::Use() {
-	printf("using GPU Program %s", mName);
+	printf("using GPU Program %s", mName.c_str());
+	if(!mIsInitialized){
+		Initialize();
+	}
 	glUseProgram(mProgramHandle);
 };
 
@@ -175,7 +216,13 @@ bool Program::getIsInitialized() {
 };
 
 void Program::Initialize(){
-	mProgramHandle = glCreateProgram();
+	/** compile all shaders **/
+	std::vector<Shader*>::const_iterator iter = mShaders.begin();
+	while(iter != mShaders.end()){
+		(*iter)->Initialize();
+		iter++;
+	}
+	/** link the program **/
 	Link();
 }
 

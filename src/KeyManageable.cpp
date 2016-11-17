@@ -11,7 +11,6 @@ const string& KeyManageable::GetName() const{
 }
 
 void KeyManageable::SetName(const string& name){
-	printf("\nKeyManageable::SetName  %s", name.c_str());
 	mName = name;
 }
 

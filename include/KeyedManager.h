@@ -11,6 +11,7 @@ class KeyedManager {
 		map<string, T> mMap;
 	public:
 		void Add(T val) {
+			printf("\nAdded managed object %s", val->GetName().c_str());
 			mMap[val->GetName()] = val;
 		}
 		int Size() {

@@ -33,7 +33,7 @@ int main(int argc, char* argv[]){
 		throw std::exception();
 	}
 
-	if(!SPM->initialize("./.artrix/dlc/pratham/shaders", "shadingprograms.mf")) { 	/** Shading Program Manager **/
+	if(!SPM->initialize("./.artrix/dlc/pratham/shaders", "shaderprograms.mf")) { 	/** Shading Program Manager **/
 		throw std::exception();
 	}
 
@@ -52,6 +52,8 @@ int main(int argc, char* argv[]){
 	if(!SPI->initialize("/dev/spidev")) {				/** SPI Manager **/
 		throw std::exception();
 	}
+
+	SPM->UseProgram("vc");
 
 #else
 	RC->setup();
