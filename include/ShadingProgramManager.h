@@ -21,7 +21,6 @@ class ShadingProgramManager
 		~ShadingProgramManager();
 		static ShadingProgramManager* getInstance();
 		const std::string& GetRoot() const;
-		Program* getProgram(const std::string&);
 		void AddToShaderCache(Shader*);
 		Shader* GetFromShaderCache(const std::string&);
 		bool CreateStockShadingPrograms();
