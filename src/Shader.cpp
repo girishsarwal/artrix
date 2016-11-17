@@ -1,85 +1,154 @@
 #include "Shader.h"
 
 Shader::Shader(tinyxml2::XMLNode* node){
-	
-//	m_sShaderType = as.get("type").getValue();
-//
-//	if(m_sShaderType == "vertex") m_iShaderType = GL_VERTEX_SHADER;
-//	else if (m_sShaderType == "geometry") m_iShaderType = GL_GEOMETRY_SHADER;
-//	else if (m_sShaderType == "fragment") m_iShaderType = GL_FRAGMENT_SHADER;
-//
-//	m_sSource = as.get("source").getValue();
+	mRefCount = 0;
+	mIsCompiled = false;
+	mIsInitialized = false;
+
+	tinyxml2::XMLElement* elem = node->ToElement();
+	if(elem == NULL){
+		printf("\nWARNING: Cannot create shader");
+		return;
+	}
+
+	mName = elem->Attribute("source");
+	mSource = elem->Attribute("source");
+	mShaderType = elem->Attribute("type");
 };
 Shader::Shader(){
-	m_iRefCount = 0;
+	mRefCount = 0;
+	mIsCompiled = false;
+	mIsInitialized = false;
+	SetDefaultName("Shader");
 };
+
 Shader::~Shader(){
 };
 
-bool Shader::compile(){
-	
-	printf("compiling %s shader from %s...\n", m_sShaderType.c_str(), m_sSource.c_str());
-	chdir("/usr/share/artrix/shaders/");
-	/** read up the file **/
-    FILE* fp = fopen(m_sSource.c_str(), "r");
+
+
+const std::string& Shader::GetRoot() const {
+	return mRoot;
+};
+
+void Shader::SetRoot(const std::string& root) {
+	mRoot = root;
+	mFile = mRoot + "/" + mSource;
+};
+
+const std::string& Shader::GetSource() const {
+	return mSource;
+};
+
+void Shader::SetSource(const std::string& source) {
+	mSource = source;
+	mFile = mRoot + "/" + mSource;
+};
+
+const std::string& Shader::GetType() const{
+	return mShaderType;
+};
+
+void Shader::SetType(const std::string& type) {
+	mShaderType = type;
+};
+
+bool Shader::GetIsInitialized() {
+    return mIsInitialized;
+}
+
+int Shader::IncrementRefCount(){
+	return ++mRefCount;
+};
+int Shader::DecrementRefCount(){
+	return --mRefCount;
+};
+
+bool Shader::GetIsCompiled(){
+	return mIsCompiled;
+};
+
+GLuint Shader::GetHandle(){
+	return mShaderHandle;
+};
+
+GLint Shader::GetReferenceCount(){
+	return mRefCount;
+};
+
+
+void Shader::Initialize() {
+	SetRoot(mRoot);
+	SetSource(mSource);     /** I know this sounds stupid to do but C++ makes objects like an onion, inside out and we need to call some virt func during creation **/
+	SetType(mShaderType);
+	Compile();
+    mIsInitialized = true;
+}
+
+bool Shader::Compile(){
+	printf("\nCompiling %s shader from %s...\n", mShaderType.c_str(), mFile.c_str());
+    FILE* fp = fopen(mFile.c_str(), "r");
     if(NULL == fp){
-		printf("Cannot read file %s\n", m_sSource.c_str());
+		printf("\nWARNING: Cannot read file %s\n", mFile.c_str());
 		return false;
 	}
 	/** get hold of the file length**/
 	fseek(fp, 0, SEEK_END);
 	int length = ftell(fp);
-	
+
     rewind(fp);
     char* fileContents = (char*)malloc(sizeof(char) * (length + 1));
     length = fread(fileContents, sizeof(char), length, fp);
-    
+
     fileContents[length] = '\0';
     fclose(fp);
-    GLuint shader = glCreateShader(m_iShaderType);
+    GLuint shader = glCreateShader(GetShaderType(mShaderType));
     glShaderSource(shader, 1, (const GLchar**) &fileContents, NULL);
     glCompileShader(shader);
-    
-    GLint status;
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
-    if (status == GL_FALSE)
+
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &mShaderHandle);
+    if (mShaderHandle == GL_FALSE)
     {
         GLint infoLogLength;
         glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLogLength);
-        
-        m_pInfoLog = new GLchar[infoLogLength + 1];
-        glGetShaderInfoLog(shader, infoLogLength, NULL, m_pInfoLog);
+
+        mInfoLog = new GLchar[infoLogLength + 1];
+        glGetShaderInfoLog(shader, infoLogLength, NULL, mInfoLog);
         printf("%d bytes read\n", length);
 		printf("%s", fileContents);
-        printf("WARNING: Compile failure in %s shader:\n%s\n",m_sShaderType.c_str(), m_pInfoLog);
-        delete[] m_pInfoLog;
+        printf("\nWARNING: Compile failure in %s shader:\n%s\n",mShaderType.c_str(), mInfoLog);
+        delete[] mInfoLog;
         return false;
     }
     /** setup the other parameters **/
-    m_bIsCompiled = true;
-	m_iShaderHandle = shader;
-     
-	printf("\t\tSuccessfully compiled program '%s' to handle %d\n", m_sSource.c_str(), m_iShaderHandle);
-	return true;
+    mIsCompiled = true;
+	printf("\t\tSuccessfully compiled program '%s' to handle %d\n", mSource, mShaderHandle);
+	return mIsCompiled;
 };
-int Shader::incRefCount(){
-	return ++m_iRefCount;
-};
-int Shader::decRefCount(){
-	return --m_iRefCount;
-};
-std::string& Shader::getName(){
-	return m_sSource;
-};
-GLuint Shader::getType(){
-	return m_iShaderType;
-};
-bool Shader::getIsCompiled(){
-	return m_bIsCompiled;
-};
-GLuint Shader::getHandle(){
-	return m_iShaderHandle;
-};
-GLint Shader::getReferenceCount(){
-	return m_iRefCount;
-};
+
+GLuint	Shader::GetShaderType(const std::string& type) {
+	if(type == "vertex"){
+		return VERTEX_SHADER;
+	} else if (type == "vertex") {
+		return FRAG_SHADER;
+	} else {
+		printf("\nWARNING: cannot determine shader type from %s", type);
+		return -1;
+	}
+}
+
+
+string Shader::dump() const{
+    stringstream ss;
+    ss << *this;
+    return ss.str();
+}
+
+void Shader::Print() {
+    printf("Shader - %s", dump().c_str());
+}
+
+ostream& operator<<(ostream& stream, const Shader& shader) {
+    stream << "<shader source=\"" << shader.mSource << "\" type=\"" << shader.mShaderType << "\">" << "</shader>";
+    return stream;
+}

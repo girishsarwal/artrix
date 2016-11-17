@@ -12,14 +12,6 @@ ShadingProgramManager* ShadingProgramManager::getInstance(){
 	return m_pInstance;
 };
 
-Program* ShadingProgramManager::getProgram(const std::string& program){
-	std::map<std::string, Program*>::const_iterator it = m_pProgramCache.find(program);
-	if (it == m_pProgramCache.end())
-	{
-		return NULL;
-	}
-	return m_pProgramCache[program];
-};
 
 bool ShadingProgramManager::initialize(const std::string& root, const std::string& manifest){
 	mRoot = root;
@@ -29,14 +21,20 @@ bool ShadingProgramManager::initialize(const std::string& root, const std::strin
 	printf("Initializing...\n");
 	printf("Looking for shader definitions in %s \n", mRoot.c_str());
 
-	createStockShadingPrograms();
-	return true;
-	
+	return CreateStockShadingPrograms();
 }
-	
-void ShadingProgramManager::createStockShadingPrograms(){
+void ShadingProgramManager::AddToShaderCache(Shader* shader) {
+	mShaderCache.Add(shader);
+};
 
-	/** read up the shader definition Xml **/
+Shader* ShadingProgramManager::GetFromShaderCache(const std::string& name) {
+	return mShaderCache.Get(name);
+};
+
+bool ShadingProgramManager::CreateStockShadingPrograms(){
+
+
+/** read up the shader definition Xml **/
 
 //
 //
@@ -122,6 +120,7 @@ void ShadingProgramManager::createStockShadingPrograms(){
 //		}
 //	}
 //	#endif
+	return true;
 }
 void ShadingProgramManager::shutdown(){
 };	

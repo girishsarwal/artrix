@@ -1,21 +1,21 @@
-#include "ShaderManager.h"
-ShaderManager::ShaderManager() {
+#include "ShadingProgram.h"
+ShadingProgram::ShadingProgram() {
 }
 ;
 
-ShaderManager::~ShaderManager() {
+ShadingProgram::~ShadingProgram() {
 }
 ;
 
-ShaderManager* ShaderManager::getInstance() {
+ShadingProgram* ShadingProgram::getInstance() {
 	if (NULL == m_pInstance) {
-		m_pInstance = new ShaderManager();
+		m_pInstance = new ShadingProgram();
 	};
 	return m_pInstance;
 }
 ;
 
-GLuint ShaderManager::getProgramId(const std::string& program) {
+GLuint ShadingProgram::getProgramId(const std::string& program) {
 	GLuint programId = m_pPrograms[program];
 	if (programId == 0) {
 		printf("No shader found for %s\n", program.c_str());
@@ -25,7 +25,7 @@ GLuint ShaderManager::getProgramId(const std::string& program) {
 }
 ;
 
-bool ShaderManager::initialize(const std::string& root) {
+bool ShadingProgram::initialize(const std::string& root) {
 	printf("\n+--------------------SHADER MANAGER----------------------+\n");
 	printf("Initializing...\n");
 	mRoot = root;
@@ -103,7 +103,7 @@ bool ShaderManager::initialize(const std::string& root) {
 }
 ;
 
-GLuint ShaderManager::createVertexShader(const std::string& shaderFile) {
+GLuint ShadingProgram::createVertexShader(const std::string& shaderFile) {
 	printf("Creating Vertex Shader from %s \n", shaderFile.c_str());
 	GLuint createdShaderId = createShader(GL_VERTEX_SHADER, shaderFile);
 	printf("Vertex Shader %s Created with internal id %d\n", shaderFile.c_str(),
@@ -113,7 +113,7 @@ GLuint ShaderManager::createVertexShader(const std::string& shaderFile) {
 }
 ;
 
-GLuint ShaderManager::createFragmentShader(const std::string& shaderFile) {
+GLuint ShadingProgram::createFragmentShader(const std::string& shaderFile) {
 	printf("Creating Fragment Shader\n");
 	GLuint createdShaderId = createShader(GL_FRAGMENT_SHADER, shaderFile);
 	printf("Fragment Shader %s Created with internal id %d\n",
@@ -122,13 +122,13 @@ GLuint ShaderManager::createFragmentShader(const std::string& shaderFile) {
 }
 ;
 
-void ShaderManager::shutdown() {
-	printf("Shutting Down ShaderManager\n");
+void ShadingProgram::shutdown() {
+	printf("Shutting Down ShadingProgram\n");
 	delete m_pInstance;
 }
 ;
 
-GLuint ShaderManager::createShader(GLenum eShaderType,
+GLuint ShadingProgram::createShader(GLenum eShaderType,
 		const std::string &shaderFile) {
 	/** read up the file **/
 	FILE* fp = fopen(shaderFile.c_str(), "r");
@@ -181,4 +181,4 @@ GLuint ShaderManager::createShader(GLenum eShaderType,
 	return shader;
 }
 
-ShaderManager* ShaderManager::m_pInstance = NULL;
+ShadingProgram* ShadingProgram::m_pInstance = NULL;
