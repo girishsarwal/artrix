@@ -54,8 +54,8 @@ int main(int argc, char* argv[]){
 	}
 
 	SPM->UseProgram("vc");
+	SPM->Get("vc")->Print();
 
-#else
 	RC->setup();
 	RC->begin();
 

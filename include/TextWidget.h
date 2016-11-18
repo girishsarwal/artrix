@@ -9,22 +9,44 @@
 #pragma once
 #include "afx.h"
 #include "UIWidget.h"
-class TextWidget: public UIWidget {
-protected:
-	void onInitialize();
-	void onRender(double frameTime);
-	void onUpdate(double frameTime);
-public:
-	std::string	m_pText;
-	std::string m_pFont;
-	float m_pSize;
-	unsigned long long m_fColor;			
-		
+class TextWidget:
+	public UIWidget {
 
-	bool m_bIsBold;
+protected:
+	std::string	mText;
+	std::string mFont;
+	float mFontSize;
+	bool mFontBold;
+	unsigned long mFontColor;
+
+	/** property hooks **/
+	virtual void OnSetText();
+	virtual void OnSetFont();
+	virtual void OnSetFontSize();
+	virtual void OnSetFontBold();
+	virtual void OnSetFontColor();
+
+	virtual void OnInitialize();
+	virtual void OnRender(double frameTime);
+
+public:
 	TextWidget();
 	TextWidget(tinyxml2::XMLNode*);
 	virtual ~TextWidget();
+
+	const std::string& GetText() const;
+	void SetText(const std::string&);
+	const std::string& GetFont() const;
+	void SetFont(const std::string&);
+	float GetFontSize();
+	void SetFontSize(float);
+	bool GetFontBold();
+	void SetFontBold(bool);
+	unsigned long GetFontColor();
+	void SetFontColor(unsigned long);
+
+
+	bool ValidateAttributes();
 };
 
 

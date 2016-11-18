@@ -13,17 +13,38 @@
 class TimerWidget
 	: public Widget {
 private:
-	float m_fTime;
-	std::string m_sTargetView;
-	std::string m_sAction;
-	
+	float mAccumulatedTime;
+protected:
+
+	float mTime;
+	std::string mTargetView;
+	std::string mAction;
+	std::string mParam1;
+	std::string mParam2;
+
+	/** property hooks **/
+	virtual void OnSetAction();
+	virtual void OnSetParam1();
+	virtual void OnSetParam2();
+
+	/*** lifecycle **/
+	void OnInitialize();
+	void OnUpdate(double frameTime);
+
 public:
 	TimerWidget();
 	TimerWidget(tinyxml2::XMLNode*);
 	virtual ~TimerWidget();
-	void initialize();
-	void update(double frameTime);
-	void render(double frameTime);
+
+	const std::string& GetAction() const;
+	void SetAction(const std::string&);
+	const std::string GetParam1() const;
+	void SetParam1(const std::string&);
+	const std::string GetParam2() const;
+	void SetParam2(const std::string&);
+
+	bool ValidateAttributes();
+
 };
 
 

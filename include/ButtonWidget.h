@@ -5,12 +5,14 @@
 class ButtonWidget
 	: public UIWidget{
 private:
+
 public:
 	ButtonWidget();
 	ButtonWidget(tinyxml2::XMLNode*);
 	~ButtonWidget();
-	void onInitialize();
-	void onUpdate(double frameTime);
-	void onRender(double frameTime);
+
+	void OnInitialize();
+	bool ValidateAttributes();
+	void OnRender(double frameTime);
 };
 #endif

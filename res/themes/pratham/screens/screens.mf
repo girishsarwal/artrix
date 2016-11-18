@@ -1,5 +1,5 @@
 <screens>
-    <screen name="splash" default>
+    <screen name="splash" default="1">
         <TimerWidget timeout="1000">
             <action>gotoScreen</action>
             <params>home</params>

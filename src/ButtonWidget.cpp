@@ -5,15 +5,16 @@ ButtonWidget::ButtonWidget(tinyxml2::XMLNode* node){
 ButtonWidget::~ButtonWidget(){
 };
 
-void ButtonWidget::onInitialize(){
+bool ButtonWidget::ValidateAttributes() {
+	return true;
+};
+
+void ButtonWidget::OnInitialize() {
 
 };
 
-void ButtonWidget::onUpdate(double frameTime){
+void ButtonWidget::OnRender(double frameTime){
 
 };
 
-void ButtonWidget::onRender(double frameTime){
-
-};
 

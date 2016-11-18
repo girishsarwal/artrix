@@ -14,7 +14,6 @@ class Widget :
     public:
         /** constructors **/
         Widget();
-        Widget(const Vector3&, const Vector3&);
         Widget(tinyxml2::XMLNode*);
 
         virtual ~Widget();
@@ -23,30 +22,20 @@ class Widget :
 
         bool GetIsInitialized() const;
 
-
-
-        bool GetIsVisible() const;
-        void SetIsVisible(bool);
-        const Vector3& GetSize() const;
-        void SetSize(const Vector3&);
-        void SetSize(float, float, float);
-        const Vector3& GetPosition() const;
-        void SetPosition(const Vector3&);
-        void SetPosition(float, float, float);
-        const Vector3& GetPivot() const;
-        void SetPivot(const Vector3&);
-        void SetPivot(float, float, float);
-
-
-
         /** Lifecycle **/
-        bool ValidateAttributes();
+        virtual bool ValidateAttributes() = 0;
+
         void BeforeInitialize();
         void Initialize();
         void AfterInitialize();
 
+        void BeforeUpdate(double frameTime);
         void Update(double);
-        void Draw(double);
+        void AfterUpdate(double frameTime);
+
+        void BeforeDestroy();
+        void Destroy();
+        void AfterDestroy();
 
         /** Debug **/
         string dump() const;
@@ -57,22 +46,18 @@ class Widget :
         bool operator!=(const Widget& rhs) const;
 
     protected:
-        Vector3 mPosition;
-        Vector3 mPivot;
-        Vector3 mSize;
-        bool mIsVisible;
 
-        /** property change hooks **/
-        virtual void OnSetVisible();
-        virtual void OnSetPosition();
-        virtual void OnSetSize();
 
         /** lifecycle hooks **/
         virtual void OnBeforeInitialize();          /** use to setup resources required for initialization **/
-        virtual void OnInitialize();                /** use for initialization **/
+        virtual void OnInitialize() = 0;            /** use for initialization **/
         virtual void OnAfterInitialize();           /** use for validating intialization was successfully carried out **/
-        virtual void OnUpdate(double);
-        virtual void OnDraw(double);
+    	virtual void OnBeforeUpdate(double frameTime);
+    	virtual void OnUpdate(double) = 0;
+    	virtual void OnAfterUpdate(double frameTime);
+    	virtual void OnBeforeDestroy();
+    	virtual void OnDestroy();
+    	virtual void OnAfterDestroy();
 
         std::string _str;
         bool mIsInitialized;

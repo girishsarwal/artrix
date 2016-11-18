@@ -60,7 +60,9 @@ bool ViewManager::CreateStockViews(){
 			WidgetFactory::CreateWidget(widgetNode, &w);
 			view->AddWidget(w);
 		}
-		if(screenNode->ToElement()->Attribute("default") != NULL) SetCurrentView(view);
+		if(screenNode->ToElement()->Attribute("default") != NULL) {
+			SetCurrentView(view);
+		}
 	}
 	return true;
 };

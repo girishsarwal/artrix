@@ -234,15 +234,20 @@ string Program::dump() const{
 }
 
 void Program::Print() {
-    printf("Shader - %s", dump().c_str());
+    printf("Program - %s", dump().c_str());
 }
 
 ostream& operator<<(ostream& stream, const Program& program) {
-    stream << "<program name=\"" << program.mName << "\">\n"
-    		<< "<!-- shaders here -->\n"
-			<< "<!-- attributes here-->\n"
-			<< "<!-- uniforms here -->\n"
-    	   << "</program>";
+    stream << "<program name=\"" << program.mName << "\">\n";
+    std::vector<Shader*>::const_iterator it = program.mShaders.begin();
+    while(it != program.mShaders.end()){
+    	stream << "<shader>" << (*it)->GetSource() << "</shader>\n";
+    	it++;
+    }
+	//<< "<!-- attributes here-->\n"
+	//<< "<!-- uniforms here -->\n"
+
+    stream << "</program>";
     return stream;
 }
 

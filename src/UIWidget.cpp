@@ -4,72 +4,52 @@ UIWidget::UIWidget(){
 	m_pVertices = NULL;
 	m_pIndices = NULL;
 	m_pShadingProgram = NULL;
+	m_iSizeIndices = 0;
+	m_iSizeVertex = 0;
+	m_iSizeVertices = 0;
+	mIsVisible = true;
+	m_iNumTriangles = 0;
+
+	mPosition.Set(0.0f, 0.0f, 0.0f);
+    mSize.Set(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE, 0);
+    mPivot.Set(0.5f, 0.5f, 0.5f);
+
+};
+
+UIWidget::UIWidget(tinyxml2::XMLNode* node){
+	m_pVertices = NULL;
+	m_pIndices = NULL;
+	m_pShadingProgram = NULL;
+	m_iSizeIndices = 0;
+	m_iSizeVertex = 0;
+	m_iSizeVertices = 0;
+	mIsVisible = true;
+	m_iNumTriangles = 0;
+
+	tinyxml2::XMLElement* elem = node->ToElement();
+	if(NULL == elem) {
+		printf("UIWidget - cannot parse xml");
+		return;
+	}
+    mPosition = Vector3(node->FirstChildElement("position")->FirstChild());
+    mSize = Vector3(node->FirstChildElement("size")->FirstChild());
+    mIsVisible = true;
+    mPivot = Vector3(node->FirstChildElement("anchor")->FirstChild());
+
 };
 
 UIWidget::~UIWidget(){
 };
 
-void UIWidget::setDrawRectangle(float _left, float _top, float _width, float _height){
-	m_vPosition.x = _left;
-	m_vPosition.y = _top;
-	m_vSize.x = _width;
-	m_vSize.y = _height;
+void UIWidget::OnInitialize(){
+	 SetPosition(mPosition);     /** I know this sounds stupid to do but C++ makes objects like an onion, inside out and we need to call some virt func during creation **/
+	 SetSize(mSize);
+	 SetPivot(mPivot);
+	 SetIsVisible(mIsVisible);
+}
+void UIWidget::OnUpdate(double gameTime){
+	Render(gameTime);
 }
 
 
-void UIWidget::initialize(){
-	beforeInitialize();
-	onInitialize();
-	afterInitialize();
-};
 
-void UIWidget::beforeInitialize(){
-//	m_vPosition.x = atof(m_asAttributes.get("x").getValue().c_str());
-//	m_vPosition.y = atof(m_asAttributes.get("y").getValue().c_str());
-//	m_vPosition.z = atof(m_asAttributes.get("z").getValue().c_str());;
-//
-//	m_vSize.x = atof(m_asAttributes.get("width").getValue().c_str());
-//	m_vSize.y = atof(m_asAttributes.get("height").getValue().c_str());
-//	m_vHalfSize = m_vSize;
-//	m_vHalfSize.Scale(0.5);
-//	m_fBackground = strtoll(m_asAttributes.get("background").getValue().c_str(), NULL, 16);
-};
-
-void UIWidget::afterInitialize(){
-	//m_bInitialized = true;
-};
-
-
-
-void UIWidget::render(double frameTime){
-	beforeRender(frameTime);
-	onRender(frameTime);
-	afterRender(frameTime);
-}
-
-void UIWidget::beforeRender(double frameTime){
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glPushAttrib(GL_ALL_ATTRIB_BITS);
-	
-	glLoadIdentity();
-	glTranslatef(m_vPosition.x, m_vPosition.y, 0);
-	glScalef(m_vSize.x, m_vSize.y, 1);
-};
-
-void UIWidget::afterRender(double frameTime){
-	glPopAttrib();
-	glPopMatrix();
-};
-
-void UIWidget::update(double frameTime){
-	beforeUpdate(frameTime);
-	onUpdate(frameTime);
-	afterUpdate(frameTime);
-};
-
-void UIWidget::beforeUpdate(double frameTime){
-};
-
-void UIWidget::afterUpdate(double frameTime){
-};

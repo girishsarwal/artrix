@@ -8,20 +8,26 @@
 #define IMAGEWIDGET_H
 #include "afx.h"
 #include "UIWidget.h"
-class ImageWidget: public UIWidget {
+class ImageWidget:
+		public UIWidget {
 private:
-	uint 	m_iTextureId;
+
 protected:
-	virtual void onInitialize();
-	virtual void afterInitialize();
-	virtual void onUpdate(double frameTime);
-	virtual void onRender(double frameTime);
-	virtual void createGeometry();
-public:
+	uint 	m_iTextureId;
 	std::string	m_pPath;
-		
+	virtual void CreateGeometry();
+public:
+
+	ImageWidget();
 	ImageWidget(tinyxml2::XMLNode*);
-	virtual ~ImageWidget();
+	~ImageWidget();
+
+	void OnInitialize();
+	void OnAfterInitialize();
+	bool ValidateAttributes();
+	void OnRender(double frameTime);
+
+
 };
 #endif
 

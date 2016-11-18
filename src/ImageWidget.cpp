@@ -7,14 +7,25 @@
 
 #include "ImageWidget.h"
 
-void ImageWidget::onInitialize(){
-//	m_pPath = m_asAttributes.get("src").getValue().c_str();
-//	m_iTextureId = TM->getTexture(m_pPath);
-//	m_pShadingProgram = SPM->getProgram("vc");
-	
-//	createGeometry();
+ImageWidget::ImageWidget() {
+
+};
+
+ImageWidget::ImageWidget(tinyxml2::XMLNode*) {
+	m_iTextureId = 0;
+};
+
+ImageWidget::~ImageWidget(){
+
 }
-void ImageWidget::createGeometry(){
+
+
+void ImageWidget::OnInitialize(){
+	CreateGeometry();
+}
+
+void ImageWidget::CreateGeometry(){
+
 //	/**generate the background rgb components **/
 //	float r = (m_fBackground & 0x00FF0000) >> 0x10;
 //	float g = (m_fBackground & 0x0000FF00) >> 0x08;
@@ -55,20 +66,10 @@ void ImageWidget::createGeometry(){
 //	memcpy(m_pVertices, vertices, m_iSizeVertices);
 //	memcpy(m_pIndices, indices, m_iSizeIndices);
 };
-ImageWidget::ImageWidget(tinyxml2::XMLNode*) {
-
-};
-
-ImageWidget::~ImageWidget() {
-	
-};
 
 
-void ImageWidget::onUpdate(double frameTime){
-	
-};
 
-void ImageWidget::onRender(double frameTime){
+void ImageWidget::OnRender(double frameTime){
 	
 //	VertexColorTexture::EnableAttribute(VertexColorTexture::INDEX_POSITION);
 //	VertexColorTexture::EnableAttribute(VertexColorTexture::INDEX_COLOR);
@@ -88,7 +89,7 @@ void ImageWidget::onRender(double frameTime){
 	
 }
 
-void ImageWidget::afterInitialize(){
+void ImageWidget::OnAfterInitialize(){
 //	glGenBuffers(1, &m_iVertexBuffer);
 //	glGenBuffers(1, &m_iIndexBuffer);
 //

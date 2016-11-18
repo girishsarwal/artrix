@@ -1,29 +1,18 @@
 #include "View.h"
-void View::update(double frameTime){
-//	short index = -1;
-//	onUpdate(frameTime);
-//	int count = m_Widgets.Size();
-//
-//	while(++index < count)
-//	{
-//		if(NULL != m_Widgets.[index]){
-//			m_Widgets[index]->Update(frameTime);
-//		}
-//	}
-}
-void View::render(double frameTime){
-//	short index = -1;
-//	int count = m_Widgets.Size();
-//	onRender(frameTime);
-//	while(++index < count){
-//		if(NULL != m_Widgets[index]){
-//			m_Widgets[index]->Draw(frameTime);
-//		}
-//	}
+
+void View::Update(double frameTime){
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	onUpdate(frameTime);
+	std::vector<Widget*>::const_iterator it = mWidgets.begin();
+	while(it != mWidgets.end()){
+		(*it)->Update(frameTime);
+		it++;
+	}
 }
 
-void View::AddWidget(Widget* pWidget){
-
+void View::AddWidget(Widget* widget){
+	mWidgets.push_back(widget);
 }
 
 void View::initialize(){
@@ -33,11 +22,7 @@ void View::initialize(){
 void View::onUpdate(double frameTime) {
 
 }
-void View::onRender(double frameTime) {
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
 	
-}
 void View::onInitialize() {
 	
 }

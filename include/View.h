@@ -7,14 +7,13 @@ class View
 	: public KeyManageable
 {
 public:
-	vector<Widget*> m_Widgets;
+	vector<Widget*> mWidgets;
 	View();
 	View(tinyxml2::XMLNode*);
 
 	virtual ~View(void);
 
-	void update(double frameTime);
-	void render(double frameTime);
+	void Update(double frameTime);
 	void AddWidget(Widget* pWidget);
 	void initialize();
 	
@@ -22,6 +21,5 @@ protected:
 	
 	virtual void onInitialize();
 	virtual void onUpdate(double frameTime);
-	virtual void onRender(double frameTime);
 };
 
