@@ -32,10 +32,10 @@ bool TextureManager::loadAllTextures(){
 
 void TextureManager::Use(const std::string& name) {
 	Texture* t = Get(name);
-	if(NULL != t) {
-		t->Use();
-	} else {
-		printf("\nWARNING: Texture %s not found", name.c_str());
+	if(NULL == t) {
+		printf("\nWARNING: Texture '%s' not found", name.c_str());
+		return;
 	}
+	t->Use();
 }
 TextureManager* TextureManager::m_pInstance = NULL;

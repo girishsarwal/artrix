@@ -17,7 +17,7 @@ private:
 	GLchar*	mInfoLog;
 
 	void enumerateUniforms();
-	void enumerateAttributes();
+	void setupAttributes();
 
 	bool mIsLinked;
 	bool mIsInitialized;

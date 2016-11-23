@@ -93,15 +93,19 @@ bool Program::Link(){
     }
 
 	enumerateUniforms();
-	enumerateAttributes();
+	setupAttributes();
 
 	mIsLinked = true;
 	printf("\nSuccessfully linked program '%s' to handle %d", mName.c_str(), mProgramHandle);
 	return mIsLinked;
 };
 
-void Program::enumerateAttributes(){
-
+void Program::setupAttributes(){
+	std::map<std::string, GLuint>::const_iterator it =  mAttributes.begin();
+	while(it != mAttributes.end()){
+		glBindAttribLocation(mId, it->second, it->first.c_str());
+		it++;
+	}
 };
 
 void Program::enumerateUniforms(){
@@ -196,7 +200,6 @@ bool Program::setUniform(const std::string&  name, float v1, float v2, float v3,
 
 
 void Program::Use() {
-	printf("using GPU Program %s", mName.c_str());
 	if(!mIsInitialized){
 		Initialize();
 	}
@@ -224,6 +227,7 @@ void Program::Initialize(){
 	}
 	/** link the program **/
 	Link();
+	mIsInitialized = true;
 }
 
 

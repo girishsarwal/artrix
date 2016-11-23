@@ -7,6 +7,7 @@
 #include "afx.h"
 #include "View.h"
 #include "ViewManager.h"
+#include "Geometry.h"
 
 class RenderContext{
 private:

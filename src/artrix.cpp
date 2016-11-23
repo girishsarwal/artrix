@@ -53,9 +53,6 @@ int main(int argc, char* argv[]){
 		throw std::exception();
 	}
 
-	SPM->UseProgram("vc");
-	SPM->Get("vc")->Print();
-
 	RC->setup();
 	RC->begin();
 

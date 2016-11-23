@@ -1,31 +1,15 @@
 #include "UIWidget.h"
 
 UIWidget::UIWidget(){
-	m_pVertices = NULL;
-	m_pIndices = NULL;
-	m_pShadingProgram = NULL;
-	m_iSizeIndices = 0;
-	m_iSizeVertex = 0;
-	m_iSizeVertices = 0;
 	mIsVisible = true;
-	m_iNumTriangles = 0;
 
 	mPosition.Set(0.0f, 0.0f, 0.0f);
     mSize.Set(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE, 0);
     mPivot.Set(0.5f, 0.5f, 0.5f);
-
+    mGeometry = NULL;
 };
 
 UIWidget::UIWidget(tinyxml2::XMLNode* node){
-	m_pVertices = NULL;
-	m_pIndices = NULL;
-	m_pShadingProgram = NULL;
-	m_iSizeIndices = 0;
-	m_iSizeVertex = 0;
-	m_iSizeVertices = 0;
-	mIsVisible = true;
-	m_iNumTriangles = 0;
-
 	tinyxml2::XMLElement* elem = node->ToElement();
 	if(NULL == elem) {
 		printf("UIWidget - cannot parse xml");
@@ -35,7 +19,7 @@ UIWidget::UIWidget(tinyxml2::XMLNode* node){
     mSize = Vector3(node->FirstChildElement("size")->FirstChild());
     mIsVisible = true;
     mPivot = Vector3(node->FirstChildElement("anchor")->FirstChild());
-
+    mGeometry = NULL;
 };
 
 UIWidget::~UIWidget(){
@@ -48,7 +32,7 @@ void UIWidget::OnInitialize(){
 	 SetIsVisible(mIsVisible);
 }
 void UIWidget::OnUpdate(double gameTime){
-	Render(gameTime);
+	Render(gameTime);		//TODO: This will get replaced by EnqueueForRender()
 }
 
 

@@ -24,7 +24,7 @@ class ShadingProgramManager
 		void AddToShaderCache(Shader*);
 		Shader* GetFromShaderCache(const std::string&);
 		bool CreateStockShadingPrograms();
-		void UseProgram(const std::string&);
+		void Use(const std::string&);
 		bool initialize(const std::string&, const std::string&);
 		void shutdown();
 };

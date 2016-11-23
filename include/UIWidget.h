@@ -5,7 +5,8 @@
  *      Author: girish
  */
 
-#pragma once
+#ifndef UIWIDGET_H
+#define UIWIDGET_H
 #include "afx.h"
 #include "Vector3.h"
 #include "Widget.h"
@@ -15,25 +16,10 @@
 class UIWidget :
 		public Widget,
 		public Renderable {
+private:
 
 protected:	
-
-	
-	GLint		m_iSizeVertex;
-	GLint		m_iSizeVertices;
-	GLint		m_iSizeIndices;
-	
-	GLint 		m_iNumVertices;
-	GLint		m_iNumTriangles;
-	
-	GLvoid*		m_pVertices;
-	GLvoid*		m_pIndices;
-	
-	GLuint		m_iVertexBuffer;
-	GLuint		m_iIndexBuffer;
-	
 	Program*	m_pShadingProgram;
-
 public:
 	UIWidget();
 	UIWidget(tinyxml2::XMLNode*);
@@ -41,5 +27,6 @@ public:
 	virtual void OnInitialize();
 	virtual void OnUpdate(double gameTime);
 };
+#endif
 
 

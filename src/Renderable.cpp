@@ -71,3 +71,6 @@ void Renderable::SetPivot(float pivotX, float pivotY, float pivotZ) {
     mPivot.Set(pivotX, pivotY, pivotZ);
 }
 
+Geometry* Renderable::GetGeometry() {
+	return mGeometry;
+}

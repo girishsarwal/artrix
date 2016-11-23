@@ -2,6 +2,7 @@
 #define RENDERABLE_H
 #include "afx.h"
 #include "Vector3.h"
+#include "Geometry.h"
 class Renderable {
 	protected:
     	Vector3 mPosition;
@@ -9,6 +10,7 @@ class Renderable {
     	Vector3 mSize;
     	bool mIsVisible;
 
+    	Geometry* mGeometry;
 	public:
     	Renderable();
     	~Renderable();
@@ -28,6 +30,8 @@ class Renderable {
 		const Vector3& GetPivot() const;
 		void SetPivot(const Vector3&);
 		void SetPivot(float, float, float);
+
+		Geometry* GetGeometry();
 
 		/** property change hooks **/
 	    virtual void OnSetVisible();

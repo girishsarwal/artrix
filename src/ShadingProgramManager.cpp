@@ -71,7 +71,7 @@ const std::string& ShadingProgramManager::GetRoot() const{
 void ShadingProgramManager::shutdown(){
 };	
 
-void ShadingProgramManager::UseProgram(const std::string& name){
+void ShadingProgramManager::Use(const std::string& name){
 	Program* program = Get(name);
 	if(NULL == program) {
 		printf("\nWARNING: cannot find program %s", name.c_str());

@@ -22,8 +22,6 @@ bool Widget::GetIsInitialized() const {
 void Widget::Initialize() {
     OnBeforeInitialize();
 
-
-
     OnInitialize();             /** we let the dervied class function execute first **/
     mIsInitialized = true;
 
@@ -42,6 +40,9 @@ void Widget::AfterInitialize() {
 
 
 void Widget::Update(double gameTime) {
+	if(!mIsInitialized){
+		Initialize();
+	}
     OnUpdate(gameTime);
 }
 

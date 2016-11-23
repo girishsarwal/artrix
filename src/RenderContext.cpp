@@ -22,7 +22,9 @@ bool RenderContext::initialize(int argc, char** argv){
 
 /** enter the main loop **/
 void RenderContext::begin(){
+	printf("\n+--------------------GAME LOOP BEGIN----------------------+\n");
 	clock_gettime(CLOCK_REALTIME, &tvLastTime);
+	printf("Starting from clock %ul\n", tvLastTime.tv_sec);
 	glutMainLoop();
 }
 
@@ -94,3 +96,8 @@ void RenderContext::showVersionInformation(){
 	printf("Version: %s\n", glGetString(GL_VERSION));
 	printf("Shader Version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 };
+
+
+
+
+

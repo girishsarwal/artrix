@@ -1,0 +1,97 @@
+<screens>
+    <screen name="splash" default="1">
+        <TimerWidget timeout="1000">
+            <action>gotoScreen</action>
+            <params>home</params>
+        </TimerWidget>
+        <ImageWidget name="background">
+            <src>splash</src>
+            <anchor><vec x="0" y="0"></vec></anchor>
+            <size><vec x="1920" y="1080"></vec></size>
+            <position><vec x="0" y="0"></vec></position>
+        </ImageWidget>
+        <TextWidget>
+            <value>pilot</value>
+            <size><vec x="720" y="100"></vec></size>
+            <position><vec x="0" y="20"></vec></position>
+            <anchor><vec x="0.5" y="0.5"></vec></anchor>
+        </TextWidget>
+    </screen>
+    <screen name="home">
+        <ImageWidget name="background">
+            <src>artrix-bg</src>
+            <anchor><vec x="0" y="0"></vec></anchor>
+            <size><vec x="1920" y="1080"></vec></size>
+            <position><vec x="0" y="0"></vec></position>
+        </ImageWidget>
+        <ButtonWidget name="pilot">
+            <size><vec x="720" y="100"></vec></size>
+            <position><vec x="0" y="0"></vec></position>
+            <anchor><vec x="0.5" y="0.5"></vec></anchor>
+            <background>
+                <ImageWidget name="background">
+                    <src>menu-button.png</src>
+                    <size><vec x="720" y="100"></vec></size>
+                    <position><vec x="0" y="20"></vec></position>
+                    <anchor><vec x="0.5" y="0.5"></vec></anchor>
+                </ImageWidget>
+            </background>
+            <text>
+                <TextWidget>
+                    <value>pilot</value>
+                    <size><vec x="720" y="100"></vec></size>
+                    <position><vec x="0" y="20"></vec></position>
+                    <anchor><vec x="0.5" y="0.5"></vec></anchor>
+                </TextWidget>
+            </text>
+            <action>gotoScreen</action>
+            <params>pilot</params>
+        </ButtonWidget>
+        <ButtonWidget name="pilot">
+            <size><vec x="720" y="100"></vec></size>
+            <position><vec x="720" y="0"></vec></position>
+            <anchor><vec x="0.5" y="0.5"></vec></anchor>
+            <background>
+                <ImageWidget name="background">
+                    <src>buttons/menu-button.png</src>
+                    <size><vec x="720" y="100"></vec></size>
+                    <position><vec x="720" y="20"></vec></position>
+                    <anchor><vec x="0.5" y="0.5"></vec></anchor>
+                </ImageWidget>
+            </background>
+            <text>
+                <TextWidget>
+                    <value>pilot</value>
+                    <size><vec x="720" y="100"></vec></size>
+                    <position><vec x="0" y="20"></vec></position>
+                    <anchor><vec x="0.5" y="0.5"></vec></anchor>
+                </TextWidget>
+            </text>
+            <action>gotoScreen</action>
+            <params>pilot</params>
+        </ButtonWidget>
+        <ButtonWidget name="pilot">
+            <size><vec x="480" y="100"></vec></size>
+            <position><vec x="1440" y="0"></vec></position>
+            <anchor><vec x="0.5" y="0.5"></vec></anchor>
+            <background>
+                <ImageWidget name="background">
+                    <src>buttons/menu-button.png</src>
+                    <size><vec x="480" y="100"></vec></size>
+                    <position><vec x="1440" y="20"></vec></position>
+                    <anchor><vec x="0.5" y="0.5"></vec></anchor>
+                </ImageWidget>
+            </background>
+            <text>
+                <TextWidget>
+                    <value>pilot</value>
+                    <size><vec x="720" y="100"></vec></size>
+                    <position><vec x="0" y="20"></vec></position>
+                    <anchor><vec x="0.5" y="0.5"></vec></anchor>
+                </TextWidget>
+            </text>
+            <action>gotoScreen</action>
+            <params>pilot</params>
+        </ButtonWidget>
+    </screen>
+</screens>
