@@ -71,6 +71,6 @@ void TimerWidget::OnSetParam2() {
 
 };
 
-bool ValidateAttributes() {
+bool TimerWidget::ValidateAttributes() {
 	return true;
 };

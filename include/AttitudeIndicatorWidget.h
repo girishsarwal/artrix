@@ -1,24 +1,34 @@
-#pragma once
+#ifndef ATTITUDEINDICATORWIDGET_H
+#define ATTITUDEINDICATORWIDGET_H
 #include "afx.h"
 #include "TelemetryWidget.h"
-#include "Attribute.h"
+#include "Vector3.h"
 class AttitudeIndicatorWidget :
 	public TelemetryWidget{
 private:
 	GLUquadricObj*	m_Gimbal;
-		
+
+protected:
+	void OnInitialize();
+	void OnRender(double);
+	void OnInitializeSensors();
+	void OnGetValuesFromSensors();
+	bool ValidateAttributes();
 public:
-	float m_fPitch;
-	float m_fRoll;
-	float m_fYaw;
-	std::string m_pGimbalTexture;
-	std::string m_pPanelTexture;
+	std::string mGimbalTexture;
+	std::string mPanelTexture;
+	Vector3 mOrientation;
 	
+	AttitudeIndicatorWidget();
 	AttitudeIndicatorWidget(tinyxml2::XMLNode*);
 	~AttitudeIndicatorWidget();
 	
-	void onInitialize();
-	void onCreate();
-	void onUpdate(double frameTime);
-	void onRender(double frameTime);
+	const std::string& GetGimbalTexture() const;
+	void SetGimbalTexture(const std::string&);
+	const std::string& GetPanelTexture() const;
+	void SetPanelTexture(const std::string&);
+	const Vector3& GetOrientation() const;
+	void SetOrientation(const Vector3&);
+
 };
+#endif

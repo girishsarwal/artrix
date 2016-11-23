@@ -9,31 +9,51 @@
 #ifndef CIRCULARGAUGEWIDGET_H
 #define CIRCULARGAUGEWIDGET_H
 #include "afx.h"
-#include "UIWidget.h"
-class CircularGaugeWidget: public UIWidget {
+#include "TelemetryWidget.h"
+#include "Vector3.h"
+class CircularGaugeWidget:
+	public TelemetryWidget {
 private:
-	std::string m_sDialTexture;
-	std::string m_sNeedleTexture;
-	uint m_iDialTextureId;
-	uint m_iNeedleTextureId;
-	double m_dValue;
-	double m_dMin;
-	double m_dMax;
-	double m_dRange;
-	double m_dGaugeMin;
-	double m_dGaugeMax;
-	double m_dGaugeRange;
-	
-	double m_dNeedleRotation;
+	std::string mDialTexture;
+	std::string mNeedleTexture;
 
-	Vector3 m_vNeedleSize;
+	double mValue;
+	
+	Vector3 mMinimus;
+	Vector3 mMaximus;
+	Vector3 mRanges;
+
+	double mNeedleRotation;
+	Vector3 mNeedleSize;
+
 protected:
-	void onInitialize();
-	void onRender(double frameTime);
-	void onUpdate(double frameTime);
+	void OnInitialize();
+	void OnRender(double);
+	void OnInitializeSensors();
+	void OnGetValuesFromSensors();
+	bool ValidateAttributes();
+
 public:
 	CircularGaugeWidget();
 	CircularGaugeWidget(tinyxml2::XMLNode*);
 	virtual ~CircularGaugeWidget();
+
+	const std::string& GetDialTexture() const;
+	void SetDialTexture(const std::string&);
+	const std::string& GetNeedleTexture() const;
+	void SetNeedleTexture(const std::string&);
+	double GetValue();
+	void SetValue(double value);
+
+	const Vector3& GetMinimus() const;
+	void SetMinimums(const Vector3&);
+	const Vector3& GetMaximus() const;
+	void SetMaximus(const Vector3&);
+	double GetNeedleRotation();
+	void SetNeedleRotation(double);
+	const Vector3& GetNeedleSize() const;
+	void SetNeedleSize(const Vector3&);
+	void CalculateRanges();
+
 };
 #endif

@@ -102,4 +102,8 @@ void ImageWidget::OnAfterInitialize(){
 	
 }
 
+bool ImageWidget::ValidateAttributes() {
+	return true;
+}
+
 

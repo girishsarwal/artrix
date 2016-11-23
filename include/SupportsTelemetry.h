@@ -1,7 +1,9 @@
-#pragma once
+#ifndef SUPPORTSTELEMETRY_H
+#define SUPPORTSTELEMETRY_H
 #include "afx.h"
-class ISupportsTelemetry {
-	/*
+class SupportsTelemetry {
 	public:
-		virtual void getValuesFromSensors() = 0;*/
+		virtual void InitializeSensors() = 0;
+		virtual void GetValuesFromSensors() = 0;
 };
+#endif

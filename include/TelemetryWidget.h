@@ -9,21 +9,26 @@
 #include "afx.h"
 #include "UIWidget.h"
 #include "SupportsTelemetry.h"
+
 class TelemetryWidget
 	: public UIWidget
-	, ISupportsTelemetry{
-private:
-	uint 	m_iTextureId;
+	, SupportsTelemetry{
+
 protected:
-	virtual void onGetValuesFromSensors();
-	virtual void onInitialize();
-	virtual void onUpdate(double frameTime);
-	virtual void onRender(double frameTime);
+
+
+	virtual void OnInitializeSensors();
+	virtual void OnGetValuesFromSensors();
+	virtual void OnInitialize();
+	virtual void OnUpdate(double frameTime);
+
 public:
-	std::string	m_pPath;
 	TelemetryWidget();
+	TelemetryWidget(tinyxml2::XMLNode*);
 	virtual ~TelemetryWidget();
-	void getValuesFromSensors();
+
+	void InitializeSensors();
+	void GetValuesFromSensors();
 };
 
 

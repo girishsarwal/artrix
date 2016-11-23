@@ -8,6 +8,12 @@
 #include "afx.h"
 #include "Renderable.h"
 
+Renderable::Renderable() {
+
+};
+Renderable::~Renderable() {
+
+};
 void Renderable::Render(double gameTime) {
 	OnBeforeRender(gameTime);
 	OnRender(gameTime);
