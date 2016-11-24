@@ -9,10 +9,6 @@
 				<shader>vc.vert</shader> 
 				<shader>vc.frag</shader>
 			</shaders>
-			<attributes>
-				<attribute name="position" location="0"></attribute>
-				<attribute name="color" location="1"></attribute>
-			</attributes>
 		</program>
 	</programs>
 </gpu>

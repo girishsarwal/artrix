@@ -11,6 +11,8 @@
 
 #define TESTMODE
 int main(int argc, char* argv[]){
+
+
 	if(!DM) { printf("ERROR: Cannot create DLCManager"); return false; }
 	if(!RC) { printf("ERROR: Cannot create RenderContext\n"); return false; }
 	if(!TM) { printf("ERROR: Cannot create TextureManager\n"); return false; }
@@ -18,11 +20,10 @@ int main(int argc, char* argv[]){
 	if(!FM) { printf("ERROR: Cannot create FontManager"); return false; }
 	if(!RS232M) { printf("ERROR: Cannot create SerialManager"); return false; }
 	if(!SPI) { printf("ERROR: Cannot create ShaderProgramManager"); return false; }
-	
+
 	if(!DM->initialize("http://availability.localhost.com", "/artrix")) {	/** DLC Manager **/
 		throw std::exception();
 	}
-#ifdef TESTMODE
 
 	DM->FromMediaServer("/pratham.zip", "./.artrix/dlc/", true);
 	if(!RC->initialize(argc, argv)){
@@ -53,7 +54,7 @@ int main(int argc, char* argv[]){
 		throw std::exception();
 	}
 
-	RC->setup();
+
 	RC->begin();
 
 	printf("Shutting down subsystems...");
@@ -64,7 +65,6 @@ int main(int argc, char* argv[]){
 	RS232M->shutdown();
 
 	printf("Ready to exit");
-#endif
 	
 	return 0;
 };

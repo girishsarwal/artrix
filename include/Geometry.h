@@ -21,6 +21,9 @@ private:
 	GLint	mNumIndices;
 	GLint	mNumTriangles;
 
+	GLuint	mVertexArrayId;
+	GLuint	mIndexArrayId;
+
 	GLuint	mVertexBufferId;
 	GLuint	mIndexBufferId;
 

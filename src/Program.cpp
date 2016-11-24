@@ -39,36 +39,52 @@ Program::Program(tinyxml2::XMLNode* node){
 		mShaders.push_back(shader);
 	}
 
-	tinyxml2::XMLElement* attributes = elem->FirstChildElement("attributes");
-	if(NULL == attributes) {
-		printf("\nWARNING: there are no attributes defined. Program may be unusable");
-		return;
-	}
-	for(tinyxml2::XMLNode* attributeNode = attributes->FirstChild(); attributeNode; attributeNode = attributeNode->NextSibling()) {
-		std::string attributeName = attributeNode->ToElement()->Attribute("name");
-		GLuint attributeLocation = atoi(attributeNode->ToElement()->Attribute("location"));
-		mAttributes[attributeName] = attributeLocation;
-	}
-
-	tinyxml2::XMLElement* uniforms = elem->FirstChildElement("uniforms");
-	if(NULL == uniforms) {
-		printf("\nWARNING: there are no uniforms defined. Program may be unusable");
-		return;
-	}
-	for(tinyxml2::XMLNode* uniformNode = uniforms->FirstChild(); uniformNode; uniformNode = uniformNode->NextSibling()) {
-		std::string uniformName = uniformNode->ToElement()->Attribute("name");
-		GLuint uniformLocation = atoi(uniformNode->ToElement()->Attribute("location"));
-		mUniforms[uniformName] = uniformLocation;
-	}
+//	tinyxml2::XMLElement* attributes = elem->FirstChildElement("attributes");
+//	if(NULL == attributes) {
+//		printf("\nWARNING: there are no attributes defined. Program may be unusable");
+//		return;
+//	}
+//	for(tinyxml2::XMLNode* attributeNode = attributes->FirstChild(); attributeNode; attributeNode = attributeNode->NextSibling()) {
+//		std::string attributeName = attributeNode->ToElement()->Attribute("name");
+//		GLuint attributeLocation = atoi(attributeNode->ToElement()->Attribute("location"));
+//		mAttributes[attributeName] = attributeLocation;
+//	}
+//
+//	tinyxml2::XMLElement* uniforms = elem->FirstChildElement("uniforms");
+//	if(NULL == uniforms) {
+//		printf("\nWARNING: there are no uniforms defined. Program may be unusable");
+//		return;
+//	}
+//	for(tinyxml2::XMLNode* uniformNode = uniforms->FirstChild(); uniformNode; uniformNode = uniformNode->NextSibling()) {
+//		std::string uniformName = uniformNode->ToElement()->Attribute("name");
+//		GLuint uniformLocation = atoi(uniformNode->ToElement()->Attribute("location"));
+//		mUniforms[uniformName] = uniformLocation;
+//	}
 };
 Program::~Program(){
 	
+};
+void Program::AttachAllShaders() {
+	std::vector<Shader*>::const_iterator it = mShaders.begin();
+	while(it != mShaders.end()){
+		AttachShader(*it);
+		it++;
+	}
 };
 
 GLuint Program::AttachShader(Shader* shader){
 	glAttachShader(mProgramHandle, shader->GetHandle());
 	return shader->IncrementRefCount();
 };
+
+void Program::DetachAllShaders() {
+	std::vector<Shader*>::const_iterator it = mShaders.begin();
+	while(it != mShaders.end()){
+		DetachShader(*it);
+		it++;
+	}
+};
+
 GLuint Program::DetachShader(Shader* shader){
 	glDetachShader(mProgramHandle, shader->GetHandle());
 	return shader->DecrementRefCount();
@@ -77,6 +93,7 @@ bool Program::Link(){
 	mIsLinked = false;
 	mProgramHandle = glCreateProgram();
 	printf("\nLinking program '%s' ...\n", mName.c_str());
+	AttachAllShaders();
     glLinkProgram(mProgramHandle);
 
     GLint status;
@@ -89,67 +106,63 @@ bool Program::Link(){
         glGetShaderInfoLog(mProgramHandle, infoLogLength, NULL, mInfoLog);
 		printf("\nWARNING: Link failure in program '%s'...\n\t %s",mName.c_str(), mInfoLog);
         delete[] mInfoLog;
+        DetachAllShaders();
         return mIsLinked;
     }
-
+    enumerateAttributes();
 	enumerateUniforms();
-	setupAttributes();
-
+	DetachAllShaders();
 	mIsLinked = true;
 	printf("\nSuccessfully linked program '%s' to handle %d", mName.c_str(), mProgramHandle);
 	return mIsLinked;
 };
 
-void Program::setupAttributes(){
-	std::map<std::string, GLuint>::const_iterator it =  mAttributes.begin();
-	while(it != mAttributes.end()){
-		glBindAttribLocation(mId, it->second, it->first.c_str());
-		it++;
-	}
-};
-
 void Program::enumerateUniforms(){
-//	GLint numUniforms = 0;
-//	GLint uniformNameMaxLength = 0;
-//
-//	glGetProgramiv(m_iProgramHandle, GL_ACTIVE_UNIFORMS, &numUniforms);
-//	glGetProgramiv(m_iProgramHandle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &uniformNameMaxLength);
-//	printf("\n\tNo. Of Active Uniforms %d", numUniforms);
-//
-//	GLint size;
-//	GLenum type;
-//
-//	m_UniformLocations.empty();
-//
-//	while(numUniforms-- > 0){
-//		char* _name = (char*)malloc(uniformNameMaxLength);
-//		glGetActiveUniform(m_iProgramHandle, numUniforms, uniformNameMaxLength, NULL, &size, &type, _name);
-//		std::string name(_name);
-//		m_UniformLocations[name] = numUniforms;
-//		printf("\n\t\tUniform %s coerced to %d", name.c_str(), m_UniformLocations[name]);
-//	}
-//}
-//void Program::enumerateAttributes(){
-//	GLint numAttributes = 0;
-//	GLint attributeNameMaxLength = 0;
-//
-//	glGetProgramiv(m_iProgramHandle, GL_ACTIVE_ATTRIBUTES, &numAttributes);
-//	glGetProgramiv(m_iProgramHandle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &attributeNameMaxLength);
-//
-//	printf("\n\tNumber of Active Attributes %d", numAttributes);
-//
-//	GLint size;
-//	GLenum type;
-//
-//	m_AttributeLocations.empty();
-//
-//	while(numAttributes-- > 0){
-//		char* _name = (char*)malloc(attributeNameMaxLength);
-//		glGetActiveAttrib(m_iProgramHandle, numAttributes, attributeNameMaxLength, NULL, &size, &type, _name);
-//		std::string name(_name);
-//		m_AttributeLocations[name] = numAttributes;
-//		printf("\n\t\tAttribute %s coerced to %d", name.c_str(), m_AttributeLocations[name]);
-//	}
+	GLint numUniforms = 0;
+	GLint uniformNameMaxLength = 0;
+
+	glGetProgramiv(mProgramHandle, GL_ACTIVE_UNIFORMS, &numUniforms);
+	glGetProgramiv(mProgramHandle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &uniformNameMaxLength);
+	printf("\n\tNo. Of Active Uniforms %d", numUniforms);
+
+	GLint size;
+	GLenum type;
+
+	mUniforms.empty();
+
+	while(numUniforms-- > 0){
+		GLint location = -1;
+		char* _name = (char*)malloc(uniformNameMaxLength);
+		glGetActiveUniform(mProgramHandle, numUniforms, uniformNameMaxLength, NULL, &size, &type, _name);
+		location = glGetUniformLocation(mProgramHandle, _name);
+		std::string name(_name);
+		mUniforms[_name] = numUniforms;
+		printf("\n\t\tUniform %s coerced to %d", name.c_str(), mUniforms[name]);
+	}
+}
+void Program::enumerateAttributes(){
+	GLint numAttributes = 0;
+	GLint attributeNameMaxLength = 0;
+
+	glGetProgramiv(mProgramHandle, GL_ACTIVE_ATTRIBUTES, &numAttributes);
+	glGetProgramiv(mProgramHandle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &attributeNameMaxLength);
+
+	printf("\n\tNumber of Active Attributes %d", numAttributes);
+
+		GLint size;
+		GLenum type;
+
+	mAttributes.empty();
+
+	while(numAttributes-- > 0){
+		GLint location = -1;
+		char* _name = (char*)malloc(attributeNameMaxLength);
+		glGetActiveAttrib(mProgramHandle, numAttributes, attributeNameMaxLength, NULL, &size, &type, _name);
+		location = glGetAttribLocation(mProgramHandle, _name);
+		std::string name(_name);
+		mAttributes[name] = location;
+		printf("\n\t\tAttribute %s coerced to %d", name.c_str(), mAttributes[name]);
+	}
 }
 
 bool Program::bindAttribute(std::string& name, GLuint index){

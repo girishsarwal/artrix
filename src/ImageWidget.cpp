@@ -8,11 +8,11 @@
 #include "ImageWidget.h"
 
 ImageWidget::ImageWidget() {
-	mTexture = NULL;
+
 };
 
 ImageWidget::ImageWidget(tinyxml2::XMLNode* node) {
-	mTexture = NULL;
+
 	tinyxml2::XMLElement* elem = node->ToElement();
 	if(elem != NULL){
 		SetName(elem->Attribute("name"));
@@ -33,7 +33,7 @@ void ImageWidget::OnInitialize(){
 
 
 void ImageWidget::OnRender(double frameTime){
-	mTexture->Use();
+	TM->Use(mSource);
 	SPM->Use("vc");
 	mGeometry->Render();
 	
@@ -55,7 +55,6 @@ const std::string& ImageWidget::GetSource() const {
 
 void ImageWidget::SetSource(const std::string& source) {
 	mSource = source;
-	mTexture = TM->Get(mSource);
 };
 
 

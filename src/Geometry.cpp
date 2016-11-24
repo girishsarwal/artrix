@@ -48,10 +48,10 @@ void Geometry::CreatePlaneGeometry(Geometry** geometry, int vd, const Vector3& d
 		*geometry = new Geometry();
 	}
 
-	float r = 0x00FF0000;
-	float g = 0x0000FF00;
-	float b = 0x0000FF00;
-	float a = 0xFF000000;
+	float r = 0.0f;
+	float g = 1.0f;
+	float b = 0.0f;
+	float a = 1.0f;
 
 	VertexColor vertices[] =
 	{
@@ -60,7 +60,6 @@ void Geometry::CreatePlaneGeometry(Geometry** geometry, int vd, const Vector3& d
 		{ 1,  1, 0.0f, r, g, b, a},
 		{-1,  1, 0.0f, r, g, b, a},
 	};
-
 
 	(*geometry)->mSizeVertex = sizeof(vertices[0]);
 	(*geometry)->mSizeVertices = sizeof(vertices);
@@ -79,27 +78,28 @@ void Geometry::CreatePlaneGeometry(Geometry** geometry, int vd, const Vector3& d
 	(*geometry)->mVertexBuffer = malloc((*geometry)->mSizeVertices);
 	(*geometry)->mIndexBuffer = malloc((*geometry)->mSizeIndices);
 
-	memcpy((*geometry)->mVertexBuffer, vertices, (*geometry)->mSizeVertices);
-	memcpy((*geometry)->mIndexBuffer, indices, (*geometry)->mSizeIndices);
+
+
+	glGenVertexArrays(1, &((*geometry)->mVertexArrayId));
+	glBindVertexArray((*geometry)->mVertexArrayId);
 
 	glGenBuffers(1, &((*geometry)->mVertexBufferId));
+	glBindBuffer(GL_ARRAY_BUFFER, (*geometry)->mVertexBufferId);
+	glBufferData(GL_ARRAY_BUFFER, (*geometry)->mSizeVertices, vertices, GL_STATIC_DRAW);
+
+
 	glGenBuffers(1, &((*geometry)->mIndexBufferId));
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, (*geometry)->mIndexBufferId);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, (*geometry)->mSizeIndices, &indices[0], GL_STATIC_DRAW);
 }
 
 void Geometry::Render(){
-	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferId);
-	glBufferData (GL_ARRAY_BUFFER, mSizeVertices, mVertexBuffer, GL_STATIC_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferId);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, mSizeIndices, mIndexBuffer, GL_STATIC_DRAW);
 
 	VertexColor::EnableAttribute(VertexColor::INDEX_POSITION);
 	VertexColor::EnableAttribute(VertexColor::INDEX_COLOR);
-
-
-	glDrawElements(GL_TRIANGLES, mSizeIndices, GL_UNSIGNED_INT, 0);
-
+	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferId);
+	glDrawElements(GL_TRIANGLES, mSizeIndices, GL_UNSIGNED_INT, (void*)0);
 	VertexColor::DisableAttribute(VertexColor::INDEX_POSITION);
 	VertexColor::DisableAttribute(VertexColor::INDEX_COLOR);
-
 }
 

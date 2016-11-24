@@ -12,8 +12,6 @@
 #include "ShadingProgramManager.h"
 class ImageWidget:
 		public UIWidget {
-private:
-	Texture* mTexture;
 protected:
 	std::string	mSource;
 

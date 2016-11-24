@@ -28,15 +28,15 @@ void Texture::Use(){
 	if(!mIsInitialized) {
 		Initialize();
 	}
-	glActiveTexture(mId);
+	glActiveTexture(mTextureId);
 }
 
 uint Texture::GetTextureId() {
-	return mId;
+	return mTextureId;
 }
 
 void Texture::SetTextureId(uint textureId) {
-	mId = textureId;
+	mTextureId = textureId;
 }
 
 const std::string& Texture::GetTextureType() const {

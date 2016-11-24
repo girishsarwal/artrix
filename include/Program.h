@@ -10,14 +10,14 @@ class Program
 private:
 
 	std::vector<Shader*> mShaders;
-	std::map<std::string, GLuint> mAttributes;
-	std::map<std::string, GLuint> mUniforms;
+	std::map<std::string, GLint> mAttributes;
+	std::map<std::string, GLint> mUniforms;
 
 	GLuint mProgramHandle;
 	GLchar*	mInfoLog;
 
 	void enumerateUniforms();
-	void setupAttributes();
+	void enumerateAttributes();
 
 	bool mIsLinked;
 	bool mIsInitialized;
@@ -27,7 +27,8 @@ public:
 	Program();
 	Program(tinyxml2::XMLNode*);
 	~Program();
-
+	void AttachAllShaders();
+	void DetachAllShaders();
 	GLuint AttachShader(Shader*);
 	GLuint DetachShader(Shader*);
 	bool Link();
