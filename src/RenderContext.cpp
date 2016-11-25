@@ -30,7 +30,7 @@ bool RenderContext::initialize(int argc, char** argv){
 		return -1;
 	}
 	glfwMakeContextCurrent(window);
-
+	glfwSetWindowSizeCallback(window, resize);
 	// Initialize GLEW
 	glewExperimental = true; // Needed for core profile
 	if (glewInit() != GLEW_OK) {
@@ -45,23 +45,6 @@ bool RenderContext::initialize(int argc, char** argv){
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
 	showVersionInformation();
-
-//	glGenVertexArrays(1, &VertexArrayID);
-//	glBindVertexArray(VertexArrayID);
-//
-//
-//	static const GLfloat g_vertex_buffer_data[] = {
-//		-1.0f, -1.0f, 0.0f,
-//		 1.0f, -1.0f, 0.0f,
-//		 0.0f,  1.0f, 0.0f,
-//	};
-//
-//
-//	glGenBuffers(1, &vertexbuffer);
-//	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-//	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-
-
 	return true;
 }
 
@@ -78,21 +61,6 @@ void RenderContext::begin(){
 		dElapsedTime = ((tvCurrentTime.tv_sec - tvLastTime.tv_sec) * 1000)  + (tvCurrentTime.tv_nsec - tvLastTime.tv_nsec)/ 1000000;
 		tvLastTime = tvCurrentTime;
 		frame();
-
-			SPM->Use("vc");
-//			glEnableVertexAttribArray(0);
-//			glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-//			glVertexAttribPointer(
-//				0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-//				3,                  // size
-//				GL_FLOAT,           // type
-//				GL_FALSE,           // normalized?
-//				0,                  // stride
-//				(void*)0            // array buffer offset
-//			);
-//			glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
-//			glDisableVertexAttribArray(0);
-
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
@@ -137,16 +105,15 @@ View* RenderContext::getCurrentView(){
 	return m_pCurrentView;
 }
 
-void resize(GLint w, GLint h){
+void resize(GLFWwindow* window, GLint w, GLint h){
 	if(h ==0){
 		h = 1;
 	}
-//	glViewport(0, 0, w, h);
-//
-//	glMatrixMode(GL_PROJECTION);
-//	glLoadIdentity();
-//	glOrtho(-SCREEN_UNIT_X, SCREEN_UNIT_X, -SCREEN_UNIT_Y, SCREEN_UNIT_Y, -100, 100);
-//	glMatrixMode(GL_MODELVIEW);
+	glViewport(0, 0, w, h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(60, w/h, 1.0, 1000.0);
+	glMatrixMode(GL_MODELVIEW);
 }
 
 

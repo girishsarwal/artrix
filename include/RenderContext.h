@@ -1,9 +1,6 @@
 #ifndef RENDERCONTEXT_H
 #define RENDERCONTEXT_H
 
-#define SCREEN_UNIT_X 1
-#define SCREEN_UNIT_Y 1
-
 #include "afx.h"
 #include "View.h"
 #include "ViewManager.h"
@@ -33,7 +30,7 @@ public:
 };
 
 
-
+extern "C" void resize(GLFWwindow*, int, int);
 
 #define RC RenderContext::getInstance()
 #endif
