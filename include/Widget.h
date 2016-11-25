@@ -4,7 +4,6 @@ class StateMachine;
 #include "afx.h"
 #include "StateMachine.h"
 #include "KeyManageable.h"
-#include "Vector3.h"
 #define DEFAULT_WIDGET_SIZE 100
 
 class Widget :

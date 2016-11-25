@@ -42,10 +42,10 @@ const std::string& AttitudeIndicatorWidget::GetPanelTexture() const {
 void AttitudeIndicatorWidget::SetPanelTexture(const std::string& panelTexture) {
 	mPanelTexture = panelTexture;
 }
-const Vector3& AttitudeIndicatorWidget::GetOrientation() const {
+const glm::vec3& AttitudeIndicatorWidget::GetOrientation() const {
 	return mOrientation;
 }
-void AttitudeIndicatorWidget::SetOrientation(const Vector3& orientation) {
+void AttitudeIndicatorWidget::SetOrientation(const glm::vec3& orientation) {
 	mOrientation = orientation;
 }
 

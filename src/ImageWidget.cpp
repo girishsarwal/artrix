@@ -11,14 +11,14 @@ ImageWidget::ImageWidget() {
 
 };
 
-ImageWidget::ImageWidget(tinyxml2::XMLNode* node) {
+ImageWidget::ImageWidget(tinyxml2::XMLNode* node)
+	: UIWidget(node) {
 
 	tinyxml2::XMLElement* elem = node->ToElement();
 	if(elem != NULL){
 		SetName(elem->Attribute("name"));
 		mSource = elem->FirstChildElement("src")->FirstChild()->Value();
 	}
-	printf("Source %s", mSource.c_str());
 };
 
 ImageWidget::~ImageWidget(){
@@ -41,8 +41,6 @@ void ImageWidget::OnRender(double frameTime){
 
 void ImageWidget::OnAfterInitialize(){
 
-			
-	
 }
 
 bool ImageWidget::ValidateAttributes() {

@@ -55,16 +55,16 @@ void CircularGaugeWidget::SetValue(double value) {
 	mValue = value;
 };
 
-const Vector3& CircularGaugeWidget::GetMinimus() const {
+const glm::vec3& CircularGaugeWidget::GetMinimus() const {
 	return mMinimus;
 };
-void CircularGaugeWidget::SetMinimums(const Vector3& minimus) {
+void CircularGaugeWidget::SetMinimums(const glm::vec3& minimus) {
 	mMinimus = minimus;
 };
-const Vector3& CircularGaugeWidget::GetMaximus() const {
+const glm::vec3& CircularGaugeWidget::GetMaximus() const {
 	return mMaximus;
 };
-void CircularGaugeWidget::SetMaximus(const Vector3& maximus) {
+void CircularGaugeWidget::SetMaximus(const glm::vec3& maximus) {
 	mMaximus = maximus;
 };
 double CircularGaugeWidget::GetNeedleRotation() {
@@ -73,10 +73,10 @@ double CircularGaugeWidget::GetNeedleRotation() {
 void CircularGaugeWidget::SetNeedleRotation(double needleRotation) {
 	mNeedleRotation = needleRotation;
 };
-const Vector3& CircularGaugeWidget::GetNeedleSize() const {
+const glm::vec3& CircularGaugeWidget::GetNeedleSize() const {
 	return mNeedleSize;
 };
-void CircularGaugeWidget::SetNeedleSize(const Vector3& needleSize) {
+void CircularGaugeWidget::SetNeedleSize(const glm::vec3& needleSize) {
 	mNeedleSize = needleSize;
 };
 void CircularGaugeWidget::CalculateRanges() {

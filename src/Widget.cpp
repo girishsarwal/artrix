@@ -8,7 +8,6 @@ Widget::Widget() {
 
 Widget::Widget(tinyxml2::XMLNode* node) {
 	mIsInitialized = false;
-
     SetDefaultName(string("Widget"));
 }
 
@@ -34,6 +33,7 @@ void Widget::BeforeInitialize() {
     OnBeforeInitialize();
 }
 void Widget::AfterInitialize() {
+	Print();
     OnAfterInitialize();
 }
 
@@ -48,7 +48,8 @@ void Widget::Update(double gameTime) {
 
 void Widget::OnBeforeInitialize() { printf("Widget::OnBeforeInitialize - base was called"); }
 void Widget::OnInitialize() { printf("Widget::OnBeforeInitialize - base was called"); }
-void Widget::OnAfterInitialize() { printf("Widget::OnAfterInitialize - base was called"); }
+void Widget::OnAfterInitialize() {
+	printf("Widget::OnAfterInitialize - base was called"); }
 
 void Widget::OnBeforeUpdate(double gameTime) { }
 void Widget::OnUpdate(double gameTime) { }

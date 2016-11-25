@@ -40,35 +40,36 @@ void Renderable::SetIsVisible(bool isVisible){
     mIsVisible = isVisible;
     OnSetVisible();
 }
-const Vector3& Renderable::GetSize() const {
+const glm::vec3& Renderable::GetSize() const {
     return mSize;
 }
-void Renderable::SetSize(const Vector3& size) {
+void Renderable::SetSize(const glm::vec3& size) {
     SetSize(size.x, size.y, size.z);
 }
 void Renderable::SetSize(float width, float height, float depth) {
-    mSize.Set(width, height, depth);
+    mSize = glm::vec3(width, height, depth);
     OnSetSize();
 }
-const Vector3& Renderable::GetPosition() const {
+const glm::vec3& Renderable::GetPosition() const {
     return mPosition;
 }
-void Renderable::SetPosition(const Vector3& position) {
+void Renderable::SetPosition(const glm::vec3& position) {
     SetPosition(position.x, position.y, position.z);
+    printf("%s", position);
 }
 void Renderable::SetPosition(float x, float y, float z) {
-    mPosition.Set(x, y, z);
+    mPosition = glm::vec3(x, y, z);
     OnSetPosition();
 }
 
-const Vector3& Renderable::GetPivot() const {
+const glm::vec3& Renderable::GetPivot() const {
     return mPivot;
 }
-void Renderable::SetPivot(const Vector3& pivot) {
+void Renderable::SetPivot(const glm::vec3& pivot) {
     SetPivot(pivot.x, pivot.y, pivot.z);
 }
 void Renderable::SetPivot(float pivotX, float pivotY, float pivotZ) {
-    mPivot.Set(pivotX, pivotY, pivotZ);
+    mPivot = glm::vec3(pivotX, pivotY, pivotZ);
 }
 
 Geometry* Renderable::GetGeometry() {

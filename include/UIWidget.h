@@ -8,7 +8,6 @@
 #ifndef UIWIDGET_H
 #define UIWIDGET_H
 #include "afx.h"
-#include "Vector3.h"
 #include "Widget.h"
 #include "Renderable.h"
 #include "Program.h"

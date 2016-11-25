@@ -2,9 +2,9 @@
     <screen name="splash" default="1">
         <ImageWidget name="background">
             <src>splash</src>
-            <anchor><vec x="0" y="0"></vec></anchor>
-            <size><vec x="1920" y="1080"></vec></size>
-            <position><vec x="0" y="0"></vec></position>
+            <anchor><vec x="0" y="0" z="0"></vec></anchor>
+            <size><vec x="1920" y="1080" z="0"></vec></size>
+            <position><vec x="0" y="0" z="0"></vec></position>
         </ImageWidget>
     </screen>
 </screens>

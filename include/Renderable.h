@@ -1,13 +1,12 @@
 #ifndef RENDERABLE_H
 #define RENDERABLE_H
 #include "afx.h"
-#include "Vector3.h"
 #include "Geometry.h"
 class Renderable {
 	protected:
-    	Vector3 mPosition;
-    	Vector3 mPivot;
-    	Vector3 mSize;
+    	glm::vec3 mPosition;
+    	glm::vec3 mPivot;
+    	glm::vec3 mSize;
     	bool mIsVisible;
 
     	Geometry* mGeometry;
@@ -21,14 +20,14 @@ class Renderable {
 
 		bool GetIsVisible() const;
 		void SetIsVisible(bool);
-		const Vector3& GetSize() const;
-		void SetSize(const Vector3&);
+		const glm::vec3& GetSize() const;
+		void SetSize(const glm::vec3&);
 		void SetSize(float, float, float);
-		const Vector3& GetPosition() const;
-		void SetPosition(const Vector3&);
+		const glm::vec3& GetPosition() const;
+		void SetPosition(const glm::vec3&);
 		void SetPosition(float, float, float);
-		const Vector3& GetPivot() const;
-		void SetPivot(const Vector3&);
+		const glm::vec3& GetPivot() const;
+		void SetPivot(const glm::vec3&);
 		void SetPivot(float, float, float);
 
 		Geometry* GetGeometry();

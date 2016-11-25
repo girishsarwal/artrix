@@ -24,8 +24,10 @@
 
 //#include <bcm_host.h>
 
+#include <glm/glm.hpp>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
 #include <vector>
 #include <map>
 #include <string>
@@ -49,7 +51,6 @@
 /** managers **/
 
 
-
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]
 
 #define ALOGI(h, ...) ((void)printf(h, __VA_ARGS__))
@@ -59,5 +60,7 @@
 
 
 uint8_t safe_create_dir(const char *dir);
+std::ostream& operator<<(std::ostream& stream, const glm::vec3& vector);
+const glm::vec3 vec3fromXmlNode(tinyxml2::XMLNode* node);
 
 

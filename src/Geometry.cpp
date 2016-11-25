@@ -28,7 +28,7 @@ Geometry::~Geometry() {
 	// TODO Auto-generated destructor stub
 }
 
-void Geometry::CreatePlaneGeometry(Geometry** geometry, int vd, const Vector3& dimension) {
+void Geometry::CreatePlaneGeometry(Geometry** geometry, int vd, const glm::vec3& dimension) {
 
 	//	/**generate the background rgb components **/
 	//	float r = (m_fBackground & 0x00FF0000) >> 0x10;

@@ -10,7 +10,6 @@
 #define CIRCULARGAUGEWIDGET_H
 #include "afx.h"
 #include "TelemetryWidget.h"
-#include "Vector3.h"
 class CircularGaugeWidget:
 	public TelemetryWidget {
 private:
@@ -19,12 +18,12 @@ private:
 
 	double mValue;
 	
-	Vector3 mMinimus;
-	Vector3 mMaximus;
-	Vector3 mRanges;
+	glm::vec3 mMinimus;
+	glm::vec3 mMaximus;
+	glm::vec3 mRanges;
 
 	double mNeedleRotation;
-	Vector3 mNeedleSize;
+	glm::vec3 mNeedleSize;
 
 protected:
 	void OnInitialize();
@@ -45,14 +44,14 @@ public:
 	double GetValue();
 	void SetValue(double value);
 
-	const Vector3& GetMinimus() const;
-	void SetMinimums(const Vector3&);
-	const Vector3& GetMaximus() const;
-	void SetMaximus(const Vector3&);
+	const glm::vec3& GetMinimus() const;
+	void SetMinimums(const glm::vec3&);
+	const glm::vec3& GetMaximus() const;
+	void SetMaximus(const glm::vec3&);
 	double GetNeedleRotation();
 	void SetNeedleRotation(double);
-	const Vector3& GetNeedleSize() const;
-	void SetNeedleSize(const Vector3&);
+	const glm::vec3& GetNeedleSize() const;
+	void SetNeedleSize(const glm::vec3&);
 	void CalculateRanges();
 
 };

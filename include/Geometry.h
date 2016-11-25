@@ -9,7 +9,6 @@
 #define GEOMETRY_H
 #include "afx.h"
 #include "VertexDeclarations.h"
-#include "Vector3.h"
 class Geometry {
 private:
 	GLint	mSizeVertex;
@@ -31,7 +30,7 @@ private:
 	GLvoid*	mIndexBuffer;
 
 public:
-	static void CreatePlaneGeometry(Geometry**, int, const Vector3&);
+	static void CreatePlaneGeometry(Geometry**, int, const glm::vec3&);
 	Geometry();
 	void Render();
 	virtual ~Geometry();

@@ -3,22 +3,24 @@
 UIWidget::UIWidget(){
 	mIsVisible = true;
 
-	mPosition.Set(0.0f, 0.0f, 0.0f);
-    mSize.Set(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE, 0);
-    mPivot.Set(0.5f, 0.5f, 0.5f);
+	mPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+    mSize = glm::vec3(DEFAULT_WIDGET_SIZE, DEFAULT_WIDGET_SIZE, 0);
+    mPivot = glm::vec3(0.5f, 0.5f, 0.5f);
     mGeometry = NULL;
 };
 
-UIWidget::UIWidget(tinyxml2::XMLNode* node){
+UIWidget::UIWidget(tinyxml2::XMLNode* node)
+	: Widget(node),
+	  Renderable() {
 	tinyxml2::XMLElement* elem = node->ToElement();
 	if(NULL == elem) {
 		printf("UIWidget - cannot parse xml");
 		return;
 	}
-    mPosition = Vector3(node->FirstChildElement("position")->FirstChild());
-    mSize = Vector3(node->FirstChildElement("size")->FirstChild());
+	mPosition = vec3fromXmlNode(node->FirstChildElement("position")->FirstChild());
+	mSize = vec3fromXmlNode(node->FirstChildElement("size")->FirstChild());
+	mPivot = vec3fromXmlNode(node->FirstChildElement("anchor")->FirstChild());
     mIsVisible = true;
-    mPivot = Vector3(node->FirstChildElement("anchor")->FirstChild());
     mGeometry = NULL;
 };
 
