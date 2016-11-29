@@ -9,8 +9,9 @@
 #define GEOMETRY_H
 #include "afx.h"
 #include "VertexDeclarations.h"
+namespace gtfx {
 class Geometry {
-private:
+public:
 	GLint	mSizeVertex;
 	GLint	mSizeVertices;
 	GLint	mSizeIndex;
@@ -21,19 +22,18 @@ private:
 	GLint	mNumTriangles;
 
 	GLuint	mVertexArrayId;
-	GLuint	mIndexArrayId;
 
 	GLuint	mVertexBufferId;
 	GLuint	mIndexBufferId;
 
-	GLvoid*	mVertexBuffer;
-	GLvoid*	mIndexBuffer;
+	GLvoid* mVertexDataPtr;
+	GLvoid* mIndicesDataPtr;
 
 public:
-	static void CreatePlaneGeometry(Geometry**, int, const glm::vec3&);
-	Geometry();
-	void Render();
-	virtual ~Geometry();
-};
 
+	Geometry();
+	virtual ~Geometry();
+	static void CreatePlaneGeometry(gtfx::Geometry* geometry, int, const glm::vec3&);
+};
+}
 #endif /* INCLUDE_GEOMETRY_H_ */

@@ -5,7 +5,6 @@ class Shader;
 #include "afx.h"
 #include "Shader.h"
 #include "Program.h"
-#include "ShaderProgram.h"
 #include "KeyedManager.h"
 class ShadingProgramManager
 	: public KeyedManager<Program*>{

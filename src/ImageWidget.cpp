@@ -7,7 +7,8 @@
 
 #include "ImageWidget.h"
 
-ImageWidget::ImageWidget() {
+ImageWidget::ImageWidget()
+	:UIWidget() {
 
 };
 
@@ -25,25 +26,24 @@ ImageWidget::~ImageWidget(){
 
 }
 
-
-void ImageWidget::OnInitialize(){
-	Geometry::CreatePlaneGeometry(&mGeometry, 2, mSize);
-	SetSource(mSource);
-}
-
-
-void ImageWidget::OnRender(double frameTime){
+void ImageWidget::OnBeforeInitialize() {
 	TM->Use(mSource);
 	SPM->Use("vc");
-	mGeometry->Render();
-	
+	gtfx::Geometry::CreatePlaneGeometry(mRenderComponent->GetGeometry(), 2, mTransformComponent->GetSize());
+	UIWidget::OnBeforeInitialize();
+}
+void ImageWidget::OnInitialize(){
+	SetSource(mSource);
+	UIWidget::OnInitialize();
 }
 
-void ImageWidget::OnAfterInitialize(){
 
+void ImageWidget::OnAfterInitialize(){
+	UIWidget::OnAfterInitialize();
 }
 
 bool ImageWidget::ValidateAttributes() {
+	UIWidget::ValidateAttributes();
 	return true;
 }
 

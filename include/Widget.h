@@ -4,7 +4,11 @@ class StateMachine;
 #include "afx.h"
 #include "StateMachine.h"
 #include "KeyManageable.h"
-#define DEFAULT_WIDGET_SIZE 100
+#include "Component.h"
+#include "TransformComponent.h"
+#include "RenderComponent.h"
+#include "KeyedManager.h"
+
 
 class Widget :
     public StateMachine,
@@ -22,8 +26,7 @@ class Widget :
         bool GetIsInitialized() const;
 
         /** Lifecycle **/
-        virtual bool ValidateAttributes() = 0;
-
+        virtual bool ValidateAttributes();
         void BeforeInitialize();
         void Initialize();
         void AfterInitialize();
@@ -47,19 +50,21 @@ class Widget :
     protected:
 
 
-        /** lifecycle hooks **/
-        virtual void OnBeforeInitialize();          /** use to setup resources required for initialization **/
-        virtual void OnInitialize() = 0;            /** use for initialization **/
-        virtual void OnAfterInitialize();           /** use for validating intialization was successfully carried out **/
-    	virtual void OnBeforeUpdate(double frameTime);
-    	virtual void OnUpdate(double) = 0;
-    	virtual void OnAfterUpdate(double frameTime);
-    	virtual void OnBeforeDestroy();
-    	virtual void OnDestroy();
-    	virtual void OnAfterDestroy();
+		/** lifecycle hooks **/
+		virtual void OnBeforeInitialize();          /** use to setup resources required for initialization **/
+		virtual void OnInitialize() = 0;            /** use for initialization **/
+		virtual void OnAfterInitialize();           /** use for validating intialization was successfully carried out **/
+		virtual void OnBeforeUpdate(double frameTime);
+		virtual void OnUpdate(double) = 0;
+		virtual void OnAfterUpdate(double frameTime);
+		virtual void OnBeforeDestroy();
+		virtual void OnDestroy();
+		virtual void OnAfterDestroy();
 
         std::string _str;
         bool mIsInitialized;
+
+        std::vector<gtfx::Component*> mComponents;
 };
 
 #endif // WIDGET_H

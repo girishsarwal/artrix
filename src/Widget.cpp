@@ -19,21 +19,34 @@ bool Widget::GetIsInitialized() const {
     return mIsInitialized;
 }
 void Widget::Initialize() {
-    OnBeforeInitialize();
-
+	BeforeInitialize();
     OnInitialize();             /** we let the dervied class function execute first **/
+    std::vector<gtfx::Component*>::const_iterator component = mComponents.begin();
+    	while(component != mComponents.end()){
+    		(*component)->Initialize();
+    		component++;
+    }
     mIsInitialized = true;
-
-    OnAfterInitialize();
+    AfterInitialize();
 }
 
 
 
 void Widget::BeforeInitialize() {
-    OnBeforeInitialize();
+	OnBeforeInitialize();
+	std::vector<gtfx::Component*>::const_iterator component = mComponents.begin();
+	while(component != mComponents.end()){
+		(*component)->BeforeInitialize();
+		component++;
+	}
 }
 void Widget::AfterInitialize() {
 	Print();
+	std::vector<gtfx::Component*>::const_iterator component = mComponents.begin();
+    while(component != mComponents.end()){
+    	(*component)->AfterInitialize();
+    	component++;
+    }
     OnAfterInitialize();
 }
 
@@ -44,6 +57,40 @@ void Widget::Update(double gameTime) {
 		Initialize();
 	}
     OnUpdate(gameTime);
+	std::vector<gtfx::Component*>::const_iterator component = mComponents.begin();
+    while(component != mComponents.end()){
+    	(*component)->Update(gameTime);
+    	component++;
+    }
+}
+
+
+void Widget::Destroy() {
+
+	BeforeDestroy();
+    OnDestroy();             /** we let the dervied class function execute first **/
+
+    mIsInitialized = true;
+    AfterInitialize();
+}
+
+
+
+void Widget::BeforeDestroy() {
+	OnBeforeDestroy();
+	std::vector<gtfx::Component*>::const_iterator component = mComponents.begin();
+	while(component != mComponents.end()){
+		(*component)->BeforeDestroy();
+		component++;
+	}
+}
+void Widget::AfterDestroy() {
+	std::vector<gtfx::Component*>::const_iterator component = mComponents.begin();
+    while(component != mComponents.end()){
+    	(*component)->AfterDestroy();
+    	component++;
+    }
+	OnAfterDestroy();
 }
 
 void Widget::OnBeforeInitialize() { printf("Widget::OnBeforeInitialize - base was called"); }
@@ -83,3 +130,6 @@ bool Widget::operator==(const Widget& rhs) const {
 bool Widget::operator!=(const Widget& rhs) const {
     return !(*this == rhs);
 };
+bool Widget::ValidateAttributes() {
+	return true;
+}

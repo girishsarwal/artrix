@@ -15,6 +15,7 @@ class ImageWidget:
 protected:
 	std::string	mSource;
 
+	void OnBeforeInitialize();
 	void OnInitialize();
 	void OnAfterInitialize();
 	bool ValidateAttributes();

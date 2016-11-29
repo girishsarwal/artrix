@@ -9,16 +9,19 @@
 #define UIWIDGET_H
 #include "afx.h"
 #include "Widget.h"
-#include "Renderable.h"
 #include "Program.h"
+#include "TransformComponent.h"
+#include "RenderComponent.h"
 
 class UIWidget :
-		public Widget,
-		public Renderable {
+		public Widget {
 private:
 
 protected:	
 	Program*	m_pShadingProgram;
+	gtfx::TransformComponent* mTransformComponent;
+	gtfx::RenderComponent* mRenderComponent;
+
 public:
 	UIWidget();
 	UIWidget(tinyxml2::XMLNode*);
