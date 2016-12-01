@@ -35,13 +35,14 @@ void Geometry::CreatePlaneGeometry(gtfx::Geometry* geometry, int vertexDescripto
 	float b = 0.0f;
 	float a = 1.0f;
 
-	VertexColor vertices[] =
+	VertexColorTextureNormal vertices [] =
 	{
-		{-1, -1, 0.0f, r, g, b, a},
-		{ 1, -1, 0.0f, r, g, b, a},
-		{ 1,  1, 0.0f, r, g, b, a},
-		{-1,  1, 0.0f, r, g, b, a},
+			{-1.0f, -1.0f, 0.0f, r, g, b, a, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+			{ 1.0f, -1.0f, 0.0f, r, g, b, a, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f },
+			{ 1.0f,  1.0f, 0.0f, r, g, b, a, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f },
+			{-1.0f,  1.0f, 0.0f, r, g, b, a, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f },
 	};
+
 
 	geometry->mSizeVertex = sizeof(vertices[0]);
 	geometry->mSizeVertices = sizeof(vertices);

@@ -28,7 +28,10 @@ ImageWidget::~ImageWidget(){
 
 void ImageWidget::OnBeforeInitialize() {
 	TM->Use(mSource);
-	SPM->Use("vc");
+
+	Program* program = SPM->Get("sprite");
+	program->SetUniform1i("texture", TM->Get(mSource)->GetTextureId());
+	program->Use();
 	gtfx::Geometry::CreatePlaneGeometry(mRenderComponent->GetGeometry(), 2, mTransformComponent->GetSize());
 	UIWidget::OnBeforeInitialize();
 }

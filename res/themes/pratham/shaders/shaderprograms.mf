@@ -1,13 +1,13 @@
 <gpu>
 	<shaders>
-		<shader source="vc.vert" type="vertex"></shader>
-		<shader source="vc.frag" type="fragment"></shader>
+		<shader source="sprite.vert" type="vertex"></shader>
+		<shader source="sprite.frag" type="fragment"></shader>
 	</shaders>
 	<programs>
-		<program name="vc">
+		<program name="sprite">
 			<shaders>
-				<shader>vc.vert</shader> 
-				<shader>vc.frag</shader>
+				<shader>sprite.vert</shader> 
+				<shader>sprite.frag</shader>
 			</shaders>
 		</program>
 	</programs>

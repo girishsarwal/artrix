@@ -41,11 +41,13 @@ public:
 
 	bool registerUniform(const std::string& name);
 	GLuint getUniformLocation(const std::string& name);
-	bool getUniform();
-	bool setUniform(const std::string&  name, float v1) ;
-	bool setUniform(const std::string&  name, float v1, float v2) ;
-	bool setUniform(const std::string&  name, float v1, float v2, float v3) ;
-	bool setUniform(const std::string&  name, float v1, float v2, float v3, float v4) ;
+
+	void SetUniform1f(const std::string& name, float v1);
+	void SetUniform2f(const std::string& name, float v1, float v2);
+	void SetUniform3f(const std::string& name, float v1, float v2, float v3) ;
+	void SetUniform4f(const std::string& name, float v1, float v2, float v3, float v4) ;
+	void SetUniform1i(const std::string& name, uint v1);
+
 
 	void Use();
 	void Initialize();
@@ -59,6 +61,8 @@ public:
 	string dump() const;
 	void Print();
 	friend ostream& operator<<(ostream&, const Program&);
+
+	void DetermineSuitableVertexFormat();
 
 };
 #endif

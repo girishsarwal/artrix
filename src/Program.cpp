@@ -191,26 +191,22 @@ bool Program::registerUniform(const std::string& name){
 GLuint Program::getUniformLocation(const std::string& name){
 	return glGetUniformLocation(mProgramHandle, name.c_str());
 };
-bool Program::getUniform(){
-	return true;
-};
-bool Program::setUniform(const std::string& name, float v1) {
-	glUniform1f(getUniformLocation(name), v1);
-	return true;
-};
-bool Program::setUniform(const std::string&  name, float v1, float v2) {
-	glUniform2f(getUniformLocation(name), v1, v2);
-	return true;
-};
-bool Program::setUniform(const std::string&  name, float v1, float v2, float v3) {
-	glUniform3f(getUniformLocation(name), v1, v2, v3);
-	return true;
-};
-bool Program::setUniform(const std::string&  name, float v1, float v2, float v3, float v4) {
-	glUniform4f(getUniformLocation(name), v1, v2, v3, v4);
-	return true;
-};
 
+void Program::SetUniform1f(const std::string& name, float v1) {
+	glUniform1f(getUniformLocation(name), v1);
+};
+void Program::SetUniform2f(const std::string&  name, float v1, float v2) {
+	glUniform2f(getUniformLocation(name), v1, v2);
+};
+void Program::SetUniform3f(const std::string&  name, float v1, float v2, float v3) {
+	glUniform3f(getUniformLocation(name), v1, v2, v3);
+};
+void Program::SetUniform4f(const std::string&  name, float v1, float v2, float v3, float v4) {
+	glUniform4f(getUniformLocation(name), v1, v2, v3, v4);
+};
+void Program::SetUniform1i(const std::string&  name, uint v1) {
+	glUniform1i(getUniformLocation(name), v1);
+};
 
 void Program::Use() {
 	if(!mIsInitialized){

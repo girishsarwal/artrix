@@ -92,4 +92,9 @@ public:
 	static void EnableAttribute(int);
 	static void DisableAttribute(int);
 };
+
+
+class VertexAttribute {
+
+};
 #endif

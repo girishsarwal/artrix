@@ -51,8 +51,10 @@ void RenderComponent::OnUpdate(double gameTime) {
 }
 
 void RenderComponent::OnBeforeRender(double gameTime) {
-	VertexColor::EnableAttribute(VertexColor::INDEX_POSITION);
-	VertexColor::EnableAttribute(VertexColor::INDEX_COLOR);
+	VertexColorTextureNormal::EnableAttribute(VertexColorTextureNormal::INDEX_POSITION);
+	VertexColorTextureNormal::EnableAttribute(VertexColorTextureNormal::INDEX_COLOR);
+	VertexColorTextureNormal::EnableAttribute(VertexColorTextureNormal::INDEX_TEX0);
+	VertexColorTextureNormal::EnableAttribute(VertexColorTextureNormal::INDEX_NORMAL);
 }
 void RenderComponent::OnRender(double gameTime) {
 
@@ -61,8 +63,10 @@ void RenderComponent::OnRender(double gameTime) {
 
 }
 void RenderComponent::OnAfterRender(double gameTime) {
-	VertexColor::DisableAttribute(VertexColor::INDEX_POSITION);
-	VertexColor::DisableAttribute(VertexColor::INDEX_COLOR);
+	VertexColorTextureNormal::DisableAttribute(VertexColorTextureNormal::INDEX_POSITION);
+	VertexColorTextureNormal::DisableAttribute(VertexColorTextureNormal::INDEX_COLOR);
+	VertexColorTextureNormal::DisableAttribute(VertexColorTextureNormal::INDEX_TEX0);
+	VertexColorTextureNormal::DisableAttribute(VertexColorTextureNormal::INDEX_NORMAL);
 }
 
 } /* namespace gtfx */

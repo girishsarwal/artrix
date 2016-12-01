@@ -117,7 +117,7 @@ bool Shader::Compile(){
 
         mInfoLog = new GLchar[infoLogLength + 1];
         glGetShaderInfoLog(mShaderHandle, infoLogLength, NULL, mInfoLog);
-        printf("\nWARNING: Compile failure in shader %s (%d bytes)...\n\t %s \n\t\t",mSource.c_str(), length, fileContents, mInfoLog);
+        printf("\nWARNING: Compile failure in shader %s (%d bytes)...\n\t %s \n %s",mSource.c_str(), length, fileContents, mInfoLog);
         delete[] mInfoLog;
         return false;
     }
