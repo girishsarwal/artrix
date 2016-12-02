@@ -8,6 +8,7 @@
 #include "SPIManager.h"
 #include "TextureManager.h"
 #include "ShadingProgramManager.h"
+#include "VertexDefinitionManager.h"
 
 #define TESTMODE
 int main(int argc, char* argv[]){
@@ -15,6 +16,8 @@ int main(int argc, char* argv[]){
 
 	if(!DM) { printf("ERROR: Cannot create DLCManager"); return false; }
 	if(!RC) { printf("ERROR: Cannot create RenderContext\n"); return false; }
+	gtfx::VertexDefinitionManager::CreateVertexDefinitions();
+
 	if(!TM) { printf("ERROR: Cannot create TextureManager\n"); return false; }
 	if(!VM) { printf("ERROR: Cannot create ViewManager\n"); return false; }
 	if(!FM) { printf("ERROR: Cannot create FontManager"); return false; }

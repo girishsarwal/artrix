@@ -10,6 +10,8 @@
 
 #include "Component.h"
 #include "Geometry.h"
+#include "ShadingProgramManager.h"
+#include "VertexDefinitionManager.h"
 namespace gtfx {
 
 class RenderComponent:
@@ -18,6 +20,10 @@ class RenderComponent:
 private:
 	Geometry* mGeom;
 	bool mIsVisible;
+
+	std::string mProgramName;
+	Program* mProgram;
+	VertexDefinition mVertexDefinition;
 
 protected:
 
@@ -40,8 +46,10 @@ public:
 	void OnInitialize();
 	void OnUpdate(double gameTime);
 	Geometry* GetGeometry() const;
-
-
+	const std::string& GetProgramName() const;
+	void SetProgramName(const std::string& program);
+	Program* GetProgram();
+	const VertexDefinition& GetVertexDefinition() const;
 };
 
 } /* namespace gtfx */

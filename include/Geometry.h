@@ -29,11 +29,17 @@ public:
 	GLvoid* mVertexDataPtr;
 	GLvoid* mIndicesDataPtr;
 
+	GLuint	mVertexDataBufferSize;
+	GLuint	mIndexDataBufferSize;
+
+	GLvoid* mVertexDataBufferPtr;
+	GLvoid* mIndexDataBufferPtr;
 public:
 
 	Geometry();
 	virtual ~Geometry();
 	static void CreatePlaneGeometry(gtfx::Geometry* geometry, int, const glm::vec3&);
+	static void CreatePlaneGeometry(gtfx::Geometry* geometry, const VertexDefinition& vd, const glm::vec3& dimension, const glm::vec3& divisions);
 };
 }
 #endif /* INCLUDE_GEOMETRY_H_ */

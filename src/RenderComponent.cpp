@@ -19,6 +19,7 @@ RenderComponent::~RenderComponent() {
 	// TODO Auto-generated destructor stub
 }
 void RenderComponent::BeforeRender(double gameTime) {
+	mProgram->Use();
 	OnBeforeRender(gameTime);
 }
 void RenderComponent::Render(double gameTime) {
@@ -29,6 +30,25 @@ void RenderComponent::Render(double gameTime) {
 void RenderComponent::AfterRender(double gameTime) {
 	OnAfterRender(gameTime);
 }
+
+const std::string& RenderComponent::GetProgramName() const {
+	return mProgramName;
+}
+
+const VertexDefinition& RenderComponent::GetVertexDefinition() const {
+	return mVertexDefinition;
+}
+
+Program* RenderComponent::GetProgram() {
+	return mProgram;
+}
+
+void RenderComponent::SetProgramName(const std::string& program) {
+	mProgramName = program;
+	mProgram = SPM->Get(mProgramName);
+	mVertexDefinition = gtfx::VertexDefinitionManager::DetermineSuitableVertexFormat(mProgram);
+}
+
 Geometry* RenderComponent::GetGeometry() const {
 	return mGeom;
 }
@@ -45,6 +65,8 @@ void RenderComponent::OnInitialize() {
 	glGenBuffers(1, &(mGeom->mIndexBufferId));
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mGeom->mIndexBufferId);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, mGeom->mSizeIndices, mGeom->mIndicesDataPtr, GL_STATIC_DRAW);
+
+
 }
 void RenderComponent::OnUpdate(double gameTime) {
 	Render(gameTime);

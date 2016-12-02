@@ -60,6 +60,7 @@ bool ShadingProgramManager::CreateStockShadingPrograms(){
 	}
 	for (tinyxml2::XMLNode *gpuProgramNode = gpuProgramsNode->FirstChild(); gpuProgramNode; gpuProgramNode = gpuProgramNode->NextSibling()) {
 		Program* program = new Program(gpuProgramNode);
+		program->Initialize();
 		SPM->Add(program);
 	}
 

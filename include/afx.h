@@ -25,6 +25,7 @@
 //#include <bcm_host.h>
 
 #include <glm/glm.hpp>
+#include <glm/gtx/compatibility.hpp>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
