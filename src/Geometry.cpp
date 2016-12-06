@@ -35,39 +35,6 @@ Geometry::~Geometry() {
 	// TODO Auto-generated destructor stub
 }
 
-void Geometry::CreatePlaneGeometry(gtfx::Geometry* geometry, int vertexDescriptor, const glm::vec3& dimensions) {
-
-	VertexTexture vertices [] =
-	{
-			{-1.0f, -1.0f, 0.0f, 0.0f, 0.0f },	//bottom left
-			{ 1.0f, -1.0f, 0.0f, 1.0f, 0.0f },	//top left
-			{-1.0f,  1.0f, 0.0f, 0.0f, 1.0f },
-			{ 1.0f,  1.0f, 0.0f, 1.0f, 1.0f },
-	};
-
-	geometry->mSizeVertex = sizeof(vertices[0]);
-	geometry->mSizeVertices = sizeof(vertices);
-
-	GLuint indices[] =
-	{
-		0, 1, 2,
-		2, 1, 3,
-	};
-
-	geometry->mSizeIndex = sizeof(indices[0]);
-	geometry->mSizeIndices = sizeof(indices);
-
-	geometry->mNumVertices = geometry->mSizeVertices / geometry->mSizeVertex;
-	geometry->mNumIndices= geometry->mSizeIndices/ geometry->mSizeIndex;
-	geometry->mNumTriangles = geometry->mSizeIndices / (3.0 * geometry->mSizeIndex);
-
-	geometry->mVertexDataPtr = malloc(geometry->mSizeVertices);
-	geometry->mIndicesDataPtr = (GLuint*)malloc(geometry->mSizeIndices);
-
-	memcpy(geometry->mVertexDataPtr, vertices, geometry->mSizeVertices);
-	memcpy(geometry->mIndicesDataPtr, indices, geometry->mSizeIndices);
-
-}
 void Geometry::CreatePlaneGeometry(gtfx::Geometry* geometry, const VertexDefinition& vd, const glm::vec3& dimension, const glm::vec3& divisions) {
 	if(NULL == geometry) {
 		geometry = new Geometry();
