@@ -27,8 +27,6 @@ Geometry::Geometry() {
 	mVertexDataBufferSize = 0;
 	mIndexDataBufferSize = 0;
 
-	mVertexDataBufferPtr = NULL;
-	mIndexDataBufferPtr = NULL;
 }
 
 Geometry::~Geometry() {

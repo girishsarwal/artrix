@@ -32,8 +32,6 @@ public:
 	GLuint	mVertexDataBufferSize;
 	GLuint	mIndexDataBufferSize;
 
-	GLvoid* mVertexDataBufferPtr;
-	GLvoid* mIndexDataBufferPtr;
 public:
 
 	Geometry();
