@@ -24,9 +24,6 @@ Geometry::Geometry() {
 	mVertexDataPtr = NULL;
 	mIndicesDataPtr = NULL;
 
-	mVertexDataBufferSize = 0;
-	mIndexDataBufferSize = 0;
-
 }
 
 Geometry::~Geometry() {
@@ -42,8 +39,8 @@ void Geometry::CreatePlaneGeometry(gtfx::Geometry* geometry, const VertexDefinit
 	geometry->mNumTriangles = (divisions.x + 1) * (divisions.y + 1) * 2;
 	geometry->mNumIndices = geometry->mNumTriangles * 3;
 
-	geometry->mVertexDataBufferSize = vd.GetSizeInBytes() * geometry->mNumVertices;
-	geometry->mIndexDataBufferSize = geometry->mNumIndices * sizeof(uint);
+	geometry->mSizeVertices = vd.GetSizeInBytes() * geometry->mNumVertices;
+	geometry->mSizeIndices = geometry->mNumIndices * sizeof(uint);
 
 	//float vdata[100];
 	//uint idata[100];
@@ -51,8 +48,8 @@ void Geometry::CreatePlaneGeometry(gtfx::Geometry* geometry, const VertexDefinit
 	//memset(vdata, 0, sizeof(float) * 100);
 	//memset(idata, 0 , sizeof(uint) * 100);
 
-	geometry->mVertexDataPtr = (GLfloat*)malloc(geometry->mVertexDataBufferSize );
-	geometry->mIndicesDataPtr= (GLuint*)malloc(geometry->mIndexDataBufferSize );
+	geometry->mVertexDataPtr = (GLfloat*)malloc(geometry->mSizeVertices );
+	geometry->mIndicesDataPtr= (GLuint*)malloc(geometry->mSizeIndices );
 
 	//geometry->mVertexDataPtr = &vdata[0];
 	//geometry->mIndicesDataPtr= &idata[0];
@@ -92,8 +89,6 @@ void Geometry::CreatePlaneGeometry(gtfx::Geometry* geometry, const VertexDefinit
 		}
 	}
 
-	geometry->mSizeVertices = geometry->mVertexDataBufferSize;
-
 	/** Build the indices **/
 	GLvoid* basePtrIndices = geometry->mIndicesDataPtr;
 	for (int y = 0; y < divisions.y + 1; y++){
@@ -111,7 +106,6 @@ void Geometry::CreatePlaneGeometry(gtfx::Geometry* geometry, const VertexDefinit
 			basePtrIndices += sizeof(uint) * 6;
 		}
 	}
-	geometry->mSizeIndices = geometry->mIndexDataBufferSize;
 }
 }
 
