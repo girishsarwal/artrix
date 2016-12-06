@@ -27,7 +27,7 @@ public:
 	GLuint	mIndexBufferId;
 
 	GLvoid* mVertexDataPtr;
-	GLvoid* mIndicesDataPtr;
+	GLuint* mIndicesDataPtr;
 
 	GLuint	mVertexDataBufferSize;
 	GLuint	mIndexDataBufferSize;

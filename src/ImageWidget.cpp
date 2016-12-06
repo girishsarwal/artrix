@@ -32,8 +32,8 @@ void ImageWidget::OnBeforeInitialize() {
 
 	mRenderComponent->SetProgramName("sprite");
 	mRenderComponent->GetProgram()->SetUniform1i("texture", TM->Get(mSource)->GetTextureId());
-	gtfx::Geometry::CreatePlaneGeometry(mRenderComponent->GetGeometry(), 2, mTransformComponent->GetSize());
-	//gtfx::Geometry::CreatePlaneGeometry(mRenderComponent->GetGeometry(), mRenderComponent->GetVertexDefinition(), mTransformComponent->GetSize(), glm::vec3(0, 0, 0));
+	//gtfx::Geometry::CreatePlaneGeometry(mRenderComponent->GetGeometry(), 2, mTransformComponent->GetSize());
+	gtfx::Geometry::CreatePlaneGeometry(mRenderComponent->GetGeometry(), mRenderComponent->GetVertexDefinition(), mTransformComponent->GetSize(), glm::vec3(0, 0, 0));
 
 	UIWidget::OnBeforeInitialize();
 }

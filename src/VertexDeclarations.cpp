@@ -60,6 +60,31 @@ void VertexColorTexture::DisableAttribute(int index){
 };
 
 
+
+const int VertexTextureNormal::INDEX_POSITION	= 0;
+const int VertexTextureNormal::INDEX_TEX0		= 1;
+const int VertexTextureNormal::INDEX_NORMAL		= 2;
+const int VertexTextureNormal::OFFSET_POSITION 	= 0;
+const int VertexTextureNormal::OFFSET_TEX0		= 12;
+const int VertexTextureNormal::OFFSET_NORMAL	= 20;
+const int VertexTextureNormal::SIZE_POSITION	= 3;
+const int VertexTextureNormal::SIZE_TEX0		= 2;
+const int VertexTextureNormal::SIZE_NORMAL		= 3;
+const int VertexTextureNormal::STRIDE			= 32;
+const int VertexTextureNormal::VertexAttribInfo[3][2] = {
+	{SIZE_POSITION, OFFSET_POSITION},
+	{SIZE_TEX0, OFFSET_TEX0},
+	{SIZE_NORMAL, OFFSET_NORMAL},
+};
+void VertexTextureNormal::EnableAttribute(int index){
+	glEnableVertexAttribArray(index);
+	glVertexAttribPointer(index, VertexAttribInfo[index][0], GL_FLOAT, GL_FALSE, STRIDE, (GLvoid*)VertexAttribInfo[index][1]);
+};
+void VertexTextureNormal::DisableAttribute(int index){
+	glDisableVertexAttribArray(index);
+};
+
+
 const int VertexColorTextureNormal::INDEX_POSITION	= 0;
 const int VertexColorTextureNormal::INDEX_COLOR		= 1;
 const int VertexColorTextureNormal::INDEX_TEX0		= 2;
@@ -87,6 +112,25 @@ void VertexColorTextureNormal::DisableAttribute(int index){
 	glDisableVertexAttribArray(index);
 }
 ;
+
+const int VertexTexture::INDEX_POSITION	= 0;
+const int VertexTexture::INDEX_TEX0		= 1;
+const int VertexTexture::OFFSET_POSITION= 0;
+const int VertexTexture::OFFSET_TEX0 	= 12;
+const int VertexTexture::SIZE_POSITION 	= 3;
+const int VertexTexture::SIZE_TEX0 		= 2;
+const int VertexTexture::STRIDE			= 20;
+const int VertexTexture::VertexAttribInfo[2][2] = {
+	{SIZE_POSITION, OFFSET_POSITION},
+	{SIZE_TEX0, OFFSET_TEX0},
+};
+void VertexTexture::EnableAttribute(int index){
+	glEnableVertexAttribArray(index);
+	glVertexAttribPointer(index, VertexAttribInfo[index][0], GL_FLOAT, GL_FALSE, STRIDE, (GLvoid*)VertexAttribInfo[index][1]);
+};
+void VertexTexture::DisableAttribute(int index){
+	glDisableVertexAttribArray(index);
+}
 
 uint VertexAttribute::GetElementSize() const {
 	return mElementSize;
@@ -132,39 +176,44 @@ uint VertexDefinition::GetSizeInBytes() const {
 }
 
 void VertexDefinition::AddVertexAttribute(VertexAttribute* va) {
+	va->SetIndex(++mNextIndex);
 	va->SetOffset(mSizeInBytes);
-	mAttrbutes[va->GetType()]= va;
+	mAttributes[va->GetType()]= va;
 	mSizeInBytes += va->GetSizeInBytes();
 }
 
 void VertexDefinition::EnableVertexAttributes() {
-	std::map<VERTEXATTRIBUTETYPE, VertexAttribute*>::iterator va = mAttrbutes.begin();
-	while(va != mAttrbutes.end()) {
+	std::map<VERTEXATTRIBUTETYPE, VertexAttribute*>::iterator va = mAttributes.begin();
+	while(va != mAttributes.end()) {
 		glEnableVertexAttribArray(va->second->GetIndex());
-		glVertexAttribPointer(va->second->GetIndex(), va->second->GetElementSize(), GL_FLOAT, GL_FALSE, mSizeInBytes, (GLvoid*)va->second->GetOffset());
+		glVertexAttribPointer(va->second->GetIndex(), va->second->GetNumberOfElements(), GL_FLOAT, GL_FALSE, mSizeInBytes, (GLvoid*)va->second->GetOffset());
 		va++;
 	}
 }
 
 void VertexDefinition::DisableVertexAttributes() {
-	std::map<VERTEXATTRIBUTETYPE, VertexAttribute*>::iterator va = mAttrbutes.begin();
-	while(va != mAttrbutes.end()) {
+	std::map<VERTEXATTRIBUTETYPE, VertexAttribute*>::iterator va = mAttributes.begin();
+	while(va != mAttributes.end()) {
 		glDisableVertexAttribArray(va->second->GetIndex());
 		va++;
 	}
 }
 
 VertexAttribute* VertexDefinition::GetVertexAttribute(VERTEXATTRIBUTETYPE type) const{
-	std::map<VERTEXATTRIBUTETYPE, VertexAttribute*>::const_iterator  it = mAttrbutes.find(type);
-	if (it == mAttrbutes.end())
+	std::map<VERTEXATTRIBUTETYPE, VertexAttribute*>::const_iterator  it = mAttributes.find(type);
+	if (it == mAttributes.end())
 	    return NULL;
 	return it->second;
 }
 
 VertexDefinition::VertexDefinition()
-	: mSizeInBytes(0) {
+	: mSizeInBytes(0)
+	, mNextIndex (-1) {
 }
 
+void VertexAttribute::SetIndex(uint index) {
+	mIndex = index;
+}
 uint VertexAttribute::GetIndex() const {
 	return mIndex;
 }

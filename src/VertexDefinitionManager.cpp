@@ -66,7 +66,7 @@ VertexDefinition VertexDefinitionManager::vdUIElements = VertexDefinition();				
 
 const VertexDefinition& VertexDefinitionManager::DetermineSuitableVertexFormat(
 		Program* program) {
-	return vdVertexNormalTexture;
+	return vdUIElements;
 }
 
 } /* namespace gtfx */

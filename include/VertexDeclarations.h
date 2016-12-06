@@ -61,6 +61,31 @@ public:
 	static void EnableAttribute(int);
 	static void DisableAttribute(int);
 };
+
+struct VertexTextureNormal{
+public:
+	float x;
+	float y;
+	float z;
+	float u;
+	float v;
+	float nx;
+	float ny;
+	float nz;
+	static const int INDEX_POSITION;
+	static const int INDEX_TEX0;
+	static const int INDEX_NORMAL;
+	static const int OFFSET_POSITION;
+	static const int OFFSET_TEX0;
+	static const int OFFSET_NORMAL;
+	static const int SIZE_POSITION;
+	static const int SIZE_TEX0;
+	static const int SIZE_NORMAL;
+	static const int STRIDE;
+	static const int VertexAttribInfo[3][2];
+	static void EnableAttribute(int);
+	static void DisableAttribute(int);
+};
 struct VertexColorTextureNormal{
 public:
 	float x;
@@ -93,6 +118,24 @@ public:
 	static void DisableAttribute(int);
 };
 
+struct VertexTexture{
+public:
+	float x;
+	float y;
+	float z;
+	float u;
+	float v;
+	static const int INDEX_POSITION;
+	static const int INDEX_TEX0;
+	static const int OFFSET_POSITION;
+	static const int OFFSET_TEX0;
+	static const int SIZE_POSITION;
+	static const int SIZE_TEX0;
+	static const int STRIDE;
+	static const int VertexAttribInfo[2][2];
+	static void EnableAttribute(int);
+	static void DisableAttribute(int);
+};
 
 enum VERTEXATTRIBUTETYPE {
 	UNDEFINED,
@@ -122,6 +165,7 @@ public:
 	VERTEXATTRIBUTETYPE GetType() const;
 	VertexAttribute();
 	VertexAttribute(VERTEXATTRIBUTETYPE type, uint numberOfElements, uint elementSize);
+	void SetIndex(uint index);
 	uint GetIndex() const;
 	bool operator==(const VertexAttribute& rhs) const;
 	bool operator!=(const VertexAttribute& rhs) const;
@@ -135,8 +179,9 @@ private:
 };
 class VertexDefinition {
 private:
-	std::map<VERTEXATTRIBUTETYPE, VertexAttribute*> mAttrbutes;
+	std::map<VERTEXATTRIBUTETYPE, VertexAttribute*> mAttributes;
 	uint mSizeInBytes;
+	uint mNextIndex;
 public:
 	void AddVertexAttribute(VertexAttribute* va);
 	void EnableVertexAttributes();
