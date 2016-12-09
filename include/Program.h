@@ -48,6 +48,7 @@ public:
 	void SetUniform4f(const std::string& name, float v1, float v2, float v3, float v4) ;
 	void SetUniform1i(const std::string& name, uint v1);
 
+	void SetUniformMatrix4fv(const std::string& name, glm::mat4);
 
 	void Use();
 	void Initialize();

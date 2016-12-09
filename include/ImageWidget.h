@@ -19,7 +19,6 @@ protected:
 	void OnInitialize();
 	void OnAfterInitialize();
 	bool ValidateAttributes();
-	void OnRender(double frameTime);
 
 public:
 

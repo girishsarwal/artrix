@@ -4,14 +4,14 @@ void View::Update(double frameTime){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	onUpdate(frameTime);
-	std::vector<Widget*>::const_iterator it = mWidgets.begin();
+	std::vector<gtfx::GameObject*>::const_iterator it = mWidgets.begin();
 	while(it != mWidgets.end()){
 		(*it)->Update(frameTime);
 		it++;
 	}
 }
 
-void View::AddWidget(Widget* widget){
+void View::AddWidget(gtfx::GameObject* widget){
 	mWidgets.push_back(widget);
 }
 

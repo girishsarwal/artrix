@@ -3,8 +3,34 @@
         <ImageWidget name="background">
             <src>splash</src>
             <anchor><vec x="0" y="0" z="0"></vec></anchor>
-            <size><vec x="1920" y="1080" z="0"></vec></size>
+            <size><vec x="1.0" y="1.0" z="0"></vec></size>
             <position><vec x="0" y="0" z="0"></vec></position>
+        </ImageWidget>
+    </screen>
+    <screen name="home">
+    	<ImageWidget name="background">
+            <src>dots</src>
+            <anchor><vec x="0" y="0" z="0"></vec></anchor>
+            <size><vec x="1.0" y="1.0" z="0"></vec></size>
+            <position><vec x="0" y="0" z="0"></vec></position>
+        </ImageWidget>
+		<ImageWidget name="buttonPilot">
+            <src>black-bar</src>
+            <anchor><vec x="0" y="0" z="0"></vec></anchor>
+            <size><vec x="0.4" y="0.05" z="0"></vec></size>
+            <position><vec x="-0.6" y="0.925" z="0"></vec></position>
+        </ImageWidget>
+        <ImageWidget name="buttonPilot">
+            <src>black-bar</src>
+            <anchor><vec x="0" y="0" z="0"></vec></anchor>
+            <size><vec x="0.4" y="0.05" z="0"></vec></size>
+            <position><vec x="0.2" y="0.925" z="0"></vec></position>
+        </ImageWidget>
+        <ImageWidget name="buttonPilot">
+            <src>black-bar</src>
+            <anchor><vec x="0" y="0" z="0"></vec></anchor>
+            <size><vec x="0.2" y="0.05" z="0"></vec></size>
+            <position><vec x="0.8" y="0.925" z="0"></vec></position>
         </ImageWidget>
     </screen>
 </screens>

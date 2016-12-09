@@ -1,20 +1,20 @@
 #pragma once
+#include "GameObjectFactory.h"
+#include "GameObject.h"
 #include "afx.h"
 #include "KeyManageable.h"
-#include "Widget.h"
-#include "WidgetFactory.h"
 class View
 	: public KeyManageable
 {
 public:
-	vector<Widget*> mWidgets;
+	vector<gtfx::GameObject*> mWidgets;
 	View();
 	View(tinyxml2::XMLNode*);
 
 	virtual ~View(void);
 
 	void Update(double frameTime);
-	void AddWidget(Widget* pWidget);
+	void AddWidget(gtfx::GameObject* pWidget);
 	void initialize();
 	
 protected:

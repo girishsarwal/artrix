@@ -207,7 +207,9 @@ void Program::SetUniform4f(const std::string&  name, float v1, float v2, float v
 void Program::SetUniform1i(const std::string&  name, uint v1) {
 	glUniform1i(getUniformLocation(name), v1);
 };
-
+void Program::SetUniformMatrix4fv(const std::string& name, glm::mat4 matrix) {
+	glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
+}
 void Program::Use() {
 	if(!mIsInitialized){
 		Initialize();
@@ -263,4 +265,5 @@ ostream& operator<<(ostream& stream, const Program& program) {
     stream << "</program>";
     return stream;
 }
+
 

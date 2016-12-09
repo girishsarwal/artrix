@@ -8,7 +8,6 @@ class StateMachine
 protected:
     State*  mCurrentState;
     State*  mPreviousState;
-
     State*  mBlipState;
 public:
     State* GetCurrentState();

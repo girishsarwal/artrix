@@ -1,4 +1,5 @@
 <textures>
+	<texture name="dots" source="dots.png" type="sprite"/>
 	<texture name="air-view" source="air-view.jpg" type="sprite"/>
 	<texture name="artrix_bg" source="artrix_bg.bmp" type="sprite"/>
 	<texture name="att-ind-bg" source="att-ind-bg.jpg" type="sprite"/>

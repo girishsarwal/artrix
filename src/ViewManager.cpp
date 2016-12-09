@@ -56,19 +56,21 @@ bool ViewManager::CreateStockViews(){
 	for (tinyxml2::XMLNode *screenNode = doc.RootElement()->FirstChild(); screenNode; screenNode = screenNode->NextSibling()) {
 		View* view = new View(screenNode);
 		for(tinyxml2::XMLNode *widgetNode = screenNode->FirstChild(); widgetNode; widgetNode= widgetNode->NextSibling()) {
-			Widget* w = NULL;
-			WidgetFactory::CreateWidget(widgetNode, &w);
+			gtfx::GameObject* w = NULL;
+			GameObjectFactory::CreateWidget(widgetNode, &w);
 			view->AddWidget(w);
 		}
 		if(screenNode->ToElement()->Attribute("default") != NULL) {
 			SetCurrentView(view);
 		}
+		Add(view);
 	}
 	return true;
 };
 
-void ViewManager::ChangeView(View* view){
-
+void ViewManager::ChangeView(const std::string& name){
+	View* v = Get(name);
+	SetCurrentView(v);
 };
 
 

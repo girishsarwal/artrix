@@ -21,6 +21,7 @@ uint VertexAttribute::GetSizeInBytes() const {
 
 VertexAttribute::VertexAttribute()
 	: mType (UNDEFINED)
+	, mIndex(0)
 	, mOffset (0)
 	, mNumberOfElements (0)
 	, mElementSize (0)
@@ -29,6 +30,7 @@ VertexAttribute::VertexAttribute()
 
 VertexAttribute::VertexAttribute(VERTEXATTRIBUTETYPE type, uint numberOfElements, uint elementSize)
 	: mType (type)
+	, mIndex (0)
 	, mOffset (0)
 	, mNumberOfElements (numberOfElements)
 	, mElementSize (elementSize)

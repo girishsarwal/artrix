@@ -12,6 +12,7 @@ private:
 	uint *m_arrTextures;
 	std::string mRoot;
 	std::string mManifest;
+
 public:
 	static TextureManager* getInstance();
 	bool loadAllTextures();

@@ -7,18 +7,18 @@
 
 #ifndef UIWIDGET_H
 #define UIWIDGET_H
+#include "GameObject.h"
 #include "afx.h"
-#include "Widget.h"
 #include "Program.h"
 #include "TransformComponent.h"
 #include "RenderComponent.h"
 
 class UIWidget :
-		public Widget {
+		public gtfx::GameObject {
 private:
 
 protected:	
-	Program*	m_pShadingProgram;
+	Program*	mShadingProgram;
 	gtfx::TransformComponent* mTransformComponent;
 	gtfx::RenderComponent* mRenderComponent;
 

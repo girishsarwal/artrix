@@ -19,7 +19,11 @@ RenderComponent::~RenderComponent() {
 	// TODO Auto-generated destructor stub
 }
 void RenderComponent::BeforeRender(double gameTime) {
-	mProgram->Use();
+	if(mTexture) mTexture->Use();
+	if(mProgram) mProgram->Use();
+
+	mProgram->SetUniform1i("texture0", GL_TEXTURE0);
+
 	OnBeforeRender(gameTime);
 }
 void RenderComponent::Render(double gameTime) {
@@ -31,8 +35,18 @@ void RenderComponent::AfterRender(double gameTime) {
 	OnAfterRender(gameTime);
 }
 
-const std::string& RenderComponent::GetProgramName() const {
-	return mProgramName;
+
+void RenderComponent::SetProgram(Program* program) {
+	mProgram = program;
+	mVertexDefinition = gtfx::VertexDefinitionManager::DetermineSuitableVertexFormat(mProgram);
+}
+
+const Texture* RenderComponent::GetTexture() const {
+	return mTexture;
+}
+
+void RenderComponent::SetTexture(Texture* texture) {
+	mTexture = texture;
 }
 
 const VertexDefinition& RenderComponent::GetVertexDefinition() const {
@@ -43,11 +57,6 @@ Program* RenderComponent::GetProgram() {
 	return mProgram;
 }
 
-void RenderComponent::SetProgramName(const std::string& program) {
-	mProgramName = program;
-	mProgram = SPM->Get(mProgramName);
-	mVertexDefinition = gtfx::VertexDefinitionManager::DetermineSuitableVertexFormat(mProgram);
-}
 
 Geometry* RenderComponent::GetGeometry() const {
 	return mGeom;

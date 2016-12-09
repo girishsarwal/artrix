@@ -11,6 +11,7 @@ bool TextureManager::initialize(const std::string& root, const std::string& mani
 	printf("+--------------------TEXTURE MANAGER----------------------+\n");
 	printf("Initializing...\n");
 	printf("Looking for textures in %s \n", mRoot.c_str());
+
 	return loadAllTextures();
 }
 
@@ -25,6 +26,7 @@ bool TextureManager::loadAllTextures(){
 	for (tinyxml2::XMLNode *textureNode = doc.RootElement()->FirstChild(); textureNode; textureNode = textureNode->NextSibling()) {
 		Texture* texture = new Texture(textureNode);
 		texture->SetTextureRoot(mRoot);
+		texture->Initialize();
 		TM->Add(texture);
 	}
 	return true;
@@ -36,6 +38,7 @@ void TextureManager::Use(const std::string& name) {
 		printf("\nWARNING: Texture '%s' not found", name.c_str());
 		return;
 	}
+	glBindTexture(GL_TEXTURE_2D, 0);
 	t->Use();
 }
 TextureManager* TextureManager::m_pInstance = NULL;

@@ -8,13 +8,16 @@
 #ifndef INCLUDE_COMPONENT_H_
 #define INCLUDE_COMPONENT_H_
 #include "KeyManageable.h"
-namespace gtfx {
 
+namespace gtfx {
+class GameObject;
 class Component:
 		public KeyManageable {
 private:
-	bool mIsEnabled;
     bool mIsInitialized;
+	bool mIsEnabled;
+
+    GameObject* mGameObject;
 
 public:
 	Component();
@@ -50,6 +53,8 @@ public:
 
 	bool GetIsEnabled() const;
 	void SetIsEnabled(bool isEnabled);
+	GameObject* GetGameObject() const;
+	void SetGameObject(GameObject* gameObject);
 };
 
 } /* namespace gtfx */

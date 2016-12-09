@@ -18,6 +18,17 @@ protected:
 	glm::vec3 mPosition;
 	glm::vec3 mPivot;
 	glm::vec3 mSize;
+
+	glm::mat4 mTranslationMatrix;
+	glm::mat4 mRotationMatrix;
+	glm::mat4 mScalingMatrix;
+
+	glm::mat4 mLocal;
+	glm::mat4 mWorld;
+	gtfx::TransformComponent* mParent;
+
+	std::vector<gtfx::TransformComponent*> mChildren;
+
 public:
 
 	TransformComponent();
@@ -33,7 +44,12 @@ public:
 	const glm::vec3& GetPivot() const;
 	void SetPivot(const glm::vec3&);
 	void SetPivot(float, float, float);
-
+	void UpdateTransformationMatrix();
+	const glm::mat4& GetLocal() const;
+	const glm::mat4& GetWorld() const;
+	void AddChild(TransformComponent*);
+	gtfx::TransformComponent* GetParent();
+	void SetParent(gtfx::TransformComponent* parent);
 };
 
 } /* namespace gtfx */

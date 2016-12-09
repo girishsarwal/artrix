@@ -8,68 +8,41 @@
 #include "TimerWidget.h"
 
 
-TimerWidget::TimerWidget() {
-	mAccumulatedTime = 0.0f;
-	mTime = 0.0f;
+TimerWidget::TimerWidget()
+	: mAccumulatedTime (0.0f)
+	, mTime(0.0f)
+	, mCommand (NULL){
 	SetDefaultName("Timer");
 }
-TimerWidget::TimerWidget(tinyxml2::XMLNode*) {
-	mAccumulatedTime = 0.0f;
-	mTime = 0.0f;
-	SetDefaultName("Timer");
+TimerWidget::TimerWidget(tinyxml2::XMLNode* node)
+	: mAccumulatedTime (0.0f)
+	, mTime(0.0f)
+	, mCommand (NULL){
+	tinyxml2::XMLElement* elem = node->ToElement();
+	if(NULL == elem) {
+		printf("ERROR: TimerWidget:: Cannot parse XML");
+		return;
+	}
+	SetName(elem->Attribute("name"));
+	mTime = atoi(elem->Attribute("elapseTime"));
+	GameObjectFactory::CreateCommand(elem->FirstChildElement("command")->FirstChild(), &mCommand);
 }
 TimerWidget::~TimerWidget() { }
 
 
-const std::string& TimerWidget::GetAction() const {
-	return mAction;
-};
-
-void TimerWidget::SetAction(const std::string& action) {
-	mAction = action;
-};
-
-const std::string TimerWidget::GetParam1() const {
-	return mParam1;
-};
-
-void TimerWidget::SetParam1(const std::string& param1) {
-	mParam1 = param1;
-};
-
-const std::string TimerWidget::GetParam2() const {
-	return mParam2;
-};
-
-void TimerWidget::SetParam2(const std::string& param2) {
-	mParam2 = param2;
-};
 
 void TimerWidget::OnInitialize() {
-	SetAction(mAction);
-	SetParam1(mParam1);
-	SetParam2(mParam2);
+
 };
 
 void TimerWidget::OnUpdate(double frameTime) {
 	mAccumulatedTime+=frameTime;
 	if(mAccumulatedTime >= mTime){
-		//VM->ChangeView(VM->Get(m_sTargetView));		TODO: Action manager
+		mCommand->Execute();
 		mAccumulatedTime = 0;
 	};
 };
 
-void TimerWidget::OnSetAction() {
-
-};
-
-void TimerWidget::OnSetParam1() {
-
-};
-
-void TimerWidget::OnSetParam2() {
-
-};
 
 bool TimerWidget::ValidateAttributes() {
 	return true;

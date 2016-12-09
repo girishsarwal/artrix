@@ -10,6 +10,7 @@
 
 #include "Component.h"
 #include "Geometry.h"
+#include "TextureManager.h"
 #include "ShadingProgramManager.h"
 #include "VertexDefinitionManager.h"
 namespace gtfx {
@@ -21,9 +22,11 @@ private:
 	Geometry* mGeom;
 	bool mIsVisible;
 
-	std::string mProgramName;
 	Program* mProgram;
+	Texture* mTexture;
+
 	VertexDefinition mVertexDefinition;
+
 
 protected:
 
@@ -46,10 +49,11 @@ public:
 	void OnInitialize();
 	void OnUpdate(double gameTime);
 	Geometry* GetGeometry() const;
-	const std::string& GetProgramName() const;
-	void SetProgramName(const std::string& program);
+	void SetProgram(Program* program);
 	Program* GetProgram();
 	const VertexDefinition& GetVertexDefinition() const;
+	const Texture* GetTexture() const;
+	void SetTexture(Texture* texture);
 };
 
 } /* namespace gtfx */

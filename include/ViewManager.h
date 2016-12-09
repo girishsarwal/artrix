@@ -6,13 +6,15 @@ Keeps  a list of views and return as necessary
 
 #ifndef VIEWMANAGER_H
 #define VIEWMANAGER_H
+
 class View;
-class Widget;
+class GameObject;
+
 #include <string>
 #include "afx.h"
 #include "KeyedManager.h"
 #include "View.h"
-#include "Widget.h"
+#include "GameObject.h"
 
 class ViewManager:
 	public KeyedManager<View*> {
@@ -29,7 +31,7 @@ private:
 
 public:
 	View* GetCurrentView();
-	void ChangeView(View*);
+	void ChangeView(const std::string&);
 
 	static ViewManager* getInstance();
 	bool initialize(const std::string& root, const std::string& manifest);

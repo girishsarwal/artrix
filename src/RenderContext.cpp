@@ -110,10 +110,6 @@ void resize(GLFWwindow* window, GLint w, GLint h){
 		h = 1;
 	}
 	glViewport(0, 0, w, h);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(60, w/h, 1.0, 1000.0);
-	glMatrixMode(GL_MODELVIEW);
 }
 
 

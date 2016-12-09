@@ -27,11 +27,12 @@ ImageWidget::~ImageWidget(){
 }
 
 void ImageWidget::OnBeforeInitialize() {
-	TM->Use(mSource);
 
 
-	mRenderComponent->SetProgramName("sprite");
-	mRenderComponent->GetProgram()->SetUniform1i("texture", TM->Get(mSource)->GetTextureId());
+	mRenderComponent->SetProgram(SPM->Get("sprite"));
+	Texture * texture = TM->Get(mSource);
+	mRenderComponent->SetTexture(texture);
+
 	//gtfx::Geometry::CreatePlaneGeometry(mRenderComponent->GetGeometry(), 2, mTransformComponent->GetSize());
 	gtfx::Geometry::CreatePlaneGeometry(mRenderComponent->GetGeometry(), mRenderComponent->GetVertexDefinition(), mTransformComponent->GetSize(), glm::vec3(0, 0, 0));
 

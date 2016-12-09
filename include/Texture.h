@@ -19,6 +19,8 @@ private:
 	std::string mSource;
 	std::string mType;
 	bool mIsInitialized;
+
+	unsigned char* imageData;
 public:
 	Texture();
 	void Use();

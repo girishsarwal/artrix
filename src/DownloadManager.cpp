@@ -7,8 +7,9 @@
 
 #include "DownloadManager.h"
 
-DownloadManager::DownloadManager() {
-	mpCurl = NULL;
+DownloadManager::DownloadManager()
+	: mNumBytesDownloaded (0)
+	, mpCurl (NULL) {
 }
 
 DownloadManager::~DownloadManager() {

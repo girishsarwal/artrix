@@ -9,8 +9,11 @@
 
 namespace gtfx {
 
-Component::Component() {
-	// TODO Auto-generated constructor stub
+Component::Component()
+	: mIsInitialized (false)
+	, mIsEnabled (true)
+	, mGameObject (NULL) {
+
 
 }
 
@@ -18,12 +21,20 @@ bool Component::GetIsEnabled() const {
 	return mIsEnabled;
 }
 
+GameObject* Component::GetGameObject() const {
+	return mGameObject;
+}
+
+void Component::SetGameObject(GameObject* gameObject) {
+	mGameObject = gameObject;
+}
+
 void Component::SetIsEnabled(bool isEnabled) {
 	mIsEnabled = isEnabled;
 }
 
 Component::~Component() {
-	// TODO Auto-generated destructor stub
+	mIsInitialized = false;
 }
 
 
