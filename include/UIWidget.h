@@ -9,18 +9,18 @@
 #define UIWIDGET_H
 #include "GameObject.h"
 #include "afx.h"
-#include "Program.h"
-#include "TransformComponent.h"
-#include "RenderComponent.h"
-
+namespace gtfx {
+class Program;
+class TransformComponent;
+class RenderComponent;
 class UIWidget :
 		public gtfx::GameObject {
 private:
 
 protected:	
-	Program*	mShadingProgram;
-	gtfx::TransformComponent* mTransformComponent;
-	gtfx::RenderComponent* mRenderComponent;
+	Program* mShadingProgram;
+	TransformComponent* mTransformComponent;
+	RenderComponent* mRenderComponent;
 
 public:
 	UIWidget();
@@ -29,6 +29,7 @@ public:
 	virtual void OnInitialize();
 	virtual void OnUpdate(double gameTime);
 };
+}
 #endif
 
 

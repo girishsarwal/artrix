@@ -8,8 +8,7 @@
 #define IMAGEWIDGET_H
 #include "afx.h"
 #include "UIWidget.h"
-#include "TextureManager.h"
-#include "ShadingProgramManager.h"
+namespace gtfx {
 class ImageWidget:
 		public UIWidget {
 protected:
@@ -31,5 +30,6 @@ public:
 
 
 };
+}
 #endif
 

@@ -1,4 +1,5 @@
 #include "ButtonWidget.h"
+namespace gtfx {
 ButtonWidget::ButtonWidget(tinyxml2::XMLNode* node){
 };
 
@@ -16,5 +17,4 @@ void ButtonWidget::OnInitialize() {
 void ButtonWidget::OnRender(double frameTime){
 
 };
-
-
+}

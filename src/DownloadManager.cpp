@@ -6,7 +6,7 @@
  */
 
 #include "DownloadManager.h"
-
+namespace gtfx {
 DownloadManager::DownloadManager()
 	: mNumBytesDownloaded (0)
 	, mpCurl (NULL) {
@@ -14,7 +14,7 @@ DownloadManager::DownloadManager()
 
 DownloadManager::~DownloadManager() {
 }
-DownloadManager* DownloadManager::getInstance(){
+DownloadManager* DownloadManager::GetInstance(){
 	if(!m_pInstance){
 		m_pInstance = new DownloadManager();
 	};
@@ -149,4 +149,5 @@ bool DownloadManager::InflateArchive(const std::string& from, const std::string&
         return false;
     }
     return true;
+}
 }

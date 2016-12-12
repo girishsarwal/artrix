@@ -5,7 +5,11 @@
  *      Author: gsarwal
  */
 
-#include <RenderComponent.h>
+#include "RenderComponent.h"
+#include "Geometry.h"
+#include "Texture.h"
+#include "TextureManager.h"
+#include "ShadingProgramManager.h"
 
 namespace gtfx {
 

@@ -2,7 +2,6 @@
 #include "ViewManager.h"
 #include "RenderContext.h"
 #include "DownloadManager.h"
-#include "FontManager.h"
 #include "BMFontManager.h"
 #include "SerialManager.h"
 #include "SPIManager.h"
@@ -12,41 +11,64 @@
 
 gtfx::RenderContext* rc  = NULL;
 gtfx::ViewManager* vm = NULL;
+gtfx::DownloadManager* dm = NULL;
+gtfx::TextureManager* tm  = NULL;
+gtfx::ShadingProgramManager * spm  = NULL;
+gtfx::SerialManager* rs232m = NULL;
+gtfx::BMFontManager* bfm = NULL;
+gtfx::SPIManager* spim = NULL;
 
 #define TESTMODE
 
 int main(int argc, char* argv[]){
 
+	dm = gtfx::DownloadManager::GetInstance();
+	if(!dm) { printf("ERROR: Cannot create DLCManager"); return false; }
+
 	rc = gtfx::RenderContext::GetInstance();
 	if(!rc) { printf("ERROR: Cannot create RenderContext\n"); return false; }
 
-	vm = gtfx::ViewManager::GetInstance();
-	if(!gtfx::ViewManager::GetInstance()) { printf("ERROR: Cannot create ViewManager\n"); return false; }
-
-	if(!DM) { printf("ERROR: Cannot create DLCManager"); return false; }
 	gtfx::VertexDefinitionManager::CreateVertexDefinitions();
 
-	if(!TM) { printf("ERROR: Cannot create TextureManager\n"); return false; }
 
-	if(!FM) { printf("ERROR: Cannot create FontManager"); return false; }
-	if(!RS232M) { printf("ERROR: Cannot create SerialManager"); return false; }
-	if(!SPI) { printf("ERROR: Cannot create ShaderProgramManager"); return false; }
+	tm = gtfx::TextureManager::GetInstance();
+	if(!tm) { printf("ERROR: Cannot create TextureManager\n"); return false; }
 
-	if(!DM->initialize("http://availability.localhost.com", "/artrix")) {	/** DLC Manager **/
+	bfm = gtfx::BMFontManager::GetInstance();
+	if(!bfm) { printf("ERROR: Cannot create BitmapFontManager"); return false; }
+
+	spm = gtfx::ShadingProgramManager::GetInstance();
+	if(!spm) { printf("ERROR: Cannot create ShaderProgramManager"); return false; }
+
+	vm = gtfx::ViewManager::GetInstance();
+	if(!vm) { printf("ERROR: Cannot create ViewManager\n"); return false; }
+
+	rs232m = gtfx::SerialManager::GetInstance();
+	if(!rs232m) { printf("ERROR: Cannot create SerialManager"); return false; }
+
+	spim = gtfx::SPIManager::GetInstance();
+	if(!rs232m) { printf("ERROR: Cannot create SPIManager"); return false; }
+
+	if(!dm->initialize("http://availability.localhost.com", "/artrix")) {	/** DLC Manager **/
 		throw std::exception();
 	}
 
-	DM->FromMediaServer("/pratham.zip", "./.artrix/dlc/", true);
+	dm->FromMediaServer("/pratham.zip", "./.artrix/dlc/", true);
+
 	if(!rc->initialize(argc, argv)){
 		throw std::exception();
 	}
 
-	if(!TM->initialize("./.artrix/dlc/pratham/textures", "textures.mf")) {	/** Texture Manager **/
+	if(!tm->initialize("./.artrix/dlc/pratham/textures", "textures.mf")) {	/** Texture Manager **/
 		throw std::exception();
 	}
 
-	if(!SPM->initialize("./.artrix/dlc/pratham/shaders", "shaderprograms.mf")) { 	/** Shading Program Manager **/
+	if(!bfm->initialize("./.artrix/dlc/pratham/fonts", "fonts.mf")) {		/** BM Font Manager **/
 		throw std::exception();
+	}
+
+	if(!spm->initialize("./.artrix/dlc/pratham/shaders", "shaderprograms.mf")) { 	/** Shading Program Manager **/
+			throw std::exception();
 	}
 
 	if(!vm->initialize("./.artrix/dlc/pratham/screens", "screens.mf")) { 	/** View Manager **/
@@ -54,14 +76,11 @@ int main(int argc, char* argv[]){
 	}
 
 
-	if(!BFM->initialize("./.artrix/dlc/pratham/fonts", "fonts.mf")) {		/** BM Font Manager **/
-		throw std::exception();
-	}
-	if(!RS232M->initialize("/dev/ttyS0")) { 				/** Serial Interface Manager **/
+	if(!rs232m->initialize("/dev/ttyS0")) { 				/** Serial Interface Manager **/
 		throw std::exception();
 	}
 
-	if(!SPI->initialize("/dev/spidev")) {				/** SPI Manager **/
+	if(!spim->initialize("/dev/spidev")) {				/** SPI Manager **/
 		throw std::exception();
 	}
 
@@ -69,12 +88,14 @@ int main(int argc, char* argv[]){
 	rc->begin();
 
 	printf("Shutting down subsystems...");
+	spim->shutdown();
+	rs232m->shutdown();
 	vm->shutdown();
+	spm->shutdown();
+	bfm->shutdown();
+	tm->shutdown();
 	rc->shutdown();
-	SPI->shutdown();
-	SPM->shutdown();
-	RS232M->shutdown();
-
+	dm->shutdown();
 	printf("Ready to exit");
 	
 	return 0;

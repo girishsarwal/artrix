@@ -1,5 +1,8 @@
 #include "UIWidget.h"
-
+#include "Program.h"
+#include "TransformComponent.h"
+#include "RenderComponent.h"
+namespace gtfx {
 UIWidget::UIWidget()
 	:GameObject()
 	,mTransformComponent(new gtfx::TransformComponent())
@@ -56,5 +59,4 @@ void UIWidget::OnUpdate(double gameTime){
 	GameObject::OnUpdate(gameTime);
 }
 
-
-
+}

@@ -6,7 +6,11 @@
  */
 
 #include "ImageWidget.h"
-
+#include "Texture.h"
+#include "TextureManager.h"
+#include "ShadingProgramManager.h"
+#include "Geometry.h"
+namespace gtfx {
 ImageWidget::ImageWidget()
 	:UIWidget() {
 
@@ -29,12 +33,12 @@ ImageWidget::~ImageWidget(){
 void ImageWidget::OnBeforeInitialize() {
 
 
-	mRenderComponent->SetProgram(SPM->Get("sprite"));
-	Texture * texture = TM->Get(mSource);
+	mRenderComponent->SetProgram(ShadingProgramManager::GetInstance()->Get("sprite"));
+	Texture *texture = TextureManager::GetInstance()->Get(mSource);
 	mRenderComponent->SetTexture(texture);
 
 	//gtfx::Geometry::CreatePlaneGeometry(mRenderComponent->GetGeometry(), 2, mTransformComponent->GetSize());
-	gtfx::Geometry::CreatePlaneGeometry(mRenderComponent->GetGeometry(), mRenderComponent->GetVertexDefinition(), mTransformComponent->GetSize(), glm::vec3(0, 0, 0));
+	Geometry::CreatePlaneGeometry(mRenderComponent->GetGeometry(), mRenderComponent->GetVertexDefinition(), mTransformComponent->GetSize(), glm::vec3(0, 0, 0));
 
 	UIWidget::OnBeforeInitialize();
 }
@@ -60,5 +64,4 @@ const std::string& ImageWidget::GetSource() const {
 void ImageWidget::SetSource(const std::string& source) {
 	mSource = source;
 };
-
-
+}

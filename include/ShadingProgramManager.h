@@ -6,6 +6,7 @@ class Shader;
 #include "Shader.h"
 #include "Program.h"
 #include "KeyedManager.h"
+namespace gtfx {
 class ShadingProgramManager
 	: public KeyedManager<Program*>{
 	private:
@@ -18,7 +19,7 @@ class ShadingProgramManager
 		ShadingProgramManager();
 	public:
 		~ShadingProgramManager();
-		static ShadingProgramManager* getInstance();
+		static ShadingProgramManager* GetInstance();
 		const std::string& GetRoot() const;
 		void AddToShaderCache(Shader*);
 		Shader* GetFromShaderCache(const std::string&);
@@ -27,5 +28,5 @@ class ShadingProgramManager
 		bool initialize(const std::string&, const std::string&);
 		void shutdown();
 };
-#define SPM ShadingProgramManager::getInstance()
+}
 #endif

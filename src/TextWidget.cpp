@@ -7,7 +7,7 @@
  */
 
 #include "TextWidget.h"
-
+namespace gtfx {
 
 TextWidget::TextWidget() {
 
@@ -97,3 +97,4 @@ void TextWidget::OnRender(double frameTime) {
 	//	glPopMatrix();
 	//	glDisable(GL_TEXTURE_2D);
 };
+}

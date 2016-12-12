@@ -1,11 +1,12 @@
 #include "ShadingProgramManager.h"
+namespace gtfx {
 ShadingProgramManager::ShadingProgramManager(){
 };
 
 ShadingProgramManager::~ShadingProgramManager(){
 };
 
-ShadingProgramManager* ShadingProgramManager::getInstance(){
+ShadingProgramManager* ShadingProgramManager::GetInstance(){
 	if(!m_pInstance){
 		m_pInstance = new ShadingProgramManager();
 	};
@@ -61,7 +62,7 @@ bool ShadingProgramManager::CreateStockShadingPrograms(){
 	for (tinyxml2::XMLNode *gpuProgramNode = gpuProgramsNode->FirstChild(); gpuProgramNode; gpuProgramNode = gpuProgramNode->NextSibling()) {
 		Program* program = new Program(gpuProgramNode);
 		program->Initialize();
-		SPM->Add(program);
+		m_pInstance->Add(program);
 	}
 
 	return true;
@@ -82,3 +83,4 @@ void ShadingProgramManager::Use(const std::string& name){
 }
 
 ShadingProgramManager* ShadingProgramManager::m_pInstance = NULL;
+}

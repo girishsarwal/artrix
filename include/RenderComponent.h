@@ -9,12 +9,11 @@
 #define INCLUDE_RENDERCOMPONENT_H_
 
 #include "Component.h"
-#include "Geometry.h"
-#include "TextureManager.h"
-#include "ShadingProgramManager.h"
 #include "VertexDefinitionManager.h"
 namespace gtfx {
-
+class Geometry;
+class Program;
+class Texture;
 class RenderComponent:
 		public Component {
 

@@ -1,9 +1,11 @@
 #include "SerialManager.h"
+namespace gtfx {
+SerialManager::SerialManager()
+	: m_pPortName ("/dev/ttyS0")
+	, m_iBaudRate (9600)
+	, m_iParity (0)
+	, m_iDataBits (0) {
 
-SerialManager::SerialManager(){
-	m_pPortName = "/dev/ttyS0";			/** Read from settings **/
-	m_iBaudRate = 9600;
-	m_iParity = 0;
 };
 
 SerialManager::~SerialManager(){
@@ -29,7 +31,7 @@ void SerialManager::shutdown(){
 }
 
 
-SerialManager* SerialManager::getInstance(){
+SerialManager* SerialManager::GetInstance(){
 	if(!m_pInstance){
 		m_pInstance = new SerialManager();
 	}
@@ -37,8 +39,4 @@ SerialManager* SerialManager::getInstance(){
 }
 
 SerialManager* SerialManager::m_pInstance = NULL;
-
-
-
-
-
+}

@@ -1,5 +1,7 @@
 #include "TextureManager.h"
-TextureManager* TextureManager::getInstance(){
+#include "Texture.h"
+namespace gtfx {
+TextureManager* TextureManager::GetInstance(){
 	if(NULL == m_pInstance){
 		m_pInstance = new TextureManager();
 	}
@@ -27,7 +29,7 @@ bool TextureManager::loadAllTextures(){
 		Texture* texture = new Texture(textureNode);
 		texture->SetTextureRoot(mRoot);
 		texture->Initialize();
-		TM->Add(texture);
+		m_pInstance->Add(texture);
 	}
 	return true;
 }
@@ -41,4 +43,8 @@ void TextureManager::Use(const std::string& name) {
 	glBindTexture(GL_TEXTURE_2D, 0);
 	t->Use();
 }
+void TextureManager::shutdown() {
+
+}
 TextureManager* TextureManager::m_pInstance = NULL;
+}

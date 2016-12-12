@@ -4,7 +4,7 @@
 #define FRAG_SHADER	GL_FRAGMENT_SHADER
 #include "afx.h"
 #include "KeyManageable.h"
-#include "ShadingProgramManager.h"
+namespace gtfx {
 class Shader :
 	public KeyManageable {
 
@@ -51,4 +51,5 @@ public:
     virtual void Print();
     friend ostream& operator<<(ostream& stream, const Shader& widget);
 };
+}
 #endif

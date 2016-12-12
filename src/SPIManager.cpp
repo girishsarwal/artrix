@@ -1,5 +1,5 @@
 #include "SPIManager.h"
-
+namespace gtfx {
 SPIManager::SPIManager(){
 	m_pPortName = "/dev/spidev0.0";			/** TOOD: Read from settings **/
 	m_iBaudRate = 9600;
@@ -28,7 +28,7 @@ void SPIManager::shutdown(){
 }
 
 
-SPIManager* SPIManager::getInstance(){
+SPIManager* SPIManager::GetInstance(){
 	if(NULL == m_pInstance){
 		m_pInstance = new SPIManager();
 	}
@@ -36,7 +36,7 @@ SPIManager* SPIManager::getInstance(){
 }
 
 SPIManager* SPIManager::m_pInstance = NULL;
-
+}
 
 
 

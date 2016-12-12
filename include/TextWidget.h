@@ -9,6 +9,7 @@
 #pragma once
 #include "afx.h"
 #include "UIWidget.h"
+namespace gtfx {
 class TextWidget:
 	public UIWidget {
 
@@ -48,5 +49,5 @@ public:
 
 	bool ValidateAttributes();
 };
-
+}
 

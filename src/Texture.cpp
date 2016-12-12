@@ -5,14 +5,17 @@
  *      Author: gsarwal
  */
 
-#include <Texture.h>
-
+#include "Texture.h"
+namespace gtfx {
 Texture::Texture()
-	: imageData (NULL){
+	: imageData (NULL)
+	, mTextureId (0) {
 	mIsInitialized = false;
 	SetDefaultName(string("Texture"));
 }
-Texture::Texture(tinyxml2::XMLNode* node ){
+Texture::Texture(tinyxml2::XMLNode* node )
+	: imageData (NULL)
+	, mTextureId (0) {
 	mIsInitialized = false;
 	tinyxml2::XMLElement* elem = node->ToElement();
 	mName = elem->Attribute("name");
@@ -102,4 +105,5 @@ void Texture::Print() {
 ostream& operator<<(ostream& stream, const Texture& texture) {
     stream << "<texture type=\"" << texture.mType.c_str() << "\" source=\"" << texture.mSource.c_str() << "\" name =\"" << texture.mName.c_str() << "\">\n";
     return stream;
+}
 }

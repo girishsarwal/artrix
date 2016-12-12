@@ -11,12 +11,10 @@
 #include "SupportsTelemetry.h"
 
 class TelemetryWidget
-	: public UIWidget
+	: public gtfx::UIWidget
 	, SupportsTelemetry{
 
 protected:
-
-
 	virtual void OnInitializeSensors();
 	virtual void OnGetValuesFromSensors();
 	virtual void OnInitialize();

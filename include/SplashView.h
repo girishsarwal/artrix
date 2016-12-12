@@ -7,7 +7,7 @@ class SplashView
 	: public gtfx::View
 {
 private:
-	ImageWidget*	m_pSplashImage;
+	gtfx::ImageWidget*	m_pSplashImage;
 public:
 	SplashView();
 	virtual ~SplashView();

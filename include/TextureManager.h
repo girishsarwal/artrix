@@ -1,8 +1,9 @@
 #ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
 #include "afx.h"
-#include "Texture.h"
 #include "KeyedManager.h"
+namespace gtfx {
+class Texture;
 class TextureManager:
 	public KeyedManager<Texture*> {
 private:
@@ -14,10 +15,11 @@ private:
 	std::string mManifest;
 
 public:
-	static TextureManager* getInstance();
+	static TextureManager* GetInstance();
 	bool loadAllTextures();
 	bool initialize(const std::string& root,const std::string& manifest);
+	void shutdown();
 	void Use(const std::string&);
 };
-#define TM TextureManager::getInstance()
+}
 #endif

@@ -1,8 +1,7 @@
 #ifndef SPIMANAGER_H
 #define SPIMANAGER_H
-
-#include <string>
 #include "afx.h"
+namespace gtfx {
 class SPIManager{
 private:
 /**
@@ -39,8 +38,8 @@ private:
 public:
 	bool initialize(const std::string&);
 	void shutdown();
-	static SPIManager* getInstance();
+	static SPIManager* GetInstance();
 	~SPIManager();
 };
-#define SPI SPIManager::getInstance()
+}
 #endif

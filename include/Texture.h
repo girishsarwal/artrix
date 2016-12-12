@@ -7,9 +7,8 @@
 
 #ifndef INCLUDE_TEXTURE_H_
 #define INCLUDE_TEXTURE_H_
-
 #include "KeyManageable.h"
-
+namespace gtfx {
 class Texture:
 	public KeyManageable {
 private:
@@ -44,5 +43,5 @@ public:
 	void Print();
 	friend ostream& operator<<(ostream& stream, const Texture& texture);
 };
-
+}
 #endif /* INCLUDE_TEXTURE_H_ */

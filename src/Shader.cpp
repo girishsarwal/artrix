@@ -1,5 +1,6 @@
 #include "Shader.h"
-
+#include "ShadingProgramManager.h"
+namespace gtfx {
 Shader::Shader(tinyxml2::XMLNode* node){
 	mRefCount = 0;
 	mIsCompiled = false;
@@ -10,7 +11,7 @@ Shader::Shader(tinyxml2::XMLNode* node){
 		printf("\nWARNING: Cannot create shader");
 		return;
 	}
-	mRoot = SPM->GetRoot();
+	mRoot = ShadingProgramManager::GetInstance()->GetRoot();
 	mName = elem->Attribute("source");
 	mSource = elem->Attribute("source");
 	mShaderType = elem->Attribute("type");
@@ -19,7 +20,7 @@ Shader::Shader(){
 	mRefCount = 0;
 	mIsCompiled = false;
 	mIsInitialized = false;
-	mRoot = SPM->GetRoot();
+	mRoot = ShadingProgramManager::GetInstance()->GetRoot();
 	mShaderHandle = 0;
 	SetDefaultName("Shader");
 };
@@ -153,4 +154,5 @@ void Shader::Print() {
 ostream& operator<<(ostream& stream, const Shader& shader) {
     stream << "<shader source=\"" << shader.mSource << "\" type=\"" << shader.mShaderType << "\">" << "</shader>";
     return stream;
+}
 }

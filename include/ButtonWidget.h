@@ -2,6 +2,7 @@
 #define BUTTONWIDGET_H
 #include "afx.h"
 #include "UIWidget.h"
+namespace gtfx {
 class ButtonWidget
 	: public UIWidget{
 private:
@@ -15,4 +16,5 @@ public:
 	bool ValidateAttributes();
 	void OnRender(double frameTime);
 };
+}
 #endif

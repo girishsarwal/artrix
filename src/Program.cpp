@@ -1,6 +1,7 @@
 #include "Program.h"
-#include <GL/glew.h>
-#include <GL/glut.h>
+#include "Shader.h"
+#include "ShadingProgramManager.h"
+namespace gtfx {
 Program::Program(){
 	mProgramHandle = 0;
 	mInfoLog= NULL;
@@ -31,7 +32,7 @@ Program::Program(tinyxml2::XMLNode* node){
 	}
 	for(tinyxml2::XMLNode* shaderNode = shaders->FirstChild(); shaderNode; shaderNode = shaderNode->NextSibling()) {
 		std::string shaderName = shaderNode->FirstChild()->Value();
-		Shader* shader = SPM->GetFromShaderCache(shaderName);
+		Shader* shader = ShadingProgramManager::GetInstance()->GetFromShaderCache(shaderName);
 		if(NULL == shader){
 			printf("\nWARNING: specified shader %s not found in cache. Program may be unuseable", shaderName.c_str());
 			continue;
@@ -265,5 +266,5 @@ ostream& operator<<(ostream& stream, const Program& program) {
     stream << "</program>";
     return stream;
 }
-
+}
 

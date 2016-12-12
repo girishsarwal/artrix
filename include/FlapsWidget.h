@@ -2,7 +2,8 @@
 #define FLAPSWIDGET_H
 #include "afx.h"
 #include "UIWidget.h"
-class FlapsWidget : public UIWidget{
+class FlapsWidget
+		: public gtfx::UIWidget{
 private:
 	int m_iPosition;
 public:

@@ -1,10 +1,9 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
 #include "afx.h"
-#include "Shader.h"
 #include "KeyManageable.h"
-#include "KeyedManager.h"
-#include "ShadingProgramManager.h"
+namespace gtfx {
+class Shader;
 class Program
 	: public KeyManageable {
 private:
@@ -66,4 +65,5 @@ public:
 	void DetermineSuitableVertexFormat();
 
 };
+}
 #endif
