@@ -5,6 +5,7 @@
 #ifndef KEYMANAGEABLE_H
 #define KEYMANAGEABLE_H
 using namespace std;
+namespace gtfx {
 class KeyManageable {
 private:
 	static int nextId;
@@ -17,14 +18,8 @@ public:
 	const string& GetName() const;
 	void SetName(const string&);
 	void SetDefaultName(const string&);
-//
-//	bool operator==(const KeyManageable& rhs) const;
-//	bool operator!=(const KeyManageable& rhs) const;
-
-
 };
-
-
+}
 
 
 #endif //KEYMANAGEABLE_H

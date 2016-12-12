@@ -3,7 +3,7 @@
 //
 
 #include "KeyManageable.h"
-
+namespace gtfx {
 int KeyManageable::nextId = 0;
 
 const string& KeyManageable::GetName() const{
@@ -28,9 +28,4 @@ int KeyManageable:: __getNextId() {
 	return ++nextId;
 }
 
-//bool KeyManageable::operator==(const KeyManageable& rhs) const {
-//    return (this->mName == rhs.mName);
-//};
-//bool KeyManageable::operator!=(const KeyManageable& rhs) const {
-//    return !(*this == rhs);
-//};
+}

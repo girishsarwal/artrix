@@ -7,7 +7,6 @@
 */
 
 #include "CircularGaugeWidget.h"
-
 CircularGaugeWidget::CircularGaugeWidget() {
 
 };
