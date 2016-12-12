@@ -1,5 +1,7 @@
 #include "View.h"
-
+#include "GameObjectFactory.h"
+#include "GameObject.h"
+namespace gtfx {
 void View::Update(double frameTime){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -40,5 +42,4 @@ View::View(tinyxml2::XMLNode* node) {
 View::~View(void)
 {
 }
-
-
+}

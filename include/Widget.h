@@ -1,14 +1,13 @@
 #ifndef WIDGET_H
 #define WIDGET_H
-class StateMachine;
 #include "afx.h"
 #include "StateMachine.h"
 #include "KeyManageable.h"
-#include "Component.h"
-#include "TransformComponent.h"
-#include "RenderComponent.h"
-#include "KeyedManager.h"
 
+namespace gtfx {
+class Component;
+class TransformComponent;
+class RenderComponent;
 
 class Widget :
     public StateMachine,
@@ -66,5 +65,5 @@ class Widget :
 
         std::vector<gtfx::Component*> mComponents;
 };
-
+}
 #endif // WIDGET_H

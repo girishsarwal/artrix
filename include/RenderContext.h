@@ -5,15 +5,14 @@
 #include "View.h"
 #include "ViewManager.h"
 #include "Geometry.h"
-
+namespace gtfx {
+class View;
 class RenderContext{
 private:
 	GLFWwindow* window;
 	View* m_pCurrentView;
 	static RenderContext* m_pTheContext;
 	RenderContext();
-
-
 	GLuint VertexArrayID;
 
 	GLuint vertexbuffer;
@@ -23,14 +22,13 @@ public:
 	void begin();
 	void frame();
 	void shutdown();
-	View* getCurrentView();
-	static RenderContext* getInstance();
+	View* GetCurrentView();
+	static RenderContext* GetInstance();
 	~RenderContext();
 	void showVersionInformation();
 };
-
-
 extern "C" void resize(GLFWwindow*, int, int);
 
-#define RC RenderContext::getInstance()
+}
+
 #endif

@@ -1,9 +1,9 @@
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
 #include "afx.h"
+namespace gtfx {
 class StateMachine;
 class State;
-#include "StateMachine.h"
 class StateManager
 {
     public:
@@ -17,5 +17,5 @@ class StateManager
         static StateManager* m_instance;
         StateManager();
 };
-
+}
 #endif // STATEMANAGER_H

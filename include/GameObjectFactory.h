@@ -1,26 +1,9 @@
 #ifndef WIDGETFACTORY_H
 #define WIDGETFACTORY_H
-#include "GameObject.h"
 #include "afx.h"
-
-class ButtonWidget;
-class ImageWidget;
-class TextWidget;
-
-#include "GameObject.h"
-#include "ButtonWidget.h"
-#include "ImageWidget.h"
-#include "TextWidget.h"
-
-#include "TimerWidget.h"
-
-#include "CircularGaugeWidget.h"
-#include "AttitudeIndicatorWidget.h"
-#include "FlapsWidget.h"
-
-#include "Command.h"
-#include "SwitchScreenAction.h"
-
+namespace gtfx {
+class GameObject;
+class Command;
 class GameObjectFactory
 {
     public:
@@ -31,5 +14,5 @@ class GameObjectFactory
     protected:
     private:
 };
-
+}
 #endif // WIDGETFACTORY_H

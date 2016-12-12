@@ -1,6 +1,5 @@
 #ifndef WIDGET_H
 #define WIDGET_H
-class StateMachine;
 #include "afx.h"
 #include "StateMachine.h"
 #include "KeyManageable.h"
@@ -10,6 +9,7 @@ class StateMachine;
 #include "KeyedManager.h"
 
 namespace gtfx {
+class StateMachine;
 class Component;
 class GameObject :
     public StateMachine,

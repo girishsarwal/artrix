@@ -3,7 +3,10 @@ Loads a list of all views
 Keeps  a list of views and return as necessary
 **/
 #include "ViewManager.h"
-
+#include "View.h"
+#include "GameObject.h"
+#include "GameObjectFactory.h"
+namespace gtfx {
 ViewManager::ViewManager(){
 	//m_Views.clear();
 };
@@ -24,7 +27,7 @@ void ViewManager::shutdown(){
 
 };
 
-ViewManager* ViewManager::getInstance(){
+ViewManager* ViewManager::GetInstance(){
 	if(!m_pTheViewManager){
 		m_pTheViewManager = new ViewManager();
 	}
@@ -76,5 +79,4 @@ void ViewManager::ChangeView(const std::string& name){
 
 ViewManager* ViewManager::m_pTheViewManager = NULL;
 
-
-
+}

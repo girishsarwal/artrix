@@ -1,4 +1,6 @@
+#include "StateMachine.h"
 #include "State.h"
+namespace gtfx {
 void State::SetIsOneTimeEntered(bool _isOneTimeEntered){
     mIsOneTimeEntered = _isOneTimeEntered;
 }
@@ -46,3 +48,4 @@ void State::Exit(StateMachine* sm) {
 void State::OnOneTimeEnter(const StateMachine* sm) { }
 void State::OnEnter(const StateMachine* sm) { }
 void State::OnExit(const StateMachine* sm) { }
+}

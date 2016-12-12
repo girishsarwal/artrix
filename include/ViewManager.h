@@ -10,12 +10,11 @@ Keeps  a list of views and return as necessary
 class View;
 class GameObject;
 
-#include <string>
 #include "afx.h"
 #include "KeyedManager.h"
-#include "View.h"
-#include "GameObject.h"
-
+namespace gtfx {
+class View;
+class GameObject;
 class ViewManager:
 	public KeyedManager<View*> {
 private:
@@ -33,12 +32,12 @@ public:
 	View* GetCurrentView();
 	void ChangeView(const std::string&);
 
-	static ViewManager* getInstance();
+	static ViewManager* GetInstance();
 	bool initialize(const std::string& root, const std::string& manifest);
 	void shutdown();
 
 	ViewManager();
 	~ViewManager();
 };
-#define VM ViewManager::getInstance()
+}
 #endif

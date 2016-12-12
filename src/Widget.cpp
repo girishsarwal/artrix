@@ -1,5 +1,8 @@
 #include "Widget.h"
-
+#include "Component.h"
+#include "TransformComponent.h"
+#include "RenderComponent.h"
+namespace gtfx {
 Widget::Widget() {
 	mIsInitialized = false;
     SetDefaultName(string("Widget"));
@@ -132,4 +135,5 @@ bool Widget::operator!=(const Widget& rhs) const {
 };
 bool Widget::ValidateAttributes() {
 	return true;
+}
 }

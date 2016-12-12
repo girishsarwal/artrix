@@ -1,4 +1,6 @@
 #include "StateMachine.h"
+#include "State.h"
+namespace gtfx {
 StateMachine::StateMachine(){
     mCurrentState = NULL;
     mPreviousState = NULL;
@@ -21,15 +23,15 @@ void StateMachine::SetPreviousState(State* newState){
 }
 
 void StateMachine::GotoState(State* newState) {
-    ALOGD("StateMachine::GotoState", "attempting change state...");
+    printf("StateMachine::GotoState", "attempting change state...");
     if(NULL == newState){
-        ALOGE("StateMachine::GotoState", "cannot change state, state is null");
+        printf("StateMachine::GotoState", "cannot change state, state is null");
         return;
     }
-    ALOGD("StateMachine::GotoState", "state transition from %s to %s", (mCurrentState != NULL) ? mCurrentState->GetName().c_str() : "NULL", (newState != NULL) ? newState->GetName().c_str() : "NULL");
+    printf("StateMachine::GotoState", "state transition from %s to %s", (mCurrentState != NULL) ? mCurrentState->GetName().c_str() : "NULL", (newState != NULL) ? newState->GetName().c_str() : "NULL");
     if(NULL != mCurrentState) {
         if (mCurrentState->GetIsTerminable() != true){
-            ALOGD("StateMachine::GotoState", "cannot change state, current state is non-terminable");
+            printf("StateMachine::GotoState", "cannot change state, current state is non-terminable");
             return;
         }
         mCurrentState->Exit(this);
@@ -40,5 +42,6 @@ void StateMachine::GotoState(State* newState) {
         mCurrentState->OneTimeEnter(this);
     }
     mCurrentState->Enter(this);
-    ALOGD("StateMachine::GotoState", "state transition from %s to %s", (mPreviousState!= NULL) ? mPreviousState->GetName().c_str() : "NULL", (mCurrentState != NULL) ? mCurrentState->GetName().c_str() : "NULL");
+    printf("StateMachine::GotoState", "state transition from %s to %s", (mPreviousState!= NULL) ? mPreviousState->GetName().c_str() : "NULL", (mCurrentState != NULL) ? mCurrentState->GetName().c_str() : "NULL");
+}
 }

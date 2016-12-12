@@ -5,20 +5,20 @@
  *      Author: girish
  */
 
-#pragma once
-#include "GameObject.h"
+#ifndef TIMERWIDGET_H
+#define TIMERWIDGET_H
 #include "afx.h"
-#include "ViewManager.h"
-#include "Command.h"
-
+#include "GameObject.h"
+namespace gtfx {
+class Command;
 class TimerWidget
-	: public gtfx::GameObject {
+	: public GameObject {
 private:
 	float mAccumulatedTime;
 protected:
 
 	uint mTime;
-	gtfx::Command* mCommand;
+	Command* mCommand;
 	/*** lifecycle **/
 	void OnInitialize();
 	void OnUpdate(double frameTime);
@@ -28,7 +28,6 @@ public:
 	TimerWidget(tinyxml2::XMLNode*);
 	virtual ~TimerWidget();
 	bool ValidateAttributes();
-
 };
-
-
+}
+#endif

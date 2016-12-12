@@ -4,10 +4,11 @@
  *  Created on: May.16.2013
  *      Author: girish
  */
-
 #include "TimerWidget.h"
-
-
+#include "ViewManager.h"
+#include "GameObjectFactory.h"
+#include "Command.h"
+namespace gtfx {
 TimerWidget::TimerWidget()
 	: mAccumulatedTime (0.0f)
 	, mTime(0.0f)
@@ -28,9 +29,6 @@ TimerWidget::TimerWidget(tinyxml2::XMLNode* node)
 	GameObjectFactory::CreateCommand(elem->FirstChildElement("command")->FirstChild(), &mCommand);
 }
 TimerWidget::~TimerWidget() { }
-
-
-
 void TimerWidget::OnInitialize() {
 
 };
@@ -47,3 +45,4 @@ void TimerWidget::OnUpdate(double frameTime) {
 bool TimerWidget::ValidateAttributes() {
 	return true;
 };
+}

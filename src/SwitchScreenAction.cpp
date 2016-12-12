@@ -24,7 +24,7 @@ SwitchScreenAction::SwitchScreenAction(tinyxml2::XMLNode* node) {
 }
 
 void SwitchScreenAction::Execute() {
-	VM->ChangeView(mTarget);
+	ViewManager::GetInstance()->ChangeView(mTarget);
 }
 
 SwitchScreenAction::~SwitchScreenAction() {

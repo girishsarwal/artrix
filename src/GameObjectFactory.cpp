@@ -1,5 +1,21 @@
-#include <GameObjectFactory.h>
+#include "GameObjectFactory.h"
 
+
+#include "GameObject.h"
+#include "ButtonWidget.h"
+#include "ImageWidget.h"
+#include "TextWidget.h"
+
+#include "TimerWidget.h"
+
+#include "CircularGaugeWidget.h"
+#include "AttitudeIndicatorWidget.h"
+#include "FlapsWidget.h"
+
+#include "Command.h"
+#include "SwitchScreenAction.h"
+
+namespace gtfx {
 GameObjectFactory::GameObjectFactory() {
     //ctor
 }
@@ -71,4 +87,5 @@ void GameObjectFactory::CreateCommand(tinyxml2::XMLNode* node, gtfx::Command** c
 	if(NULL != commandName) {
 		(*command)->SetName(string(commandName));
 	}
+}
 }

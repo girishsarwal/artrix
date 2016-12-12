@@ -1,8 +1,9 @@
-#pragma once
-#include "GameObjectFactory.h"
-#include "GameObject.h"
+#ifndef VIEW_H
+#define VIEW_H
 #include "afx.h"
 #include "KeyManageable.h"
+namespace gtfx {
+class GameObject;
 class View
 	: public KeyManageable
 {
@@ -22,4 +23,5 @@ protected:
 	virtual void onInitialize();
 	virtual void onUpdate(double frameTime);
 };
-
+}
+#endif

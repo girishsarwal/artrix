@@ -10,16 +10,24 @@
 #include "ShadingProgramManager.h"
 #include "VertexDefinitionManager.h"
 
+gtfx::RenderContext* rc  = NULL;
+gtfx::ViewManager* vm = NULL;
+
 #define TESTMODE
+
 int main(int argc, char* argv[]){
 
+	rc = gtfx::RenderContext::GetInstance();
+	if(!rc) { printf("ERROR: Cannot create RenderContext\n"); return false; }
+
+	vm = gtfx::ViewManager::GetInstance();
+	if(!gtfx::ViewManager::GetInstance()) { printf("ERROR: Cannot create ViewManager\n"); return false; }
 
 	if(!DM) { printf("ERROR: Cannot create DLCManager"); return false; }
-	if(!RC) { printf("ERROR: Cannot create RenderContext\n"); return false; }
 	gtfx::VertexDefinitionManager::CreateVertexDefinitions();
 
 	if(!TM) { printf("ERROR: Cannot create TextureManager\n"); return false; }
-	if(!VM) { printf("ERROR: Cannot create ViewManager\n"); return false; }
+
 	if(!FM) { printf("ERROR: Cannot create FontManager"); return false; }
 	if(!RS232M) { printf("ERROR: Cannot create SerialManager"); return false; }
 	if(!SPI) { printf("ERROR: Cannot create ShaderProgramManager"); return false; }
@@ -29,7 +37,7 @@ int main(int argc, char* argv[]){
 	}
 
 	DM->FromMediaServer("/pratham.zip", "./.artrix/dlc/", true);
-	if(!RC->initialize(argc, argv)){
+	if(!rc->initialize(argc, argv)){
 		throw std::exception();
 	}
 
@@ -41,7 +49,7 @@ int main(int argc, char* argv[]){
 		throw std::exception();
 	}
 
-	if(!VM->initialize("./.artrix/dlc/pratham/screens", "screens.mf")) { 	/** View Manager **/
+	if(!vm->initialize("./.artrix/dlc/pratham/screens", "screens.mf")) { 	/** View Manager **/
 		throw std::exception();
 	}
 
@@ -58,11 +66,11 @@ int main(int argc, char* argv[]){
 	}
 
 
-	RC->begin();
+	rc->begin();
 
 	printf("Shutting down subsystems...");
-	VM->shutdown();
-	RC->shutdown();
+	vm->shutdown();
+	rc->shutdown();
 	SPI->shutdown();
 	SPM->shutdown();
 	RS232M->shutdown();

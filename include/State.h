@@ -1,7 +1,7 @@
 #ifndef STATE_H_INCLUDED
 #define STATE_H_INCLUDED
 #include "afx.h"
-#include "StateMachine.h"
+namespace gtfx {
 class StateMachine;
 class State
 {
@@ -31,5 +31,6 @@ protected:
     virtual void OnEnter(const StateMachine*);
     virtual void OnExit(const StateMachine*);
 };
+}
 
 #endif // STATE_H_INCLUDED

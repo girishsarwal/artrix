@@ -1,7 +1,7 @@
 #ifndef STATEMACHINE_H_INCLUDED
 #define STATEMACHINE_H_INCLUDED
 #include "afx.h"
-#include "State.h"
+namespace gtfx {
 class State;
 class StateMachine
 {
@@ -20,5 +20,5 @@ public:
     StateMachine();
     ~StateMachine();
 };
-
+}
 #endif // STATEMACHINE_H_INCLUDED

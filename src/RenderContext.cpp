@@ -1,8 +1,9 @@
 #include "RenderContext.h"
+#include "ViewManager.h"
 static timespec tvLastTime;
 static timespec tvCurrentTime;
 static long int dElapsedTime;
-
+namespace gtfx {
 bool RenderContext::initialize(int argc, char** argv){
 	printf("\n+--------------------RENDER CONTEXT----------------------+\n");
 	printf("Initializing...\n");
@@ -71,8 +72,8 @@ void RenderContext::begin(){
 
 
 void RenderContext::frame() {
-	if(NULL != VM->GetCurrentView()){
-		View* v =VM->GetCurrentView();
+	if(NULL != ViewManager::GetInstance()->GetCurrentView()){
+		View* v =ViewManager::GetInstance()->GetCurrentView();
 		v->Update(dElapsedTime);
 	}
 }
@@ -82,7 +83,7 @@ void RenderContext::shutdown(){
 	//glutDestroyWindow(m_hWnd);
 }
 
-RenderContext* RenderContext::getInstance(){
+RenderContext* RenderContext::GetInstance(){
 	if(!m_pTheContext){
 		m_pTheContext = new RenderContext();
 	}
@@ -101,7 +102,7 @@ RenderContext::RenderContext()
 RenderContext::~RenderContext(){
 	
 }
-View* RenderContext::getCurrentView(){
+View* RenderContext::GetCurrentView(){
 	return m_pCurrentView;
 }
 
@@ -121,6 +122,6 @@ void RenderContext::showVersionInformation(){
 	printf("Shader Version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 };
 
-
+}
 
 

@@ -4,7 +4,7 @@
 #include "View.h"
 #include "ImageWidget.h"
 class SplashView
-	: public View
+	: public gtfx::View
 {
 private:
 	ImageWidget*	m_pSplashImage;

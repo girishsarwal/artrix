@@ -1,4 +1,7 @@
 #include "StateManager.h"
+#include "StateMachine.h"
+#include "State.h"
+namespace gtfx {
 StateManager::StateManager()
 {
 
@@ -26,3 +29,4 @@ void StateManager::GotoState(StateMachine* sm, State* newState)
     sm->GotoState(newState);
 }
 StateManager* StateManager::m_instance = NULL;
+}
