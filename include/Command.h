@@ -14,8 +14,9 @@ namespace gtfx {
 class Command
 	: public KeyManageable {
 private:
-	bool mCanExecute;
 	std::map<string, string> mArguments;
+protected:
+	bool mCanExecute;
 public:
 	virtual void Execute();
 	void AddArgument(const std::string& name, const std::string& value);

@@ -14,9 +14,9 @@ class Command;
 class TimerWidget
 	: public GameObject {
 private:
-	float mAccumulatedTime;
+	uint mAccumulatedTime;
 protected:
-
+	bool mIsRunning;
 	uint mTime;
 	Command* mCommand;
 	/*** lifecycle **/
@@ -26,8 +26,16 @@ protected:
 public:
 	TimerWidget();
 	TimerWidget(tinyxml2::XMLNode*);
+
+	void Reset();			/** reset the timer **/
+	void Start();			/** register with the clock **/
+	void Stop();			/** unregister with the clock **/
+	void Pause();			/** just pause **/
+
 	virtual ~TimerWidget();
 	bool ValidateAttributes();
+	bool GetIsRunning() const;
+	void SetIsRunning(bool isRunning);
 };
 }
 #endif

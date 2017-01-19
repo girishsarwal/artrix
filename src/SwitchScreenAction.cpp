@@ -16,15 +16,18 @@ SwitchScreenAction::SwitchScreenAction() {
 SwitchScreenAction::SwitchScreenAction(tinyxml2::XMLNode* node) {
 	tinyxml2::XMLElement* element = node->ToElement();
 	if(NULL == element) {
-		printf("ERROR: SwitchScreenAction:: There was a problem parsing the XML Node");
+		printf("ERROR: SwitchScreenAction::There was a problem parsing the XML Node");
 		return;
 	}
+
 	mName = element->Attribute("name");
 	mTarget = element->FirstChildElement("target")->FirstChild()->Value();
 }
 
 void SwitchScreenAction::Execute() {
-	ViewManager::GetInstance()->ChangeView(mTarget);
+	if(mCanExecute) {
+		ViewManager::GetInstance()->ChangeView(mTarget);
+	}
 }
 
 SwitchScreenAction::~SwitchScreenAction() {

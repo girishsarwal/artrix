@@ -41,8 +41,30 @@ void TimerWidget::OnUpdate(double frameTime) {
 	};
 };
 
+bool TimerWidget::GetIsRunning() const {
+	return mIsRunning;
+}
+
+void TimerWidget::SetIsRunning(bool isRunning) {
+	mIsRunning = isRunning;
+}
 
 bool TimerWidget::ValidateAttributes() {
 	return true;
 };
+void TimerWidget::Reset() {
+	mAccumulatedTime = 0;
+}
+void TimerWidget::Start() {
+	/** register with the clock **/
+	mIsRunning = true;
+}
+void TimerWidget::Stop() {
+	Pause();
+	Reset();
+	/** unregister with the clock **/
+}
+void TimerWidget::Pause() {
+	mIsRunning = false;
+}
 }
