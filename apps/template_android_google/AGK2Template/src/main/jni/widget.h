@@ -7,14 +7,14 @@
 #include "agk.h"
 #include "Vector2.h"
 #include "utils.h"
-#include "statemachine.h"
+#include "StateMachine.h"
 #include "KeyManageable.h"
 
 #define DEFAULT_WIDGET_SIZE 100
 using namespace std;
 using namespace tinyxml2;
 class Widget :
-    public StateMachine, public KeyManageable
+    public gtfx::StateMachine, public KeyManageable
 {
     public:
         /** constructors **/

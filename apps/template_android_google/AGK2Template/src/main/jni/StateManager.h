@@ -1,14 +1,13 @@
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
-#include "utils.h"
-#include "statemachine.h"
-#include "state.h"
+#include "StateMachine.h"
+#include "State.h"
+namespace gtfx {
 class StateMachine;
 class State;
 class StateManager
 {
     public:
-
         virtual ~StateManager();
         static StateManager* GetInstance();
         static void DestroyInstance();
@@ -19,5 +18,5 @@ class StateManager
         static StateManager* m_instance;
         StateManager();
 };
-
+}
 #endif // STATEMANAGER_H

@@ -1,4 +1,7 @@
 #include "StateManager.h"
+#include "StateMachine.h"
+#include "State.h"
+namespace gtfx {
 StateManager::StateManager()
 {
 
@@ -20,9 +23,10 @@ void StateManager::DestroyInstance()
 void StateManager::GotoState(StateMachine* sm, State* newState)
 {
     if(NULL == sm){
-        ALOGE("StateManager::GotoState", "cannot change state, state machine is null");
+        __android_log_print(ANDROID_LOG_VERBOSE, "StateManager", "GotoState - cannot change state, state machine is null");
         return;
     }
     sm->GotoState(newState);
 }
 StateManager* StateManager::m_instance = NULL;
+}

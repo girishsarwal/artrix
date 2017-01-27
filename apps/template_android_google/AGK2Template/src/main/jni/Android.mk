@@ -60,8 +60,12 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../../../../../platform/tinyxml2/include
 
 # app source files, must be relative to the jni folder
 LOCAL_SRC_FILES := main.c Core.cpp template.cpp \
-                    artrix.cpp \
-                    DownloadManager.cpp ConfigurationManager.cpp
+                    artrix.cpp Vector2.cpp \
+                    KeyManageable.cpp \
+                    DownloadManager.cpp ConfigurationManager.cpp LogManager.cpp SerialManager.cpp SPIManager.cpp\
+                    State.cpp StateMachine.cpp StateManager.cpp \
+                    Component.cpp GameObject.cpp \
+                    TransformComponent.cpp RenderComponent.cpp
 
 
 

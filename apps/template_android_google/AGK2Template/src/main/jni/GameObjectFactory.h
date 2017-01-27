@@ -1,6 +1,9 @@
 #ifndef WIDGETFACTORY_H
 #define WIDGETFACTORY_H
-#include "afx.h"
+#include <string>
+#include <tinyxml2>
+#include "GameObject.h"
+#include "Command.h"
 namespace gtfx {
 class GameObject;
 class Command;

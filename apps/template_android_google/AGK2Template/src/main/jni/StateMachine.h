@@ -1,15 +1,14 @@
 #ifndef STATEMACHINE_H_INCLUDED
 #define STATEMACHINE_H_INCLUDED
-#include <android/log.h>
-#include "state.h"
-#include "StateManager.h"
+#include "State.h"
+#include <string>
+namespace gtfx {
 class State;
 class StateMachine
 {
 protected:
     State*  mCurrentState;
     State*  mPreviousState;
-
     State*  mBlipState;
 public:
     State* GetCurrentState();
@@ -22,5 +21,5 @@ public:
     StateMachine();
     ~StateMachine();
 };
-
+}
 #endif // STATEMACHINE_H_INCLUDED

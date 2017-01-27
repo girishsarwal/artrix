@@ -2,13 +2,13 @@
 #define STATE_H_INCLUDED
 #include <string>
 #include <android/log.h>
-#include "statemachine.h"
-using namespace std;
+#include "StateMachine.h"
+namespace gtfx {
 class StateMachine;
 class State
 {
 private:
-    string mName;
+	std::string mName;
     bool mIsOneTimeEntered;
     bool mIsTerminable;
 
@@ -18,14 +18,14 @@ public:
     void Exit(StateMachine*);
     virtual void Update(const StateMachine*, double gameTime) = 0;
 
-    const string& GetName() const;
+    const std::string& GetName() const;
     const bool GetIsOneTimeEntered() const;
     const bool GetIsTerminable() const;
 
     void SetIsOneTimeEntered(bool);
 
-    State(const string&);
-    State(const string&, bool);
+    State(const std::string&);
+    State(const std::string&, bool);
     ~State();
 
 protected:
@@ -33,5 +33,6 @@ protected:
     virtual void OnEnter(const StateMachine*);
     virtual void OnExit(const StateMachine*);
 };
+}
 
 #endif // STATE_H_INCLUDED

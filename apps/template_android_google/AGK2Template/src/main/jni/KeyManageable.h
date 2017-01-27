@@ -1,10 +1,11 @@
 //
 // Created by gsarwal on 2/11/16.
 //
-#include <string>
-#include <typeinfo>
 #ifndef KEYMANAGEABLE_H
 #define KEYMANAGEABLE_H
+#include <string>
+#include <typeinfo>
+
 using namespace std;
 
 class KeyManageable {
