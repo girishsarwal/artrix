@@ -1,0 +1,4 @@
+<media>
+    <file>config</file>
+    <file inflate="1">projects/pratham.zip</file>
+</media>

@@ -3,6 +3,7 @@
 #include <android/log.h>
 #include <android/native_activity.h>
 #include <android/asset_manager.h>
+#include <libgen.h>
 #include <string>
 #include <vector>
 #include <tinyxml2.h>
@@ -21,10 +22,6 @@
 #define COPY_MODE_DEFAULT   false  //follow each files force flag in manifest
 #define COPY_MODE_FACTORY   true   //simulate all flags as force copy
 
-
-using namespace std;
-using namespace AGK;
-using namespace tinyxml2;
 class ConfigurationManager
 {
     public:
@@ -32,26 +29,27 @@ class ConfigurationManager
         virtual ~ConfigurationManager();
         static ConfigurationManager* GetInstance();
         static void DestroyInstance();
-
         void Initialize(ANativeActivity*);
+        void Shutdown();
 
         void GenerateFactoryConfiguration();
         void CopyMedia(const string& file, int mode);
-        void ParseScreens(const string& file);
+        /*void ParseScreens(const string& file);
         void ParseConfig(const string& file);
 
 
-		KeyedManager<Screen*> mScreensManager;
+        KeyedManager<Screen*> mScreensManager; */
+
     protected:
     private:
         static ConfigurationManager* mInstance;
         ANativeActivity* mActivity;
-
-        string mLocalWritePath;
+        std::string mLocalConfigurationFile;
+        std::string mLocalWritePath;
         void ReadFromAGKFile(const string& file, XMLDocument*);
         int CreateContainingFolder(const char* folder);
         void CopyMediaAssetToLocal(const string& file, bool force);
-        void CopyMediaAssetToLocalAgk(const string& file, bool force);
+        void CopyMediaAssetToLocalAgk(const string& file, bool force, bool inflate);
 };
 
 #endif // CONFIGURATIONMANAGER_H

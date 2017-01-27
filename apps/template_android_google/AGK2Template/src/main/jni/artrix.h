@@ -1,15 +1,14 @@
 #ifndef ARTRIX_H
 #define ARTRIX_H
 
-
-#include "statemachine.h"
-#include "screen.h"
-#include "ButtonWidget.h"
-#include "Managers.h"
-#include "utils.h"
+//#include "statemachine.h"
+//#include "screen.h"
+//#include "ButtonWidget.h"
+//#include "Managers.h"
+//#include "utils.h"
 
 class Artrix
-    : public StateMachine
+    //: public StateMachine
 {
     public:
         Artrix();
@@ -25,7 +24,7 @@ class Artrix
 
 };
 
-class ArtrixSanityCheckState
+/*class ArtrixSanityCheckState
     : public State {
 
 };
@@ -45,5 +44,5 @@ class ArtrixHomeState
     private:
         Screen* mHomeScreen;
 };
-
+*/
 #endif // ARTRIX_H

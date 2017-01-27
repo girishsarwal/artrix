@@ -1,0 +1,8 @@
+<config>
+    <metrics><vec x="1920" y="1080"></vec></metrics>
+    <audio>
+    	<status>on</status>
+		<volume>6</volume>
+    	<boot file="audio/bootup.mp3"></boot>
+    </audio>
+</config>

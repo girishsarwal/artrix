@@ -184,7 +184,7 @@ extern "C"
 		g_pActivity = eptr->activity;
 
 		/** Intialize all the managers. Pass the asset manager, so assets can be moved**/
-        Managers::Initialize(g_pActivity);
+        ConfigurationManager::GetInstance()->Initialize(g_pActivity);
 
 		// (OLD) detect if this screen reports as a native landscape and modify accelerometer data to compensate
 		/*

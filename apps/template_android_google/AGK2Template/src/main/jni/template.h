@@ -1,10 +1,9 @@
 #ifndef _H_APP
 #define _H_APP
-
 // Include AGK libraries
 #include "agk.h"
 #include "artrix.h"
-#include "Managers.h"
+//#include "Managers.h"
 
 // Global values for the app
 class app

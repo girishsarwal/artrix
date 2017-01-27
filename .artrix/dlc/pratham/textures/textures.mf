@@ -1,0 +1,22 @@
+<textures>
+	<texture name="dots" source="dots.png" type="sprite"/>
+	<texture name="air-view" source="air-view.jpg" type="sprite"/>
+	<texture name="artrix_bg" source="artrix_bg.bmp" type="sprite"/>
+	<texture name="att-ind-bg" source="att-ind-bg.jpg" type="sprite"/>
+	<texture name="att-ind-panel" source="att-ind-panel.png" type="sprite"/>
+	<texture name="bg" source="bg.png" type="sprite"/>
+	<texture name="black-bar" source="black-bar.png" type="sprite"/>
+	<texture name="dial-compass" source="dial-compass.png" type="sprite"/>
+	<texture name="dial-needle" source="dial-needle.png" type="sprite"/>
+	<texture name="dial-rpm-min-max" source="dial-rpm-min-max.png" type="sprite"/>
+	<texture name="earth" source="earth.jpg" type="sprite"/>
+	<texture name="icon-settings-32x32" source="icon-settings-32x32.png" type="sprite"/>
+	<texture name="main-menu-item-bg" source="main-menu-item-bg.png" type="sprite"/>
+	<texture name="main-menu-item-bg-dark-1px" source="main-menu-item-bg-dark-1px.png" type="sprite"/>
+	<texture name="main-menu-item-bg-light" source="main-menu-item-bg-light.png" type="sprite"/>
+	<texture name="main-menu-item-bg-light-1px" source="main-menu-item-bg-light-1px.png" type="sprite"/>
+	<texture name="needle-airplane-profile" source="needle-airplane-profile.png" type="sprite"/>
+	<texture name="settings-bar" source="settings-bar.png" type="sprite"/>
+	<texture name="splash" source="splash.png" type="sprite"/>
+	<texture name="trebuchet" source="trebuchet.png" type="font"/>
+</textures>

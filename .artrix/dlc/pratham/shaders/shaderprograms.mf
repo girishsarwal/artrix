@@ -1,0 +1,14 @@
+<gpu>
+	<shaders>
+		<shader source="sprite.vert" type="vertex"></shader>
+		<shader source="sprite.frag" type="fragment"></shader>
+	</shaders>
+	<programs>
+		<program name="sprite">
+			<shaders>
+				<shader>sprite.vert</shader> 
+				<shader>sprite.frag</shader>
+			</shaders>
+		</program>
+	</programs>
+</gpu>

@@ -1,6 +1,0 @@
-<media>
-    <file>templates/config.default</file>
-    <file>templates/screens.default</file>
-	<file>backgrounds/dots.jpg</file>
-    <file>buttons/menu-button.png</file>
-</media>

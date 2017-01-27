@@ -1,11 +1,11 @@
 #include "ConfigurationManager.h"
-#include <libgen.h>
+using namespace AGK;
 ConfigurationManager::ConfigurationManager() {
     mLocalWritePath = string(agk::GetWritePath());
 }
 
 ConfigurationManager::~ConfigurationManager() {
-    //dtor
+
 }
 
 ConfigurationManager* ConfigurationManager::GetInstance()
@@ -14,14 +14,20 @@ ConfigurationManager* ConfigurationManager::GetInstance()
         mInstance = new ConfigurationManager();
     return mInstance;
 }
-void ConfigurationManager::DestroyInstance()
-{
+void ConfigurationManager::DestroyInstance() {
+    if (0 != mInstance) {
+        mInstance->Shutdown();
+    }
     delete(mInstance);
 }
 
 void ConfigurationManager::Initialize(ANativeActivity* activity) {
     mActivity = activity;
-    ALOGD("Activity Received", "%p", mActivity);
+    ALOGD("ConfigurationManager::Initialize", "Activity Received %p", mActivity);
+}
+
+void ConfigurationManager::Shutdown() {
+    ALOGD("ConfigurationManager::Shutdown", "");
 }
 
 void ConfigurationManager::GenerateFactoryConfiguration() {
@@ -31,44 +37,44 @@ void ConfigurationManager::GenerateFactoryConfiguration() {
     CopyMedia("media.manifest", COPY_MODE_FACTORY);
 }
 
-void ConfigurationManager::ParseScreens(const string& file) {
-	ALOGD("Configuration::ParseScreens", "parsing screens from %s", file.c_str());
-	XMLDocument doc;
-	ReadFromAGKFile(file, &doc);
-	for (XMLNode *screenNode = doc.RootElement()->FirstChild(); screenNode; screenNode = screenNode->NextSibling()) {        //screens
-		Screen *screen = new Screen();
-		screen->SetName(screenNode->ToElement()->Attribute("name"));
+//void ConfigurationManager::ParseScreens(const string& file) {
+//	ALOGD("Configuration::ParseScreens", "parsing screens from %s", file.c_str());
+//	XMLDocument doc;
+//	ReadFromAGKFile(file, &doc);
+//	for (XMLNode *screenNode = doc.RootElement()->FirstChild(); screenNode; screenNode = screenNode->NextSibling()) {        //screens
+//		Screen *screen = new Screen();
+//		screen->SetName(screenNode->ToElement()->Attribute("name"));
+//
+//		for (XMLNode *widgetNode = screenNode->FirstChild(); widgetNode; widgetNode = widgetNode->NextSibling()) {            //widgets
+//			Widget *w = NULL;
+//            WidgetFactory::CreateWidget(widgetNode, &w);
+//			if (w != NULL) {
+//				w->Initialize();            /** This function is introduced to maintain the object creation inheritance hierarchy **/
+//				screen->AddWidget(w);
+////				ALOGD("Adding widget ", "%s", w->GetName().c_str());
+//			} else
+//				ALOGW("Configuration::ParseScreens",
+//				      "There was a problem creating a widget of type %s", widgetNode->Value());
+//			ALOGD("Configuration::ParseScreens", "%d widgets were added to screen %s",
+//			      screen->GetWidgets().size(), screen->GetName().c_str());
+//
+//			mScreensManager.Add(screen);
+//		}
+//		ALOGD("Configuration::ParseScreens", "%d screens were parsed", mScreensManager.Size());
+//	}
+//}
 
-		for (XMLNode *widgetNode = screenNode->FirstChild(); widgetNode; widgetNode = widgetNode->NextSibling()) {            //widgets
-			Widget *w = NULL;
-            WidgetFactory::CreateWidget(widgetNode, &w);
-			if (w != NULL) {
-				w->Initialize();            /** This function is introduced to maintain the object creation inheritance hierarchy **/
-				screen->AddWidget(w);
-//				ALOGD("Adding widget ", "%s", w->GetName().c_str());
-			} else
-				ALOGW("Configuration::ParseScreens",
-				      "There was a problem creating a widget of type %s", widgetNode->Value());
-			ALOGD("Configuration::ParseScreens", "%d widgets were added to screen %s",
-			      screen->GetWidgets().size(), screen->GetName().c_str());
-
-			mScreensManager.Add(screen);
-		}
-		ALOGD("Configuration::ParseScreens", "%d screens were parsed", mScreensManager.Size());
-	}
-}
-
-void ConfigurationManager::ParseConfig(const string& file) {
-    ALOGD("Configuration::ParseConfig", "parsing configurations from %s", file.c_str());
-    XMLDocument doc;
-    ReadFromAGKFile(file, &doc);
-
-    XMLElement* metrics = doc.RootElement()->FirstChildElement("metrics")->FirstChildElement();
-    Managers::MM->Initialize(atof(metrics->Attribute("x")), atof(metrics->Attribute("y")));
-
-
-    ALOGD("Configuration::ParseConfig", "%d keys were parsed", mScreensManager.Size());
-}
+//void ConfigurationManager::ParseConfig(const string& file) {
+//    ALOGD("Configuration::ParseConfig", "parsing configurations from %s", file.c_str());
+//    XMLDocument doc;
+//    ReadFromAGKFile(file, &doc);
+//
+//    XMLElement* metrics = doc.RootElement()->FirstChildElement("metrics")->FirstChildElement();
+//    Managers::MM->Initialize(atof(metrics->Attribute("x")), atof(metrics->Attribute("y")));
+//
+//
+//    ALOGD("Configuration::ParseConfig", "%d keys were parsed", mScreensManager.Size());
+//}
 
 void ConfigurationManager::ReadFromAGKFile(const string& file, XMLDocument* doc) {
      /** we cant use fopen here as all assets in Agk are zipped up into the AssetManager.
@@ -124,11 +130,8 @@ int ConfigurationManager::CreateContainingFolder(const char* folder) {
         if (errno != EEXIST)
             return -1;
     }
-
-
-
 }
-void ConfigurationManager::CopyMediaAssetToLocalAgk(const string& assetName, bool force = false) {
+void ConfigurationManager::CopyMediaAssetToLocalAgk(const string& assetName, bool force = false, bool inflate = false) {
     /** we cant use fopen here as all assets in Agk are zipped up into the AssetManager.
     we will use AGK functon to copy files **/
     const char* an = assetName.c_str();
@@ -164,7 +167,12 @@ void ConfigurationManager::CopyMediaAssetToLocalAgk(const string& assetName, boo
     agk::CloseFile(fileHandleSource);
     agk::CloseFile(fileHandleDestination);
     ALOGD("Configuration::CopyMediaAssetToLocalAgk", "%ld bytes were copied to %s%s", count, mLocalWritePath.c_str(), an);
+    if(inflate) {
+        agk::ExtractZip(an, "");
+    }
 }
+
+
 void ConfigurationManager::CopyMediaAssetToLocal(const string& assetName, bool force = false) {
     /** splice the names into useful stuff **/
 
@@ -212,8 +220,10 @@ void ConfigurationManager::CopyMedia(const string& manifestFile, int mode) {
     ReadFromAGKFile(manifestFile, &manifest);
     for(XMLNode* fileNode = manifest.RootElement()->FirstChild(); fileNode ; fileNode = fileNode ->NextSibling()) {
         const char* force = fileNode->ToElement()->Attribute("force");
+        const char* _inflate = fileNode->ToElement()->Attribute("inflate");
+        bool inflate = (_inflate != NULL && (atoi(_inflate) == 1));
         if (mode != COPY_MODE_FACTORY) mode = force ? atoi(force): 0;
-        CopyMediaAssetToLocalAgk(string(fileNode->FirstChild()->ToText()->Value()), mode);
+        CopyMediaAssetToLocalAgk(string(fileNode->FirstChild()->ToText()->Value()), mode, inflate);
     }
     ALOGD("Configuration::CopyMedia", "media was copied");
 }
