@@ -11,3 +11,4 @@ apps/template_android_google/.idea/
 *.iml
 makefile
 local.properties
+[Dd]ebug
